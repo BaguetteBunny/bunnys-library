@@ -18,6 +18,11 @@ public class ModConfig {
     public boolean enableSusStewRNG = true;
     public boolean enableStewMobEffects = true;
 
+    // Potion Section
+    public boolean enableCurseClensing = true;
+    public boolean enableLingeringTransform = true;
+    public boolean enableHoneyClearEffects = true;
+
     // Misc Section
     public boolean enableSitting = true;
     public boolean enableRcHarvest = true;

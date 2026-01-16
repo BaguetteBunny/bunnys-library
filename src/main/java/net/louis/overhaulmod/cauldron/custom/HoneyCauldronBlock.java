@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.cauldron.custom;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeveledCauldronBlock;
@@ -27,7 +28,7 @@ public class HoneyCauldronBlock extends LeveledCauldronBlock {
         if (world.isClient) return;
         int level = state.get(LEVEL);
 
-        if (entity instanceof LivingEntity living && level > 0 && !living.getStatusEffects().isEmpty()) {
+        if (entity instanceof LivingEntity living && level > 0 && !living.getStatusEffects().isEmpty() && ModConfig.INSTANCE.enableHoneyClearEffects) {
             living.clearStatusEffects();
             world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_SPLASH, SoundCategory.BLOCKS, 1.0F, 2.0F);
             if (level > 1) world.setBlockState(pos, state.with(LEVEL, level - 1));

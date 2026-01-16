@@ -14,6 +14,18 @@ public class ModConfigScreen {
 
         ConfigEntryBuilder entry = builder.entryBuilder();
 
+        var potionModule = builder.getOrCreateCategory(Text.of("Potion Module"));
+        potionModule.addEntry(entry.startBooleanToggle(
+                Text.of("Dragon Breath Cauldron Clense Curses"),
+                ModConfig.INSTANCE.enableCurseClensing).setSaveConsumer(v -> ModConfig.INSTANCE.enableCurseClensing = v).build());
+        potionModule.addEntry(entry.startBooleanToggle(
+                Text.of("Dragon Breath Cauldron Turns Potions into Lingering Potions"),
+                ModConfig.INSTANCE.enableLingeringTransform).setSaveConsumer(v -> ModConfig.INSTANCE.enableLingeringTransform = v).build());
+        potionModule.addEntry(entry.startBooleanToggle(
+                Text.of("Honey Cauldron Clears All Effects"),
+                ModConfig.INSTANCE.enableHoneyClearEffects).setSaveConsumer(v -> ModConfig.INSTANCE.enableHoneyClearEffects = v).build());
+
+
         var stewModule = builder.getOrCreateCategory(Text.of("Stew Module"));
         stewModule.addEntry(entry.startBooleanToggle(
                 Text.of("Stew Usable on Mobs"),
@@ -21,6 +33,7 @@ public class ModConfigScreen {
         stewModule.addEntry(entry.startBooleanToggle(
                 Text.of("Suspicious Stew Mob Randomizer"),
                 ModConfig.INSTANCE.enableSusStewRNG).setSaveConsumer(v -> ModConfig.INSTANCE.enableSusStewRNG = v).build());
+
 
         var miscModule = builder.getOrCreateCategory(Text.of("Misc Module"));
         miscModule.addEntry(entry.startBooleanToggle(
