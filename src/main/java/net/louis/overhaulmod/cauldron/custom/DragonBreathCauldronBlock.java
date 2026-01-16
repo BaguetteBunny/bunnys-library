@@ -9,9 +9,12 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.PotionItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.EnchantmentTags;
@@ -24,6 +27,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+
+import net.louis.overhaulmod.config.ModConfig;
 
 public class DragonBreathCauldronBlock extends LeveledCauldronBlock {
     public static final CauldronBehavior.CauldronBehaviorMap DB_CAULDRON_BEHAVIOR = CauldronBehavior.createMap("dragons_breath_cauldron_behavior");
@@ -38,7 +43,22 @@ public class DragonBreathCauldronBlock extends LeveledCauldronBlock {
         if (world.isClient) return;
         int level = state.get(LEVEL);
 
-        if (entity instanceof LivingEntity living) {
+        if (level > 1 && entity instanceof ItemEntity item && item.getStack().getItem() instanceof PotionItem potion && potion != Items.LINGERING_POTION  && ModConfig.INSTANCE.enableLingeringTransform) {
+            if (world.getRandom().nextBetweenExclusive(0, 5) == 1) {
+                world.setBlockState(pos, state.with(LEVEL, level - 1));
+                world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 1.0F, 1.5F);
+            } else {
+                world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 1.0F, 2.0F);
+            }
+            ItemStack newPotion = new ItemStack(Items.LINGERING_POTION, item.getStack().getCount());
+            newPotion.set(DataComponentTypes.POTION_CONTENTS, item.getStack().getComponents().get(DataComponentTypes.POTION_CONTENTS));
+
+            ItemEntity newPotionEntity = new ItemEntity(world, item.getX(), item.getY(), item.getZ(), newPotion);
+            item.kill();
+            world.spawnEntity(newPotionEntity);
+        }
+
+        if (entity instanceof LivingEntity living && ModConfig.INSTANCE.enableCurseClensing) {
             Iterable<ItemStack> armors = living.getAllArmorItems();
             for (ItemStack armor : armors) {
                 if (level <= 0) break;
