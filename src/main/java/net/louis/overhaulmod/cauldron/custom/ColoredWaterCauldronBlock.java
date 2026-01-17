@@ -50,7 +50,7 @@ public class ColoredWaterCauldronBlock extends AbstractCauldronBlock {
 
     @Override
     protected double getFluidHeight(BlockState state) {
-        return 0.8125;
+        return 0.9;
     }
 
     @Override
