@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.SculkCatalystBlockEntity;
@@ -18,7 +19,7 @@ public class SculkCatalystBlockEntityMixin {
 
     @Inject(method = "bloom", at = @At("TAIL"))
     private void echoShardOnBloom(ServerWorld world, BlockPos pos, BlockState state, Random random, CallbackInfo ci) {
-        if (random.nextInt(10) == 0) {
+        if (random.nextInt(10) == 0 && ModConfig.INSTANCE.sculkCatalystBloomsEchoShards) {
             BlockPos above = pos.up();
             if (world.getBlockState(above).isAir()) {
                 Block.dropStack(world, above, new ItemStack(Items.ECHO_SHARD));

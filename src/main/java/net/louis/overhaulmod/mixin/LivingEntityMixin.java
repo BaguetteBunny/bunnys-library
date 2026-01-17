@@ -1,12 +1,12 @@
 package net.louis.overhaulmod.mixin;
 
 import net.louis.overhaulmod.component.ModComponents;
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.effect.ModEffects;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.TeleportUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SkullBlock;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
@@ -18,32 +18,24 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.mob.EndermiteEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -53,7 +45,7 @@ public class LivingEntityMixin {
     private void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         Entity attacker = source.getAttacker();
 
-        if (attacker instanceof EndermiteEntity && self instanceof ServerPlayerEntity player) {
+        if (attacker instanceof EndermiteEntity && self instanceof ServerPlayerEntity player && ModConfig.INSTANCE.endermiteTeleportPlayerOnHit) {
             Random random = new Random();
             if (random.nextBoolean()) {TeleportUtils.chorusTeleport(player);}
         }
@@ -83,7 +75,7 @@ public class LivingEntityMixin {
                     || entity.getType().equals(EntityType.PIGLIN_BRUTE) && head.isOf(Items.PIGLIN_HEAD)
                     || entity.getType().equals(EntityType.ZOMBIFIED_PIGLIN) && head.isOf(Items.PIGLIN_HEAD)
                     || entity.getType().equals(EntityType.CREEPER) && head.isOf(Items.CREEPER_HEAD)) {
-                cir.setReturnValue(.0);
+                cir.setReturnValue((double) ModConfig.INSTANCE.decreaseMobHeadDetectionRange);
             } else {
                 cir.setReturnValue(original);
             }

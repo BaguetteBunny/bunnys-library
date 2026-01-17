@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.enchantment.EnchantmentEffectContext;
 import net.minecraft.enchantment.effect.entity.ReplaceDiskEnchantmentEffect;
 import net.minecraft.entity.Entity;
@@ -15,10 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ReplaceDiskEnchantmentEffect.class)
 public class ReplaceDiskEnchantmentEffectMixin {
+    ReplaceDiskEnchantmentEffect effect = (ReplaceDiskEnchantmentEffect)(Object)this;
 
     @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
     private void increaseRadiusAndApply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos, CallbackInfo ci) {
-        ReplaceDiskEnchantmentEffect effect = (ReplaceDiskEnchantmentEffect)(Object)this;
+        if (!ModConfig.INSTANCE.betterFrostWalker) return;
 
         BlockPos blockPos = BlockPos.ofFloored(pos).add(effect.offset());
         Random random = user.getRandom();

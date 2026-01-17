@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.HorseEntity;
@@ -28,7 +29,7 @@ public abstract class EnderPearlEntityMixin extends ProjectileEntity {
     private void onPearlLands(HitResult hitResult, CallbackInfo ci) {
         Entity owner = this.getOwner();
 
-        if (!(owner instanceof ServerPlayerEntity player)) return;
+        if (!(owner instanceof ServerPlayerEntity player) || !ModConfig.INSTANCE.enderpearlTeleportsHorses) return;
 
         if (player.hasVehicle() && player.getVehicle() instanceof HorseEntity horse) {
             player.stopRiding();

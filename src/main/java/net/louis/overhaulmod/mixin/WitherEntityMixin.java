@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.utils.ParticleShapeUtil;
 import net.louis.overhaulmod.utils.accessors.WitherHealthAccessor;
 import net.minecraft.block.WitherSkullBlock;
@@ -57,12 +58,14 @@ public class WitherEntityMixin implements WitherHealthAccessor {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void modifyBossBar(EntityType<? extends WitherEntity> type, World world, CallbackInfo ci) {
+        if (!ModConfig.INSTANCE.enableWitherBossPhases) return;
         bossBar.setStyle(ServerBossBar.Style.NOTCHED_12);
         bossBar.setThickenFog(true);
     }
 
     @ModifyConstant(method = "mobTick", constant = @Constant(floatValue = 7.0F))
     private float modifyExplosionRadius(float original) {
+        if (!ModConfig.INSTANCE.strongerWither) return original;
         return 12.0F;
     }
 
@@ -74,6 +77,8 @@ public class WitherEntityMixin implements WitherHealthAccessor {
 
     @Inject(method = "createWitherAttributes", at = @At("RETURN"), cancellable = true)
     private static void modifyWitherAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
+        if (!ModConfig.INSTANCE.strongerWither) return;
+
         DefaultAttributeContainer.Builder builder = cir.getReturnValue();
 
         builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 600.0);
@@ -91,6 +96,8 @@ public class WitherEntityMixin implements WitherHealthAccessor {
 
     @Inject(method = "mobTick", at = @At("HEAD"))
     private void onMobTick(CallbackInfo ci) {
+        if (!ModConfig.INSTANCE.enableWitherBossPhases) return;
+
         if (!threeQuarterHealthFlag && self.getHealth() <= threeQuarterHealthValue) {
             threeQuarterHealthFlag = true;
             ItemStack helmet = new ItemStack(Items.IRON_HELMET, 1);

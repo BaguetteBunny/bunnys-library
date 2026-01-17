@@ -1,6 +1,7 @@
 package net.louis.overhaulmod.mixin;
 
 import net.louis.overhaulmod.component.ModComponents;
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.mixin.accessor.ArrowEntityAccessor;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.entity.AreaEffectCloudEntity;
@@ -87,7 +88,7 @@ public abstract class ArrowEntityMixin {
 
         Entity entity = self.getEffectCause();
         PotionContentsComponent potionContentsComponent = ((ArrowEntityAccessor) self).callgetPotionContents();
-        if (potionContentsComponent.potion().isPresent()) {
+        if (potionContentsComponent.potion().isPresent() && ModConfig.INSTANCE.doLingeringDropOnHit) {
             for (StatusEffectInstance statusEffectInstance : ((Potion)((RegistryEntry)potionContentsComponent.potion().get()).value()).getEffects()) {
                 target.addStatusEffect(
                         new StatusEffectInstance(

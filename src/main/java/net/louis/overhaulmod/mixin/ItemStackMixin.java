@@ -1,6 +1,7 @@
 package net.louis.overhaulmod.mixin;
 
 import net.louis.overhaulmod.component.ModComponents;
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
 import net.minecraft.component.DataComponentTypes;
@@ -32,7 +33,7 @@ public class ItemStackMixin {
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
     private void addEnchantmentDescriptions(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
-        if (!(stack.getItem() instanceof EnchantedBookItem)) return;
+        if (!(stack.getItem() instanceof EnchantedBookItem) || !ModConfig.INSTANCE.addEnchantmentDescriptions) return;
 
         ItemEnchantmentsComponent enchantments = stack.get(DataComponentTypes.STORED_ENCHANTMENTS);
         if (enchantments == null || enchantments.isEmpty()) return;
@@ -135,7 +136,7 @@ public class ItemStackMixin {
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
     private void obfuscateCurseNames(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
-        if (stack.getItem() instanceof EnchantedBookItem) return;
+        if (stack.getItem() instanceof EnchantedBookItem || !ModConfig.INSTANCE.obfuscateCurses) return;
 
         List<Text> tooltip = cir.getReturnValue();
         ItemEnchantmentsComponent enchantments = stack.get(DataComponentTypes.ENCHANTMENTS);

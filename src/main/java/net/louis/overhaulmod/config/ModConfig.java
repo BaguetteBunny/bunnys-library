@@ -14,6 +14,26 @@ public class ModConfig {
 
     public static ModConfig INSTANCE = new ModConfig();
 
+    // Enchantment Section
+    public boolean grindstoneRemoveEnchantsOneByOne = true;
+    public boolean obfuscateCurses = true;
+    public boolean addEnchantmentDescriptions = true;
+    public boolean betterFrostWalker = true;
+
+    // Entity Section
+    public boolean disableHorseLeafCollision = true;
+    public boolean disableWitherBedrockCollision = true;
+    public boolean enderpearlTeleportsHorses = true;
+    public boolean endermiteTeleportPlayerOnHit = true;
+    public boolean dyeShulkerAndBrush = true;
+    public boolean disableItemFrameInteractionIfChest = true;
+    public boolean changeArmorstand = true;
+    public boolean randomPigSpeed = true;
+    public boolean moreAggressivePolarBears = true;
+    public boolean strongerWither = true;
+    public boolean enableWitherBossPhases = true;
+    public long decreaseMobHeadDetectionRange = 0;
+
     // Stew Section
     public boolean enableSusStewRNG = true;
     public boolean enableStewMobEffects = true;
@@ -22,6 +42,7 @@ public class ModConfig {
     public boolean enableCurseClensing = true;
     public boolean enableLingeringTransform = true;
     public boolean enableHoneyClearEffects = true;
+    public boolean doLingeringDropOnHit = true;
 
     // Misc Section
     public boolean enableSitting = true;
@@ -32,9 +53,9 @@ public class ModConfig {
     public boolean retexturePlayerHead = true;
     public boolean useBonemealOnOtherCrops = true;
     //public boolean useGlowInk = true;
-    public boolean changeArmorstand = true;
-    public boolean dyeShulkerAndBrush = true;
     public boolean enableFeatherAttack = true;
+    public boolean disableCropTrampleWithFeatherFalling = true;
+    public boolean sculkCatalystBloomsEchoShards = true;
 
     // --- load ---
     public static void load() {

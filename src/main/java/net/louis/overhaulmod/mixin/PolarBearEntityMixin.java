@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -16,7 +17,7 @@ public abstract class PolarBearEntityMixin {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void nearbyAggressionLogic(CallbackInfo ci) {
-        if (self.getWorld().isClient) return;
+        if (self.getWorld().isClient || !ModConfig.INSTANCE.moreAggressivePolarBears) return;
 
         ServerWorld world = (ServerWorld) self.getWorld();
         PlayerEntity nearest = world.getClosestPlayer(self, 16.0);

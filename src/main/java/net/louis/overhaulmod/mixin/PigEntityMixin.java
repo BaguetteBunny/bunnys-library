@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.utils.enums.PigPersonality;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,6 +24,8 @@ public abstract class PigEntityMixin {
 
     @Inject(method = "getSaddledSpeed", at = @At("RETURN"), cancellable = true)
     private void modifySaddleSpeed(PlayerEntity controllingPlayer, CallbackInfoReturnable<Float> cir) {
+        if (!ModConfig.INSTANCE.randomPigSpeed) return;
+
         if (speedMultiplier > maxRange) speedMultiplier -= volatility;
         else if (speedMultiplier < minRange) speedMultiplier += volatility;
         else speedMultiplier = controllingPlayer.getWorld().getRandom().nextBetween(0, volatilityConstant) < 50 ? speedMultiplier+volatility : speedMultiplier-volatility;

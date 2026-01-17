@@ -1,7 +1,7 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
@@ -47,7 +47,7 @@ public class ItemFrameMixin {
         BlockState state = world.getBlockState(chestPos);
         Block block = state.getBlock();
 
-        if (frame.getHeldItemStack() != ItemStack.EMPTY && !player.isSneaking() && isChest(block)) {
+        if (frame.getHeldItemStack() != ItemStack.EMPTY && !player.isSneaking() && isChest(block) && ModConfig.INSTANCE.disableItemFrameInteractionIfChest) {
             ActionResult result = state.onUse(world, player, new BlockHitResult(
                     player.getPos(),
                     frame.getFacing().getOpposite(),

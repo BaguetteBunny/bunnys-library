@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.item.Items;
 import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.screen.GrindstoneScreenHandler;
@@ -21,7 +22,7 @@ public abstract class GrindstoneScreenHandlerMixin {
     private void removeOnlyFirstEnchantment(ItemStack item, CallbackInfoReturnable<ItemStack> cir) {
         ItemEnchantmentsComponent enchantments = item.get(DataComponentTypes.ENCHANTMENTS);
 
-        if (enchantments != null && !enchantments.isEmpty()) {
+        if (enchantments != null && !enchantments.isEmpty() && ModConfig.INSTANCE.grindstoneRemoveEnchantsOneByOne) {
             RegistryEntry<Enchantment> firstEnchant = null;
 
             for (var entry : enchantments.getEnchantmentEntries()) {

@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -35,7 +36,7 @@ public class AbstractBlockMixin {
 
     @Inject(method = "getCollisionShape", at = @At("HEAD"), cancellable = true)
     private void ignoreHorseLeafCollision(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (state.getBlock() instanceof LeavesBlock && context instanceof EntityShapeContext esc) {
+        if (state.getBlock() instanceof LeavesBlock && context instanceof EntityShapeContext esc && ModConfig.INSTANCE.disableHorseLeafCollision) {
             Entity entity = esc.getEntity();
             if (entity instanceof HorseEntity && ((HorseEntity) entity).isTame()) {
                 cir.setReturnValue(VoxelShapes.empty());
@@ -45,7 +46,7 @@ public class AbstractBlockMixin {
 
     @Inject(method = "getCollisionShape", at = @At("HEAD"), cancellable = true)
     private void ignoreWitherCollision(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (state.getBlock() == Blocks.BEDROCK && context instanceof EntityShapeContext esc) {
+        if (state.getBlock() == Blocks.BEDROCK && context instanceof EntityShapeContext esc && ModConfig.INSTANCE.disableWitherBedrockCollision) {
             Entity entity = esc.getEntity();
             if (entity instanceof WitherEntity) {
                 cir.setReturnValue(VoxelShapes.empty());
