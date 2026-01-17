@@ -589,8 +589,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("DHD")
                 .pattern("DDD")
                 .input('D', Items.DRIED_KELP)
-                .input('H', Items.DIAMOND)
-                .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
+                .input('H', Items.AMETHYST_SHARD)
+                .criterion(hasItem(Items.AMETHYST_SHARD), conditionsFromItem(Items.AMETHYST_SHARD))
                 .offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ROSE_QUARTZ_BRICKS, 4)
