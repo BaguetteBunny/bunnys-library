@@ -31,7 +31,7 @@ public class ParrotEntityMixin {
                     itemInHand.set(ModComponents.PARROT_VARIANT, parrot.getVariant()); // Color variant
                     itemInHand.set(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
 
-                    player.sendMessage(Text.of("Pet's soul saved to your compass!"), true);
+                    player.sendMessage(Text.of("Parrot's soul saved to your compass!"), true);
                     parrot.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 2f, 2f);
                 }
                 cir.setReturnValue(ActionResult.SUCCESS);

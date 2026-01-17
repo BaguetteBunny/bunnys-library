@@ -33,7 +33,7 @@ public class CatEntityMixin {
                     itemInHand.set(ModComponents.MOB_COLLAR_COLOR, cat.getCollarColor());
                     itemInHand.set(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
 
-                    player.sendMessage(Text.of("Pet's soul saved to your compass!"), true);
+                    player.sendMessage(Text.of("Cat's soul saved to your compass!"), true);
                     cat.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 2f, 2f);
                 }
                 cir.setReturnValue(ActionResult.SUCCESS);

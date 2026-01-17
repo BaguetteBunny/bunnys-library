@@ -35,7 +35,7 @@ public class WolfEntityMixin {
                     RegistryEntry<WolfVariant> variant = wolf.getVariant();
                     itemInHand.set(ModComponents.WOLF_VARIANT, variant);
                     itemInHand.set(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
-                    player.sendMessage(Text.of("Pet's soul saved to your compass!"), true);
+                    player.sendMessage(Text.of("Wolf's soul saved to your compass!"), true);
                     wolf.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 2f, 2f);
                 }
                 cir.setReturnValue(ActionResult.SUCCESS);
