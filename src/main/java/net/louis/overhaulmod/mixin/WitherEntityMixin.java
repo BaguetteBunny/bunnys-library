@@ -81,9 +81,9 @@ public class WitherEntityMixin implements WitherHealthAccessor {
 
         DefaultAttributeContainer.Builder builder = cir.getReturnValue();
 
-        builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 600.0);
+        builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 750.0);
         builder.add(EntityAttributes.GENERIC_FLYING_SPEED, 0.8);
-        builder.add(EntityAttributes.GENERIC_ARMOR, 7.0);
+        builder.add(EntityAttributes.GENERIC_ARMOR, 8.0);
         cir.setReturnValue(builder);
     }
 
