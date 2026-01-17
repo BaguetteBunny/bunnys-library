@@ -24,6 +24,7 @@ public class EnchantmentUtils {
             for (var entry : enchantments.getEnchantmentEntries()) {
                 RegistryEntry<Enchantment> enchantment = entry.getKey();
                 if (enchantment.matchesId(Identifier.of(LouisOverhaulMod.MOD_ID, path))) return true;
+                if (enchantment.matchesId(Identifier.ofVanilla(path))) return true;
             }
         }
         return false;

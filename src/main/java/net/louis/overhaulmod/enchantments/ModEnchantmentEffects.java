@@ -21,6 +21,8 @@ public class ModEnchantmentEffects {
             registerEntityEffect("giant_killer", GiantKillerEnchantmentEffect.CODEC);
     public static final MapCodec<? extends EnchantmentEntityEffect> ILLAGERS_BANE =
             registerEntityEffect("illagers_bane", IllagersBaneEnchantmentEffect.CODEC);
+    public static final MapCodec<? extends EnchantmentEntityEffect> MAGIC_TOUCH =
+            registerEntityEffect("magic_touch", IllagersBaneEnchantmentEffect.CODEC);
 
     private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name, MapCodec<? extends EnchantmentEntityEffect> codec) {
         return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Identifier.of(LouisOverhaulMod.MOD_ID, name), codec);

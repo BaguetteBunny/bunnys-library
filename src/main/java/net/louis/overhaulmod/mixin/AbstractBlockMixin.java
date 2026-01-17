@@ -53,64 +53,6 @@ public class AbstractBlockMixin {
             }
         }
     }
-
-    @Inject(method = "onBlockBreakStart", at = @At("HEAD"), cancellable = true)
-    protected void useAmethystDagger(BlockState state, World world, BlockPos pos, PlayerEntity player, CallbackInfo ci) {
-        Block bl = state.getBlock();
-        ItemStack stack = player.getMainHandStack();
-        if (!(world instanceof ServerWorld)) return;
-
-        if (stack.getItem().equals(ModItems.AMETHYST_DAGGER)) {
-            if (UNDROPPABLES.contains(bl)) {
-                stack.damage(1, player, EquipmentSlot.MAINHAND);
-                world.breakBlock(pos, false, player);
-                player.incrementStat(Stats.MINED.getOrCreateStat(bl));
-                player.addExhaustion(0.005F);
-                ci.cancel();
-            }
-
-            if (DROPPABLES.contains(bl)) {
-                stack.damage(1, player, EquipmentSlot.MAINHAND);
-                ItemStack drop = new ItemStack(bl);
-
-                if (state.getBlock() instanceof PlayerSkullBlock) {
-                    BlockEntity be = world.getBlockEntity(pos);
-                    ProfileComponent profileComponent = getProfileComponent(be);
-                    world.breakBlock(pos, false, player);
-                    if (profileComponent != null) drop.set(DataComponentTypes.PROFILE, profileComponent);
-                }
-
-                world.breakBlock(pos, false, player);
-                world.spawnEntity(new ItemEntity(
-                        world,
-                        pos.getX() + 0.5,
-                        pos.getY() + 0.5,
-                        pos.getZ() + 0.5,
-                        drop
-                ));
-
-                player.incrementStat(Stats.MINED.getOrCreateStat(bl));
-                player.addExhaustion(0.005f);
-                ci.cancel();
-            }
-        }
-    }
-
-    private static @Nullable ProfileComponent getProfileComponent(BlockEntity be) {
-        ProfileComponent profileComponent = null;
-        if (be instanceof SkullBlockEntity skull) {
-
-            ProfileComponent stored = skull.getOwner();
-            if (stored != null) {
-                profileComponent = new ProfileComponent(
-                        stored.name(),
-                        stored.id(),
-                        stored.properties()
-                );
-            }
-        }
-        return profileComponent;
-    }
 }
 
 

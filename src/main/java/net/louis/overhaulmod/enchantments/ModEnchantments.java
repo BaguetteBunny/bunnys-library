@@ -21,6 +21,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "smelting"));
     public static final RegistryKey<Enchantment> TILLING =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "tilling"));
+    public static final RegistryKey<Enchantment> MAGIC_TOUCH =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "magic_touch"));
     public static final RegistryKey<Enchantment> FIRE_BLAST =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "fire_blast"));
     public static final RegistryKey<Enchantment> GIANT_KILLER =
@@ -71,6 +73,17 @@ public class ModEnchantments {
         register(registerable, FIRE_BLAST, Enchantment.builder(Enchantment.definition(
                         items.getOrThrow(ModTags.Items.FLINT_AND_STEEL_ENCHANTABLE),
                         items.getOrThrow(ModTags.Items.FLINT_AND_STEEL_ENCHANTABLE),
+                        1,
+                        1,
+                        Enchantment.leveledCost(23, 2),
+                        Enchantment.leveledCost(35, 5),
+                        0,
+                        AttributeModifierSlot.MAINHAND))
+                .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.MINING_EXCLUSIVE_SET)));
+
+        register(registerable, MAGIC_TOUCH, Enchantment.builder(Enchantment.definition(
+                        items.getOrThrow(ItemTags.HOES),
+                        items.getOrThrow(ItemTags.HOES),
                         1,
                         1,
                         Enchantment.leveledCost(23, 2),

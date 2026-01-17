@@ -344,6 +344,24 @@ public class ModLootTableModifiers {
                 tableBuilder.pool(poolBuilder);
             }
 
+            // Add Magic Touch to Plains Village
+            if (LootTables.VILLAGE_PLAINS_CHEST.equals(key)) {
+                RegistryEntry<Enchantment> magicTouch = registry.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
+                        .getOrThrow(ModEnchantments.MAGIC_TOUCH);
+
+                ItemEnchantmentsComponent.Builder enchantmentBuilder =
+                        new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+                enchantmentBuilder.add(magicTouch, 1);
+
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.1f))
+                        .with(ItemEntry.builder(Items.ENCHANTED_BOOK)
+                                .apply(SetComponentsLootFunction.builder(DataComponentTypes.STORED_ENCHANTMENTS, enchantmentBuilder.build())));
+
+                tableBuilder.pool(poolBuilder);
+            }
+
             // Add Purified Water to Desert Well & Temples
             if (LootTables.DESERT_WELL_ARCHAEOLOGY.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()

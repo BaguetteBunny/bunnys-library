@@ -1,10 +1,7 @@
 package net.louis.overhaulmod.events;
 
 import com.mojang.authlib.GameProfile;
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
-import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.event.player.*;
 import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.entity.ModEntities;
@@ -15,6 +12,7 @@ import net.louis.overhaulmod.entity.custom.thrown.projectile.PurifiedWaterEntity
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.mixin.accessor.ArmorStandEntityAccessor;
 import net.louis.overhaulmod.mixin.accessor.BrushableBlockEntityAccessor;
+import net.louis.overhaulmod.utils.EnchantmentUtils;
 import net.louis.overhaulmod.utils.GlowManager;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -49,15 +47,11 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static net.louis.overhaulmod.utils.EnchantmentUtils.hasEnchant;
 
 public class ModUseEvents {
-
     public static void registerMain() {
         UseBlockCallback.EVENT.register(ModUseEvents::useOnSuspiciousBlock);
         UseBlockCallback.EVENT.register(ModUseEvents::oxidizeCopperWithClock);
@@ -78,6 +72,8 @@ public class ModUseEvents {
         UseEntityCallback.EVENT.register(ModUseEvents::useChilledBonemealOnAnimal);
 
         AttackEntityCallback.EVENT.register(ModUseEvents::featherDamageFreeKB);
+
+        AttackBlockCallback.EVENT.register(ModUseEvents::magicTouchEvent);
     }
 
     public static void registerProjectileItems() {
@@ -794,6 +790,56 @@ public class ModUseEvents {
         } return ActionResult.PASS;
     }
 
+    public static ActionResult magicTouchEvent(PlayerEntity player, World world, Hand hand, BlockPos pos, Direction direction) {
+        ItemStack stack = player.getMainHandStack();
+        BlockState bs = world.getBlockState(pos);
+
+        if (world.isClient() || !(world instanceof ServerWorld) || !EnchantmentUtils.hasEnchant(stack, "magic_touch")) return ActionResult.PASS;
+
+        Block bl = bs.getBlock();
+        ItemStack drop = new ItemStack(bl);
+        boolean doDrop = true;
+
+        if (bl instanceof PlayerSkullBlock) {
+            BlockEntity be = world.getBlockEntity(pos);
+            ProfileComponent profileComponent = getProfileComponent(be);
+            if (profileComponent != null) drop.set(DataComponentTypes.PROFILE, profileComponent);
+
+        } else if (requiresSilkMagicTouch(bl)) {
+            if (!EnchantmentUtils.hasEnchant(stack, "silk_touch")) doDrop = false;
+
+        } else if (!(notRequiresSilkMagicTouch(bl))) return ActionResult.PASS;
+
+
+        world.breakBlock(pos, !doDrop, player);
+        player.incrementStat(Stats.MINED.getOrCreateStat(bl));
+        player.addExhaustion(0.005F);
+        stack.damage(1, player, EquipmentSlot.MAINHAND);
+
+        if (doDrop)
+            world.spawnEntity(new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
+
+        return ActionResult.SUCCESS;
+    }
+
+
+
+    private static @Nullable ProfileComponent getProfileComponent(BlockEntity be) {
+        ProfileComponent profileComponent = null;
+        if (be instanceof SkullBlockEntity skull) {
+
+            ProfileComponent stored = skull.getOwner();
+            if (stored != null) {
+                profileComponent = new ProfileComponent(
+                        stored.name(),
+                        stored.id(),
+                        stored.properties()
+                );
+            }
+        }
+        return profileComponent;
+    }
+
     private static boolean isPlayerHead(BlockState blockState) {
         return blockState.isOf(Blocks.PLAYER_HEAD) || blockState.isOf(Blocks.PLAYER_WALL_HEAD);
     }
@@ -838,6 +884,36 @@ public class ModUseEvents {
         if (state.getBlock() instanceof StairsBlock) return state.get(StairsBlock.HALF) == BlockHalf.BOTTOM;
         if (state.getBlock() instanceof SlabBlock) return state.get(SlabBlock.TYPE) == SlabType.BOTTOM;
         return state.getBlock() instanceof BedBlock;
+    }
+
+    private static boolean requiresSilkMagicTouch(Block bl) {
+        return (
+                bl instanceof StainedGlassBlock
+                        || bl instanceof StainedGlassPaneBlock
+                        || bl == Blocks.GLASS
+                        || bl == Blocks.GLASS_PANE
+                        || bl == Blocks.TURTLE_EGG
+                        || bl == Blocks.SEA_LANTERN
+                        || bl == Blocks.GLOWSTONE
+                        || bl == Blocks.BUDDING_AMETHYST
+                        || bl == Blocks.AMETHYST_CLUSTER
+                        || bl == Blocks.SMALL_AMETHYST_BUD
+                        || bl == Blocks.MEDIUM_AMETHYST_BUD
+                        || bl == Blocks.LARGE_AMETHYST_BUD
+        );
+    }
+
+    private static boolean notRequiresSilkMagicTouch(Block bl) {
+        return (
+                bl == Blocks.REDSTONE_LAMP
+                        || bl == Blocks.BEACON
+                        || bl == Blocks.OCHRE_FROGLIGHT
+                        || bl == Blocks.PEARLESCENT_FROGLIGHT
+                        || bl == Blocks.HONEYCOMB_BLOCK
+                        || bl == Blocks.SNIFFER_EGG
+                        || bl == Blocks.HEAVY_CORE
+                        || (bl instanceof SkullBlock && !(bl instanceof PlayerSkullBlock))
+        );
     }
 }
 
