@@ -33,6 +33,7 @@ public class ModConfig {
     public boolean strongerWither = true;
     public boolean enableWitherBossPhases = true;
     public long decreaseMobHeadDetectionRange = 0;
+    public int saddledGoatHornCooldownInSeconds = 5;
 
     // Stew Section
     public boolean enableSusStewRNG = true;

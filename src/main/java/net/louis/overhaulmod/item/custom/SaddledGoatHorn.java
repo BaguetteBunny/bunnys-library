@@ -1,6 +1,7 @@
 package net.louis.overhaulmod.item.custom;
 
 import net.louis.overhaulmod.component.ModComponents;
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.mixin.accessor.HorseAccessor;
 import net.louis.overhaulmod.sound.ModSounds;
 import net.minecraft.entity.Entity;
@@ -105,7 +106,7 @@ public class SaddledGoatHorn extends Item {
         if (!world.isClient && player instanceof ServerPlayerEntity serverPlayer && uuidStr != null && !uuidStr.isEmpty()) {
             world.playSound(null, player.getBlockPos(), ModSounds.SADDLED_GOAT_HORN_USE, SoundCategory.PLAYERS);
 
-            player.getItemCooldownManager().set(this, 60);
+            player.getItemCooldownManager().set(this, ModConfig.INSTANCE.saddledGoatHornCooldownInSeconds * 20);
 
             HorseEntity horse = EntityType.HORSE.create(world);
             if (horse != null) {

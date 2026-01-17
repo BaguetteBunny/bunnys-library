@@ -69,6 +69,12 @@ public class ModConfigScreen {
                 0,
                 35
         ).setSaveConsumer(v -> ModConfig.INSTANCE.decreaseMobHeadDetectionRange = v).build());
+        entityModule.addEntry(entry.startIntSlider(
+                Text.of("Saddled Goat Horn Cooldown"),
+                ModConfig.INSTANCE.saddledGoatHornCooldownInSeconds,
+                1,
+                60
+        ).setSaveConsumer(v -> ModConfig.INSTANCE.saddledGoatHornCooldownInSeconds = v).build());
 
 
         var potionModule = builder.getOrCreateCategory(Text.of("Potion Module"));
