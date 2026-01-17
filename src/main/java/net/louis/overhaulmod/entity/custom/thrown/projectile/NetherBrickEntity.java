@@ -21,6 +21,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 import java.util.Set;
@@ -115,7 +116,7 @@ public class NetherBrickEntity extends ThrownItemEntity {
     protected void onCollision(HitResult hitResult) {
         World world = this.getWorld();
 
-        if (!world.isClient && hitResult.getType() == HitResult.Type.BLOCK) {
+        if (!world.isClient && hitResult.getType() == HitResult.Type.BLOCK && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
             BlockHitResult blockHitResult = (BlockHitResult) hitResult;
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState state = world.getBlockState(pos);

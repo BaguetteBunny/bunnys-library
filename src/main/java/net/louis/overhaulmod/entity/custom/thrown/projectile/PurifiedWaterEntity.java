@@ -28,6 +28,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.joml.Vector4d;
 
@@ -165,7 +166,7 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
         replaceBlocksInRadius(world, pos, 5, PURIFIED_WATER_BLOCK_TRANSFORM, true);
 
         // Explode in Nether
-        if (!world.isClient && world.getDimension().ultrawarm()) {
+        if (!world.isClient && world.getDimension().ultrawarm() && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
             world.createExplosion(null, world.getDamageSources().badRespawnPoint(vec3d), null, vec3d, 5.0F, true, World.ExplosionSourceType.BLOCK);
             this.remove(RemovalReason.DISCARDED);
             return;
