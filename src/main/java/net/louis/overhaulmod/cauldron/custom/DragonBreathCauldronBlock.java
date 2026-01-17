@@ -43,9 +43,10 @@ public class DragonBreathCauldronBlock extends LeveledCauldronBlock {
         if (world.isClient) return;
         int level = state.get(LEVEL);
 
-        if (level > 1 && entity instanceof ItemEntity item && item.getStack().getItem() instanceof PotionItem potion && potion != Items.LINGERING_POTION  && ModConfig.INSTANCE.enableLingeringTransform) {
+        if (entity instanceof ItemEntity item && item.getStack().getItem() instanceof PotionItem potion && potion != Items.LINGERING_POTION  && ModConfig.INSTANCE.enableLingeringTransform) {
             if (world.getRandom().nextBetweenExclusive(0, 5) == 1) {
-                world.setBlockState(pos, state.with(LEVEL, level - 1));
+                if (level > 1) world.setBlockState(pos, state.with(LEVEL, level - 1));
+                else world.setBlockState(pos, Blocks.CAULDRON.getDefaultState());
                 world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 1.0F, 1.5F);
             } else {
                 world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, SoundCategory.BLOCKS, 1.0F, 2.0F);
