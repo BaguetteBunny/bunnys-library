@@ -1,10 +1,14 @@
 package net.louis.overhaulmod.recipe;
 
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.louis.overhaulmod.LouisOverhaulMod;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 
 
@@ -21,6 +25,20 @@ public class ModRecipes {
             });
 
     public static void registerRecipes() {
-        LouisOverhaulMod.LOGGER.info("Registering Custom Recipes for " + LouisOverhaulMod.MOD_ID);
+        // ... existing code
+
+        // Add a callback to log when recipes are loaded
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+            @Override
+            public Identifier getFabricId() {
+                return Identifier.of(LouisOverhaulMod.MOD_ID, "recipe_debug");
+            }
+
+            @Override
+            public void reload(ResourceManager manager) {
+                System.out.println("=== RECIPES BEING LOADED ===");
+                // This will show us what's happening
+            }
+        });
     }
 }

@@ -5,13 +5,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipData;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.screen.slot.Slot;
 import org.apache.commons.lang3.math.Fraction;
 import org.jetbrains.annotations.Nullable;
@@ -19,6 +15,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import static net.minecraft.item.ItemStack.areEqual;
 
 public final class CustomBundleContentsComponent implements TooltipData {
     public static final CustomBundleContentsComponent DEFAULT = new CustomBundleContentsComponent(List.of(), 64);
@@ -65,6 +63,20 @@ public final class CustomBundleContentsComponent implements TooltipData {
         }
     }
 
+    public boolean stacksEqual(List<ItemStack> left, List<ItemStack> right) {
+        if (left.size() != right.size()) {
+            return false;
+        } else {
+            for(int i = 0; i < left.size(); ++i) {
+                if (!areEqual((ItemStack)left.get(i), (ItemStack)right.get(i))) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
     public ItemStack get(int index) {
         return (ItemStack)this.stacks.get(index);
     }
@@ -101,18 +113,6 @@ public final class CustomBundleContentsComponent implements TooltipData {
         return this.stacks.isEmpty();
     }
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        } else {
-            return o instanceof CustomBundleContentsComponent bundleContentsComponent && this.occupancy.equals(bundleContentsComponent.occupancy) && ItemStack.stacksEqual(this.stacks, bundleContentsComponent.stacks);
-        }
-    }
-
-    public int hashCode() {
-        return ItemStack.listHashCode(this.stacks);
-    }
-
     public String toString() {
         return "CustomBundleContents" + this.stacks;
     }
@@ -123,7 +123,7 @@ public final class CustomBundleContentsComponent implements TooltipData {
         private final int max;
 
         public Builder(CustomBundleContentsComponent base) {
-            this.stacks = new ArrayList(base.stacks);
+            this.stacks = new ArrayList<>(base.stacks);
             this.occupancy = base.occupancy;
             this.max = base.maximumSlots;
         }

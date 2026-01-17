@@ -28,20 +28,18 @@ public class SawmillRecipeJsonBuilder implements CraftingRecipeJsonBuilder {
     private final Map<String, AdvancementCriterion<?>> criteria = new LinkedHashMap();
     @Nullable
     private String group;
-    private final CuttingRecipe.RecipeFactory<?> recipeFactory;
 
     public SawmillRecipeJsonBuilder(
-            RecipeCategory category, CuttingRecipe.RecipeFactory<?> recipeFactory, Ingredient input, ItemConvertible output, int count
+            RecipeCategory category, Ingredient input, ItemConvertible output, int count
     ) {
         this.category = category;
-        this.recipeFactory = recipeFactory;
         this.output = output.asItem();
         this.input = input;
         this.count = count;
     }
 
     public static SawmillRecipeJsonBuilder createSawmilling(Ingredient input, RecipeCategory category, ItemConvertible output, int count) {
-        return new SawmillRecipeJsonBuilder(category, SawmillRecipe::new, input, output, count);
+        return new SawmillRecipeJsonBuilder(category, input, output, count);
     }
 
     public SawmillRecipeJsonBuilder criterion(String string, AdvancementCriterion<?> advancementCriterion) {
@@ -67,9 +65,20 @@ public class SawmillRecipeJsonBuilder implements CraftingRecipeJsonBuilder {
                 .rewards(AdvancementRewards.Builder.recipe(recipeId))
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
         this.criteria.forEach(builder::criterion);
-        CuttingRecipe cuttingRecipe = this.recipeFactory
-                .create((String) Objects.requireNonNullElse(this.group, ""), this.input, new ItemStack(this.output, this.count));
-        exporter.accept(recipeId, cuttingRecipe, builder.build(recipeId.withPrefixedPath("recipes/")));
+
+        SawmillRecipe cuttingRecipe = new SawmillRecipe(
+                this.category,
+                (String) Objects.requireNonNullElse(this.group, ""),
+                this.input,
+                new ItemStack(this.output, this.count)
+        );
+
+        Identifier advancementId = Identifier.of(
+                recipeId.getNamespace(),
+                "recipes/" + this.category.getName() + "/" + recipeId.getPath().replace("sawmill/", "")
+        );
+
+        exporter.accept(recipeId, cuttingRecipe, builder.build(advancementId));
     }
 
     private void validate(Identifier recipeId) {

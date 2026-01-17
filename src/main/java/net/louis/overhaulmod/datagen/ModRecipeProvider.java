@@ -43,9 +43,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     public static void offerSawmillingRecipe(RecipeExporter exporter, RecipeCategory category, ItemConvertible output, ItemConvertible input, int count) {
+        String recipeName = convertBetween(output, input) + "_sawmilling";
         SawmillRecipeJsonBuilder.createSawmilling(Ingredient.ofItems(input), category, output, count)
                 .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, convertBetween(output, input) + "_sawmilling");
+                .offerTo(exporter, Identifier.of(LouisOverhaulMod.MOD_ID, recipeName));
     }
 
     public static void offerAllWoodSawmillingRecipes(RecipeExporter exporter) {
@@ -160,8 +161,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         NbtComponent nbtComponent = NbtComponent.DEFAULT
                 .with(ops, PaintingEntity.VARIANT_MAP_CODEC, variantEntry)
-                .getOrThrow() // DataResult -> either codec result or throw
-                .apply(nbt -> nbt.putString("id", "minecraft:painting")); // vanilla adds id = minecraft:painting
+                .getOrThrow()
+                .apply(nbt -> nbt.putString("id", "minecraft:painting"));
 
         ItemStack stack = new ItemStack(Items.PAINTING);
         stack.set(DataComponentTypes.ENTITY_DATA, nbtComponent);
@@ -170,7 +171,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     private static Identifier idOfPaintingEntry(RegistryEntry<PaintingVariant> entry) {
         Optional<RegistryKey<PaintingVariant>> key = entry.getKey();
-        Identifier variantId = key.map(k -> k.getValue()).orElseGet(() -> Identifier.of("minecraft", "unknown_painting"));
+        Identifier variantId = key.map(k -> k.getValue()).orElseGet(() -> Identifier.ofVanilla("unknown_painting"));
         return Identifier.of(LouisOverhaulMod.MOD_ID, "painting_to_" + variantId.getPath() + "_sawmilling");
     }
 
@@ -191,7 +192,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                     exporter.accept(
                             idOfPaintingEntry(variantEntry),
                             recipe,
-                            adv.build(idOfPaintingEntry(variantEntry).withPrefixedPath("recipes/" + RecipeCategory.DECORATIONS.getName()))
+                            adv.build(idOfPaintingEntry(variantEntry).withPrefixedPath("recipes/decorations/"))
                     );
                 });
     }
