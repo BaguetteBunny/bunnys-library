@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.utils;
 
+import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class EnchantmentCapRegistry {
     private static final Map<Item, Integer> ENCHANTMENT_CAPS = new HashMap<>();
 
-    static int baseSword = 6;
+    static int baseSword = 5;
     static int basePickaxe = 3;
     static int baseAxe = 5;
     static int baseShovel = 3;
@@ -103,6 +104,7 @@ public class EnchantmentCapRegistry {
         ENCHANTMENT_CAPS.put(Items.CARROT_ON_A_STICK, 3);
         ENCHANTMENT_CAPS.put(Items.WARPED_FUNGUS_ON_A_STICK, 3);
         ENCHANTMENT_CAPS.put(Items.MACE, 4);
+        ENCHANTMENT_CAPS.put(ModItems.BEAR_CLAW, 3);
     }
 
     public static int getCap(Item item) {
