@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "louis-overhaul-mod:item/bear_claw"
+  }
+}

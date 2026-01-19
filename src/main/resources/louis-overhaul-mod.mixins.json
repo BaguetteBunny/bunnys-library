@@ -54,7 +54,8 @@
 		"SmithingScreenHandlerMixin",
 		"AnvilScreenHandlerMixin",
 		"WitherEntityMixin",
-		"WitherSkullEntityMixin"
+		"WitherSkullEntityMixin",
+		"BlockItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

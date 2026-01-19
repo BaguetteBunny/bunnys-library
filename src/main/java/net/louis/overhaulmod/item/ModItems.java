@@ -6,8 +6,12 @@ import net.louis.overhaulmod.entity.ModEntities;
 import net.louis.overhaulmod.fluid.ModFluids;
 import net.louis.overhaulmod.item.custom.*;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
@@ -35,6 +39,27 @@ public class ModItems {
 
     public static final Item AZURITE = registerItem("azurite",
             new Item(new Item.Settings()));
+
+    public static final Item BEAR_CLAW = registerItem("bear_claw",
+            new Item(new Item.Settings().maxDamage(1024).maxCount(1)
+                    .attributeModifiers(AttributeModifiersComponent.builder()
+                            .add(
+                                    EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE,
+                                    new EntityAttributeModifier(
+                                            Identifier.of("bear_claw", "block_interaction_range"),
+                                            2.5,
+                                            EntityAttributeModifier.Operation.ADD_VALUE),
+                                    AttributeModifierSlot.HAND)
+                            .add(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                                    new EntityAttributeModifier(
+                                            Identifier.of("bear_claw", "attack_damage"),
+                                            4.0,
+                                            EntityAttributeModifier.Operation.ADD_VALUE
+                                    ),
+                                    AttributeModifierSlot.MAINHAND
+                            )
+                            .build())));
 
     public static final Item GLOW_UPGRADE_SMITHING_TEMPLATE = registerItem("glow_upgrade_smithing_template",
             new Item(new Item.Settings()));
@@ -192,6 +217,7 @@ public class ModItems {
             entries.add(PURIFIED_WATER_BOTTLE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.add(BEAR_CLAW);
             entries.add(AMETHYST_DAGGER);
             entries.add(POTION_POUCH);
             entries.add(Items.BUNDLE);
