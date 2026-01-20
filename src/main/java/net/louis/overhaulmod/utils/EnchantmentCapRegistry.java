@@ -3,6 +3,7 @@ package net.louis.overhaulmod.utils;
 import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import java.util.HashMap;
@@ -108,10 +109,10 @@ public class EnchantmentCapRegistry {
     }
 
     public static int getCap(Item item) {
-        return ENCHANTMENT_CAPS.getOrDefault(item, Integer.MAX_VALUE);
+        return ENCHANTMENT_CAPS.getOrDefault(item, 10);
     }
 
-    public static boolean hasCap(Item item) {
-        return ENCHANTMENT_CAPS.containsKey(item);
+    public static boolean hasCap(ItemStack stack) {
+        return ENCHANTMENT_CAPS.containsKey(stack.getItem()) || stack.isEnchantable();
     }
 }
