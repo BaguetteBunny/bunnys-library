@@ -10,8 +10,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
+import java.util.Objects;
+
 public class ColoredNameTagItem extends NameTagItem {
-    private final int textColor;
+    private int textColor;
 
     public ColoredNameTagItem(Settings settings, int color) {
         super(settings);
@@ -24,8 +26,21 @@ public class ColoredNameTagItem extends NameTagItem {
 
         if (colorlessText != null && !(entity instanceof PlayerEntity)) {
             if (!user.getWorld().isClient && entity.isAlive()) {
-                Text text = colorlessText.copy().withColor(this.textColor);
-                entity.setCustomName(text);
+
+                if (Objects.equals(colorlessText.getString(), "Ysabella"))
+                    entity.setCustomName(colorlessText.copy().withColor(8388608));
+                else if (Objects.equals(colorlessText.getString(), "Dream"))
+                    entity.setCustomName(colorlessText.copy().withColor(43315));
+                else if (Objects.equals(colorlessText.getString(), "BaguetteBunny"))
+                    entity.setCustomName(colorlessText.copy().withColor(16714856));
+                else if (Objects.equals(colorlessText.getString(), "sdantaray"))
+                    entity.setCustomName(colorlessText.copy().withColor(65535));
+                else if (Objects.equals(colorlessText.getString(), "TheCryingGrim"))
+                    entity.setCustomName(colorlessText.copy().withColor(14863280));
+                else if (Objects.equals(colorlessText.getString(), "Dawk1203"))
+                    entity.setCustomName(colorlessText.copy().withColor(15507460));
+                else
+                    entity.setCustomName(colorlessText.copy().withColor(this.textColor));
 
                 if (entity instanceof MobEntity) {
                     MobEntity mobEntity = (MobEntity)entity;

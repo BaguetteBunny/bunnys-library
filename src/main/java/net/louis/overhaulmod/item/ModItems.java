@@ -41,7 +41,7 @@ public class ModItems {
     public static final Item GRAY_NAME_TAG = registerItem("gray_name_tag", new ColoredNameTagItem(new Item.Settings(), 4673362));
     public static final Item BLACK_NAME_TAG = registerItem("black_name_tag", new ColoredNameTagItem(new Item.Settings(), 1908001));
     public static final Item BROWN_NAME_TAG = registerItem("brown_name_tag", new ColoredNameTagItem(new Item.Settings(), 8606770));
-    public static final Item RED_NAME_TAG = registerItem("red_name_tag", new ColoredNameTagItem(new Item.Settings(), 11546150));
+    public static final Item RED_NAME_TAG = registerItem("red_name_tag", new ColoredNameTagItem(new Item.Settings(), 15597568));
     public static final Item ORANGE_NAME_TAG = registerItem("orange_name_tag", new ColoredNameTagItem(new Item.Settings(), 16351261));
     public static final Item YELLOW_NAME_TAG = registerItem("yellow_name_tag", new ColoredNameTagItem(new Item.Settings(), 16701501));
     public static final Item LIME_NAME_TAG = registerItem("lime_name_tag", new ColoredNameTagItem(new Item.Settings(), 8439583));
