@@ -17,6 +17,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
@@ -36,6 +37,24 @@ public class ModItems {
     public static final Item GREEN_WATER_BUCKET = registerItem("green_water_bucket", new BucketItem(ModFluids.STILL_GREEN_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item RED_WATER_BUCKET = registerItem("red_water_bucket", new BucketItem(ModFluids.STILL_RED_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item BLACK_WATER_BUCKET = registerItem("black_water_bucket", new BucketItem(ModFluids.STILL_BLACK_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
+
+    public static final Item WHITE_NAME_TAG = registerItem("white_name_tag", new ColoredNameTagItem(new Item.Settings(), 16383998));
+    public static final Item LIGHT_GRAY_NAME_TAG = registerItem("light_gray_name_tag", new ColoredNameTagItem(new Item.Settings(), 10329495));
+    public static final Item GRAY_NAME_TAG = registerItem("gray_name_tag", new ColoredNameTagItem(new Item.Settings(), 4673362));
+    public static final Item BLACK_NAME_TAG = registerItem("black_name_tag", new ColoredNameTagItem(new Item.Settings(), 1908001));
+    public static final Item BROWN_NAME_TAG = registerItem("brown_name_tag", new ColoredNameTagItem(new Item.Settings(), 8606770));
+    public static final Item RED_NAME_TAG = registerItem("red_name_tag", new ColoredNameTagItem(new Item.Settings(), 11546150));
+    public static final Item ORANGE_NAME_TAG = registerItem("orange_name_tag", new ColoredNameTagItem(new Item.Settings(), 16351261));
+    public static final Item YELLOW_NAME_TAG = registerItem("yellow_name_tag", new ColoredNameTagItem(new Item.Settings(), 16701501));
+    public static final Item LIME_NAME_TAG = registerItem("lime_name_tag", new ColoredNameTagItem(new Item.Settings(), 8439583));
+    public static final Item GREEN_NAME_TAG = registerItem("green_name_tag", new ColoredNameTagItem(new Item.Settings(), 6192150));
+    public static final Item CYAN_NAME_TAG = registerItem("cyan_name_tag", new ColoredNameTagItem(new Item.Settings(), 1481884));
+    public static final Item LIGHT_BLUE_NAME_TAG = registerItem("light_blue_name_tag", new ColoredNameTagItem(new Item.Settings(), 3847130));
+    public static final Item BLUE_NAME_TAG = registerItem("blue_name_tag", new ColoredNameTagItem(new Item.Settings(), 3949738));
+    public static final Item PURPLE_NAME_TAG = registerItem("purple_name_tag", new ColoredNameTagItem(new Item.Settings(), 8991416));
+    public static final Item MAGENTA_NAME_TAG = registerItem("magenta_name_tag", new ColoredNameTagItem(new Item.Settings(), 13061821));
+    public static final Item PINK_NAME_TAG = registerItem("pink_name_tag", new ColoredNameTagItem(new Item.Settings(), 15961002));
+
 
     public static final Item AZURITE = registerItem("azurite",
             new Item(new Item.Settings()));
@@ -217,6 +236,23 @@ public class ModItems {
             entries.add(PURIFIED_WATER_BOTTLE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.add(WHITE_NAME_TAG);
+            entries.add(LIGHT_GRAY_NAME_TAG);
+            entries.add(GRAY_NAME_TAG);
+            entries.add(BLACK_NAME_TAG);
+            entries.add(BROWN_NAME_TAG);
+            entries.add(RED_NAME_TAG);
+            entries.add(ORANGE_NAME_TAG);
+            entries.add(YELLOW_NAME_TAG);
+            entries.add(LIME_NAME_TAG);
+            entries.add(GREEN_NAME_TAG);
+            entries.add(CYAN_NAME_TAG);
+            entries.add(LIGHT_BLUE_NAME_TAG);
+            entries.add(BLUE_NAME_TAG);
+            entries.add(PURPLE_NAME_TAG);
+            entries.add(MAGENTA_NAME_TAG);
+            entries.add(PINK_NAME_TAG);
+
             entries.add(BEAR_CLAW);
             entries.add(AMETHYST_DAGGER);
             entries.add(POTION_POUCH);

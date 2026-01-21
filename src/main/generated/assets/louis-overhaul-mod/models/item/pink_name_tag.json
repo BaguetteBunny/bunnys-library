@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "louis-overhaul-mod:item/pink_name_tag"
+  }
+}

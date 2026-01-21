@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:name_tag"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "louis-overhaul-mod:white_name_tag"
+  }
+}

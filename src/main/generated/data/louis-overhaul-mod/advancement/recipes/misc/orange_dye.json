@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cobalt_flower": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:cobalt_flower"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "louis-overhaul-mod:orange_dye"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cobalt_flower"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "louis-overhaul-mod:orange_dye"
+    ]
+  }
+}

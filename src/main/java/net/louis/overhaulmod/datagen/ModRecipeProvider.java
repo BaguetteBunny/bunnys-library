@@ -350,6 +350,104 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offerNetheriteUpgradeRecipe(exporter, Items.DIAMOND_HORSE_ARMOR, RecipeCategory.COMBAT, ModItems.NETHERITE_HORSE_ARMOR);
 
         // TOOLS
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.WHITE_NAME_TAG, 1)
+                .input(Items.WHITE_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LIGHT_GRAY_NAME_TAG, 1)
+                .input(Items.LIGHT_GRAY_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.GRAY_NAME_TAG, 1)
+                .input(Items.GRAY_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BLACK_NAME_TAG, 1)
+                .input(Items.BLACK_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BROWN_NAME_TAG, 1)
+                .input(Items.BROWN_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.RED_NAME_TAG, 1)
+                .input(Items.RED_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ORANGE_NAME_TAG, 1)
+                .input(Items.ORANGE_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.YELLOW_NAME_TAG, 1)
+                .input(Items.YELLOW_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LIME_NAME_TAG, 1)
+                .input(Items.LIME_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.GREEN_NAME_TAG, 1)
+                .input(Items.GREEN_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CYAN_NAME_TAG, 1)
+                .input(Items.CYAN_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LIGHT_BLUE_NAME_TAG, 1)
+                .input(Items.LIGHT_BLUE_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BLUE_NAME_TAG, 1)
+                .input(Items.BLUE_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.PURPLE_NAME_TAG, 1)
+                .input(Items.PURPLE_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MAGENTA_NAME_TAG, 1)
+                .input(Items.MAGENTA_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.PINK_NAME_TAG, 1)
+                .input(Items.PINK_DYE)
+                .input(Items.DIAMOND)
+                .input(Items.NAME_TAG)
+                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
+                .offerTo(exporter);
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.RECOVERY_COMPASS, 1)
                 .pattern("AAA")
                 .pattern("ACA")
@@ -387,27 +485,27 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // MISC
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE, 2)
                 .input(ModBlocks.MYSTIC_ROSE)
                 .criterion(hasItem(ModBlocks.MYSTIC_ROSE), conditionsFromItem(ModBlocks.MYSTIC_ROSE))
                 .offerTo(exporter, Identifier.of(LouisOverhaulMod.MOD_ID, "light_blue_dye_from_mystic_rose"));
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BLUE_DYE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.ORANGE_DYE, 2)
                 .input(ModBlocks.COBALT_FLOWER)
                 .criterion(hasItem(ModBlocks.COBALT_FLOWER), conditionsFromItem(ModBlocks.COBALT_FLOWER))
                 .offerTo(exporter);
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.MAGENTA_DYE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.MAGENTA_DYE, 2)
                 .input(ModBlocks.HEART_FLOWER)
                 .criterion(hasItem(ModBlocks.HEART_FLOWER), conditionsFromItem(ModBlocks.HEART_FLOWER))
                 .offerTo(exporter);
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BLACK_DYE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BLACK_DYE, 2)
                 .input(ModBlocks.WILTED_POPPY)
                 .criterion(hasItem(ModBlocks.WILTED_POPPY), conditionsFromItem(ModBlocks.WILTED_POPPY))
                 .offerTo(exporter);
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PURPLE_DYE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PURPLE_DYE, 2)
                 .input(ModBlocks.LAVENDER_DANDELION)
                 .criterion(hasItem(ModBlocks.LAVENDER_DANDELION), conditionsFromItem(ModBlocks.LAVENDER_DANDELION))
                 .offerTo(exporter);
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE, 1)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE, 2)
                 .input(ModBlocks.SHINY_CORNFLOWER)
                 .criterion(hasItem(ModBlocks.SHINY_CORNFLOWER), conditionsFromItem(ModBlocks.SHINY_CORNFLOWER))
                 .offerTo(exporter, Identifier.of(LouisOverhaulMod.MOD_ID, "light_blue_dye_from_shiny_cornflower"));

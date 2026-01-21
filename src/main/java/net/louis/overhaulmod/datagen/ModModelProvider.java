@@ -211,6 +211,23 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RED_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_WATER_BUCKET, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.WHITE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.LIGHT_GRAY_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GRAY_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BLACK_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BROWN_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RED_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ORANGE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.YELLOW_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.LIME_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GREEN_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CYAN_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.LIGHT_BLUE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BLUE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PURPLE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MAGENTA_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PINK_NAME_TAG, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.BROWN_BEAR_SPAWN_EGG, new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         // Pet Recovery Compass Generated Manually
         // Azurite Generated Manually
