@@ -15,6 +15,7 @@ public class ModConfig {
     public static ModConfig INSTANCE = new ModConfig();
 
     // Enchantment Section
+    public boolean allowEnchantmentCaps = true;
     public boolean grindstoneRemoveEnchantsOneByOne = true;
     public boolean obfuscateCurses = true;
     public boolean addEnchantmentDescriptions = true;

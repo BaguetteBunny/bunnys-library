@@ -16,6 +16,9 @@ public class ModConfigScreen {
 
         var enchantmentModule = builder.getOrCreateCategory(Text.of("Enchantment Module"));
         enchantmentModule.addEntry(entry.startBooleanToggle(
+                Text.of("Enable Enchantment Cap"),
+                ModConfig.INSTANCE.allowEnchantmentCaps).setSaveConsumer(v -> ModConfig.INSTANCE.allowEnchantmentCaps = v).build());
+        enchantmentModule.addEntry(entry.startBooleanToggle(
                 Text.of("Grindstone Removes Enchant One by One"),
                 ModConfig.INSTANCE.grindstoneRemoveEnchantsOneByOne).setSaveConsumer(v -> ModConfig.INSTANCE.grindstoneRemoveEnchantsOneByOne = v).build());
         enchantmentModule.addEntry(entry.startBooleanToggle(

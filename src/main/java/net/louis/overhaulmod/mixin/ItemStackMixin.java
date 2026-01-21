@@ -123,7 +123,7 @@ public class ItemStackMixin {
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
     private void addEnchantmentCapTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
-        if (!EnchantmentCapRegistry.hasCap(stack)) return;
+        if (!EnchantmentCapRegistry.hasCap(stack) || !ModConfig.INSTANCE.allowEnchantmentCaps) return;
 
         int cap = EnchantmentCapRegistry.getCap(stack.getItem());
         ItemEnchantmentsComponent enchantments = stack.get(DataComponentTypes.ENCHANTMENTS);

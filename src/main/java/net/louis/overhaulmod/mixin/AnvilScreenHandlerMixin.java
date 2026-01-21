@@ -1,25 +1,21 @@
 package net.louis.overhaulmod.mixin;
 
 import net.louis.overhaulmod.component.ModComponents;
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.screen.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,10 +23,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.io.Serializable;
-import java.util.Map;
-import java.util.Objects;
 
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
@@ -43,7 +35,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
     @Inject(method = "updateResult", at = @At("RETURN"))
     private void checkEnchantmentCapOnCombine(CallbackInfo ci) {
-        if (this.output.isEmpty()) return;
+        if (this.output.isEmpty() && !ModConfig.INSTANCE.allowEnchantmentCaps) return;
 
         int cap = EnchantmentCapRegistry.getCap(this.output.getStack(0).getItem());
         ItemEnchantmentsComponent enchantments = this.output.getStack(0).get(DataComponentTypes.ENCHANTMENTS);
@@ -57,7 +49,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     private void preventEnchantmentCapExceed(CallbackInfo ci) {
         ItemStack outputStack = this.output.getStack(0);
 
-        if (outputStack.isEmpty()) return;
+        if (outputStack.isEmpty() && !ModConfig.INSTANCE.allowEnchantmentCaps) return;
 
         int cap = EnchantmentCapRegistry.getCap(outputStack.getItem());
         if (cap == Integer.MAX_VALUE) return;
@@ -116,14 +108,14 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
                 );
 
                 int cost = 0;
-                int cap = EnchantmentCapRegistry.getCap(result.getItem());
                 ItemEnchantmentsComponent finalEnchants = result.get(DataComponentTypes.ENCHANTMENTS);
                 int successCounter = finalEnchants != null ? finalEnchants.getSize() : 0;
+                boolean successAboveCap = ModConfig.INSTANCE.allowEnchantmentCaps && successCounter >= EnchantmentCapRegistry.getCap(result.getItem());
 
                 // Calculate cost and apply enchantments
                 for (var entry : bookEnchants.getEnchantmentEntries()) {
                     RegistryEntry<Enchantment> enchantment = entry.getKey();
-                    if (!enchantment.value().isSupportedItem(leftStack) || successCounter >= cap) continue;
+                    if (!enchantment.value().isSupportedItem(leftStack) || successAboveCap) continue;
 
                     int level = entry.getIntValue();
                     int weight = enchantment.value().getWeight();
