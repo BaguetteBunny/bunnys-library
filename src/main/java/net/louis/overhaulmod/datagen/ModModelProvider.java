@@ -33,7 +33,6 @@ public class ModModelProvider extends FabricModelProvider {
             ModFluids.LIGHT_GRAY_WATER_BLOCK,
             ModFluids.CYAN_WATER_BLOCK,
             ModFluids.PURPLE_WATER_BLOCK,
-            ModFluids.BLUE_WATER_BLOCK,
             ModFluids.BROWN_WATER_BLOCK,
             ModFluids.GREEN_WATER_BLOCK,
             ModFluids.RED_WATER_BLOCK,
@@ -205,13 +204,11 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.LIGHT_GRAY_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.CYAN_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.PURPLE_WATER_BUCKET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.BLUE_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.BROWN_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.GREEN_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.RED_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_WATER_BUCKET, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.WHITE_NAME_TAG, Models.GENERATED);
         itemModelGenerator.register(ModItems.LIGHT_GRAY_NAME_TAG, Models.GENERATED);
         itemModelGenerator.register(ModItems.GRAY_NAME_TAG, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLACK_NAME_TAG, Models.GENERATED);

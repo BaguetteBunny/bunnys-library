@@ -350,12 +350,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offerNetheriteUpgradeRecipe(exporter, Items.DIAMOND_HORSE_ARMOR, RecipeCategory.COMBAT, ModItems.NETHERITE_HORSE_ARMOR);
 
         // TOOLS
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.WHITE_NAME_TAG, 1)
-                .input(Items.WHITE_DYE)
-                .input(Items.DIAMOND)
-                .input(Items.NAME_TAG)
-                .criterion(hasItem(Items.NAME_TAG), conditionsFromItem(Items.NAME_TAG))
-                .offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LIGHT_GRAY_NAME_TAG, 1)
                 .input(Items.LIGHT_GRAY_DYE)
                 .input(Items.DIAMOND)

@@ -32,13 +32,11 @@ public class ModItems {
     public static final Item LIGHT_GRAY_WATER_BUCKET = registerItem("light_gray_water_bucket", new BucketItem(ModFluids.STILL_LIGHT_GRAY_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item CYAN_WATER_BUCKET = registerItem("cyan_water_bucket", new BucketItem(ModFluids.STILL_CYAN_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item PURPLE_WATER_BUCKET = registerItem("purple_water_bucket", new BucketItem(ModFluids.STILL_PURPLE_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
-    public static final Item BLUE_WATER_BUCKET = registerItem("blue_water_bucket", new BucketItem(ModFluids.STILL_BLUE_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item BROWN_WATER_BUCKET = registerItem("brown_water_bucket", new BucketItem(ModFluids.STILL_BROWN_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item GREEN_WATER_BUCKET = registerItem("green_water_bucket", new BucketItem(ModFluids.STILL_GREEN_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item RED_WATER_BUCKET = registerItem("red_water_bucket", new BucketItem(ModFluids.STILL_RED_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
     public static final Item BLACK_WATER_BUCKET = registerItem("black_water_bucket", new BucketItem(ModFluids.STILL_BLACK_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
 
-    public static final Item WHITE_NAME_TAG = registerItem("white_name_tag", new ColoredNameTagItem(new Item.Settings(), 16383998));
     public static final Item LIGHT_GRAY_NAME_TAG = registerItem("light_gray_name_tag", new ColoredNameTagItem(new Item.Settings(), 10329495));
     public static final Item GRAY_NAME_TAG = registerItem("gray_name_tag", new ColoredNameTagItem(new Item.Settings(), 4673362));
     public static final Item BLACK_NAME_TAG = registerItem("black_name_tag", new ColoredNameTagItem(new Item.Settings(), 1908001));
@@ -200,7 +198,6 @@ public class ModItems {
             entries.add(LIGHT_GRAY_WATER_BUCKET);
             entries.add(CYAN_WATER_BUCKET);
             entries.add(PURPLE_WATER_BUCKET);
-            entries.add(BLUE_WATER_BUCKET);
             entries.add(BROWN_WATER_BUCKET);
             entries.add(GREEN_WATER_BUCKET);
             entries.add(RED_WATER_BUCKET);
@@ -236,7 +233,6 @@ public class ModItems {
             entries.add(PURIFIED_WATER_BOTTLE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
-            entries.add(WHITE_NAME_TAG);
             entries.add(LIGHT_GRAY_NAME_TAG);
             entries.add(GRAY_NAME_TAG);
             entries.add(BLACK_NAME_TAG);

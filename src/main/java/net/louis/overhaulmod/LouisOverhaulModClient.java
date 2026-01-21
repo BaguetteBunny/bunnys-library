@@ -137,7 +137,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_LIGHT_GRAY_WATER, ModFluids.FLOWING_LIGHT_GRAY_WATER, coloredWater(0x9D9D97));
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_CYAN_WATER, ModFluids.FLOWING_CYAN_WATER, coloredWater(0x169C9C));
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_PURPLE_WATER, ModFluids.FLOWING_PURPLE_WATER, coloredWater(0x8932B8));
-        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_BLUE_WATER, ModFluids.FLOWING_BLUE_WATER, coloredWater(0x3C44AA));
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_BROWN_WATER, ModFluids.FLOWING_BROWN_WATER, coloredWater(0x835432));
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_GREEN_WATER, ModFluids.FLOWING_GREEN_WATER, coloredWater(0x5E7C16));
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_RED_WATER, ModFluids.FLOWING_RED_WATER, coloredWater(0xB02E26));
@@ -155,7 +154,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
                 ModFluids.STILL_LIGHT_GRAY_WATER, ModFluids.FLOWING_LIGHT_GRAY_WATER,
                 ModFluids.STILL_CYAN_WATER, ModFluids.FLOWING_CYAN_WATER,
                 ModFluids.STILL_PURPLE_WATER, ModFluids.FLOWING_PURPLE_WATER,
-                ModFluids.STILL_BLUE_WATER, ModFluids.FLOWING_BLUE_WATER,
                 ModFluids.STILL_BROWN_WATER, ModFluids.FLOWING_BROWN_WATER,
                 ModFluids.STILL_GREEN_WATER, ModFluids.FLOWING_GREEN_WATER,
                 ModFluids.STILL_RED_WATER, ModFluids.FLOWING_RED_WATER,

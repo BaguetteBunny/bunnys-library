@@ -54,10 +54,6 @@ public class ModFluids {
     public static FlowableFluid FLOWING_PURPLE_WATER;
     public static Block PURPLE_WATER_BLOCK;
 
-    public static FlowableFluid STILL_BLUE_WATER;
-    public static FlowableFluid FLOWING_BLUE_WATER;
-    public static Block BLUE_WATER_BLOCK;
-
     public static FlowableFluid STILL_BROWN_WATER;
     public static FlowableFluid FLOWING_BROWN_WATER;
     public static Block BROWN_WATER_BLOCK;
@@ -162,14 +158,6 @@ public class ModFluids {
         PURPLE_WATER_BLOCK = Registry.register(Registries.BLOCK,
                 Identifier.of(LouisOverhaulMod.MOD_ID, "purple_water_block"),
                 new FluidBlock(ModFluids.STILL_PURPLE_WATER, AbstractBlock.Settings.copy(Blocks.WATER).mapColor(DyeColor.PURPLE)));
-
-        STILL_BLUE_WATER = Registry.register(Registries.FLUID,
-                Identifier.of(LouisOverhaulMod.MOD_ID, "blue_water"), new BlueWaterFluid.Still());
-        FLOWING_BLUE_WATER = Registry.register(Registries.FLUID,
-                Identifier.of(LouisOverhaulMod.MOD_ID, "flowing_blue_water"), new BlueWaterFluid.Flowing());
-        BLUE_WATER_BLOCK = Registry.register(Registries.BLOCK,
-                Identifier.of(LouisOverhaulMod.MOD_ID, "blue_water_block"),
-                new FluidBlock(ModFluids.STILL_BLUE_WATER, AbstractBlock.Settings.copy(Blocks.WATER).mapColor(DyeColor.BLUE)));
 
         STILL_BROWN_WATER = Registry.register(Registries.FLUID,
                 Identifier.of(LouisOverhaulMod.MOD_ID, "brown_water"), new BrownWaterFluid.Still());

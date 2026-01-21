@@ -142,13 +142,6 @@ public class ModCauldron {
                 world.setBlockState(pos, ModBlocks.COLORED_WATER_CAULDRON.getDefaultState().with(FLUID_TYPE, FluidType.GREEN));}
             return ItemActionResult.success(world.isClient);});
 
-        CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.map().put(ModItems.BLUE_WATER_BUCKET, (state, world, pos, player, hand, stack) -> {
-            if (!world.isClient) {
-                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                player.setStackInHand(hand, new ItemStack(Items.BUCKET));
-                world.setBlockState(pos, ModBlocks.COLORED_WATER_CAULDRON.getDefaultState().with(FLUID_TYPE, FluidType.BLUE));}
-            return ItemActionResult.success(world.isClient);});
-
         CauldronBehavior.EMPTY_CAULDRON_BEHAVIOR.map().put(ModItems.LIGHT_BLUE_WATER_BUCKET, (state, world, pos, player, hand, stack) -> {
             if (!world.isClient) {
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -248,7 +241,6 @@ public class ModCauldron {
                 else if (type == FluidType.PINK) player.setStackInHand(hand, new ItemStack(ModItems.PINK_WATER_BUCKET));
                 else if (type == FluidType.PURPLE) player.setStackInHand(hand, new ItemStack(ModItems.PURPLE_WATER_BUCKET));
                 else if (type == FluidType.LIME) player.setStackInHand(hand, new ItemStack(ModItems.LIME_WATER_BUCKET));
-                else if (type == FluidType.BLUE) player.setStackInHand(hand, new ItemStack(ModItems.BLUE_WATER_BUCKET));
                 else if (type == FluidType.RED) player.setStackInHand(hand, new ItemStack(ModItems.RED_WATER_BUCKET));
                 else if (type == FluidType.ORANGE) player.setStackInHand(hand, new ItemStack(ModItems.ORANGE_WATER_BUCKET));
                 else if (type == FluidType.BROWN) player.setStackInHand(hand, new ItemStack(ModItems.BROWN_WATER_BUCKET));

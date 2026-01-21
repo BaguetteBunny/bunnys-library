@@ -27,7 +27,6 @@ public class ModFluidTagProvider extends FabricTagProvider.FluidTagProvider {
                 .add(ModFluids.STILL_LIGHT_GRAY_WATER).add(ModFluids.FLOWING_LIGHT_GRAY_WATER)
                 .add(ModFluids.STILL_CYAN_WATER).add(ModFluids.FLOWING_CYAN_WATER)
                 .add(ModFluids.STILL_PURPLE_WATER).add(ModFluids.FLOWING_PURPLE_WATER)
-                .add(ModFluids.STILL_BLUE_WATER).add(ModFluids.FLOWING_BLUE_WATER)
                 .add(ModFluids.STILL_BROWN_WATER).add(ModFluids.FLOWING_BROWN_WATER)
                 .add(ModFluids.STILL_GREEN_WATER).add(ModFluids.FLOWING_GREEN_WATER)
                 .add(ModFluids.STILL_RED_WATER).add(ModFluids.FLOWING_RED_WATER)
