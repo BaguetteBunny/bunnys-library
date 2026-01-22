@@ -17,8 +17,8 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class ModItems {
     public static final Item WHITE_WATER_BUCKET = registerItem("white_water_bucket", new BucketItem(ModFluids.STILL_WHITE_WATER, new Item.Settings().maxCount(1).recipeRemainder(Items.BUCKET)));
@@ -53,10 +53,10 @@ public class ModItems {
     public static final Item MAGENTA_NAME_TAG = registerItem("magenta_name_tag", new ColoredNameTagItem(new Item.Settings(), 13061821));
     public static final Item PINK_NAME_TAG = registerItem("pink_name_tag", new ColoredNameTagItem(new Item.Settings(), 15961002));
 
-    public static final Item COFFEE_NAME_TAG = registerItem("coffee_name_tag", new ColoredNameTagItem(new Item.Settings(), 7683895));
-    public static final Item GHOST_NAME_TAG = registerItem("ghost_name_tag", new ColoredNameTagItem(new Item.Settings(), 9024455));
-    public static final Item PEACH_NAME_TAG = registerItem("peach_name_tag", new ColoredNameTagItem(new Item.Settings(), 15511170));
-    public static final Item SEWER_NAME_TAG = registerItem("sewer_name_tag", new ColoredNameTagItem(new Item.Settings(), 10208670));
+    public static final Item COFFEE_NAME_TAG = registerItem("coffee_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 7683895));
+    public static final Item GHOST_NAME_TAG = registerItem("ghost_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 9024455));
+    public static final Item PEACH_NAME_TAG = registerItem("peach_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 15511170));
+    public static final Item SEWER_NAME_TAG = registerItem("sewer_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 10208670));
     public static final Item FRAGRANT_NAME_TAG = registerItem("fragrant_name_tag", new ColoredNameTagItem(new Item.Settings(), 13920360));
 
     public static final Item AZURITE = registerItem("azurite",
