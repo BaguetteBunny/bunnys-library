@@ -87,10 +87,10 @@ public class ModItems {
             new Item(new Item.Settings()));
 
     public static final Item PULSING_UPGRADE_SMITHING_TEMPLATE = registerItem("pulsing_upgrade_smithing_template",
-            new Item(new Item.Settings()));
+            new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
 
     public static final Item PURIFIED_WATER_BOTTLE = registerItem("purified_water_bottle",
-            new Item(new Item.Settings().maxCount(1)));
+            new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE)));
 
     public static final Item EMPYREAN_POWDER = registerItem("empyrean_powder",
             new Item(new Item.Settings().maxCount(16)));
@@ -167,16 +167,16 @@ public class ModItems {
             new PioneerPouch(new Item.Settings().maxCount(1), 512));
 
     public static final Item SADDLED_GOAT_HORN = registerItem("saddled_goat_horn",
-            new SaddledGoatHorn(new Item.Settings().maxCount(1)));
+            new SaddledGoatHorn(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
     public static final Item PET_RECOVERY_COMPASS = registerItem("pet_recovery_compass",
-            new PetRecoveryCompass(new Item.Settings().maxCount(1)));
+            new PetRecoveryCompass(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
     public static final Item RECALL_CLOCK = registerItem("recall_clock",
             new RecallClock(new Item.Settings().maxCount(1)));
 
     public static final Item LLAMAS_SPIT = registerItem("llamas_spit",
-            new Item(new Item.Settings()));
+            new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
 
     public static final Item AMETHYST_DAGGER = registerItem("amethyst_dagger",
             new AmethystDagger(new Item.Settings()));
