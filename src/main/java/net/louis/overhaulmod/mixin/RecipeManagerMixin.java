@@ -3,7 +3,6 @@ package net.louis.overhaulmod.mixin;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.gson.JsonElement;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -33,7 +32,7 @@ public class RecipeManagerMixin {
     );
 
     @Inject(method = "apply", at = @At("RETURN"))
-    private void removeRecipeAfterApply(Map<Identifier, JsonElement> map,
+    private void LOM$removeRecipeAfterApply(Map<Identifier, JsonElement> map,
                                         ResourceManager resourceManager,
                                         Profiler profiler,
                                         CallbackInfo ci) {

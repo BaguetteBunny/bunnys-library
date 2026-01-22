@@ -32,7 +32,7 @@ public abstract class ArrowEntityMixin {
     @Inject(
             method = "<init>(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)V",
             at = @At("RETURN")
-    )    private void onPlayerArrowSpawn(World world, LivingEntity owner, ItemStack stack, @Nullable ItemStack shotFrom, CallbackInfo ci) {
+    )    private void LOM$onPlayerArrowSpawn(World world, LivingEntity owner, ItemStack stack, @Nullable ItemStack shotFrom, CallbackInfo ci) {
         applyArrowComponentAbilities((ArrowEntity) (Object) this, stack);
     }
 
@@ -40,7 +40,7 @@ public abstract class ArrowEntityMixin {
             method = "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)V",
             at = @At("RETURN")
     )
-    private void onDispenserArrowSpawn(World world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom, CallbackInfo ci) {
+    private void LOM$onDispenserArrowSpawn(World world, double x, double y, double z, ItemStack stack, @Nullable ItemStack shotFrom, CallbackInfo ci) {
         applyArrowComponentAbilities((ArrowEntity) (Object) this, stack);
     }
 
@@ -48,12 +48,12 @@ public abstract class ArrowEntityMixin {
             method = "<init>(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)V",
             at = @At("RETURN")
     )
-    private void onArrowSpawn(World world, @Nullable LivingEntity owner, ItemStack stack, @Nullable ItemStack shotFrom, CallbackInfo ci) {
+    private void LOM$onArrowSpawn(World world, @Nullable LivingEntity owner, ItemStack stack, @Nullable ItemStack shotFrom, CallbackInfo ci) {
         applyArrowComponentAbilities((ArrowEntity) (Object) this, stack);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void injectHomingLogic(CallbackInfo ci) {
+    private void LOM$injectHomingLogic(CallbackInfo ci) {
         ArrowEntity arrow = (ArrowEntity) (Object) this;
         ComponentMap components = arrow.getItemStack().getComponents();
         if (arrow.getWorld().isClient || arrow.isOnGround()) return;

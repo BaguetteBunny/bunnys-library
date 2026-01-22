@@ -23,7 +23,7 @@ public abstract class PigEntityMixin {
     private float speedMultiplier = 1.5f;
 
     @Inject(method = "getSaddledSpeed", at = @At("RETURN"), cancellable = true)
-    private void modifySaddleSpeed(PlayerEntity controllingPlayer, CallbackInfoReturnable<Float> cir) {
+    private void LOM$modifySaddleSpeed(PlayerEntity controllingPlayer, CallbackInfoReturnable<Float> cir) {
         if (!ModConfig.INSTANCE.randomPigSpeed) return;
 
         if (speedMultiplier > maxRange) speedMultiplier -= volatility;

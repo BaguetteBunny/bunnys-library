@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BrewingRecipeRegistry.class)
 public class BrewingRecipeRegistryMixin {
     @Inject(method = "registerDefaults", at = @At("HEAD"), cancellable = true)
-    private static void overrideDefaults(BrewingRecipeRegistry.Builder builder, CallbackInfo ci) {
+    private static void LOM$overrideDefaults(BrewingRecipeRegistry.Builder builder, CallbackInfo ci) {
 
         // Potion Types
         builder.registerPotionType(Items.POTION);

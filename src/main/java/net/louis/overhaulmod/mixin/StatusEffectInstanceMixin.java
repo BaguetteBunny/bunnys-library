@@ -13,7 +13,7 @@ public abstract class StatusEffectInstanceMixin {
     StatusEffectInstance self = (StatusEffectInstance) (Object) this;
 
     @Inject(method = "mapDuration", at = @At("HEAD"), cancellable = true)
-    private void fixMapDuration(Int2IntFunction mapper, CallbackInfoReturnable<Integer> cir) {
+    private void LOM$fixMapDuration(Int2IntFunction mapper, CallbackInfoReturnable<Integer> cir) {
         int dur = self.getDuration();
         if (dur == 1) return;
         boolean isDivideBy4 = (dur != 0 && mapper.applyAsInt(dur) == dur / 4);

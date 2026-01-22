@@ -18,7 +18,7 @@ public class AbstractMinecartEntityMixin {
     private double speedBoost = 1.0;
 
     @Inject(method = "getMaxSpeed", at = @At("HEAD"), cancellable = true)
-    private void overrideMaxSpeed(CallbackInfoReturnable<Double> cir) {
+    private void LOM$overrideMaxSpeed(CallbackInfoReturnable<Double> cir) {
         BlockPos pos = self.getBlockPos();
         BlockState state = self.getWorld().getBlockState(pos);
         boolean inWater = self.isTouchingWater();
@@ -32,7 +32,7 @@ public class AbstractMinecartEntityMixin {
     }
 
     @ModifyVariable(method = "moveOnRail", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
-    private boolean overrideBl(boolean bl, BlockPos pos, BlockState state) {
+    private boolean LOM$overrideBl(boolean bl, BlockPos pos, BlockState state) {
         if (state.isOf(ModBlocks.COPPER_RAIL)) {
             boolean powered = state.get(PoweredRailBlock.POWERED);
             if (powered) return true;
@@ -41,7 +41,7 @@ public class AbstractMinecartEntityMixin {
     }
 
     @Inject(method = "moveOnRail", at = @At("HEAD"))
-    private void calculateBoost(BlockPos pos, BlockState state, CallbackInfo ci) {
+    private void LOM$calculateBoost(BlockPos pos, BlockState state, CallbackInfo ci) {
         speedBoost = 1.0;
 
         if (state.isOf(Blocks.POWERED_RAIL) && state.get(PoweredRailBlock.POWERED)) {
@@ -50,12 +50,12 @@ public class AbstractMinecartEntityMixin {
     }
 
     @ModifyConstant(method = "moveOnRail", constant = @Constant(doubleValue = 0.06))
-    private double modifySpeedBoost(double original) {
+    private double LOM$modifySpeedBoost(double original) {
         return original * speedBoost;
     }
 
     @ModifyConstant(method = "moveOnRail", constant = @Constant(doubleValue = 0.02))
-    private double modifySmallPush(double original) {
+    private double LOM$modifySmallPush(double original) {
         return original * speedBoost;
     }
 }

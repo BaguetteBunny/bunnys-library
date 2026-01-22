@@ -20,7 +20,7 @@ public class ItemMixin {
 
     // Add tooltip to arrows
     @Inject(method = "appendTooltip", at = @At("HEAD"))
-    public void appendArrowTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
+    public void LOM$appendArrowTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
         Item foot = stack.get(ModComponents.ARROW_FOOT);
         Item shaft = stack.get(ModComponents.ARROW_SHAFT);
         Item head = stack.get(ModComponents.ARROW_HEAD);

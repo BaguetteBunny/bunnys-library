@@ -17,9 +17,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static net.louis.overhaulmod.utils.EnchantmentUtils.SHOVEL_TILLABLE_MAP;
 import static net.louis.overhaulmod.utils.EnchantmentUtils.hasEnchant;
 

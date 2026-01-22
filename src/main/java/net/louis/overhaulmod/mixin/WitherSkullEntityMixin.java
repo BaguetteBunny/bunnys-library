@@ -2,7 +2,6 @@ package net.louis.overhaulmod.mixin;
 
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.utils.accessors.WitherHealthAccessor;
-import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.WitherSkullEntity;
@@ -15,7 +14,7 @@ public class WitherSkullEntityMixin {
     WitherSkullEntity self = (WitherSkullEntity) (Object) this;
 
     @ModifyArg(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z"), index = 0)
-    private StatusEffectInstance changeWitherAmplifier(StatusEffectInstance original) {
+    private StatusEffectInstance LOM$changeWitherAmplifier(StatusEffectInstance original) {
         if (original.getEffectType() == StatusEffects.WITHER && self.getOwner() instanceof WitherHealthAccessor we && we.isHalfHp() && ModConfig.INSTANCE.enableWitherBossPhases) {
             return new StatusEffectInstance(
                     StatusEffects.WITHER,

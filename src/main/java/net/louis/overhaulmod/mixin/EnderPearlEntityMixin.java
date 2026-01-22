@@ -26,7 +26,7 @@ public abstract class EnderPearlEntityMixin extends ProjectileEntity {
     }
 
     @Inject(method = "onCollision", at = @At("HEAD"), cancellable = true)
-    private void onPearlLands(HitResult hitResult, CallbackInfo ci) {
+    private void LOM$teleportHorseOnPearlLand(HitResult hitResult, CallbackInfo ci) {
         Entity owner = this.getOwner();
 
         if (!(owner instanceof ServerPlayerEntity player) || !ModConfig.INSTANCE.enderpearlTeleportsHorses) return;

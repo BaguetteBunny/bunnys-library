@@ -16,7 +16,7 @@ public abstract class PolarBearEntityMixin {
     private int aggressionTimer = 450;
 
     @Inject(method = "tick", at = @At("HEAD"))
-    private void nearbyAggressionLogic(CallbackInfo ci) {
+    private void LOM$nearbyAggressionLogic(CallbackInfo ci) {
         if (self.getWorld().isClient || !ModConfig.INSTANCE.moreAggressivePolarBears) return;
 
         ServerWorld world = (ServerWorld) self.getWorld();

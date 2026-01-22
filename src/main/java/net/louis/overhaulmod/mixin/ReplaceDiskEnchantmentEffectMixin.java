@@ -19,7 +19,7 @@ public class ReplaceDiskEnchantmentEffectMixin {
     ReplaceDiskEnchantmentEffect effect = (ReplaceDiskEnchantmentEffect)(Object)this;
 
     @Inject(method = "apply", at = @At("HEAD"), cancellable = true)
-    private void increaseRadiusAndApply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos, CallbackInfo ci) {
+    private void LOM$increaseRadiusAndApply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos, CallbackInfo ci) {
         if (!ModConfig.INSTANCE.betterFrostWalker) return;
 
         BlockPos blockPos = BlockPos.ofFloored(pos).add(effect.offset());

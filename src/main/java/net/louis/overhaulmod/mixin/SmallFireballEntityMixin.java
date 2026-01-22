@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SmallFireballEntityMixin {
 
     @Inject(method = "onEntityHit", at = @At("HEAD"), cancellable = true)
-    private void explodeCreeperWhenHit(EntityHitResult entityHitResult, CallbackInfo ci) {
+    private void LOM$explodeCreeperWhenHit(EntityHitResult entityHitResult, CallbackInfo ci) {
         SmallFireballEntity fireball = (SmallFireballEntity)(Object) this;
 
         if (entityHitResult.getEntity() instanceof CreeperEntity creeper

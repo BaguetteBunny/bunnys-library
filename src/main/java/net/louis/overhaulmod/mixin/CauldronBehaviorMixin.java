@@ -15,7 +15,7 @@ import static net.louis.overhaulmod.utils.CauldronBehaviorHooks.*;
 public interface CauldronBehaviorMixin {
 
     @Inject(method = "registerBehavior", at = @At("RETURN"))
-    private static void addCustomCauldronBehaviors(CallbackInfo ci) {
+    private static void LOM$addCustomCauldronBehaviors(CallbackInfo ci) {
         Map<Item, CauldronBehavior> addMap = CauldronBehavior.WATER_CAULDRON_BEHAVIOR.map();
 
         // Candles

@@ -32,7 +32,7 @@ public class ItemStackMixin {
     ItemStack stack = (ItemStack)(Object)this;
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void addEnchantmentDescriptions(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addEnchantmentDescriptions(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         if (!(stack.getItem() instanceof EnchantedBookItem) || !ModConfig.INSTANCE.addEnchantmentDescriptions) return;
 
         ItemEnchantmentsComponent enchantments = stack.get(DataComponentTypes.STORED_ENCHANTMENTS);
@@ -64,7 +64,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void addSeasoningDescription(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addSeasoningDescription(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         if (!stack.getComponents().contains(ModComponents.SEASONING)) return;
 
         List<Text> tooltip = cir.getReturnValue();
@@ -76,7 +76,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void addGlowPulsateTrimTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addGlowPulsateTrimTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         if (!stack.getComponents().contains(ModComponents.GLOW_AND_PULSATE)) return;
 
         List<Text> tooltip = cir.getReturnValue();
@@ -89,7 +89,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void addAzuriteTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addAzuriteTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         if (stack.getItem() != ModItems.AZURITE) return;
 
         List<Text> tooltip = cir.getReturnValue();
@@ -105,7 +105,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void addUpgradeTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addUpgradeTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         String name = "";
         if (stack.getItem() == ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE) name = "Glow";
         if (stack.getItem() == ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE) name = "Pulsing";
@@ -122,7 +122,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void addEnchantmentCapTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addEnchantmentCapTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         if (!EnchantmentCapRegistry.hasCap(stack) || !ModConfig.INSTANCE.allowEnchantmentCaps) return;
 
         int cap = EnchantmentCapRegistry.getCap(stack.getItem());
@@ -135,7 +135,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void obfuscateCurseNames(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$obfuscateCurseNames(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         if (stack.getItem() instanceof EnchantedBookItem || !ModConfig.INSTANCE.obfuscateCurses) return;
 
         List<Text> tooltip = cir.getReturnValue();

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SculkCatalystBlockEntityMixin {
 
     @Inject(method = "bloom", at = @At("TAIL"))
-    private void echoShardOnBloom(ServerWorld world, BlockPos pos, BlockState state, Random random, CallbackInfo ci) {
+    private void LOM$echoShardOnBloom(ServerWorld world, BlockPos pos, BlockState state, Random random, CallbackInfo ci) {
         if (random.nextInt(10) == 0 && ModConfig.INSTANCE.sculkCatalystBloomsEchoShards) {
             BlockPos above = pos.up();
             if (world.getBlockState(above).isAir()) {

@@ -1,6 +1,5 @@
 package net.louis.overhaulmod.mixin;
 
-import net.louis.overhaulmod.enchantments.custom.SmeltingEnchantmentEffect;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
@@ -27,20 +25,8 @@ import static net.louis.overhaulmod.utils.EnchantmentUtils.SMELTING_TRANSFORM_MA
 @Mixin(Block.class)
 public class BlockMixin {
 
-    @Inject(
-            method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;",
-            at = @At("RETURN"),
-            cancellable = true
-    )
-    private static void injectAutoSmelt(
-            BlockState state,
-            ServerWorld world,
-            BlockPos pos,
-            BlockEntity blockEntity,
-            Entity entity,
-            ItemStack tool,
-            CallbackInfoReturnable<List<ItemStack>> cir
-    ) {
+    @Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
+    private static void LOM$injectAutoSmelt(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool, CallbackInfoReturnable<List<ItemStack>> cir) {
         List<ItemStack> drops = cir.getReturnValue();
 
         if (tool.isEmpty()) return;

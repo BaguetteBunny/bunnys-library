@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemFrameMixin {
 
     @Inject(method = "onBreak", at = @At("TAIL"))
-    private void onItemFrameDeath(Entity entity, CallbackInfo ci) {
+    private void LOM$dropMembraneOnBreak(Entity entity, CallbackInfo ci) {
         ItemFrameEntity frame = (ItemFrameEntity) (Object) this;
         World world = frame.getWorld();
 
@@ -38,7 +38,7 @@ public class ItemFrameMixin {
     }
 
     @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
-    private void onInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void LOM$ignoreItemFrameIfChest(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack stack = player.getStackInHand(hand);
         ItemFrameEntity frame = ((ItemFrameEntity) (Object) this);
 

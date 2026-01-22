@@ -3,13 +3,11 @@ package net.louis.overhaulmod.mixin;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.utils.ParticleShapeUtil;
 import net.louis.overhaulmod.utils.accessors.WitherHealthAccessor;
-import net.minecraft.block.WitherSkullBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -57,26 +55,26 @@ public class WitherEntityMixin implements WitherHealthAccessor {
     @Shadow @Final private ServerBossBar bossBar;
 
     @Inject(method = "<init>", at = @At("RETURN"))
-    private void modifyBossBar(EntityType<? extends WitherEntity> type, World world, CallbackInfo ci) {
+    private void LOM$modifyBossBar(EntityType<? extends WitherEntity> type, World world, CallbackInfo ci) {
         if (!ModConfig.INSTANCE.enableWitherBossPhases) return;
         bossBar.setStyle(ServerBossBar.Style.NOTCHED_12);
         bossBar.setThickenFog(true);
     }
 
     @ModifyConstant(method = "mobTick", constant = @Constant(floatValue = 7.0F))
-    private float modifyExplosionRadius(float original) {
+    private float LOM$modifyExplosionRadius(float original) {
         if (!ModConfig.INSTANCE.strongerWither) return original;
         return 12.0F;
     }
 
     @Inject(method = "onSummoned", at = @At("TAIL"))
-    private void onSummoned(CallbackInfo ci) {
+    private void LOM$onSummoned(CallbackInfo ci) {
         self.setHealth(self.getMaxHealth());
         ParticleShapeUtil.drawCircle(ParticleTypes.ASH, self.getPos(), 5, self.getServer().getWorld(self.getWorld().getRegistryKey()), 25, new Vector4d(0, 0, 0, 0));
     }
 
     @Inject(method = "createWitherAttributes", at = @At("RETURN"), cancellable = true)
-    private static void modifyWitherAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
+    private static void LOM$modifyWitherAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         if (!ModConfig.INSTANCE.strongerWither) return;
 
         DefaultAttributeContainer.Builder builder = cir.getReturnValue();
@@ -88,14 +86,14 @@ public class WitherEntityMixin implements WitherHealthAccessor {
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    private void preventSuffocationAndExplosionDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$preventSuffocationAndExplosionDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.isOf(DamageTypes.IN_WALL) || source.isIn(DamageTypeTags.IS_EXPLOSION)) {
             cir.setReturnValue(false);
         }
     }
 
     @Inject(method = "mobTick", at = @At("HEAD"))
-    private void onMobTick(CallbackInfo ci) {
+    private void LOM$onMobTick(CallbackInfo ci) {
         if (!ModConfig.INSTANCE.enableWitherBossPhases) return;
 
         if (!threeQuarterHealthFlag && self.getHealth() <= threeQuarterHealthValue) {

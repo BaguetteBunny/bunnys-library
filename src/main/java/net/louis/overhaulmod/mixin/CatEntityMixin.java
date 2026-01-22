@@ -17,8 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CatEntity.class)
 public class CatEntityMixin {
+
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
-    private void onInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void LOM$onInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         CatEntity cat = (CatEntity) (Object) this;
         ItemStack itemInHand = player.getStackInHand(hand);
 

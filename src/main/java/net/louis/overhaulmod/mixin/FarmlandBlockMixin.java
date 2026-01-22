@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FarmlandBlockMixin {
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
-    private void preventTrampleIfFeatherFalling(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
+    private void LOM$preventTrampleIfFeatherFalling(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
         if (entity instanceof LivingEntity living && ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling) {
             ItemStack boots = living.getEquippedStack(EquipmentSlot.FEET);
             if (boots.isEmpty()) return;

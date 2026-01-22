@@ -2,7 +2,6 @@ package net.louis.overhaulmod.mixin;
 
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.LingeringPotionItem;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +16,7 @@ import static net.minecraft.component.type.PotionContentsComponent.buildTooltip;
 public abstract class PotionContentsComponentMixin {
 
     @Inject(method = "buildTooltip(Ljava/lang/Iterable;Ljava/util/function/Consumer;FF)V", at = @At("HEAD"), cancellable = true)
-    private static void uniformPotionDuration(
+    private static void LOM$uniformPotionDuration(
             Iterable<StatusEffectInstance> effects,
             Consumer<Text> textConsumer,
             float durationMultiplier,

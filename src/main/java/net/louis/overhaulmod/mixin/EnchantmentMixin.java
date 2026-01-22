@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class EnchantmentMixin {
 
     @Inject(method = "canBeCombined", at = @At("HEAD"), cancellable = true)
-    private static void removeAllMutexesExceptSilkTouchFortune(RegistryEntry<Enchantment> first, RegistryEntry<Enchantment> second, CallbackInfoReturnable<Boolean> cir) {
+    private static void LOM$removeAllMutexesExceptSilkTouchFortune(RegistryEntry<Enchantment> first, RegistryEntry<Enchantment> second, CallbackInfoReturnable<Boolean> cir) {
         if (first.equals(second)) return;
 
         String firstName = first.getKey().get().getValue().getPath();
@@ -47,7 +47,7 @@ public class EnchantmentMixin {
     }
 
     @Inject(method = "modifyDamageProtection", at = @At("HEAD"), cancellable = true)
-    private void limitProtectionToMeleeOnly(ServerWorld world, int level, ItemStack stack, Entity user, DamageSource damageSource, MutableFloat damageProtection, CallbackInfo ci) {
+    private void LOM$limitProtectionToMeleeOnly(ServerWorld world, int level, ItemStack stack, Entity user, DamageSource damageSource, MutableFloat damageProtection, CallbackInfo ci) {
         Enchantment thisEnchant = (Enchantment)(Object)this;
 
         String enchantId = world.getRegistryManager()
@@ -84,7 +84,7 @@ public class EnchantmentMixin {
     }
 
     @Inject(method = "modifyDamage", at = @At("HEAD"), cancellable = true)
-    private void changeEnchantDamageModifier(ServerWorld world, int level, ItemStack stack, Entity user, DamageSource damageSource, MutableFloat damage, CallbackInfo ci) {
+    private void LOM$changeEnchantDamageModifier(ServerWorld world, int level, ItemStack stack, Entity user, DamageSource damageSource, MutableFloat damage, CallbackInfo ci) {
         Enchantment thisEnchant = (Enchantment)(Object)this;
         Entity target = user;
 
@@ -142,7 +142,7 @@ public class EnchantmentMixin {
     }
 
     @Inject(method = "isSupportedItem", at = @At("HEAD"), cancellable = true)
-    private void expandEnchantmentCompatibility(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$expandEnchantmentCompatibility(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Enchantment thisEnchant = (Enchantment)(Object)this;
         Item item = stack.getItem();
         String enchantName = thisEnchant.description().getString().toLowerCase();

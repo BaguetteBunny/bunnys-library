@@ -26,7 +26,7 @@ public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/screen/ScreenHandlerContext;)V", at = @At("RETURN"))
-    private void modifyTemplateSlot(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci) {
+    private void LOM$modifyTemplateSlot(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, CallbackInfo ci) {
         SmithingScreenHandler handler = (SmithingScreenHandler)(Object)this;
         Slot templateSlot = handler.slots.get(0);
 
@@ -41,13 +41,13 @@ public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "canInsertIntoSlot", at = @At("HEAD"), cancellable = true)
-    private void allowQuickMoveCustomTemplates(ItemStack stack, Slot slot, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$allowQuickMoveCustomTemplates(ItemStack stack, Slot slot, CallbackInfoReturnable<Boolean> cir) {
         if (slot.id == 0 && (stack.isOf(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE) || stack.isOf(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE)))
             cir.setReturnValue(true);
     }
 
     @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
-    private void handleGlowingTrimCrafting(CallbackInfo ci) {
+    private void LOM$handleGlowingTrimCrafting(CallbackInfo ci) {
         ItemStack template = this.input.getStack(0);
         ItemStack base = this.input.getStack(1);
         ItemStack addition = this.input.getStack(2);
@@ -73,7 +73,7 @@ public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "onTakeOutput", at = @At("HEAD"))
-    private void consumeGlowingTrimItems(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
+    private void LOM$consumeGlowingTrimItems(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
         ItemStack template = this.input.getStack(0);
         ItemStack base = this.input.getStack(1);
         ItemStack addition = this.input.getStack(2);

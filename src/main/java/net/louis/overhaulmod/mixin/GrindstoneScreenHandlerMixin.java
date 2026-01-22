@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class GrindstoneScreenHandlerMixin {
 
     @Inject(method = "grind", at = @At("HEAD"), cancellable = true)
-    private void removeOnlyFirstEnchantment(ItemStack item, CallbackInfoReturnable<ItemStack> cir) {
+    private void LOM$removeOnlyFirstEnchantment(ItemStack item, CallbackInfoReturnable<ItemStack> cir) {
         ItemEnchantmentsComponent enchantments = item.get(DataComponentTypes.ENCHANTMENTS);
 
         if (enchantments != null && !enchantments.isEmpty() && ModConfig.INSTANCE.grindstoneRemoveEnchantsOneByOne) {

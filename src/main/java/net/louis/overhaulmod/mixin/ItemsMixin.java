@@ -7,7 +7,6 @@ import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -117,7 +116,7 @@ public abstract class ItemsMixin {
     @Shadow @Final @Mutable public static Item WARPED_HANGING_SIGN;
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
-    private static void makeStewsStackable(CallbackInfo ci) {
+    private static void LOM$changeItemStacks(CallbackInfo ci) {
         Registry.register(Registries.ITEM, Identifier.ofVanilla("mushroom_stew"),
                 MUSHROOM_STEW = new Item(new Item.Settings().maxCount(16).food(new FoodComponent.Builder()
                         .nutrition(6)

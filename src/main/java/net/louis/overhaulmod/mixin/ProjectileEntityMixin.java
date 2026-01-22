@@ -3,9 +3,7 @@ package net.louis.overhaulmod.mixin;
 import net.louis.overhaulmod.component.ModComponents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.ComponentMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Items;
@@ -26,7 +24,7 @@ public class ProjectileEntityMixin {
     ProjectileEntity self = (ProjectileEntity) (Object) this;
 
     @Inject(method = "onCollision", at = @At("HEAD"), cancellable = true)
-    protected void breakOnCollision(HitResult hitResult, CallbackInfo ci) {
+    protected void LOM$breakOnCollision(HitResult hitResult, CallbackInfo ci) {
         World world = self.getWorld();
 
         if (
@@ -49,7 +47,7 @@ public class ProjectileEntityMixin {
     }
 
     @Inject(method = "onCollision", at = @At("TAIl"), cancellable = true)
-    protected void disableEntityIFrames(HitResult hitResult, CallbackInfo ci) {
+    protected void LOM$disableEntityIFrames(HitResult hitResult, CallbackInfo ci) {
         World world = self.getWorld();
         if (
                 !world.isClient && self instanceof ArrowEntity arrow &&

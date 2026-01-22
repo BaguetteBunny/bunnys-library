@@ -42,7 +42,7 @@ public class LivingEntityMixin {
     LivingEntity self = (LivingEntity) (Object) this;
 
     @Inject(method = "damage", at = @At("HEAD"))
-    private void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$teleportOnEndermiteHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         Entity attacker = source.getAttacker();
 
         if (attacker instanceof EndermiteEntity && self instanceof ServerPlayerEntity player && ModConfig.INSTANCE.endermiteTeleportPlayerOnHit) {
@@ -52,14 +52,14 @@ public class LivingEntityMixin {
     }
 
     @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
-    private void overrideJump(CallbackInfo ci) {
+    private void LOM$cancelJumpIfGrounded(CallbackInfo ci) {
         if (self.hasStatusEffect(ModEffects.GROUNDED)) {
             ci.cancel();
         }
     }
 
     @Inject(method = "getAttackDistanceScalingFactor", at = @At("RETURN"), cancellable = true)
-    private void injectedHeadDetectionReduction(Entity entity, CallbackInfoReturnable<Double> cir) {
+    private void LOM$injectedHeadDetectionReduction(Entity entity, CallbackInfoReturnable<Double> cir) {
         double original = cir.getReturnValue();
         ItemStack head = self.getEquippedStack(EquipmentSlot.HEAD);
 
@@ -83,7 +83,7 @@ public class LivingEntityMixin {
     }
 
     @Inject(method = "eatFood", at = @At("HEAD"), cancellable = true)
-    private void removeNegEffects(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$removeNegEffects(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<Boolean> cir) {
         if (stack.getComponents().get(ModComponents.SEASONING) == ModItems.EMPYREAN_POWDER && self instanceof ServerPlayerEntity player && !world.isClient()) {
             Collection<StatusEffectInstance> effects = List.copyOf(player.getStatusEffects());
             for (StatusEffectInstance effectInstance : effects) {
@@ -96,7 +96,7 @@ public class LivingEntityMixin {
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
-    private void applyFrostWalkerWhileMounted(CallbackInfo ci) {
+    private void LOM$applyFrostWalkerWhileMounted(CallbackInfo ci) {
 
         if (self.getWorld().isClient() || !self.hasVehicle()) return;
         if (!(self.getWorld() instanceof ServerWorld world)) return;

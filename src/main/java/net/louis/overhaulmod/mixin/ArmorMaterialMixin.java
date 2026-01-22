@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ArmorMaterialMixin {
 
     @Inject(method = "knockbackResistance", at = @At("RETURN"), cancellable = true)
-    private void addChainmailKnockbackResistance(CallbackInfoReturnable<Float> cir) {
+    private void LOM$addChainmailKnockbackResistance(CallbackInfoReturnable<Float> cir) {
         if ((Object) this == ArmorMaterials.CHAIN.value()) {
             float currentKB = cir.getReturnValue();
             cir.setReturnValue(currentKB + 0.25f);

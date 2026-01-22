@@ -20,7 +20,7 @@ public class ArmorStandMixin {
     ArmorStandEntity stand = (ArmorStandEntity) (Object) this;
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    private void onArmorStandDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$onArmorStandDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!stand.isRemoved()
                 && stand.getWorld() instanceof ServerWorld serverWorld
                 && !source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)
@@ -31,7 +31,7 @@ public class ArmorStandMixin {
     }
 
     @Inject(method = "onBreak", at = @At("TAIL"))
-    private void onArmorStandBreak(ServerWorld world, DamageSource source, CallbackInfo ci) {
+    private void LOM$onArmorStandBreak(ServerWorld world, DamageSource source, CallbackInfo ci) {
         if (stand.shouldShowArms()) {
             ItemStack stack = new ItemStack(Items.STICK);
             ItemEntity itemEntity = new ItemEntity(world, stand.getX(), stand.getY() + 0.5, stand.getZ(), stack);

@@ -11,8 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientRecipeBook.class)
 public class ClientRecipeBookMixin {
+
     @Inject(method = "getGroupForRecipe", at = @At("HEAD"), cancellable = true)
-    private static void fixSawmillRecipeCategory(RecipeEntry<?> recipe, CallbackInfoReturnable<RecipeBookGroup> cir) {
+    private static void LOM$fixSawmillRecipeCategory(RecipeEntry<?> recipe, CallbackInfoReturnable<RecipeBookGroup> cir) {
         if (recipe.value().getType() == ModRecipes.SAWMILL_TYPE) {
             cir.setReturnValue(RecipeBookGroup.CRAFTING_BUILDING_BLOCKS);
         }

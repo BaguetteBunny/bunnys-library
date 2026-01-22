@@ -33,20 +33,20 @@ public class ArmorFeatureRendererMixin {
     @Unique private static final ThreadLocal<EquipmentSlot> CURRENT_SLOT = new ThreadLocal<>();
 
     @Inject(method = "renderArmor", at = @At("HEAD"))
-    private void captureEntity(MatrixStack matrices, VertexConsumerProvider vertexConsumers, LivingEntity entity, EquipmentSlot armorSlot, int light, BipedEntityModel model, CallbackInfo ci
+    private void LOM$captureEntity(MatrixStack matrices, VertexConsumerProvider vertexConsumers, LivingEntity entity, EquipmentSlot armorSlot, int light, BipedEntityModel model, CallbackInfo ci
     ) {
         CURRENT_ENTITY.set(entity);
         CURRENT_SLOT.set(armorSlot);
     }
 
     @Inject(method = "renderArmor", at = @At("RETURN"))
-    private void cleanupEntity(CallbackInfo ci) {
+    private void LOM$cleanupEntity(CallbackInfo ci) {
         CURRENT_ENTITY.remove();
         CURRENT_SLOT.remove();
     }
 
     @Inject(method = "renderTrim", at = @At("HEAD"), cancellable = true)
-    private void makeTrimsGlowBasedOnComponent(RegistryEntry armorMaterial, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorTrim trim, BipedEntityModel model, boolean leggings, CallbackInfo ci) {
+    private void LOM$makeTrimsGlowBasedOnComponent(RegistryEntry armorMaterial, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorTrim trim, BipedEntityModel model, boolean leggings, CallbackInfo ci) {
         LivingEntity entity = CURRENT_ENTITY.get();
         EquipmentSlot slot = CURRENT_SLOT.get();
 

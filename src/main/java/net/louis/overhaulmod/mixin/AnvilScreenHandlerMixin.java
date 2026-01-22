@@ -34,7 +34,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "updateResult", at = @At("RETURN"))
-    private void checkEnchantmentCapOnCombine(CallbackInfo ci) {
+    private void LOM$checkEnchantmentCapOnCombine(CallbackInfo ci) {
         if (this.output.isEmpty() && !ModConfig.INSTANCE.allowEnchantmentCaps) return;
 
         int cap = EnchantmentCapRegistry.getCap(this.output.getStack(0).getItem());
@@ -46,7 +46,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "updateResult", at = @At("TAIL"))
-    private void preventEnchantmentCapExceed(CallbackInfo ci) {
+    private void LOM$preventEnchantmentCapExceed(CallbackInfo ci) {
         ItemStack outputStack = this.output.getStack(0);
 
         if (outputStack.isEmpty() && !ModConfig.INSTANCE.allowEnchantmentCaps) return;
@@ -62,7 +62,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "updateResult", at = @At("RETURN"))
-    private void zeroCostForBooks(CallbackInfo ci) {
+    private void LOM$zeroCostForBooks(CallbackInfo ci) {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
 
@@ -71,7 +71,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
-    protected void takeZeroCostBook(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
+    protected void LOM$takeZeroCostBook(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
         if (leftStack.getItem() instanceof EnchantedBookItem && rightStack.getItem() instanceof EnchantedBookItem && !player.getWorld().isClient())
@@ -80,7 +80,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "updateResult", at = @At("RETURN"))
-    private void force30LevelsIfBothItemsEnchanted(CallbackInfo ci) {
+    private void LOM$force30LevelsIfBothItemsEnchanted(CallbackInfo ci) {
         ItemStack first = this.input.getStack(0);
         ItemStack second = this.input.getStack(1);
 
@@ -92,7 +92,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
-    private void customAnvilMechanics(CallbackInfo ci) {
+    private void LOM$customAnvilMechanics(CallbackInfo ci) {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
         if (leftStack.isEmpty() || leftStack.getItem() instanceof EnchantedBookItem) return;
@@ -209,7 +209,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
-    private void handleAzuriteToolMaterialCombination(CallbackInfo ci) {
+    private void LOM$handleAzuriteToolMaterialCombination(CallbackInfo ci) {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
         if (!leftStack.isOf(ModItems.AZURITE)) return;
@@ -226,7 +226,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
 
     @Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
-    protected void takeAzuriteOutOrRepair(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
+    protected void LOM$takeAzuriteOutOrRepair(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
         if (player.getWorld().isClient()) return;
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
@@ -237,7 +237,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
         }
     }
     @Inject(method = "onTakeOutput", at = @At("HEAD"), cancellable = true)
-    protected void repairWithAzurite(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
+    protected void LOM$repairWithAzurite(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
         if (player.getWorld().isClient()) return;
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);

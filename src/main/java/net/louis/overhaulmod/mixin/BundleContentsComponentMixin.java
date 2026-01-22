@@ -14,7 +14,7 @@ import java.util.List;
 @Mixin(BundleContentsComponent.class)
 public class BundleContentsComponentMixin {
     @Inject(method = "getOccupancy", at = @At("HEAD"), cancellable = true)
-    private static void modifyOccupancy(ItemStack stack, CallbackInfoReturnable<Fraction> cir) {
+    private static void LOM$makeUnstackablesInBundle(ItemStack stack, CallbackInfoReturnable<Fraction> cir) {
         if (stack.get(DataComponentTypes.BUNDLE_CONTENTS) != null ||
                 !stack.getOrDefault(DataComponentTypes.BEES, List.of()).isEmpty()) {
             return;
