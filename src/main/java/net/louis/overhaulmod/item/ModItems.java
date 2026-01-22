@@ -53,6 +53,11 @@ public class ModItems {
     public static final Item MAGENTA_NAME_TAG = registerItem("magenta_name_tag", new ColoredNameTagItem(new Item.Settings(), 13061821));
     public static final Item PINK_NAME_TAG = registerItem("pink_name_tag", new ColoredNameTagItem(new Item.Settings(), 15961002));
 
+    public static final Item COFFEE_NAME_TAG = registerItem("coffee_name_tag", new ColoredNameTagItem(new Item.Settings(), 7683895));
+    public static final Item GHOST_NAME_TAG = registerItem("ghost_name_tag", new ColoredNameTagItem(new Item.Settings(), 9024455));
+    public static final Item PEACH_NAME_TAG = registerItem("peach_name_tag", new ColoredNameTagItem(new Item.Settings(), 15511170));
+    public static final Item SEWER_NAME_TAG = registerItem("sewer_name_tag", new ColoredNameTagItem(new Item.Settings(), 10208670));
+    public static final Item FRAGRANT_NAME_TAG = registerItem("fragrant_name_tag", new ColoredNameTagItem(new Item.Settings(), 13920360));
 
     public static final Item AZURITE = registerItem("azurite",
             new Item(new Item.Settings()));
@@ -248,6 +253,12 @@ public class ModItems {
             entries.add(PURPLE_NAME_TAG);
             entries.add(MAGENTA_NAME_TAG);
             entries.add(PINK_NAME_TAG);
+
+            entries.add(GHOST_NAME_TAG);
+            entries.add(COFFEE_NAME_TAG);
+            entries.add(FRAGRANT_NAME_TAG);
+            entries.add(SEWER_NAME_TAG);
+            entries.add(PEACH_NAME_TAG);
 
             entries.add(BEAR_CLAW);
             entries.add(AMETHYST_DAGGER);
