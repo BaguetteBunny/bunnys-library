@@ -109,11 +109,19 @@
   "item.louis-overhaul-mod.magenta_name_tag": "Magenta Name Tag",
   "item.louis-overhaul-mod.pink_name_tag": "Pink Name Tag",
 
-  "item.louis-overhaul-mod.fragrant_name_tag": "Fragrant Name Tag",
-  "item.louis-overhaul-mod.ghost_name_tag": "Ghost Name Tag",
+  "item.louis-overhaul-mod.wisp_name_tag": "Wisp Name Tag",
   "item.louis-overhaul-mod.peach_name_tag": "Peach Name Tag",
-  "item.louis-overhaul-mod.sewer_name_tag": "Sewer Name Tag",
-  "item.louis-overhaul-mod.coffee_name_tag": "Coffee Name Tag",
+  "item.louis-overhaul-mod.radioactive_name_tag": "Radioactive Name Tag",
+  "item.louis-overhaul-mod.fragrant_name_tag": "Fragrant Name Tag",
+  "item.louis-overhaul-mod.aquamarine_name_tag": "Aquamarine Name Tag",
+  "item.louis-overhaul-mod.ashen_name_tag": "Ashen Name Tag",
+  "item.louis-overhaul-mod.blossom_name_tag": "Blossom Name Tag",
+  "item.louis-overhaul-mod.cataclysm_name_tag": "Cataclysm Name Tag",
+  "item.louis-overhaul-mod.immolation_name_tag": "Immolation Name Tag",
+  "item.louis-overhaul-mod.iridescent_name_tag": "Iridescent Name Tag",
+  "item.louis-overhaul-mod.primordial_name_tag": "Primordial Name Tag",
+  "item.louis-overhaul-mod.volcanic_name_tag": "Volcanic Name Tag",
+
 
   "item.louis-overhaul-mod.white_water_bucket": "White Water Bucket",
   "item.louis-overhaul-mod.light_gray_water_bucket": "Light Gray Water Bucket",

@@ -225,11 +225,18 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.MAGENTA_NAME_TAG, Models.GENERATED);
         itemModelGenerator.register(ModItems.PINK_NAME_TAG, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.COFFEE_NAME_TAG, Models.GENERATED);
-        itemModelGenerator.register(ModItems.SEWER_NAME_TAG, Models.GENERATED);
-        itemModelGenerator.register(ModItems.FRAGRANT_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WISP_NAME_TAG, Models.GENERATED);
         itemModelGenerator.register(ModItems.PEACH_NAME_TAG, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GHOST_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RADIOACTIVE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FRAGRANT_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.AQUAMARINE_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ASHEN_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BLOSSOM_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CATACLYSM_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.IMMOLATION_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.IRIDESCENT_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PRIMORDIAL_NAME_TAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.VOLCANIC_NAME_TAG, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.BROWN_BEAR_SPAWN_EGG, new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
         // Pet Recovery Compass Generated Manually

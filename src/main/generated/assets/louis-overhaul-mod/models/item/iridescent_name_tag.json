@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "louis-overhaul-mod:item/sewer_name_tag"
+    "layer0": "louis-overhaul-mod:item/iridescent_name_tag"
   }
 }
