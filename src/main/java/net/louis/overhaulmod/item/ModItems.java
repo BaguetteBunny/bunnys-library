@@ -53,18 +53,18 @@ public class ModItems {
     public static final Item MAGENTA_NAME_TAG = registerItem("magenta_name_tag", new ColoredNameTagItem(new Item.Settings(), 13061821));
     public static final Item PINK_NAME_TAG = registerItem("pink_name_tag", new ColoredNameTagItem(new Item.Settings(), 15961002));
 
-    public static final Item WISP_NAME_TAG = registerItem("wisp_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 6999775, 7570825));
-    public static final Item PEACH_NAME_TAG = registerItem("peach_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 14958198, 16750922));
-    public static final Item RADIOACTIVE_NAME_TAG = registerItem("radioactive_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 8887944, 2939728));
-    public static final Item FRAGRANT_NAME_TAG = registerItem("fragrant_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 11268523, 16747190));
-    public static final Item AQUAMARINE_NAME_TAG = registerItem("aquamarine_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 62207, 5029509));
-    public static final Item VOLCANIC_NAME_TAG = registerItem("volcanic_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 10327959, 11418432));
-    public static final Item BLOSSOM_NAME_TAG = registerItem("blossom_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 16711898, 9850992));
-    public static final Item CATACLYSM_NAME_TAG = registerItem("cataclysm_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 2890267, 9719120));
-    public static final Item IMMOLATION_NAME_TAG = registerItem("immolation_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 5980195, 11615241));
-    public static final Item IRIDESCENT_NAME_TAG = registerItem("iridescent_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 10672383, 15255290));
-    public static final Item PRIMORDIAL_NAME_TAG = registerItem("primordial_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 11062654, 16777184));
-    public static final Item ASHEN_NAME_TAG = registerItem("ashen_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC), 10132122, 4473924));
+    public static final Item WISP_NAME_TAG = registerItem("wisp_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 6999775, 7570825));
+    public static final Item PEACH_NAME_TAG = registerItem("peach_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 14958198, 16750922));
+    public static final Item RADIOACTIVE_NAME_TAG = registerItem("radioactive_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 8887944, 2939728));
+    public static final Item FRAGRANT_NAME_TAG = registerItem("fragrant_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 11268523, 16747190));
+    public static final Item AQUAMARINE_NAME_TAG = registerItem("aquamarine_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 62207, 5029509));
+    public static final Item VOLCANIC_NAME_TAG = registerItem("volcanic_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 10327959, 11418432));
+    public static final Item BLOSSOM_NAME_TAG = registerItem("blossom_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 16711898, 9850992));
+    public static final Item CATACLYSM_NAME_TAG = registerItem("cataclysm_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 2890267, 9719120));
+    public static final Item IMMOLATION_NAME_TAG = registerItem("immolation_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 5980195, 11615241));
+    public static final Item IRIDESCENT_NAME_TAG = registerItem("iridescent_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 10672383, 15255290));
+    public static final Item PRIMORDIAL_NAME_TAG = registerItem("primordial_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 11062654, 16777184));
+    public static final Item ASHEN_NAME_TAG = registerItem("ashen_name_tag", new ColoredNameTagItem(new Item.Settings().rarity(Rarity.EPIC).fireproof(), 10132122, 4473924));
 
     public static final Item AZURITE = registerItem("azurite",
             new Item(new Item.Settings()));
