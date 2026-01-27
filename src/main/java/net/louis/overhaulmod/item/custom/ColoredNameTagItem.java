@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ColoredNameTagItem extends NameTagItem {
-    private final int firstTextColor;
-    private final int secondTextColor;
+    public final int firstTextColor;
+    public final int secondTextColor;
 
     public ColoredNameTagItem(Settings settings, int firstTextColor, int secondTextColor) {
         super(settings);
@@ -69,7 +69,7 @@ public class ColoredNameTagItem extends NameTagItem {
         }
     }
 
-    private Text setGradient(Text text, int firstColor, int secondColor) {
+    public static Text setGradient(Text text, int firstColor, int secondColor) {
         String textStr = text.getString();
 
         ArrayList<Integer> firstRGB = intToRGB(firstColor);
@@ -96,7 +96,7 @@ public class ColoredNameTagItem extends NameTagItem {
         return finalText;
     }
 
-    private ArrayList<Integer> intToRGB(int color) {
+    public static ArrayList<Integer> intToRGB(int color) {
         ArrayList<Integer> colors = new ArrayList<>();
 
         colors.add(color / 65536);
@@ -106,7 +106,7 @@ public class ColoredNameTagItem extends NameTagItem {
         return colors;
     }
 
-    private int RGBtoInt(ArrayList<Integer> colors) {
+    public static int RGBtoInt(ArrayList<Integer> colors) {
         return colors.get(0) * 65536 + colors.get(1) * 256 + colors.get(2);
     }
 }
