@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.utils;
 
+import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.item.custom.ColoredNameTagItem;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +20,7 @@ import org.joml.Vector4d;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Set;
 
 import static net.louis.overhaulmod.item.custom.ColoredNameTagItem.*;
 import static net.louis.overhaulmod.utils.ParticleShapeUtil.*;
@@ -58,4 +60,19 @@ public class RareItemUtil {
         Text finalText = obtainText.copy().append(nameTagText);
         player.sendMessage(finalText, true);
     }
+
+    public static final Set<Item> RARE_NAME_TAGS = Set.of(
+            ModItems.IRIDESCENT_NAME_TAG,
+            ModItems.VOLCANIC_NAME_TAG,
+            ModItems.RADIOACTIVE_NAME_TAG,
+            ModItems.ASHEN_NAME_TAG,
+            ModItems.FRAGRANT_NAME_TAG,
+            ModItems.BLOSSOM_NAME_TAG,
+            ModItems.PRIMORDIAL_NAME_TAG,
+            ModItems.PEACH_NAME_TAG,
+            ModItems.CATACLYSM_NAME_TAG,
+            ModItems.IMMOLATION_NAME_TAG,
+            ModItems.AQUAMARINE_NAME_TAG,
+            ModItems.WISP_NAME_TAG
+    );
 }

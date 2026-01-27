@@ -122,6 +122,19 @@
   "item.louis-overhaul-mod.primordial_name_tag": "Primordial Name Tag",
   "item.louis-overhaul-mod.volcanic_name_tag": "Volcanic Name Tag",
 
+  "item.louis-overhaul-mod.wisp_name_tag.desc": "Drops from Killing Breezes",
+  "item.louis-overhaul-mod.peach_name_tag.desc": "Drops from Killing Ender Dragons",
+  "item.louis-overhaul-mod.radioactive_name_tag.desc": "Drops from Drinking Potions",
+  "item.louis-overhaul-mod.fragrant_name_tag.desc": "Drops from Eating Cake",
+  "item.louis-overhaul-mod.aquamarine_name_tag.desc": "Drops from Swimming",
+  "item.louis-overhaul-mod.ashen_name_tag.desc": "Drops from ???",
+  "item.louis-overhaul-mod.blossom_name_tag.desc": "Drops from Breeding in Cherry Groves",
+  "item.louis-overhaul-mod.cataclysm_name_tag.desc": "Drops from Dealing Damage",
+  "item.louis-overhaul-mod.immolation_name_tag.desc": "Drops from Killing Nether Mobs",
+  "item.louis-overhaul-mod.iridescent_name_tag.desc": "Drops from Fishing",
+  "item.louis-overhaul-mod.primordial_name_tag.desc": "Drops from Play Time",
+  "item.louis-overhaul-mod.volcanic_name_tag.desc": "Drops from Nether Blocks Mined",
+
 
   "item.louis-overhaul-mod.white_water_bucket": "White Water Bucket",
   "item.louis-overhaul-mod.light_gray_water_bucket": "Light Gray Water Bucket",

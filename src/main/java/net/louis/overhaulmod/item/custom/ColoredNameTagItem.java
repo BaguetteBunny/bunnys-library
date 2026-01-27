@@ -1,18 +1,25 @@
 package net.louis.overhaulmod.item.custom;
 
+import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.NameTagItem;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
+
+import static net.louis.overhaulmod.utils.RareItemUtil.RARE_NAME_TAGS;
 
 public class ColoredNameTagItem extends NameTagItem {
     public final int firstTextColor;
@@ -67,6 +74,14 @@ public class ColoredNameTagItem extends NameTagItem {
         } else {
             return ActionResult.PASS;
         }
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        if (!RARE_NAME_TAGS.contains(stack.getItem())) return;
+        Identifier id = Registries.ITEM.getId(stack.getItem());
+        String descKey = "item." + id.getNamespace() + "." + id.getPath() + ".desc";
+        tooltip.add(Text.literal("• ").append(Text.translatable(descKey)).formatted(Formatting.GRAY));
     }
 
     public static Text setGradient(Text text, int firstColor, int secondColor) {
