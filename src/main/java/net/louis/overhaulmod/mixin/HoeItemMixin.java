@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.louis.overhaulmod.events.ModUseEvents.dropBlockWithFortune;
+import static net.louis.overhaulmod.events.ModUseBlockEvents.dropBlockWithFortune;
 import static net.louis.overhaulmod.utils.EnchantmentUtils.HOE_TILLABLE_MAP;
 import static net.louis.overhaulmod.utils.EnchantmentUtils.hasEnchant;
 

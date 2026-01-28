@@ -75,4 +75,7 @@ public class RareItemUtil {
             ModItems.AQUAMARINE_NAME_TAG,
             ModItems.WISP_NAME_TAG
     );
+
+    public static boolean oneIn(World world, int i) {return (world.getRandom().nextBetween(0, i)) == 0;}
+
 }

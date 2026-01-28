@@ -10,11 +10,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import static net.louis.overhaulmod.events.ModServerEvents.playerInNether;
-import static net.louis.overhaulmod.utils.RNGUtil.oneIn;
+import static net.louis.overhaulmod.events.ModServerLivingEntityEvents.playerInNether;
+import static net.louis.overhaulmod.utils.RareItemUtil.oneIn;
 
 public class ModBreakEvents {
-    public static void registerBreakEvents() {
+    public static void register() {
         PlayerBlockBreakEvents.AFTER.register(ModBreakEvents::dropVolcanicNameTag);
     }
 

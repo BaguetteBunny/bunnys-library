@@ -3,8 +3,6 @@ package net.louis.overhaulmod.events;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.RareItemUtil;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -12,18 +10,15 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-import static net.louis.overhaulmod.utils.RNGUtil.oneIn;
+import static net.louis.overhaulmod.utils.RareItemUtil.oneIn;
 
-public class ModServerEvents {
-    public static void registerServerEvents() {
-        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerEvents::dropWispNameTag);
-        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerEvents::dropPeachNameTag);
-        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerEvents::dropImmolationNameTag);
-        ServerLivingEntityEvents.AFTER_DAMAGE.register(ModServerEvents::dropCataclysmNameTag);
+public class ModServerLivingEntityEvents {
+    public static void register() {
+        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerLivingEntityEvents::dropWispNameTag);
+        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerLivingEntityEvents::dropPeachNameTag);
+        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerLivingEntityEvents::dropImmolationNameTag);
+        ServerLivingEntityEvents.AFTER_DAMAGE.register(ModServerLivingEntityEvents::dropCataclysmNameTag);
     }
 
     private static void dropCataclysmNameTag(LivingEntity living, DamageSource damageSource, float v, float v1, boolean b) {

@@ -19,10 +19,7 @@ import net.louis.overhaulmod.effect.ModEffects;
 import net.louis.overhaulmod.enchantments.ModEnchantmentEffects;
 import net.louis.overhaulmod.entity.ModEntities;
 import net.louis.overhaulmod.entity.custom.living.BearEntity;
-import net.louis.overhaulmod.events.ModBreakEvents;
-import net.louis.overhaulmod.events.ModServerEvents;
-import net.louis.overhaulmod.events.ModUseEvents;
-import net.louis.overhaulmod.events.ModUseStewEvents;
+import net.louis.overhaulmod.events.*;
 import net.louis.overhaulmod.fluid.ModFluids;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.potion.ModPotions;
@@ -75,11 +72,17 @@ public class LouisOverhaulMod implements ModInitializer {
 		ModLootTableModifiers.replaceLootTables();
 
 		// All Events
-		ModBreakEvents.registerBreakEvents();
-		ModServerEvents.registerServerEvents();
-		ModUseEvents.registerMain();
-		ModUseEvents.registerProjectileItems();
-		ModUseStewEvents.registerStew();
+		ModAttackEntityEvents.register();
+		ModAttackBlockEvents.register();
+
+		ModBreakEvents.register();
+
+		ModServerLivingEntityEvents.register();
+
+		ModUseBlockEvents.register();
+		ModUseEntityEvents.register();
+		ModUseItemEvents.register();
+
 
 		registerDispenserProjectles();
 
