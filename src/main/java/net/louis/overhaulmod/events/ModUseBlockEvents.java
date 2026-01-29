@@ -411,6 +411,7 @@ public class ModUseBlockEvents {
             }
 
             player.startRiding(entity);
+            world.playSound(null, pos, SoundEvents.ENTITY_HORSE_SADDLE, SoundCategory.PLAYERS, 5, 2f);
 
             player.swingHand(Hand.MAIN_HAND, true);
             return ActionResult.SUCCESS;
