@@ -29,7 +29,7 @@ import net.louis.overhaulmod.sound.ModSounds;
 import net.louis.overhaulmod.utils.DespawnManager;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
 import net.louis.overhaulmod.utils.GlowManager;
-import net.louis.overhaulmod.utils.ModLootTableModifiers;
+import net.louis.overhaulmod.events.ModLootTableEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.SpawnGroup;
@@ -68,8 +68,8 @@ public class LouisOverhaulMod implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModEnchantmentEffects.registerEnchantmentEffects();
 
-		ModLootTableModifiers.modifyLootTables();
-		ModLootTableModifiers.replaceLootTables();
+		ModLootTableEvents.modifyLootTables();
+		ModLootTableEvents.replaceLootTables();
 
 		// All Events
 		ModAttackEntityEvents.register();

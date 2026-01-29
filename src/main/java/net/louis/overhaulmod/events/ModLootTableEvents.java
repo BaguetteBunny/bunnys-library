@@ -1,10 +1,9 @@
-package net.louis.overhaulmod.utils;
+package net.louis.overhaulmod.events;
 
 import net.louis.overhaulmod.block.ModBlocks;
 import net.louis.overhaulmod.enchantments.ModEnchantments;
 import net.louis.overhaulmod.item.ModItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
@@ -27,7 +26,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
-public class ModLootTableModifiers {
+public class ModLootTableEvents {
     private static final Identifier BAT_ID = Identifier.ofVanilla("entities/bat");
     private static final Identifier ENDERMITE_ID = Identifier.ofVanilla("entities/endermite");
     private static final Identifier HUSK_ID = Identifier.ofVanilla("entities/husk");
