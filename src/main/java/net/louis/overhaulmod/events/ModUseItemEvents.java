@@ -7,7 +7,7 @@ import net.louis.overhaulmod.entity.custom.thrown.projectile.BrickEntity;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.NetherBrickEntity;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.PurifiedWaterEntity;
 import net.louis.overhaulmod.item.ModItems;
-import net.louis.overhaulmod.utils.GlowManager;
+import net.louis.overhaulmod.utils.GlowLightManager;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -179,7 +179,7 @@ public class ModUseItemEvents {
         for (Entity e : nearby) {
             if (e instanceof LivingEntity living && !living.isGlowing()) {
                 living.setGlowing(true);
-                GlowManager.addGlowingEntity(living, 80);
+                GlowLightManager.addGlowingEntity(living, 80);
             }
         }
 

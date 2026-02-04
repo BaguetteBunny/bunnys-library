@@ -28,7 +28,7 @@ import net.louis.overhaulmod.screen.ModScreenHandlers;
 import net.louis.overhaulmod.sound.ModSounds;
 import net.louis.overhaulmod.utils.DespawnManager;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
-import net.louis.overhaulmod.utils.GlowManager;
+import net.louis.overhaulmod.utils.GlowLightManager;
 import net.louis.overhaulmod.events.ModLootTableEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
@@ -122,7 +122,7 @@ public class LouisOverhaulMod implements ModInitializer {
 
 	private void tickGlobal() {
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			GlowManager.tick();
+			GlowLightManager.tick();
 			DespawnManager.tick();
 		});
 	}
