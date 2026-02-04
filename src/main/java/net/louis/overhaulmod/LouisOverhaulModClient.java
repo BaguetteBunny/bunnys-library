@@ -20,7 +20,6 @@ import net.louis.overhaulmod.item.custom.BigBundleItem;
 import net.louis.overhaulmod.item.custom.PetRecoveryCompass;
 import net.louis.overhaulmod.screen.AdvancedFletchingTableScreen;
 import net.louis.overhaulmod.screen.ModScreenHandlers;
-import net.louis.overhaulmod.screen.SawmillScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
@@ -41,7 +40,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
     public void onInitializeClient() {
         // Render Screen
         HandledScreens.register(ModScreenHandlers.ADVANCED_FLETCHING_TABLE_SCREEN_HANDLER, AdvancedFletchingTableScreen::new);
-        HandledScreens.register(ModScreenHandlers.SAWMILL_SCREEN_HANDLER, SawmillScreen::new);
 
         // Add Entities
         EntityModelLayerRegistry.registerModelLayer(BearEntityModel.BEAR, BearEntityModel::getTexturedModelData);
@@ -52,7 +50,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
         // Add Block Transparency
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COPPER_RAIL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GLOW_LANTERN, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAWMILL, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYSTIC_ROSE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_MYSTIC_ROSE, RenderLayer.getCutout());

@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "louis-overhaul-mod:bat_fang"
-    },
-    "H": {
-      "item": "minecraft:rabbit_hide"
-    },
-    "S": {
-      "item": "minecraft:string"
-    }
+    "B": "louis-overhaul-mod:bat_fang",
+    "H": "minecraft:rabbit_hide",
+    "S": "minecraft:string"
   },
   "pattern": [
     "SBS",

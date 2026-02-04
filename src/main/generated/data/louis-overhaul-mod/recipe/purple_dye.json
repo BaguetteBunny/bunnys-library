@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "louis-overhaul-mod:lavender_dandelion"
-    }
+    "louis-overhaul-mod:lavender_dandelion"
   ],
   "result": {
     "count": 2,

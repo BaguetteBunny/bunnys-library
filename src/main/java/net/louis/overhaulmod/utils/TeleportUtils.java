@@ -17,7 +17,7 @@ public class TeleportUtils {
 
         for (int i = 0; i < 16; i++) {
             double offsetX = originalX + (random.nextDouble() - 0.5) * 16.0;
-            double offsetY = MathHelper.clamp(originalY + (random.nextInt(8) - 4), world.getBottomY(), world.getTopY() - 1);
+            double offsetY = MathHelper.clamp(originalY + (random.nextInt(8) - 4), world.getBottomY(), world.getTopYInclusive() - 1);
             double offsetZ = originalZ + (random.nextDouble() - 0.5) * 16.0;
 
             if (player.hasVehicle()) {

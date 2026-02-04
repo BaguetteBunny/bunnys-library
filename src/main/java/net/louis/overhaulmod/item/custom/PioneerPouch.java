@@ -12,7 +12,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ClickType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -60,8 +59,8 @@ public class PioneerPouch extends BigBundleItem {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return TypedActionResult.fail(user.getStackInHand(hand));
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
+        return ActionResult.FAIL;
     }
 
     @Override
@@ -70,13 +69,13 @@ public class PioneerPouch extends BigBundleItem {
         PlayerEntity player = context.getPlayer();
         BlockPos bp = context.getBlockPos();
 
-        if (player == null || player.getWorld().isClient()) return ActionResult.PASS;
+        if (player == null || player.getEntityWorld().isClient()) return ActionResult.PASS;
 
         ItemStack placedItem = placeRandomBlock(bundle, player, context);
         if (placedItem == null) return ActionResult.PASS;
 
         if (placedItem.getItem() instanceof BlockItem blockItem) {
-            player.getWorld().playSound(null, bp, blockItem.getBlock().getDefaultState().getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0f, 1.0f);
+            player.getEntityWorld().playSound(null, bp, blockItem.getBlock().getDefaultState().getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
 
         return ActionResult.SUCCESS;
@@ -131,10 +130,10 @@ public class PioneerPouch extends BigBundleItem {
     }
 
     private void playRemoveOneSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+        entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getEntityWorld().getRandom().nextFloat() * 0.4F);
     }
 
     private void playInsertSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+        entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getEntityWorld().getRandom().nextFloat() * 0.4F);
     }
 }

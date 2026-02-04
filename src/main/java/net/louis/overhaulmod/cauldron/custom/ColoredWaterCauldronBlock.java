@@ -20,12 +20,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import static net.louis.overhaulmod.utils.CauldronBehaviorHooks.DYEABLE_EQUIPMENT;
 
 public class ColoredWaterCauldronBlock extends AbstractCauldronBlock {
     @Override protected MapCodec<? extends AbstractCauldronBlock> getCodec() {return null;}
@@ -55,13 +57,13 @@ public class ColoredWaterCauldronBlock extends AbstractCauldronBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (world.isClient) return;
+        if (world.isClient()) return;
 
         if (entity instanceof LivingEntity living) {
             boolean success = false;
             Iterable<ItemStack> armors = living.getAllArmorItems();
             for (ItemStack a : armors) {
-                if (a.getItem() instanceof ArmorItem armor && armor.getMaterial() == ArmorMaterials.LEATHER) {
+                if (DYEABLE_EQUIPMENT.contains(a.getItem())) {
                     a.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(FluidColors.getColor(state.get(FLUID_TYPE)), false));
                     success = true;
                 }
@@ -83,10 +85,10 @@ public class ColoredWaterCauldronBlock extends AbstractCauldronBlock {
     }
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         Item item = stack.getItem();
         CauldronBehavior cauldronBehavior = (CauldronBehavior)this.behaviorMap.map().get(item);
-        if (world.isClient) return cauldronBehavior.interact(state, world, pos, player, hand, stack);
+        if (world.isClient()) return cauldronBehavior.interact(state, world, pos, player, hand, stack);
         ItemStack newStack = null;
         boolean dyeWater = false;
 
@@ -106,8 +108,7 @@ public class ColoredWaterCauldronBlock extends AbstractCauldronBlock {
         else if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock) {newStack = new ItemStack(RegistryEntry.of(FluidColors.getShulkerBoxItem(state.get(ColoredWaterCauldronBlock.FLUID_TYPE))), stack.getCount(), stack.getComponentChanges());}
 
         // 3. Dyeable Items
-        else if ((item instanceof ArmorItem armor && armor.getMaterial() == ArmorMaterials.LEATHER)
-                || (item instanceof AnimalArmorItem)) {
+        else if (DYEABLE_EQUIPMENT.contains(item)) {
             newStack = stack.copy();
             newStack.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(FluidColors.getColor(state.get(FLUID_TYPE)), false));
         }

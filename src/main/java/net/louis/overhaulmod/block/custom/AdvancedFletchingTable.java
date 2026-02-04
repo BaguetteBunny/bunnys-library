@@ -61,7 +61,7 @@ public class AdvancedFletchingTable extends BlockWithEntity implements BlockEnti
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if (world.isClient) {
+        if (world.isClient()) {
             return null;
         }
         return validateTicker(type, ModBlockEntities.FLETCHING_BE,

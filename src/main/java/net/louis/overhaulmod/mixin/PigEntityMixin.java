@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PigEntityMixin {
     PigEntity self = (PigEntity) (Object) this;
 
-    private final PigPersonality personality = PigPersonality.random(self.getWorld());
+    private final PigPersonality personality = PigPersonality.random(self.getEntityWorld());
 
     private final float volatility = personality.getVolatility();
     private final float minRange = personality.getMinRange();
@@ -28,7 +28,7 @@ public abstract class PigEntityMixin {
 
         if (speedMultiplier > maxRange) speedMultiplier -= volatility;
         else if (speedMultiplier < minRange) speedMultiplier += volatility;
-        else speedMultiplier = controllingPlayer.getWorld().getRandom().nextBetween(0, volatilityConstant) < 50 ? speedMultiplier+volatility : speedMultiplier-volatility;
+        else speedMultiplier = controllingPlayer.getEntityWorld().getRandom().nextBetween(0, volatilityConstant) < 50 ? speedMultiplier+volatility : speedMultiplier-volatility;
 
         cir.setReturnValue(cir.getReturnValueF() * speedMultiplier);
     }

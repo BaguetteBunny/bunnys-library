@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "D": {
-      "item": "minecraft:amethyst_shard"
-    },
-    "G": {
-      "item": "minecraft:glow_ink_sac"
-    },
-    "N": {
-      "item": "minecraft:ender_eye"
-    }
+    "D": "minecraft:amethyst_shard",
+    "G": "minecraft:glow_ink_sac",
+    "N": "minecraft:ender_eye"
   },
   "pattern": [
     "DND",

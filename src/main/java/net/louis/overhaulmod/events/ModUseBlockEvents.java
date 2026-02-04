@@ -397,17 +397,17 @@ public class ModUseBlockEvents {
         BlockPos pos = hitResult.getBlockPos();
         BlockState state = world.getBlockState(pos);
 
-        if (item != Items.SADDLE || player.getItemCooldownManager().isCoolingDown(item)) return ActionResult.PASS;
+        if (item != Items.SADDLE || player.getItemCooldownManager().isCoolingDown(stack)) return ActionResult.PASS;
 
         if (isValidSittableBlock(state)) {
-            player.getItemCooldownManager().set(stack.getItem(), 10);
+            player.getItemCooldownManager().set(stack, 10);
 
             Entity entity;
             List<ChairEntity> entities = world.getEntitiesByType(ModEntities.CHAIR, new Box(pos), chair -> true);
             if(entities.isEmpty()) {
                 entity = ModEntities.CHAIR.spawn((ServerWorld) world, pos, SpawnReason.TRIGGERED);
             } else {
-                entity = entities.get(0);
+                entity = entities.getFirst();
             }
 
             player.startRiding(entity);

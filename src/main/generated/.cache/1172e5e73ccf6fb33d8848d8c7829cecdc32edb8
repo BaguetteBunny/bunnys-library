@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-28T13:11:51.9047937	Louis' Overhaul Mod/Block Loot Tables
+// 1.21.3	2026-02-05T01:20:04.0953618	Louis' Overhaul Mod/Block Loot Tables
 74dec2e43bf2da28be565076798fc384e6fcc769 data\louis-overhaul-mod\loot_table\blocks\red_concrete_slab.json
 ea21a02ad7306ee0d7c12bf9d0ed8352e78f709c data\louis-overhaul-mod\loot_table\blocks\rose_quartz_wall.json
 b458f27d95d81a44db3c2c2522527955074288ce data\louis-overhaul-mod\loot_table\blocks\purple_concrete_stairs.json
@@ -42,7 +42,6 @@ a068cecc26fc255ead936d36080a60579327ed38 data\louis-overhaul-mod\loot_table\bloc
 96efa7e6aae736db4613b7afe2d25c9376ef0e89 data\louis-overhaul-mod\loot_table\blocks\polished_andesite_wall.json
 7545aad9e28638aa0e4642fe217e314ba989f263 data\louis-overhaul-mod\loot_table\blocks\cut_sandstone_stairs.json
 103d9124d8b591eeddf83b190d7177377bd94046 data\louis-overhaul-mod\loot_table\blocks\rose_quartz_pillar.json
-e985d535c18a9554b8d4e2eaf5171dd8d76a0ff3 data\louis-overhaul-mod\loot_table\blocks\sawmill.json
 3f5ebf63c9426c0348e7921d89a5442975575f6e data\louis-overhaul-mod\loot_table\blocks\wilted_poppy.json
 660b4b1d9971cd88d1c50d7dbf61ec0dc6edef56 data\louis-overhaul-mod\loot_table\blocks\black_concrete_stairs.json
 69162718d5a49ee720b9f887fcf225bac926da4c data\louis-overhaul-mod\loot_table\blocks\brown_concrete_wall.json

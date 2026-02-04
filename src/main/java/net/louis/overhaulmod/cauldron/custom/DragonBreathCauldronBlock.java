@@ -21,8 +21,8 @@ import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -40,7 +40,7 @@ public class DragonBreathCauldronBlock extends LeveledCauldronBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (world.isClient) return;
+        if (world.isClient()) return;
         int level = state.get(LEVEL);
 
         if (entity instanceof ItemEntity item && item.getStack().getItem() instanceof PotionItem potion && potion != Items.LINGERING_POTION  && ModConfig.INSTANCE.enableLingeringTransform) {
@@ -55,7 +55,7 @@ public class DragonBreathCauldronBlock extends LeveledCauldronBlock {
             newPotion.set(DataComponentTypes.POTION_CONTENTS, item.getStack().getComponents().get(DataComponentTypes.POTION_CONTENTS));
 
             ItemEntity newPotionEntity = new ItemEntity(world, item.getX(), item.getY(), item.getZ(), newPotion);
-            item.kill();
+            item.remove(Entity.RemovalReason.DISCARDED);
             world.spawnEntity(newPotionEntity);
         }
 
@@ -97,7 +97,7 @@ public class DragonBreathCauldronBlock extends LeveledCauldronBlock {
 
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         CauldronBehavior cauldronBehavior = (CauldronBehavior) this.behaviorMap.map().get(stack.getItem());
         ItemEnchantmentsComponent enchants = stack.get(DataComponentTypes.ENCHANTMENTS);
         if (world.isClient || enchants == null) return cauldronBehavior.interact(state, world, pos, player, hand, stack);

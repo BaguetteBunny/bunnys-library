@@ -30,7 +30,7 @@ public abstract class FarmlandBlockMixin {
             ItemStack boots = living.getEquippedStack(EquipmentSlot.FEET);
             if (boots.isEmpty()) return;
 
-            RegistryWrapper<Enchantment> enchantmentRegistry = world.getRegistryManager().getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+            RegistryWrapper<Enchantment> enchantmentRegistry = world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
             RegistryKey<Enchantment> featherFallingKey = RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.ofVanilla("feather_falling"));
             RegistryEntry<Enchantment> featherFallingEntry = enchantmentRegistry.getOrThrow(featherFallingKey);
 

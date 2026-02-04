@@ -4,317 +4,299 @@ package net.louis.overhaulmod.block;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.block.custom.AdvancedFletchingTable;
-import net.louis.overhaulmod.block.custom.SawmillBlock;
 import net.louis.overhaulmod.cauldron.custom.ColoredWaterCauldronBlock;
 import net.louis.overhaulmod.cauldron.custom.DragonBreathCauldronBlock;
 import net.louis.overhaulmod.cauldron.custom.HoneyCauldronBlock;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
+import java.util.function.Function;
+
 public class ModBlocks {
     public static final Block ADVANCED_FLETCHING_TABLE = registerBlock("advanced_fletching_table",
-            new AdvancedFletchingTable(AbstractBlock.Settings.copy(Blocks.FLETCHING_TABLE)));
+            properties -> new AdvancedFletchingTable(properties.mapColor(MapColor.OAK_TAN).instrument(NoteBlockInstrument.BASS).strength(2.5F).sounds(BlockSoundGroup.WOOD).burnable()));
 
     public static final Block COPPER_RAIL = registerBlock("copper_rail",
-            new PoweredRailBlock(AbstractBlock.Settings.create()
-                    .strength(0.7f)
-                    .sounds(BlockSoundGroup.METAL)
-                    .noCollision()
-            ));
+            properties -> new PoweredRailBlock(properties.strength(0.7f).sounds(BlockSoundGroup.METAL).noCollision()));
 
     public static final Block MYSTIC_ROSE = registerBlock("mystic_rose",
-            new FlowerBlock(StatusEffects.REGENERATION, 8, AbstractBlock.Settings.copy(Blocks.ALLIUM)));
+            properties -> new FlowerBlock(StatusEffects.REGENERATION, 8, properties.mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block POTTED_MYSTIC_ROSE = registerBlock("potted_mystic_rose",
-            new FlowerPotBlock(ModBlocks.MYSTIC_ROSE, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM)));
+            properties -> new FlowerPotBlock(ModBlocks.MYSTIC_ROSE, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block COBALT_FLOWER = registerBlock("cobalt_flower",
-            new FlowerBlock(StatusEffects.POISON, 12, AbstractBlock.Settings.copy(Blocks.ALLIUM)));
+            properties -> new FlowerBlock(StatusEffects.POISON, 12, properties.mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block POTTED_COBALT_FLOWER = registerBlock("potted_cobalt_flower",
-            new FlowerPotBlock(ModBlocks.COBALT_FLOWER, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM)));
+            properties -> new FlowerPotBlock(ModBlocks.COBALT_FLOWER, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block WILTED_POPPY = registerBlock("wilted_poppy",
-            new FlowerBlock(StatusEffects.WITHER, 8, AbstractBlock.Settings.copy(Blocks.ALLIUM)));
+            properties -> new FlowerBlock(StatusEffects.WITHER, 8, properties.mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block POTTED_WILTED_POPPY = registerBlock("potted_wilted_poppy",
-            new FlowerPotBlock(ModBlocks.WILTED_POPPY, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM)));
+            properties -> new FlowerPotBlock(ModBlocks.WILTED_POPPY, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block LAVENDER_DANDELION = registerBlock("lavender_dandelion",
-            new FlowerBlock(StatusEffects.SATURATION, 0.35f, AbstractBlock.Settings.copy(Blocks.ALLIUM)));
+            properties -> new FlowerBlock(StatusEffects.SATURATION, 0.35f, properties.mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block POTTED_LAVENDER_DANDELION = registerBlock("potted_lavender_dandelion",
-            new FlowerPotBlock(ModBlocks.LAVENDER_DANDELION, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM)));
+            properties -> new FlowerPotBlock(ModBlocks.LAVENDER_DANDELION, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block HEART_FLOWER = registerBlock("heart_flower",
-            new FlowerBlock(StatusEffects.REGENERATION, 8, AbstractBlock.Settings.copy(Blocks.ALLIUM)));
+            properties -> new FlowerBlock(StatusEffects.REGENERATION, 8, properties.mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block POTTED_HEART_FLOWER = registerBlock("potted_heart_flower",
-            new FlowerPotBlock(ModBlocks.HEART_FLOWER, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM)));
+            properties -> new FlowerPotBlock(ModBlocks.HEART_FLOWER, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block SHINY_CORNFLOWER = registerBlock("shiny_cornflower",
-            new FlowerBlock(StatusEffects.JUMP_BOOST, 6, AbstractBlock.Settings.copy(Blocks.ALLIUM)));
+            properties -> new FlowerBlock(StatusEffects.JUMP_BOOST, 6, properties.mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XZ).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block POTTED_SHINY_CORNFLOWER = registerBlock("potted_shiny_cornflower",
-            new FlowerPotBlock(ModBlocks.SHINY_CORNFLOWER, AbstractBlock.Settings.copy(Blocks.POTTED_ALLIUM)));
-
-    public static final Block SAWMILL = registerBlock("sawmill",
-            new SawmillBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS)));
+            properties -> new FlowerPotBlock(ModBlocks.SHINY_CORNFLOWER, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block GLOW_LANTERN = registerBlock("glow_lantern",
-            new LanternBlock(AbstractBlock.Settings.copy(Blocks.SOUL_LANTERN)));
+            properties -> new LanternBlock(properties.mapColor(MapColor.IRON_GRAY).solid().requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 10).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
     // BONE BLOCKS
     public static final Block CHILLED_BONE_BLOCK = registerBlock("chilled_bone_block",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.BONE_BLOCK).mapColor(DyeColor.LIGHT_BLUE).slipperiness(0.95f)));
+            properties -> new PillarBlock(properties.mapColor(DyeColor.LIGHT_BLUE).slipperiness(0.95f).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
     public static final Block TOXIC_BONE_BLOCK = registerBlock("toxic_bone_block",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.BONE_BLOCK).mapColor(DyeColor.LIME)));
+            properties -> new PillarBlock(properties.mapColor(DyeColor.LIME).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
     public static final Block DECREPIT_BONE_BLOCK = registerBlock("decrepit_bone_block",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.BONE_BLOCK).mapColor(DyeColor.BLACK)));
+            properties -> new PillarBlock(properties.mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
 
     // ENDSTONE FAMILY
     public static final Block END_STONE_SLAB = registerBlock("end_stone_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.END_STONE)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
     public static final Block END_STONE_STAIRS = registerBlock("end_stone_stairs",
-            new StairsBlock(Blocks.END_STONE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_STAIRS)));
+            properties -> new StairsBlock(Blocks.END_STONE.getDefaultState(), properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
     public static final Block END_STONE_WALL = registerBlock("end_stone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE)));
+            properties -> new WallBlock(properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
     public static final Block END_STONE_PRESSURE_PLATE = registerBlock("end_stone_pressure_plate",
-            new PressurePlateBlock(BlockSetType.STONE, AbstractBlock.Settings.copy(Blocks.END_STONE)));
+            properties -> new PressurePlateBlock(BlockSetType.STONE, properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
     public static final Block END_STONE_BUTTON = registerBlock("end_stone_button",
-            new ButtonBlock(BlockSetType.STONE, 30, AbstractBlock.Settings.copy(Blocks.END_STONE)));
+            properties -> new ButtonBlock(BlockSetType.STONE, 30, properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
 
     // ROSE QUARTZ FAMILY
     public static final Block ROSE_QUARTZ_BRICKS = registerBlock("rose_quartz_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PINK)));
+            properties -> new Block(properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block ROSE_QUARTZ_PILLAR = registerBlock("rose_quartz_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_PILLAR).mapColor(MapColor.PINK)));
+            properties -> new PillarBlock(properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block ROSE_QUARTZ_COLUMN = registerBlock("rose_quartz_column",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_PILLAR).mapColor(MapColor.PINK)));
+            properties -> new PillarBlock(properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block CHISELED_ROSE_QUARTZ = registerBlock("chiseled_rose_quartz",
-            new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PINK)));
+            properties -> new Block(properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block ROSE_QUARTZ_SLAB = registerBlock("rose_quartz_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_SLAB).mapColor(MapColor.PINK)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block ROSE_QUARTZ_STAIRS = registerBlock("rose_quartz_stairs",
-            new StairsBlock(ModBlocks.ROSE_QUARTZ_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.QUARTZ_STAIRS).mapColor(MapColor.PINK)));
+            properties -> new StairsBlock(ModBlocks.ROSE_QUARTZ_BRICKS.getDefaultState(), properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block ROSE_QUARTZ_WALL = registerBlock("rose_quartz_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.PINK)));
+            properties -> new WallBlock(properties.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
 
     // QUARTZ BRICK FAMILY
     public static final Block QUARTZ_BRICKS_SLAB = registerBlock("quartz_bricks_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_SLAB)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block QUARTZ_BRICKS_STAIRS = registerBlock("quartz_bricks_stairs",
-            new StairsBlock(Blocks.QUARTZ_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.QUARTZ_STAIRS)));
+            properties -> new StairsBlock(Blocks.QUARTZ_BRICKS.getDefaultState(), properties.mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block QUARTZ_BRICKS_WALL = registerBlock("quartz_bricks_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.WHITE)));
+            properties -> new WallBlock(properties.mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
 
     // CALCITE FAMILY
     public static final Block CALCITE_SLAB = registerBlock("calcite_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_SLAB)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.BASEDRUM).sounds(BlockSoundGroup.CALCITE).requiresTool().strength(0.75F)));
     public static final Block CALCITE_STAIRS = registerBlock("calcite_stairs",
-            new StairsBlock(Blocks.QUARTZ_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.QUARTZ_STAIRS)));
+            properties -> new StairsBlock(Blocks.QUARTZ_BRICKS.getDefaultState(), properties.mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.BASEDRUM).sounds(BlockSoundGroup.CALCITE).requiresTool().strength(0.75F)));
     public static final Block CALCITE_WALL = registerBlock("calcite_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.WHITE)));
+            properties -> new WallBlock(properties.mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.BASEDRUM).sounds(BlockSoundGroup.CALCITE).requiresTool().strength(0.75F)));
 
     // DRIPSTONE FAMILY
     public static final Block DRIPSTONE_SLAB = registerBlock("dripstone_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.DRIPSTONE_BLOCK)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.TERRACOTTA_BROWN).instrument(NoteBlockInstrument.BASEDRUM).sounds(BlockSoundGroup.DRIPSTONE_BLOCK).requiresTool().strength(1.5F, 1.0F)));
     public static final Block DRIPSTONE_STAIRS = registerBlock("dripstone_stairs",
-            new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(), AbstractBlock.Settings.copy(Blocks.STONE_STAIRS).mapColor(MapColor.TERRACOTTA_BROWN)));
+            properties -> new StairsBlock(Blocks.DRIPSTONE_BLOCK.getDefaultState(), properties.mapColor(MapColor.TERRACOTTA_BROWN).instrument(NoteBlockInstrument.BASEDRUM).sounds(BlockSoundGroup.DRIPSTONE_BLOCK).requiresTool().strength(1.5F, 1.0F)));
     public static final Block DRIPSTONE_WALL = registerBlock("dripstone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_STAIRS).mapColor(MapColor.TERRACOTTA_BROWN)));
+            properties -> new WallBlock(properties.mapColor(MapColor.TERRACOTTA_BROWN).instrument(NoteBlockInstrument.BASEDRUM).sounds(BlockSoundGroup.DRIPSTONE_BLOCK).requiresTool().strength(1.5F, 1.0F)));
 
     // SMOOTH BASALT FAMILY
     public static final Block SMOOTH_BASALT_SLAB = registerBlock("smooth_basalt_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.BASALT)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.25F, 4.2F).sounds(BlockSoundGroup.BASALT)));
     public static final Block SMOOTH_BASALT_STAIRS = registerBlock("smooth_basalt_stairs",
-            new StairsBlock(Blocks.BASALT.getDefaultState(), AbstractBlock.Settings.copy(Blocks.BASALT).mapColor(MapColor.BLACK)));
+            properties -> new StairsBlock(Blocks.BASALT.getDefaultState(), properties.mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.25F, 4.2F).sounds(BlockSoundGroup.BASALT)));
     public static final Block SMOOTH_BASALT_WALL = registerBlock("smooth_basalt_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_STAIRS).mapColor(MapColor.BLACK)));
+            properties -> new WallBlock(properties.mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.25F, 4.2F).sounds(BlockSoundGroup.BASALT)));
 
     // MISSING WALL FAMILY
-    public static final Block BAMBOO_MOSAIC_WALL = registerBlock("bamboo_mosaic_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.BAMBOO_FENCE)));
-    public static final Block PURPUR_WALL = registerBlock("purpur_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.PINK)));
-    public static final Block QUARTZ_WALL = registerBlock("quartz_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.WHITE)));
-    public static final Block SMOOTH_QUARTZ_WALL = registerBlock("smooth_quartz_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.WHITE)));
-    public static final Block POLISHED_ANDESITE_WALL = registerBlock("polished_andesite_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block POLISHED_GRANITE_WALL = registerBlock("polished_granite_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.RAW_IRON_PINK)));
-    public static final Block POLISHED_DIORITE_WALL = registerBlock("polished_diorite_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.WHITE)));
-    public static final Block CUT_RED_SANDSTONE_WALL = registerBlock("cut_red_sandstone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.TERRACOTTA_ORANGE)));
-    public static final Block SMOOTH_RED_SANDSTONE_WALL = registerBlock("smooth_red_sandstone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.TERRACOTTA_ORANGE)));
-    public static final Block CUT_SANDSTONE_WALL = registerBlock("cut_sandstone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.PALE_YELLOW)));
-    public static final Block SMOOTH_SANDSTONE_WALL = registerBlock("smooth_sandstone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.PALE_YELLOW)));
-    public static final Block PRISMARINE_BRICKS_WALL = registerBlock("prismarine_bricks_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.LIGHT_BLUE)));
-    public static final Block PRISMARINE_WALL = registerBlock("prismarine_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.LIGHT_BLUE)));
-    public static final Block DARK_PRISMARINE_WALL = registerBlock("dark_prismarine_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.TERRACOTTA_CYAN)));
-    public static final Block SMOOTH_STONE_WALL = registerBlock("smooth_stone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.STONE_GRAY)));
-    public static final Block STONE_WALL = registerBlock("stone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.STONE_GRAY)));
+    public static final Block BAMBOO_MOSAIC_WALL = registerBlock("bamboo_mosaic_wall", p -> new WallBlock(p.mapColor(MapColor.YELLOW).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sounds(BlockSoundGroup.BAMBOO_WOOD).burnable()));
+    public static final Block PURPUR_WALL = registerBlock("purpur_wall", p -> new WallBlock(p.mapColor(MapColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block QUARTZ_WALL = registerBlock("quartz_wall", p -> new WallBlock(p.mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block SMOOTH_QUARTZ_WALL = registerBlock("smooth_quartz_wall", p -> new WallBlock(p.mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block POLISHED_ANDESITE_WALL = registerBlock("polished_andesite_wall", p -> new WallBlock(p.mapColor(MapColor.LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block POLISHED_GRANITE_WALL = registerBlock("polished_granite_wall", p -> new WallBlock(p.mapColor(MapColor.RAW_IRON_PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block POLISHED_DIORITE_WALL = registerBlock("polished_diorite_wall", p -> new WallBlock(p.mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block CUT_RED_SANDSTONE_WALL = registerBlock("cut_red_sandstone_wall", p -> new WallBlock(p.mapColor(MapColor.TERRACOTTA_ORANGE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block SMOOTH_RED_SANDSTONE_WALL = registerBlock("smooth_red_sandstone_wall", p -> new WallBlock(p.mapColor(MapColor.TERRACOTTA_ORANGE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block CUT_SANDSTONE_WALL = registerBlock("cut_sandstone_wall", p -> new WallBlock(p.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block SMOOTH_SANDSTONE_WALL = registerBlock("smooth_sandstone_wall", p -> new WallBlock(p.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block PRISMARINE_BRICKS_WALL = registerBlock("prismarine_bricks_wall", p -> new WallBlock(p.mapColor(MapColor.LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block PRISMARINE_WALL = registerBlock("prismarine_wall", p -> new WallBlock(p.mapColor(MapColor.LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block DARK_PRISMARINE_WALL = registerBlock("dark_prismarine_wall", p -> new WallBlock(p.mapColor(MapColor.TERRACOTTA_CYAN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block SMOOTH_STONE_WALL = registerBlock("smooth_stone_wall", p -> new WallBlock(p.mapColor(MapColor.STONE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+    public static final Block STONE_WALL = registerBlock("stone_wall", p -> new WallBlock(p.mapColor(MapColor.STONE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
+
 
     // MISSING STAIRS FAMILY
     public static final Block CUT_SANDSTONE_STAIRS = registerBlock("cut_sandstone_stairs",
-            new StairsBlock(Blocks.CUT_SANDSTONE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.CUT_SANDSTONE).mapColor(MapColor.PALE_YELLOW)));
+            properties -> new StairsBlock(Blocks.CUT_SANDSTONE.getDefaultState(), properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block CUT_RED_SANDSTONE_STAIRS = registerBlock("cut_red_sandstone_stairs",
-            new StairsBlock(Blocks.CUT_RED_SANDSTONE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.CUT_RED_SANDSTONE).mapColor(MapColor.TERRACOTTA_ORANGE)));
+            properties -> new StairsBlock(Blocks.CUT_RED_SANDSTONE.getDefaultState(), properties.mapColor(MapColor.ORANGE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block SMOOTH_STONE_STAIRS = registerBlock("smooth_stone_stairs",
-            new StairsBlock(Blocks.SMOOTH_STONE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.SMOOTH_STONE).mapColor(MapColor.STONE_GRAY)));
+            properties -> new StairsBlock(Blocks.SMOOTH_STONE.getDefaultState(), properties.mapColor(MapColor.STONE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
 
     // LAVENDER QUARTZ FAMILY
     public static final Block LAVENDER_QUARTZ_BRICKS = registerBlock("lavender_quartz_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new Block(properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block LAVENDER_QUARTZ_PILLAR = registerBlock("lavender_quartz_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_PILLAR).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new PillarBlock(properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block LAVENDER_QUARTZ_COLUMN = registerBlock("lavender_quartz_column",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_PILLAR).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new PillarBlock(properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block CHISELED_LAVENDER_QUARTZ = registerBlock("chiseled_lavender_quartz",
-            new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BLOCK).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new Block(properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block LAVENDER_QUARTZ_SLAB = registerBlock("lavender_quartz_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.QUARTZ_SLAB).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new SlabBlock(properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block LAVENDER_QUARTZ_STAIRS = registerBlock("lavender_quartz_stairs",
-            new StairsBlock(ModBlocks.LAVENDER_QUARTZ_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.QUARTZ_STAIRS).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new StairsBlock(ModBlocks.LAVENDER_QUARTZ_BRICKS.getDefaultState(), properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block LAVENDER_QUARTZ_WALL = registerBlock("lavender_quartz_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICK_WALL).mapColor(MapColor.PALE_PURPLE)));
+            properties -> new WallBlock(properties.mapColor(MapColor.PALE_PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
 
     // CRACKED BRICKS FAMILY
     public static final Block CRACKED_BRICKS = registerBlock("cracked_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block CRACKED_END_STONE_BRICKS = registerBlock("cracked_end_stone_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
     public static final Block CRACKED_MOSSY_STONE_BRICKS = registerBlock("cracked_mossy_stone_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.MOSSY_STONE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.STONE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CRACKED_MUD_BRICKS = registerBlock("cracked_mud_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.MUD_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 3.0F).sounds(BlockSoundGroup.MUD_BRICKS)));
     public static final Block CRACKED_PRISMARINE_BRICKS = registerBlock("cracked_prismarine_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.PRISMARINE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.DIAMOND_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CRACKED_QUARTZ_BRICKS = registerBlock("cracked_quartz_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.QUARTZ_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.OFF_WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
     public static final Block CRACKED_RED_NETHER_BRICKS = registerBlock("cracked_red_nether_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.RED_NETHER_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.DARK_RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F).sounds(BlockSoundGroup.NETHER_BRICKS)));
     public static final Block CRACKED_TUFF_BRICKS = registerBlock("cracked_tuff_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.TUFF_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.MAGENTA).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
 
     // CHISELED BRICKS FAMILY
     public static final Block CHISELED_DARK_PRISMARINE = registerBlock("chiseled_dark_prismarine",
-            new Block(AbstractBlock.Settings.copy(Blocks.DARK_PRISMARINE)));
+            properties -> new Block(properties.mapColor(MapColor.DIAMOND_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CHISELED_DEEPSLATE_BRICKS = registerBlock("chiseled_deepslate_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.DEEPSLATE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().sounds(BlockSoundGroup.DEEPSLATE_BRICKS).strength(3.5F, 6.0F)));
     public static final Block CHISELED_END_STONE_BRICKS = registerBlock("chiseled_end_stone_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.END_STONE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.PALE_YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(3.0F, 9.0F)));
     public static final Block CHISELED_MOSSY_STONE_BRICKS = registerBlock("chiseled_mossy_stone_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.MOSSY_STONE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.STONE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CHISELED_MUD_BRICKS = registerBlock("chiseled_mud_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.MUD_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 3.0F).sounds(BlockSoundGroup.MUD_BRICKS)));
     public static final Block CHISELED_PRISMARINE = registerBlock("chiseled_prismarine",
-            new Block(AbstractBlock.Settings.copy(Blocks.PRISMARINE)));
+            properties -> new Block(properties.mapColor(MapColor.DIAMOND_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CHISELED_PRISMARINE_BRICKS = registerBlock("chiseled_prismarine_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.PRISMARINE_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.DIAMOND_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CHISELED_PURPUR = registerBlock("chiseled_purpur",
-            new Block(AbstractBlock.Settings.copy(Blocks.PURPUR_BLOCK)));
+            properties -> new Block(properties.mapColor(MapColor.MAGENTA).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0F)));
     public static final Block CHISELED_RED_NETHER_BRICKS = registerBlock("chiseled_red_nether_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.RED_NETHER_BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.DARK_RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F).sounds(BlockSoundGroup.NETHER_BRICKS)));
     public static final Block CHISELED_BRICKS = registerBlock("chiseled_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.BRICKS)));
+            properties -> new Block(properties.mapColor(MapColor.RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F)));
     public static final Block CHISELED_QUARTZ_BRICKS = registerBlock("chiseled_quartz_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_QUARTZ_BLOCK)));
+            properties -> new Block(properties.mapColor(MapColor.OFF_WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(0.8F)));
 
     public static final Block RED_NETHER_BRICK_FENCE = registerBlock("red_nether_brick_fence",
-            new FenceBlock(AbstractBlock.Settings.copy(Blocks.RED_NETHER_BRICKS)));
+            properties -> new FenceBlock(properties.mapColor(MapColor.DARK_RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0F, 6.0F).sounds(BlockSoundGroup.NETHER_BRICKS)));
 
 
     // Concrete Family
-    public static final Block WHITE_CONCRETE_STAIRS = registerBlock("white_concrete_stairs", new StairsBlock(Blocks.WHITE_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.WHITE_CONCRETE).mapColor(MapColor.WHITE)));
-    public static final Block ORANGE_CONCRETE_STAIRS = registerBlock("orange_concrete_stairs", new StairsBlock(Blocks.ORANGE_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.ORANGE_CONCRETE).mapColor(MapColor.ORANGE)));
-    public static final Block MAGENTA_CONCRETE_STAIRS = registerBlock("magenta_concrete_stairs", new StairsBlock(Blocks.MAGENTA_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.MAGENTA_CONCRETE).mapColor(MapColor.MAGENTA)));
-    public static final Block LIGHT_BLUE_CONCRETE_STAIRS = registerBlock("light_blue_concrete_stairs", new StairsBlock(Blocks.LIGHT_BLUE_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.LIGHT_BLUE_CONCRETE).mapColor(MapColor.LIGHT_BLUE)));
-    public static final Block YELLOW_CONCRETE_STAIRS = registerBlock("yellow_concrete_stairs", new StairsBlock(Blocks.YELLOW_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.YELLOW_CONCRETE).mapColor(MapColor.YELLOW)));
-    public static final Block LIME_CONCRETE_STAIRS = registerBlock("lime_concrete_stairs", new StairsBlock(Blocks.LIME_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.LIME_CONCRETE).mapColor(MapColor.LIME)));
-    public static final Block PINK_CONCRETE_STAIRS = registerBlock("pink_concrete_stairs", new StairsBlock(Blocks.PINK_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.PINK_CONCRETE).mapColor(MapColor.PINK)));
-    public static final Block GRAY_CONCRETE_STAIRS = registerBlock("gray_concrete_stairs", new StairsBlock(Blocks.GRAY_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.GRAY_CONCRETE).mapColor(MapColor.GRAY)));
-    public static final Block LIGHT_GRAY_CONCRETE_STAIRS = registerBlock("light_gray_concrete_stairs", new StairsBlock(Blocks.LIGHT_GRAY_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.LIGHT_GRAY_CONCRETE).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block CYAN_CONCRETE_STAIRS = registerBlock("cyan_concrete_stairs", new StairsBlock(Blocks.CYAN_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.CYAN_CONCRETE).mapColor(MapColor.CYAN)));
-    public static final Block PURPLE_CONCRETE_STAIRS = registerBlock("purple_concrete_stairs", new StairsBlock(Blocks.PURPLE_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE).mapColor(MapColor.PURPLE)));
-    public static final Block BLUE_CONCRETE_STAIRS = registerBlock("blue_concrete_stairs", new StairsBlock(Blocks.BLUE_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.BLUE_CONCRETE).mapColor(MapColor.BLUE)));
-    public static final Block BROWN_CONCRETE_STAIRS = registerBlock("brown_concrete_stairs", new StairsBlock(Blocks.BROWN_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.BROWN_CONCRETE).mapColor(MapColor.BROWN)));
-    public static final Block GREEN_CONCRETE_STAIRS = registerBlock("green_concrete_stairs", new StairsBlock(Blocks.GREEN_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.GREEN_CONCRETE).mapColor(MapColor.GREEN)));
-    public static final Block RED_CONCRETE_STAIRS = registerBlock("red_concrete_stairs", new StairsBlock(Blocks.RED_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.RED_CONCRETE).mapColor(MapColor.RED)));
-    public static final Block BLACK_CONCRETE_STAIRS = registerBlock("black_concrete_stairs", new StairsBlock(Blocks.BLACK_CONCRETE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE).mapColor(MapColor.BLACK)));
+    public static final Block WHITE_CONCRETE_STAIRS = registerBlock("white_concrete_stairs", p -> new StairsBlock(Blocks.WHITE_CONCRETE.getDefaultState(), p.mapColor(DyeColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block ORANGE_CONCRETE_STAIRS = registerBlock("orange_concrete_stairs", p -> new StairsBlock(Blocks.ORANGE_CONCRETE.getDefaultState(), p.mapColor(DyeColor.ORANGE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block MAGENTA_CONCRETE_STAIRS = registerBlock("magenta_concrete_stairs", p -> new StairsBlock(Blocks.MAGENTA_CONCRETE.getDefaultState(), p.mapColor(DyeColor.MAGENTA).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIGHT_BLUE_CONCRETE_STAIRS = registerBlock("light_blue_concrete_stairs", p -> new StairsBlock(Blocks.LIGHT_BLUE_CONCRETE.getDefaultState(), p.mapColor(DyeColor.LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block YELLOW_CONCRETE_STAIRS = registerBlock("yellow_concrete_stairs", p -> new StairsBlock(Blocks.YELLOW_CONCRETE.getDefaultState(), p.mapColor(DyeColor.YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIME_CONCRETE_STAIRS = registerBlock("lime_concrete_stairs", p -> new StairsBlock(Blocks.LIME_CONCRETE.getDefaultState(), p.mapColor(DyeColor.LIME).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block PINK_CONCRETE_STAIRS = registerBlock("pink_concrete_stairs", p -> new StairsBlock(Blocks.PINK_CONCRETE.getDefaultState(), p.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block GRAY_CONCRETE_STAIRS = registerBlock("gray_concrete_stairs", p -> new StairsBlock(Blocks.GRAY_CONCRETE.getDefaultState(), p.mapColor(DyeColor.GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIGHT_GRAY_CONCRETE_STAIRS = registerBlock("light_gray_concrete_stairs", p -> new StairsBlock(Blocks.LIGHT_GRAY_CONCRETE.getDefaultState(), p.mapColor(DyeColor.LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block CYAN_CONCRETE_STAIRS = registerBlock("cyan_concrete_stairs", p -> new StairsBlock(Blocks.CYAN_CONCRETE.getDefaultState(), p.mapColor(DyeColor.CYAN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block PURPLE_CONCRETE_STAIRS = registerBlock("purple_concrete_stairs", p -> new StairsBlock(Blocks.PURPLE_CONCRETE.getDefaultState(), p.mapColor(DyeColor.PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BLUE_CONCRETE_STAIRS = registerBlock("blue_concrete_stairs", p -> new StairsBlock(Blocks.BLUE_CONCRETE.getDefaultState(), p.mapColor(DyeColor.BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BROWN_CONCRETE_STAIRS = registerBlock("brown_concrete_stairs", p -> new StairsBlock(Blocks.BROWN_CONCRETE.getDefaultState(), p.mapColor(DyeColor.BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block GREEN_CONCRETE_STAIRS = registerBlock("green_concrete_stairs", p -> new StairsBlock(Blocks.GREEN_CONCRETE.getDefaultState(), p.mapColor(DyeColor.GREEN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block RED_CONCRETE_STAIRS = registerBlock("red_concrete_stairs", p -> new StairsBlock(Blocks.RED_CONCRETE.getDefaultState(), p.mapColor(DyeColor.RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BLACK_CONCRETE_STAIRS = registerBlock("black_concrete_stairs", p -> new StairsBlock(Blocks.BLACK_CONCRETE.getDefaultState(), p.mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
 
-    public static final Block WHITE_CONCRETE_SLAB = registerBlock("white_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.WHITE_CONCRETE).mapColor(MapColor.WHITE)));
-    public static final Block ORANGE_CONCRETE_SLAB = registerBlock("orange_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.ORANGE_CONCRETE).mapColor(MapColor.ORANGE)));
-    public static final Block MAGENTA_CONCRETE_SLAB = registerBlock("magenta_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.MAGENTA_CONCRETE).mapColor(MapColor.MAGENTA)));
-    public static final Block LIGHT_BLUE_CONCRETE_SLAB = registerBlock("light_blue_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.LIGHT_BLUE_CONCRETE).mapColor(MapColor.LIGHT_BLUE)));
-    public static final Block YELLOW_CONCRETE_SLAB = registerBlock("yellow_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.YELLOW_CONCRETE).mapColor(MapColor.YELLOW)));
-    public static final Block LIME_CONCRETE_SLAB = registerBlock("lime_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.LIME_CONCRETE).mapColor(MapColor.LIME)));
-    public static final Block PINK_CONCRETE_SLAB = registerBlock("pink_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.PINK_CONCRETE).mapColor(MapColor.PINK)));
-    public static final Block GRAY_CONCRETE_SLAB = registerBlock("gray_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.GRAY_CONCRETE).mapColor(MapColor.GRAY)));
-    public static final Block LIGHT_GRAY_CONCRETE_SLAB = registerBlock("light_gray_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.LIGHT_GRAY_CONCRETE).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block CYAN_CONCRETE_SLAB = registerBlock("cyan_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.CYAN_CONCRETE).mapColor(MapColor.CYAN)));
-    public static final Block PURPLE_CONCRETE_SLAB = registerBlock("purple_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE).mapColor(MapColor.PURPLE)));
-    public static final Block BLUE_CONCRETE_SLAB = registerBlock("blue_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.BLUE_CONCRETE).mapColor(MapColor.BLUE)));
-    public static final Block BROWN_CONCRETE_SLAB = registerBlock("brown_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.BROWN_CONCRETE).mapColor(MapColor.BROWN)));
-    public static final Block GREEN_CONCRETE_SLAB = registerBlock("green_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.GREEN_CONCRETE).mapColor(MapColor.GREEN)));
-    public static final Block RED_CONCRETE_SLAB = registerBlock("red_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.RED_CONCRETE).mapColor(MapColor.RED)));
-    public static final Block BLACK_CONCRETE_SLAB = registerBlock("black_concrete_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE).mapColor(MapColor.BLACK)));
+    public static final Block WHITE_CONCRETE_SLAB = registerBlock("white_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block ORANGE_CONCRETE_SLAB = registerBlock("orange_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.ORANGE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block MAGENTA_CONCRETE_SLAB = registerBlock("magenta_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.MAGENTA).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIGHT_BLUE_CONCRETE_SLAB = registerBlock("light_blue_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block YELLOW_CONCRETE_SLAB = registerBlock("yellow_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIME_CONCRETE_SLAB = registerBlock("lime_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.LIME).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block PINK_CONCRETE_SLAB = registerBlock("pink_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block GRAY_CONCRETE_SLAB = registerBlock("gray_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIGHT_GRAY_CONCRETE_SLAB = registerBlock("light_gray_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block CYAN_CONCRETE_SLAB = registerBlock("cyan_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.CYAN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block PURPLE_CONCRETE_SLAB = registerBlock("purple_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BLUE_CONCRETE_SLAB = registerBlock("blue_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BROWN_CONCRETE_SLAB = registerBlock("brown_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block GREEN_CONCRETE_SLAB = registerBlock("green_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.GREEN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block RED_CONCRETE_SLAB = registerBlock("red_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BLACK_CONCRETE_SLAB = registerBlock("black_concrete_slab", p -> new SlabBlock(p.mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
 
-    public static final Block WHITE_CONCRETE_WALL = registerBlock("white_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.WHITE_CONCRETE).mapColor(MapColor.WHITE)));
-    public static final Block ORANGE_CONCRETE_WALL = registerBlock("orange_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.ORANGE_CONCRETE).mapColor(MapColor.ORANGE)));
-    public static final Block MAGENTA_CONCRETE_WALL = registerBlock("magenta_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.MAGENTA_CONCRETE).mapColor(MapColor.MAGENTA)));
-    public static final Block LIGHT_BLUE_CONCRETE_WALL = registerBlock("light_blue_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.LIGHT_BLUE_CONCRETE).mapColor(MapColor.LIGHT_BLUE)));
-    public static final Block YELLOW_CONCRETE_WALL = registerBlock("yellow_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.YELLOW_CONCRETE).mapColor(MapColor.YELLOW)));
-    public static final Block LIME_CONCRETE_WALL = registerBlock("lime_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.LIME_CONCRETE).mapColor(MapColor.LIME)));
-    public static final Block PINK_CONCRETE_WALL = registerBlock("pink_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.PINK_CONCRETE).mapColor(MapColor.PINK)));
-    public static final Block GRAY_CONCRETE_WALL = registerBlock("gray_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.GRAY_CONCRETE).mapColor(MapColor.GRAY)));
-    public static final Block LIGHT_GRAY_CONCRETE_WALL = registerBlock("light_gray_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.LIGHT_GRAY_CONCRETE).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block CYAN_CONCRETE_WALL = registerBlock("cyan_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.CYAN_CONCRETE).mapColor(MapColor.CYAN)));
-    public static final Block PURPLE_CONCRETE_WALL = registerBlock("purple_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE).mapColor(MapColor.PURPLE)));
-    public static final Block BLUE_CONCRETE_WALL = registerBlock("blue_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.BLUE_CONCRETE).mapColor(MapColor.BLUE)));
-    public static final Block BROWN_CONCRETE_WALL = registerBlock("brown_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.BROWN_CONCRETE).mapColor(MapColor.BROWN)));
-    public static final Block GREEN_CONCRETE_WALL = registerBlock("green_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.GREEN_CONCRETE).mapColor(MapColor.GREEN)));
-    public static final Block RED_CONCRETE_WALL = registerBlock("red_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.RED_CONCRETE).mapColor(MapColor.RED)));
-    public static final Block BLACK_CONCRETE_WALL = registerBlock("black_concrete_wall", new WallBlock(AbstractBlock.Settings.copy(Blocks.GREEN_CONCRETE).mapColor(MapColor.BLACK)));
+    public static final Block WHITE_CONCRETE_WALL = registerBlock("white_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.WHITE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block ORANGE_CONCRETE_WALL = registerBlock("orange_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.ORANGE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block MAGENTA_CONCRETE_WALL = registerBlock("magenta_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.MAGENTA).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIGHT_BLUE_CONCRETE_WALL = registerBlock("light_blue_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block YELLOW_CONCRETE_WALL = registerBlock("yellow_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.YELLOW).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIME_CONCRETE_WALL = registerBlock("lime_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.LIME).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block PINK_CONCRETE_WALL = registerBlock("pink_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block GRAY_CONCRETE_WALL = registerBlock("gray_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block LIGHT_GRAY_CONCRETE_WALL = registerBlock("light_gray_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block CYAN_CONCRETE_WALL = registerBlock("cyan_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.CYAN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block PURPLE_CONCRETE_WALL = registerBlock("purple_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.PURPLE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BLUE_CONCRETE_WALL = registerBlock("blue_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BROWN_CONCRETE_WALL = registerBlock("brown_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block GREEN_CONCRETE_WALL = registerBlock("green_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.GREEN).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block RED_CONCRETE_WALL = registerBlock("red_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.RED).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
+    public static final Block BLACK_CONCRETE_WALL = registerBlock("black_concrete_wall", p -> new WallBlock(p.mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.8F)));
 
     public static final Block HONEY_CAULDRON = registerBlock("honey_cauldron",
-            new HoneyCauldronBlock(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
+            properties -> new HoneyCauldronBlock(properties.mapColor(MapColor.STONE_GRAY).requiresTool().strength(2.0F).nonOpaque()));
     public static final Block COLORED_WATER_CAULDRON = registerBlock("colored_water_cauldron",
-            new ColoredWaterCauldronBlock(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
+            properties -> new ColoredWaterCauldronBlock(properties.mapColor(MapColor.STONE_GRAY).requiresTool().strength(2.0F).nonOpaque()));
     public static final Block DRAGON_BREATH_CAULDRON = registerBlock("dragon_breath_cauldron",
-            new DragonBreathCauldronBlock(AbstractBlock.Settings.copy(Blocks.CAULDRON)));
+            properties -> new DragonBreathCauldronBlock(properties.mapColor(MapColor.STONE_GRAY).requiresTool().strength(2.0F).nonOpaque()));
 
-    private static Block registerBlock(String name, Block block) {
-        registerBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, Identifier.of(LouisOverhaulMod.MOD_ID, name), block);
+    private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> function) {
+        Block toRegister = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(LouisOverhaulMod.MOD_ID, name))));
+        registerBlockItem(name, toRegister);
+        return Registry.register(Registries.BLOCK, Identifier.of(LouisOverhaulMod.MOD_ID, name), toRegister);
     }
 
     private static void registerBlockItem(String name, Block block) {
         Registry.register(Registries.ITEM, Identifier.of(LouisOverhaulMod.MOD_ID, name),
-                new BlockItem(block, new Item.Settings()));
-
+                new BlockItem(block, new Item.Settings().useBlockPrefixedTranslationKey()
+                        .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(LouisOverhaulMod.MOD_ID, name)))));
     }
+
     public static void registerModBlocks() {
         LouisOverhaulMod.LOGGER.info("Registering Mod Blocks for " + LouisOverhaulMod.MOD_ID);
 
-        // Add Group
-        // entries.add(ModBlocks.);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.add(ModBlocks.ADVANCED_FLETCHING_TABLE);
-            entries.add(ModBlocks.SAWMILL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.add(ModBlocks.MYSTIC_ROSE);

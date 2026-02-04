@@ -36,7 +36,7 @@ public class BlockMixin {
         boolean hasAutoSmelt = false;
         for (var entry : enchantments.getEnchantmentEntries()) {
             String enchantId = world.getRegistryManager()
-                    .get(RegistryKeys.ENCHANTMENT)
+                    .getOrThrow(RegistryKeys.ENCHANTMENT)
                     .getId(entry.getKey().value())
                     .toString();
 

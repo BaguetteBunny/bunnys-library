@@ -9,6 +9,7 @@ import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -16,6 +17,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,11 +28,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemFrameMixin {
 
     @Inject(method = "onBreak", at = @At("TAIL"))
-    private void LOM$dropMembraneOnBreak(Entity entity, CallbackInfo ci) {
+    private void LOM$dropMembraneOnBreak(ServerWorld world, @Nullable Entity entity, CallbackInfo ci) {
         ItemFrameEntity frame = (ItemFrameEntity) (Object) this;
-        World world = frame.getWorld();
 
-        if (!world.isClient && frame.isInvisible()) {
+        if (!world.isClient() && frame.isInvisible()) {
             ItemStack stack = new ItemStack(Items.PHANTOM_MEMBRANE);
             ItemEntity itemEntity = new ItemEntity(world, frame.getX(), frame.getY() + 0.1, frame.getZ(), stack);
             world.spawnEntity(itemEntity);
@@ -42,7 +43,7 @@ public class ItemFrameMixin {
         ItemStack stack = player.getStackInHand(hand);
         ItemFrameEntity frame = ((ItemFrameEntity) (Object) this);
 
-        World world = player.getWorld();
+        World world = player.getEntityWorld();
         BlockPos chestPos = frame.getAttachedBlockPos().offset(frame.getFacing().getOpposite());
         BlockState state = world.getBlockState(chestPos);
         Block block = state.getBlock();
@@ -65,7 +66,7 @@ public class ItemFrameMixin {
 
         frame.setInvisible(true);
         stack.damage(1, player, EquipmentSlot.MAINHAND);
-        frame.getWorld().playSound(null, frame.getBlockPos(),
+        frame.getEntityWorld().playSound(null, frame.getBlockPos(),
                 SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
         cir.setReturnValue(ActionResult.SUCCESS);

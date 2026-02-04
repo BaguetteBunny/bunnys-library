@@ -15,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +25,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Optional;
+
 import static net.louis.overhaulmod.utils.ApplyArrowComponents.applyArrowComponentAbilities;
+import static net.louis.overhaulmod.utils.RadiusGetterUtil.getNearestEntity;
 
 @Mixin(ArrowEntity.class)
 public abstract class ArrowEntityMixin {
@@ -56,20 +60,16 @@ public abstract class ArrowEntityMixin {
     private void LOM$injectHomingLogic(CallbackInfo ci) {
         ArrowEntity arrow = (ArrowEntity) (Object) this;
         ComponentMap components = arrow.getItemStack().getComponents();
-        if (arrow.getWorld().isClient || arrow.isOnGround()) return;
+        if (arrow.getEntityWorld().isClient() || arrow.isOnGround()) return;
+
+        ServerWorld serverWorld = (ServerWorld) arrow.getEntityWorld();
 
         if (components.contains(ModComponents.ARROW_HEAD)) {
             if (Items.ECHO_SHARD.equals(components.get(ModComponents.ARROW_HEAD))) {
-                LivingEntity target = arrow.getWorld().getClosestEntity(
-                        LivingEntity.class,
-                        TargetPredicate.DEFAULT,
-                        (LivingEntity) arrow.getOwner(),
-                        arrow.getX(), arrow.getY(), arrow.getZ(),
-                        arrow.getBoundingBox().expand(10)
-                );
+                Optional<LivingEntity> target = getNearestEntity(serverWorld, arrow.getBlockPos(), 5);
 
-                if (target != null && target != arrow.getOwner()) {
-                    Vec3d toTarget = target.getPos().add(0, target.getHeight() * 0.5, 0).subtract(arrow.getPos()).normalize();
+                if (target.isPresent() && target.get() != arrow.getOwner()) {
+                    Vec3d toTarget = target.get().getPos().add(0, target.get().getHeight() * 0.5, 0).subtract(arrow.getPos()).normalize();
                     Vec3d newVel = arrow.getVelocity().normalize().lerp(toTarget, 0.3).normalize().multiply(arrow.getVelocity().length());
                     arrow.setVelocity(newVel);
                 }
@@ -84,7 +84,7 @@ public abstract class ArrowEntityMixin {
     @Overwrite
     public void onHit(LivingEntity target) {
         ArrowEntity self = (ArrowEntity)(Object)this;
-        World world = self.getWorld();
+        World world = self.getEntityWorld();
 
         Entity entity = self.getEffectCause();
         PotionContentsComponent potionContentsComponent = ((ArrowEntityAccessor) self).callgetPotionContents();

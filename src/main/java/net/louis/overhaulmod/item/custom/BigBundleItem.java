@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class BigBundleItem extends Item {
-    private static final int ITEM_BAR_COLOR = MathHelper.packRgb(0.4F, 0.4F, 1.0F);
+    private static final int ITEM_BAR_COLOR = 6711039;
     int max;
 
     public BigBundleItem(Settings settings, int max_slot) {
@@ -106,14 +106,14 @@ public class BigBundleItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (dropAllBundledItems(itemStack, user)) {
             this.playDropContentsSound(user);
             user.incrementStat(Stats.USED.getOrCreateStat(this));
-            return TypedActionResult.success(itemStack, world.isClient());
+            return ActionResult.SUCCESS;
         } else {
-            return TypedActionResult.fail(itemStack);
+            return ActionResult.FAIL;
         }
     }
 
@@ -174,14 +174,14 @@ public class BigBundleItem extends Item {
     }
 
     private void playRemoveOneSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+        entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getEntityWorld().getRandom().nextFloat() * 0.4F);
     }
 
     private void playInsertSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+        entity.playSound(SoundEvents.ITEM_BUNDLE_INSERT, 0.8F, 0.8F + entity.getEntityWorld().getRandom().nextFloat() * 0.4F);
     }
 
     private void playDropContentsSound(Entity entity) {
-        entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+        entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getEntityWorld().getRandom().nextFloat() * 0.4F);
     }
 }

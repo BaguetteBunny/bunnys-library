@@ -3,14 +3,13 @@ package net.louis.overhaulmod.entity.custom.client;
 import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.entity.custom.living.BearEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelPartNames;
-import net.minecraft.client.render.entity.model.QuadrupedEntityModel;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.render.entity.state.PolarBearEntityRenderState;
 import net.minecraft.util.Identifier;
 
-public class BearEntityModel<T extends BearEntity> extends QuadrupedEntityModel<T>{
+public class BearEntityModel extends EntityModel<BearRenderState> {
     public BearEntityModel(ModelPart root) {
-        super(root, true, 16.0F, 4.0F, 2.25F, 2.0F, 24);
+        super(root);
     }
 
     public static final EntityModelLayer BEAR = new EntityModelLayer(Identifier.of(LouisOverhaulMod.MOD_ID, "bear"), "main");
@@ -45,30 +44,5 @@ public class BearEntityModel<T extends BearEntity> extends QuadrupedEntityModel<
         modelPartData.addChild(EntityModelPartNames.RIGHT_FRONT_LEG, modelPartBuilder2, ModelTransform.pivot(-3.5F, 14.0F, -8.0F));
         modelPartData.addChild(EntityModelPartNames.LEFT_FRONT_LEG, modelPartBuilder2, ModelTransform.pivot(3.5F, 14.0F, -8.0F));
         return TexturedModelData.of(modelData, 128, 64);
-    }
-
-    public void setAngles(T bearEntity, float f, float g, float h, float i, float j) {
-        super.setAngles(bearEntity, f, g, h, i, j);
-        float k = h - bearEntity.age;
-        float l = bearEntity.getWarningAnimationProgress(k);
-        l *= l;
-        float m = 1.0F - l;
-        this.body.pitch = (float) (Math.PI / 2) - l * (float) Math.PI * 0.35F;
-        this.body.pivotY = 9.0F * m + 11.0F * l;
-        this.rightFrontLeg.pivotY = 14.0F * m - 6.0F * l;
-        this.rightFrontLeg.pivotZ = -8.0F * m - 4.0F * l;
-        this.rightFrontLeg.pitch -= l * (float) Math.PI * 0.45F;
-        this.leftFrontLeg.pivotY = this.rightFrontLeg.pivotY;
-        this.leftFrontLeg.pivotZ = this.rightFrontLeg.pivotZ;
-        this.leftFrontLeg.pitch -= l * (float) Math.PI * 0.45F;
-        if (this.child) {
-            this.head.pivotY = 10.0F * m - 9.0F * l;
-            this.head.pivotZ = -16.0F * m - 7.0F * l;
-        } else {
-            this.head.pivotY = 10.0F * m - 14.0F * l;
-            this.head.pivotZ = -16.0F * m - 3.0F * l;
-        }
-
-        this.head.pitch += l * (float) Math.PI * 0.15F;
     }
 }

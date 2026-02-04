@@ -20,12 +20,11 @@ public class ArmorStandMixin {
     ArmorStandEntity stand = (ArmorStandEntity) (Object) this;
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    private void LOM$onArmorStandDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$onArmorStandDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!stand.isRemoved()
-                && stand.getWorld() instanceof ServerWorld serverWorld
                 && !source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)
                 && stand.isInvisible()) {
-            ((ArmorStandEntityAccessor) stand).callonBreak(serverWorld, source);
+            ((ArmorStandEntityAccessor) stand).callonBreak(world, source);
             stand.remove(Entity.RemovalReason.KILLED);
         }
     }

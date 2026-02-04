@@ -8,6 +8,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.CatEntity;
@@ -75,7 +76,7 @@ public class PetRecoveryCompass extends Item {
                     UUID petUUID = UUID.fromString(uuidString);
                     if (isPetDead(world, petUUID)) {
                         if (!world.isClient && world instanceof ServerWorld serverWorld) {
-                            LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world);
+                            LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world, SpawnReason.SPAWN_ITEM_USE);
                             double x = pos.getX() + 0.5;
                             double y = pos.getY() + 1;
                             double z = pos.getZ() + 0.5;
@@ -85,7 +86,7 @@ public class PetRecoveryCompass extends Item {
 
                             String petType = stack.get(ModComponents.PET_TYPE);
                             if (Objects.equals(petType, "Cat")) {
-                                CatEntity pet = EntityType.CAT.create(world);
+                                CatEntity pet = EntityType.CAT.create(world, SpawnReason.MOB_SUMMONED);
                                 assert pet != null;
                                 assert player != null;
 
@@ -109,7 +110,7 @@ public class PetRecoveryCompass extends Item {
                                 pet.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 5, 5, false, false));
 
                             } else if (Objects.equals(petType, "Parrot")) {
-                                ParrotEntity pet = EntityType.PARROT.create(world);
+                                ParrotEntity pet = EntityType.PARROT.create(world, SpawnReason.MOB_SUMMONED);
                                 assert pet != null;
                                 assert player != null;
 
@@ -128,7 +129,7 @@ public class PetRecoveryCompass extends Item {
                                 pet.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 5, 5, false, false));
 
                             } else {
-                                WolfEntity pet = EntityType.WOLF.create(world);
+                                WolfEntity pet = EntityType.WOLF.create(world, SpawnReason.MOB_SUMMONED);
                                 assert pet != null;
                                 assert player != null;
 

@@ -25,7 +25,7 @@ public class ModAttackEntityEvents {
             if (entity.timeUntilRegen > 0) return ActionResult.FAIL;
             player.swingHand(hand, true);
 
-            double knockbackRes = e.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
+            double knockbackRes = e.getAttributeValue(EntityAttributes.KNOCKBACK_RESISTANCE);
             double strength = (knockbackRes > 1 || knockbackRes < 0) ? 0 : 0.4*(1-knockbackRes);
 
             e.takeKnockback(strength, player.getX() - entity.getX(), player.getZ() - entity.getZ());

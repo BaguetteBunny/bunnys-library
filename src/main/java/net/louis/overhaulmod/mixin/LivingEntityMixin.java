@@ -7,6 +7,7 @@ import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.TeleportUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
@@ -19,11 +20,13 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.EndermiteEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -42,7 +45,7 @@ public class LivingEntityMixin {
     LivingEntity self = (LivingEntity) (Object) this;
 
     @Inject(method = "damage", at = @At("HEAD"))
-    private void LOM$teleportOnEndermiteHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$teleportOnEndermiteHit(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         Entity attacker = source.getAttacker();
 
         if (attacker instanceof EndermiteEntity && self instanceof ServerPlayerEntity player && ModConfig.INSTANCE.endermiteTeleportPlayerOnHit) {
@@ -82,9 +85,12 @@ public class LivingEntityMixin {
         }
     }
 
-    @Inject(method = "eatFood", at = @At("HEAD"), cancellable = true)
-    private void LOM$removeNegEffects(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.getComponents().get(ModComponents.SEASONING) == ModItems.EMPYREAN_POWDER && self instanceof ServerPlayerEntity player && !world.isClient()) {
+    @Inject(method = "consumeItem", at = @At("RETURN"))
+    private void LOM$removeNegEffects(CallbackInfo ci) {
+        Hand hand = self.getActiveHand();
+        ItemStack stack = self.getStackInHand(hand);
+
+        if (stack.getComponents().get(ModComponents.SEASONING) == ModItems.EMPYREAN_POWDER && self instanceof ServerPlayerEntity player && !self.getEntityWorld().isClient()) {
             Collection<StatusEffectInstance> effects = List.copyOf(player.getStatusEffects());
             for (StatusEffectInstance effectInstance : effects) {
                 StatusEffect se = effectInstance.getEffectType().value();
@@ -98,8 +104,8 @@ public class LivingEntityMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void LOM$applyFrostWalkerWhileMounted(CallbackInfo ci) {
 
-        if (self.getWorld().isClient() || !self.hasVehicle()) return;
-        if (!(self.getWorld() instanceof ServerWorld world)) return;
+        if (self.getEntityWorld().isClient() || !self.hasVehicle()) return;
+        if (!(self.getEntityWorld() instanceof ServerWorld world)) return;
 
         // Check if player has Frost Walker on boots
         ItemEnchantmentsComponent enchantments = self.getEquippedStack(
@@ -111,7 +117,7 @@ public class LivingEntityMixin {
         int frostWalkerLevel = 0;
         for (var entry : enchantments.getEnchantmentEntries()) {
             String enchantId = world.getRegistryManager()
-                    .get(RegistryKeys.ENCHANTMENT)
+                    .getOrThrow(RegistryKeys.ENCHANTMENT)
                     .getId(entry.getKey().value())
                     .toString();
 
@@ -139,7 +145,7 @@ public class LivingEntityMixin {
                 if (stateAtPos.getFluidState().isOf(net.minecraft.fluid.Fluids.WATER) &&
                         stateAtPos.getFluidState().isStill() &&
                         aboveState.isAir() &&
-                        world.canSetBlock(targetPos) &&
+                        world.canPlace(stateAtPos, targetPos, ShapeContext.absent()) &&
                         frostedIce.canPlaceAt(world, targetPos)) {
 
                     world.setBlockState(targetPos, frostedIce);

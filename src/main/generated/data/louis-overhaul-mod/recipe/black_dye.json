@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "louis-overhaul-mod:wilted_poppy"
-    }
+    "louis-overhaul-mod:wilted_poppy"
   ],
   "result": {
     "count": 2,

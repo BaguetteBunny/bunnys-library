@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "F": {
-      "item": "louis-overhaul-mod:sandy_flesh"
-    },
-    "S": {
-      "item": "minecraft:sand"
-    }
+    "F": "louis-overhaul-mod:sandy_flesh",
+    "S": "minecraft:sand"
   },
   "pattern": [
     "FS",

@@ -42,11 +42,12 @@ public class BearEntity extends PolarBearEntity {
 
     public static DefaultAttributeContainer.Builder createBrownBearAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 25.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0)
-                .add(EntityAttributes.GENERIC_SCALE, 1.1);
+                .add(EntityAttributes.MAX_HEALTH, 30.0)
+                .add(EntityAttributes.FOLLOW_RANGE, 25.0)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.ATTACK_DAMAGE, 6.0)
+                .add(EntityAttributes.TEMPT_RANGE, 12)
+                .add(EntityAttributes.SCALE, 1.1);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class BearEntity extends PolarBearEntity {
 
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        BearEntity baby = ModEntities.BROWN_BEAR.create(world);
+        BearEntity baby = ModEntities.BROWN_BEAR.create(world, SpawnReason.BREEDING);
         assert baby != null;
 
         if (this.random.nextInt(20) == 0) baby.setVariant(BearVariant.SILLIEST);

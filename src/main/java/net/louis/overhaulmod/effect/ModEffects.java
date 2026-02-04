@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 public class ModEffects {
     public static final RegistryEntry<StatusEffect> GROUNDED = registerStatusEffect("grounded",
             new GroundedEffect(StatusEffectCategory.HARMFUL, 0xa67655)
-                    .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                    .addAttributeModifier(EntityAttributes.MOVEMENT_SPEED,
                             Identifier.of(LouisOverhaulMod.MOD_ID, "grounded"), -0.25f,
                             EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 

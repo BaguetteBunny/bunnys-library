@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "louis-overhaul-mod:rose_quartz_column"
         }
       ],
       "rolls": 1.0

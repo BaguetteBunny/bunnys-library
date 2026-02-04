@@ -6,9 +6,12 @@ import net.fabricmc.api.Environment;
 import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.entity.custom.living.BearEntity;
 import net.louis.overhaulmod.entity.custom.living.BearVariant;
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.render.entity.state.EntityRenderState;
+import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -16,7 +19,7 @@ import net.minecraft.util.Util;
 import java.util.Map;
 
 @Environment(EnvType.CLIENT)
-public class BearEntityRenderer  extends MobEntityRenderer<BearEntity, BearEntityModel<BearEntity>> {
+public class BearEntityRenderer extends MobEntityRenderer<BearEntity, BearRenderState, BearEntityModel> {
     private static final Map<BearVariant, Identifier> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(BearVariant.class), map -> {
                 map.put(BearVariant.DEFAULT,
@@ -29,15 +32,33 @@ public class BearEntityRenderer  extends MobEntityRenderer<BearEntity, BearEntit
 
 
     public BearEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new BearEntityModel<>(context.getPart(EntityModelLayers.POLAR_BEAR)), 0.9F);
+        super(context, new BearEntityModel(context.getPart(EntityModelLayers.POLAR_BEAR)), 0.9F);
     }
 
-    public Identifier getTexture(BearEntity bearEntity) {
-        return LOCATION_BY_VARIANT.get(bearEntity.getVariant());
+    @Override
+    public void render(BearRenderState state, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        if(state.baby) {
+            matrixStack.scale(0.5f, 0.5f, 0.5f);
+        } else {
+            matrixStack.scale(0.9f, 0.9f, 0.9f);
+        }
+
+        super.render(state, matrixStack, vertexConsumerProvider, i);
     }
 
-    protected void scale(BearEntity bearEntity, MatrixStack matrixStack, float f) {
-        matrixStack.scale(1.2F, 1.2F, 1.2F);
-        super.scale(bearEntity, matrixStack, f);
+    @Override
+    public BearRenderState createRenderState() {
+        return new BearRenderState();
+    }
+
+    @Override
+    public Identifier getTexture(BearRenderState state) {
+        return LOCATION_BY_VARIANT.get(state.variant);
+    }
+
+    @Override
+    public void updateRenderState(BearEntity livingEntity, BearRenderState livingEntityRenderState, float f) {
+        super.updateRenderState(livingEntity, livingEntityRenderState, f);
+        livingEntityRenderState.variant = livingEntity.getVariant();
     }
 }

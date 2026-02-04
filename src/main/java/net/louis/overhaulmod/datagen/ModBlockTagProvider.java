@@ -48,8 +48,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.POTTED_COBALT_FLOWER);
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
-                .add(ModBlocks.BAMBOO_MOSAIC_WALL)
-                .add(ModBlocks.SAWMILL);
+                .add(ModBlocks.BAMBOO_MOSAIC_WALL);
 
         getOrCreateTagBuilder(BlockTags.STONE_PRESSURE_PLATES)
                 .add(ModBlocks.END_STONE_PRESSURE_PLATE);

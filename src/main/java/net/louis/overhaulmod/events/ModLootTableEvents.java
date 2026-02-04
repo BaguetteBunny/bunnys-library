@@ -40,7 +40,7 @@ public class ModLootTableEvents {
     public static void replaceLootTables() {
         LootTableEvents.REPLACE.register((key, lootManager, source, registry) -> {
             RegistryKey<Enchantment> lootingKey = Enchantments.LOOTING;
-            RegistryWrapper<Enchantment> enchantmentRegistry = registry.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+            RegistryWrapper<Enchantment> enchantmentRegistry = registry.getOrThrow(RegistryKeys.ENCHANTMENT);
             RegistryEntry<Enchantment> lootingEntry = enchantmentRegistry.getOrThrow(lootingKey);
 
             if (LootTables.SNIFFER_DIGGING_GAMEPLAY.equals(key)) {
@@ -327,7 +327,7 @@ public class ModLootTableEvents {
 
             // Add Fire Blast to Nether Chests
             if (LootTables.NETHER_BRIDGE_CHEST.equals(key)) {
-                RegistryEntry<Enchantment> fireStrike = registry.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
+                RegistryEntry<Enchantment> fireStrike = registry.getOrThrow(RegistryKeys.ENCHANTMENT)
                         .getOrThrow(ModEnchantments.FIRE_BLAST);
 
                 ItemEnchantmentsComponent.Builder enchantmentBuilder =
@@ -345,7 +345,7 @@ public class ModLootTableEvents {
 
             // Add Magic Touch to Plains Village
             if (LootTables.VILLAGE_PLAINS_CHEST.equals(key)) {
-                RegistryEntry<Enchantment> magicTouch = registry.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
+                RegistryEntry<Enchantment> magicTouch = registry.getOrThrow(RegistryKeys.ENCHANTMENT)
                         .getOrThrow(ModEnchantments.MAGIC_TOUCH);
 
                 ItemEnchantmentsComponent.Builder enchantmentBuilder =

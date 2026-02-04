@@ -23,28 +23,28 @@ public class ModServerLivingEntityEvents {
 
     private static void dropCataclysmNameTag(LivingEntity living, DamageSource damageSource, float v, float v1, boolean b) {
         Entity attacker = damageSource.getAttacker();
-        if (attacker instanceof PlayerEntity player && !b && v1 > 1 && oneIn(living.getWorld(), 1_000_000)) {
+        if (attacker instanceof PlayerEntity player && !b && v1 > 1 && oneIn(living.getEntityWorld(), 1_000_000)) {
             RareItemUtil.spawnRareNametag(ModItems.CATACLYSM_NAME_TAG, player, living.getBlockPos());
         }
     }
 
     private static void dropWispNameTag(LivingEntity living, DamageSource damageSource) {
         Entity attacker = damageSource.getAttacker();
-        if (attacker instanceof PlayerEntity player && living instanceof BreezeEntity && oneIn(living.getWorld(), 10_000)) {
+        if (attacker instanceof PlayerEntity player && living instanceof BreezeEntity && oneIn(living.getEntityWorld(), 10_000)) {
             RareItemUtil.spawnRareNametag(ModItems.WISP_NAME_TAG, player, living.getBlockPos());
         }
     }
 
     private static void dropPeachNameTag(LivingEntity living, DamageSource damageSource) {
         Entity attacker = damageSource.getAttacker();
-        if (attacker instanceof PlayerEntity player && living instanceof EnderDragonEntity && oneIn(living.getWorld(), 50)) {
+        if (attacker instanceof PlayerEntity player && living instanceof EnderDragonEntity && oneIn(living.getEntityWorld(), 50)) {
             RareItemUtil.spawnRareNametag(ModItems.PEACH_NAME_TAG, player, living.getBlockPos());
         }
     }
 
     private static void dropImmolationNameTag(LivingEntity living, DamageSource damageSource) {
         Entity attacker = damageSource.getAttacker();
-        if (attacker instanceof PlayerEntity player && playerAndOtherInNether(player, living) && isNetherMob(living) && oneIn(living.getWorld(), 150_000)) {
+        if (attacker instanceof PlayerEntity player && playerAndOtherInNether(player, living) && isNetherMob(living) && oneIn(living.getEntityWorld(), 150_000)) {
             RareItemUtil.spawnRareNametag(ModItems.IMMOLATION_NAME_TAG, player, living.getBlockPos());
         }
     }
@@ -65,10 +65,10 @@ public class ModServerLivingEntityEvents {
     }
 
     private static boolean playerAndOtherInNether(PlayerEntity player, LivingEntity entity) {
-        return (player.getWorld().getDimension().ultrawarm() && entity.getWorld().getDimension().ultrawarm());
+        return (player.getEntityWorld().getDimension().ultrawarm() && entity.getEntityWorld().getDimension().ultrawarm());
     }
 
     public static boolean playerInNether(PlayerEntity player) {
-        return (player.getWorld().getDimension().ultrawarm());
+        return (player.getEntityWorld().getDimension().ultrawarm());
     }
 }

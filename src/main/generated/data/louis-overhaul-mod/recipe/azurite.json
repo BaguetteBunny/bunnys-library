@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:lapis_lazuli"
-    },
-    {
-      "item": "minecraft:copper_ingot"
-    }
+    "minecraft:lapis_lazuli",
+    "minecraft:copper_ingot"
   ],
   "result": {
     "count": 2,

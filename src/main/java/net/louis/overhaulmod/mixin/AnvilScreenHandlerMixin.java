@@ -16,6 +16,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.screen.*;
+import net.minecraft.screen.slot.ForgingSlotsManager;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,8 +31,8 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     @Shadow private Property levelCost;
     @Unique private int azuriteToConsume = 0;
 
-    public AnvilScreenHandlerMixin(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
-        super(type, syncId, playerInventory, context);
+    public AnvilScreenHandlerMixin(@Nullable ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, ForgingSlotsManager forgingSlotsManager) {
+        super(type, syncId, playerInventory, context, forgingSlotsManager);
     }
 
     @Inject(method = "updateResult", at = @At("RETURN"))
@@ -66,7 +68,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
 
-        if (leftStack.getItem() instanceof EnchantedBookItem && rightStack.getItem() instanceof EnchantedBookItem)
+        if (leftStack.getItem() == Items.ENCHANTED_BOOK && rightStack.getItem() == Items.ENCHANTED_BOOK)
             this.levelCost.set(0);
     }
 
@@ -74,7 +76,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     protected void LOM$takeZeroCostBook(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
-        if (leftStack.getItem() instanceof EnchantedBookItem && rightStack.getItem() instanceof EnchantedBookItem && !player.getWorld().isClient())
+        if (leftStack.getItem() == Items.ENCHANTED_BOOK && rightStack.getItem() == Items.ENCHANTED_BOOK && !player.getEntityWorld().isClient())
             cir.setReturnValue(true);
 
     }
@@ -95,10 +97,10 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     private void LOM$customAnvilMechanics(CallbackInfo ci) {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
-        if (leftStack.isEmpty() || leftStack.getItem() instanceof EnchantedBookItem) return;
+        if (leftStack.isEmpty() || leftStack.getItem() == Items.ENCHANTED_BOOK) return;
 
         // Case 1: Enchantment Book Application
-        if (rightStack.getItem() instanceof EnchantedBookItem) {
+        if (rightStack.getItem() == Items.ENCHANTED_BOOK) {
             ItemStack result = leftStack.copy();
             ItemEnchantmentsComponent bookEnchants = rightStack.get(DataComponentTypes.STORED_ENCHANTMENTS);
 
@@ -183,7 +185,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
             // Apply azurite reinforced multiplier
             String hasReinforcement = rightStack.getOrDefault(ModComponents.AZURITE_REFINE, "");
             Item repairItem = getToolMaterialItem(hasReinforcement);
-            if (repairItem != null && leftStack.isDamageable() && (leftStack.getItem().canRepair(leftStack, new ItemStack(repairItem)) || isNetheriteRepairable(leftStack, repairItem)))
+            if (repairItem != null && leftStack.isDamageable() && (leftStack.canRepairWith(new ItemStack(repairItem))) || isNetheriteRepairable(leftStack, repairItem))
                 baseDurability *= 2;
 
             // Compute final durability
@@ -227,7 +229,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
     @Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
     protected void LOM$takeAzuriteOutOrRepair(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
-        if (player.getWorld().isClient()) return;
+        if (player.getEntityWorld().isClient()) return;
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
         if (leftStack.getItem() == ModItems.AZURITE && getToolMaterialString(rightStack) != null)
@@ -238,7 +240,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     }
     @Inject(method = "onTakeOutput", at = @At("HEAD"), cancellable = true)
     protected void LOM$repairWithAzurite(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
-        if (player.getWorld().isClient()) return;
+        if (player.getEntityWorld().isClient()) return;
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
         if (rightStack.getItem() == ModItems.AZURITE && leftStack.isDamaged()) {
@@ -290,12 +292,19 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
     private static boolean isNetheriteRepairable(ItemStack left, Item repair) {
         if (repair != Items.NETHERITE_SCRAP) return false;
-        if (left.getItem() instanceof ToolItem toolItem && toolItem.getMaterial() == ToolMaterials.NETHERITE) return true;
-        return left.getItem() instanceof ArmorItem armorItem && armorItem.getMaterial() == ArmorMaterials.NETHERITE;
+        if (left.getItem() instanceof MiningToolItem toolItem && isNetheriteTool(toolItem)) return true;
+        return left.getItem() instanceof ArmorItem armorItem && isNetheriteArmor(armorItem);
+    }
+
+    private static boolean isNetheriteArmor(ArmorItem armorItem) {
+        return (armorItem == Items.NETHERITE_BOOTS ||
+                armorItem == Items.NETHERITE_LEGGINGS ||
+                armorItem == Items.NETHERITE_CHESTPLATE ||
+                armorItem == Items.NETHERITE_HELMET);
     }
 
     private boolean isToolOrWeapon(Item item) {
-        return item instanceof ToolItem ||
+        return item instanceof MiningToolItem ||
                 item instanceof SwordItem ||
                 item instanceof TridentItem ||
                 item instanceof MaceItem ||
@@ -306,5 +315,13 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
                 item instanceof BrushItem ||
                 item instanceof ShieldItem ||
                 item instanceof ShearsItem;
+    }
+
+    private static boolean isNetheriteTool(MiningToolItem item) {
+        return (item == Items.NETHERITE_PICKAXE ||
+                item == Items.NETHERITE_AXE ||
+                item == Items.NETHERITE_SHOVEL ||
+                item == Items.NETHERITE_HOE ||
+                item == Items.NETHERITE_SWORD);
     }
 }

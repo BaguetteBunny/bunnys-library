@@ -4,9 +4,7 @@
   "cookingtime": 300,
   "experience": 0.1,
   "group": "flesh_to_sand",
-  "ingredient": {
-    "item": "louis-overhaul-mod:sandy_flesh"
-  },
+  "ingredient": "louis-overhaul-mod:sandy_flesh",
   "result": {
     "id": "minecraft:sand"
   }

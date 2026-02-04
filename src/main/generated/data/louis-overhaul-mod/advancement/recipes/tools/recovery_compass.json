@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:recovery_compass"
+        "recipe": "minecraft:recovery_compass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "louis-overhaul-mod:recovery_compass"
+      "minecraft:recovery_compass"
     ]
   }
 }

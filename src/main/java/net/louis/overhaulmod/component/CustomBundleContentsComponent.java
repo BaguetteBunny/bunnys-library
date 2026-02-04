@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipData;
@@ -78,9 +79,20 @@ public final class CustomBundleContentsComponent implements TooltipData {
     }
 
     public ItemStack get(int index) {
-        return (ItemStack)this.stacks.get(index);
+        if (index < 0 || index >= this.stacks.size()) {
+            return ItemStack.EMPTY;
+        }
+        return this.stacks.get(index);
     }
 
+    // Remove these incorrect methods or fix them:
+    public int getSelectedStackIndex() {
+        return -1;
+    }
+
+    public boolean hasSelectedStack() {
+        return false;
+    }
     public int getMaximumSlots() {
         return this.maximumSlots;
     }
@@ -115,6 +127,14 @@ public final class CustomBundleContentsComponent implements TooltipData {
 
     public String toString() {
         return "CustomBundleContents" + this.stacks;
+    }
+
+    public int getNumberOfStacksShown() {
+        int i = this.size();
+        int j = i > 12 ? 11 : 12;
+        int k = i % 4;
+        int l = k == 0 ? 0 : 4 - k;
+        return Math.min(i, j - l);
     }
 
     public static class Builder {

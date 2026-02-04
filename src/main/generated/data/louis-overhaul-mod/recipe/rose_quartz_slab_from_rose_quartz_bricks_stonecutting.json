@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "louis-overhaul-mod:rose_quartz_bricks"
-  },
+  "ingredient": "louis-overhaul-mod:rose_quartz_bricks",
   "result": {
     "count": 2,
     "id": "louis-overhaul-mod:rose_quartz_slab"

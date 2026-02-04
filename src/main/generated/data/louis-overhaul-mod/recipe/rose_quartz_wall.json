@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "louis-overhaul-mod:rose_quartz_bricks"
-    }
+    "#": "louis-overhaul-mod:rose_quartz_bricks"
   },
   "pattern": [
     "###",

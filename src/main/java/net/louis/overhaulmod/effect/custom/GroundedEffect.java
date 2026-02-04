@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 
 public class GroundedEffect extends StatusEffect {
     public GroundedEffect(StatusEffectCategory category, int color){
@@ -11,12 +12,12 @@ public class GroundedEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.isOnGround() && !(entity instanceof PlayerEntity player && disallowedPlayerStates(player))) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+        if (!world.isClient() && !entity.isOnGround() && !(entity instanceof PlayerEntity player && disallowedPlayerStates(player))) {
             entity.addVelocity(0, -0.025, 0);
         }
 
-        return super.applyUpdateEffect(entity, amplifier);
+        return super.applyUpdateEffect(world, entity, amplifier);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class GroundedEffect extends StatusEffect {
         return player.isSpectator()
                 || player.isSwimming()
                 || player.isPushedByFluids()
-                || player.isFallFlying()
+                || player.isDescending()
                 || player.isUsingRiptide()
                 || player.getAbilities().allowFlying;
     }

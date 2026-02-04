@@ -20,8 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -44,8 +44,8 @@ public class ModUseItemEvents {
         UseItemCallback.EVENT.register(ModUseItemEvents::usePurifiedWaterBottle);
     }
 
-    private static TypedActionResult<ItemStack> getLlamaSpitBottle(PlayerEntity player, World world, Hand hand) {
-        if (world.isClient()) return TypedActionResult.pass(player.getStackInHand(hand));
+    private static ActionResult getLlamaSpitBottle(PlayerEntity player, World world, Hand hand) {
+        if (world.isClient()) return ActionResult.PASS;
 
         ItemStack stack = player.getStackInHand(hand);
 
@@ -80,18 +80,18 @@ public class ModUseItemEvents {
                 world.playSound(null, targetSpit.getBlockPos(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH,
                         SoundCategory.PLAYERS, 1.0F, 1.0F);
                 targetSpit.discard();
-                return TypedActionResult.success(stack, world.isClient());
+                return ActionResult.SUCCESS;
             }
         }
-        return TypedActionResult.pass(player.getStackInHand(hand));
+        return ActionResult.PASS;
 
     }
 
-    private static TypedActionResult<ItemStack> useBrick(PlayerEntity player, World world, Hand hand) {
+    private static ActionResult useBrick(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!stack.isOf(Items.BRICK) || player.getItemCooldownManager().isCoolingDown(Items.BRICK) || !ModConfig.INSTANCE.enableThrowableBricks) {
-            return TypedActionResult.pass(player.getStackInHand(hand));
+        if (!stack.isOf(Items.BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
+            return ActionResult.PASS;
         }
 
         world.playSound(
@@ -110,16 +110,16 @@ public class ModUseItemEvents {
         world.spawnEntity(brickEntity);
 
         stack.decrementUnlessCreative(1, player);
-        player.getItemCooldownManager().set(Items.BRICK, 20);
+        player.getItemCooldownManager().set(stack, 20);
 
-        return TypedActionResult.success(stack, world.isClient());
+        return ActionResult.SUCCESS;
     }
 
-    private static TypedActionResult<ItemStack> useNetherBrick(PlayerEntity player, World world, Hand hand) {
+    private static ActionResult useNetherBrick(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!stack.isOf(Items.NETHER_BRICK) || player.getItemCooldownManager().isCoolingDown(Items.NETHER_BRICK) || !ModConfig.INSTANCE.enableThrowableBricks) {
-            return TypedActionResult.pass(player.getStackInHand(hand));
+        if (!stack.isOf(Items.NETHER_BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
+            return ActionResult.PASS;
         }
 
         world.playSound(
@@ -138,15 +138,15 @@ public class ModUseItemEvents {
         world.spawnEntity(brickEntity);
 
         stack.decrementUnlessCreative(1, player);
-        player.getItemCooldownManager().set(Items.NETHER_BRICK, 20);
+        player.getItemCooldownManager().set(stack, 20);
 
-        return TypedActionResult.success(stack, world.isClient());
+        return ActionResult.SUCCESS;
     }
 
-    private static TypedActionResult<ItemStack> usePurifiedWaterBottle(PlayerEntity player, World world, Hand hand) {
+    private static ActionResult usePurifiedWaterBottle(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!stack.isOf(ModItems.PURIFIED_WATER_BOTTLE) || player.getItemCooldownManager().isCoolingDown(ModItems.PURIFIED_WATER_BOTTLE)) return TypedActionResult.pass(player.getStackInHand(hand));
+        if (!stack.isOf(ModItems.PURIFIED_WATER_BOTTLE) || player.getItemCooldownManager().isCoolingDown(stack)) return ActionResult.PASS;
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SPLASH_POTION_THROW,
                 SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
@@ -156,20 +156,20 @@ public class ModUseItemEvents {
         world.spawnEntity(purifiedWaterEntity);
 
         stack.decrementUnlessCreative(1, player);
-        player.getItemCooldownManager().set(ModItems.PURIFIED_WATER_BOTTLE, 5);
+        player.getItemCooldownManager().set(stack, 5);
 
-        return TypedActionResult.success(stack, world.isClient());
+        return ActionResult.SUCCESS;
     }
 
-    private static TypedActionResult<ItemStack> useGlowInk(PlayerEntity player, World world, Hand hand) {
+    private static ActionResult useGlowInk(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         Item item = stack.getItem();
-        if (world.isClient() || item != Items.GLOW_INK_SAC || player.getItemCooldownManager().isCoolingDown(item)) {
-            return TypedActionResult.pass(player.getStackInHand(hand));
+        if (world.isClient() || item != Items.GLOW_INK_SAC || player.getItemCooldownManager().isCoolingDown(stack)) {
+            return ActionResult.PASS;
         }
 
         stack.decrementUnlessCreative(1, player);
-        player.getItemCooldownManager().set(stack.getItem(), 200);
+        player.getItemCooldownManager().set(stack, 200);
 
         List<Entity> nearby = world.getOtherEntities(
                 player,
@@ -190,17 +190,17 @@ public class ModUseItemEvents {
         );
 
         player.swingHand(hand, true);
-        return TypedActionResult.success(stack, world.isClient());
+        return ActionResult.SUCCESS;
     }
 
-    private static TypedActionResult<ItemStack> useFireBlastEnchant(PlayerEntity player, World world, Hand hand) {
+    private static ActionResult useFireBlastEnchant(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         Item item = stack.getItem();
-        if (world.isClient() || player.getItemCooldownManager().isCoolingDown(item)) return TypedActionResult.pass(stack);
+        if (world.isClient() || player.getItemCooldownManager().isCoolingDown(stack)) return ActionResult.PASS;
 
 
         if (item instanceof FlintAndSteelItem && hasEnchant(stack, "fire_blast")) {
-            player.getItemCooldownManager().set(stack.getItem(), 20);
+            player.getItemCooldownManager().set(stack, 20);
             world.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS,
                     1.0F, 2.0F
@@ -212,16 +212,16 @@ public class ModUseItemEvents {
 
             stack.damage(3, player, player.getPreferredEquipmentSlot(stack));
             player.swingHand(hand, true);
-            return TypedActionResult.success(stack, world.isClient());
+            return ActionResult.SUCCESS;
         }
-        return TypedActionResult.pass(stack);
+        return ActionResult.PASS;
     }
 
-    private static TypedActionResult<ItemStack> useSeasoning(PlayerEntity player, World world, Hand hand) {
+    private static ActionResult useSeasoning(PlayerEntity player, World world, Hand hand) {
         ItemStack powderStack = player.getStackInHand(Hand.OFF_HAND);
         ItemStack foodStack = player.getStackInHand(Hand.MAIN_HAND);
 
-        if (hand != Hand.MAIN_HAND || !powderStack.isOf(ModItems.EMPYREAN_POWDER) || world.isClient() || foodStack.get(DataComponentTypes.FOOD) == null || foodStack.get(ModComponents.SEASONING) != null) return TypedActionResult.pass(powderStack);
+        if (hand != Hand.MAIN_HAND || !powderStack.isOf(ModItems.EMPYREAN_POWDER) || world.isClient() || foodStack.get(DataComponentTypes.FOOD) == null || foodStack.get(ModComponents.SEASONING) != null) return ActionResult.PASS;
 
         if (foodStack.getCount() <= 8) foodStack.set(ModComponents.SEASONING, ModItems.EMPYREAN_POWDER);
         else {
@@ -236,6 +236,6 @@ public class ModUseItemEvents {
         powderStack.decrementUnlessCreative(1, player);
         world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_HOE_TILL, SoundCategory.PLAYERS, 1f, 2f);
         player.swingHand(hand, true);
-        return TypedActionResult.success(powderStack);
+        return ActionResult.SUCCESS;
     }
 }

@@ -17,9 +17,9 @@ public abstract class PolarBearEntityMixin {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void LOM$nearbyAggressionLogic(CallbackInfo ci) {
-        if (self.getWorld().isClient || !ModConfig.INSTANCE.moreAggressivePolarBears) return;
+        if (self.getEntityWorld().isClient || !ModConfig.INSTANCE.moreAggressivePolarBears) return;
 
-        ServerWorld world = (ServerWorld) self.getWorld();
+        ServerWorld world = (ServerWorld) self.getEntityWorld();
         PlayerEntity nearest = world.getClosestPlayer(self, 16.0);
 
         if (nearest != null) {

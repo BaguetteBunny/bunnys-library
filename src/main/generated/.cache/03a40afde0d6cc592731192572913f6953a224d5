@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-28T13:11:51.907794	Louis' Overhaul Mod/Tags for minecraft:block
+// 1.21.3	2026-02-05T01:20:04.0973577	Louis' Overhaul Mod/Tags for minecraft:block
 80b0dae6ba4e6c10261638ebb69b0d61926617fa data\minecraft\tags\block\rails.json
 7df660695449f1976cf06fdd94888e28514c5a1e data\minecraft\tags\block\fences.json
 e15294c12176a7a6a00bcd3825042f8979238c66 data\minecraft\tags\block\small_flowers.json
@@ -9,7 +9,7 @@ e205dd1674d27cf0d3f00df076e28b3628473f90 data\minecraft\tags\block\flower_pots.j
 0fc88eb8aceb968563434e0f2a4a6e8694b20c0d data\minecraft\tags\block\hoglin_repellents.json
 3459402c35d3bc980c05b8328405ba9704b03ffb data\minecraft\tags\block\stone_pressure_plates.json
 19f41911d55f5b68c04c65a95aed55784afd07ce data\minecraft\tags\block\walls.json
-0ed6f1e9a8514d47670badc02a43e2f5c2e80b4d data\minecraft\tags\block\mineable\axe.json
+bb9204b58a7ae7d89012df7b13b744db386fbefd data\minecraft\tags\block\mineable\axe.json
 56b803698bed67e12e5c47c5e1a117236a59cb74 data\minecraft\tags\block\mineable\pickaxe.json
 f4d98fe78b264ec8f6e2c67a019d6bfb2749b7c0 data\minecraft\tags\block\stairs.json
 e15294c12176a7a6a00bcd3825042f8979238c66 data\minecraft\tags\block\flowers.json

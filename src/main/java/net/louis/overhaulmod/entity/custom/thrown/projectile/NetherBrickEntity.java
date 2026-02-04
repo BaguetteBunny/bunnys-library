@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.entity.custom.thrown.projectile;
 
+import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
@@ -27,16 +29,8 @@ import net.minecraft.world.World;
 import java.util.Set;
 
 public class NetherBrickEntity extends ThrownItemEntity {
-    public NetherBrickEntity(EntityType<? extends NetherBrickEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
     public NetherBrickEntity(World world, LivingEntity owner) {
-        super(EntityType.SNOWBALL, owner, world);
-    }
-
-    public NetherBrickEntity(World world, double x, double y, double z) {
-        super(EntityType.SNOWBALL, x, y, z, world);
+        super(EntityType.SNOWBALL, owner, world, new ItemStack(Items.NETHER_BRICK));
     }
 
     private static final Set<Block> BREAKABLE_GLASS_BLOCKS = Set.of(
@@ -96,7 +90,7 @@ public class NetherBrickEntity extends ThrownItemEntity {
             ParticleEffect particleEffect = this.getParticleParameters();
 
             for (int i = 0; i < 8; i++) {
-                this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+                this.getEntityWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
             }
         }
     }
@@ -105,7 +99,8 @@ public class NetherBrickEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 2);
+        if (entity.getEntityWorld().isClient()) return;
+        entity.damage((ServerWorld) entity.getEntityWorld(), this.getDamageSources().thrown(this, this.getOwner()), 3);
 
         Vec3d velocity = this.getVelocity().normalize().multiply(0.8);
         entity.addVelocity(velocity.x, 0.1, velocity.z);
@@ -114,9 +109,12 @@ public class NetherBrickEntity extends ThrownItemEntity {
 
     @Override
     protected void onCollision(HitResult hitResult) {
-        World world = this.getWorld();
+        World w = this.getEntityWorld();
+        if (w.isClient()) return;
 
-        if (!world.isClient && hitResult.getType() == HitResult.Type.BLOCK && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
+        ServerWorld world = (ServerWorld) w;
+
+        if (hitResult.getType() == HitResult.Type.BLOCK && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
             BlockHitResult blockHitResult = (BlockHitResult) hitResult;
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState state = world.getBlockState(pos);
@@ -129,7 +127,7 @@ public class NetherBrickEntity extends ThrownItemEntity {
         }
 
         super.onCollision(hitResult);
-        this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
+        this.getEntityWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
         this.discard();
     }
 }

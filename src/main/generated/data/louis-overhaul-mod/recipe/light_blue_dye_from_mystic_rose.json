@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "louis-overhaul-mod:mystic_rose"
-    }
+    "louis-overhaul-mod:mystic_rose"
   ],
   "result": {
     "count": 2,

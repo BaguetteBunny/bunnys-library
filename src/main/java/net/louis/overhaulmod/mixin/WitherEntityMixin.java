@@ -70,7 +70,7 @@ public class WitherEntityMixin implements WitherHealthAccessor {
     @Inject(method = "onSummoned", at = @At("TAIL"))
     private void LOM$onSummoned(CallbackInfo ci) {
         self.setHealth(self.getMaxHealth());
-        ParticleShapeUtil.drawCircle(ParticleTypes.ASH, self.getPos(), 5, self.getServer().getWorld(self.getWorld().getRegistryKey()), 25, new Vector4d(0, 0, 0, 0));
+        ParticleShapeUtil.drawCircle(ParticleTypes.ASH, self.getPos(), 5, self.getServer().getWorld(self.getEntityWorld().getRegistryKey()), 25, new Vector4d(0, 0, 0, 0));
     }
 
     @Inject(method = "createWitherAttributes", at = @At("RETURN"), cancellable = true)
@@ -79,14 +79,14 @@ public class WitherEntityMixin implements WitherHealthAccessor {
 
         DefaultAttributeContainer.Builder builder = cir.getReturnValue();
 
-        builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 750.0);
-        builder.add(EntityAttributes.GENERIC_FLYING_SPEED, 0.8);
-        builder.add(EntityAttributes.GENERIC_ARMOR, 8.0);
+        builder.add(EntityAttributes.MAX_HEALTH, 750.0);
+        builder.add(EntityAttributes.FLYING_SPEED, 0.8);
+        builder.add(EntityAttributes.ARMOR, 8.0);
         cir.setReturnValue(builder);
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    private void LOM$preventSuffocationAndExplosionDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void LOM$preventSuffocationAndExplosionDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.isOf(DamageTypes.IN_WALL) || source.isIn(DamageTypeTags.IS_EXPLOSION)) {
             cir.setReturnValue(false);
         }
@@ -101,13 +101,13 @@ public class WitherEntityMixin implements WitherHealthAccessor {
             ItemStack helmet = new ItemStack(Items.IRON_HELMET, 1);
             ItemStack weapon = new ItemStack(Items.IRON_SWORD, 1);
 
-            self.getWorld().playSound(self, self.getBlockPos(), SoundEvents.ENTITY_WITHER_AMBIENT, SoundCategory.HOSTILE, 3.f, 0.5f);
+            self.getEntityWorld().playSound(self, self.getBlockPos(), SoundEvents.ENTITY_WITHER_AMBIENT, SoundCategory.HOSTILE, 3.f, 0.5f);
 
-            List<BlockPos> locations = getRandomSpawnableBlockPosInRadius(self.getWorld(), self.getBlockPos(), 10, 5);
+            List<BlockPos> locations = getRandomSpawnableBlockPosInRadius(self.getEntityWorld(), self.getBlockPos(), 10, 5);
 
-            ServerWorld serverWorld = self.getServer().getWorld(self.getWorld().getRegistryKey());
+            ServerWorld serverWorld = self.getServer().getWorld(self.getEntityWorld().getRegistryKey());
             for (BlockPos loc : locations) {
-                WitherSkeletonEntity wse = new WitherSkeletonEntity(EntityType.WITHER_SKELETON, self.getWorld());
+                WitherSkeletonEntity wse = new WitherSkeletonEntity(EntityType.WITHER_SKELETON, self.getEntityWorld());
 
                 wse.setPos(loc.getX(), loc.getY() + 1.5f, loc.getZ());
                 wse.equipStack(EquipmentSlot.HEAD, helmet);
@@ -122,20 +122,20 @@ public class WitherEntityMixin implements WitherHealthAccessor {
                 serverWorld.spawnParticles(ParticleTypes.CRIT, loc.getX(), loc.getY() + 2f, loc.getZ(), 10, 0, 2, 0, 1);
                 serverWorld.spawnParticles(ParticleTypes.ASH, self.getX(), self.getY() + 0.5f, self.getZ(), 10, newX, newY, newZ, 2);
 
-                self.getWorld().spawnEntity(wse);
+                self.getEntityWorld().spawnEntity(wse);
             }
         }
 
         if (!halfHealthFlag && self.getHealth() <= halfHealthValue) {
             halfHealthFlag = true;
-            self.getWorld().playSound(self, self.getBlockPos(), SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, SoundCategory.HOSTILE, 3.f, 0.5f);
+            self.getEntityWorld().playSound(self, self.getBlockPos(), SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, SoundCategory.HOSTILE, 3.f, 0.5f);
             threeQuarterHealthFlag = false;
         }
 
         if (!quarterHealthFlag && self.getHealth() <= quarterHealthValue) {
             quarterHealthFlag = true;
-            self.getWorld().playSound(self, self.getBlockPos(), SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, SoundCategory.HOSTILE, 3.f, 0.5f);
-            self.getWorld().createExplosion(
+            self.getEntityWorld().playSound(self, self.getBlockPos(), SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, SoundCategory.HOSTILE, 3.f, 0.5f);
+            self.getEntityWorld().createExplosion(
                     null,
                     self.getX(),
                     self.getY(),
@@ -144,7 +144,7 @@ public class WitherEntityMixin implements WitherHealthAccessor {
                     false,
                     World.ExplosionSourceType.MOB
             );
-            List<LivingEntity> entities = getEntitiesInRadius(self.getWorld(), self.getPos(), 10);
+            List<LivingEntity> entities = getEntitiesInRadius(self.getEntityWorld(), self.getPos(), 10);
             for (LivingEntity le : entities) {
                 if (!(le instanceof PlayerEntity)) continue;
                 le.setInvulnerable(false);

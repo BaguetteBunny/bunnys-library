@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "A": {
-      "item": "minecraft:amethyst_shard"
-    },
-    "C": {
-      "item": "minecraft:compass"
-    }
+    "A": "minecraft:amethyst_shard",
+    "C": "minecraft:compass"
   },
   "pattern": [
     "AAA",

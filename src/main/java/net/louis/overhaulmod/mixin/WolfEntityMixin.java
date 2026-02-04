@@ -27,7 +27,7 @@ public class WolfEntityMixin {
 
         if (itemInHand.getItem() instanceof PetRecoveryCompass) {
             if (wolf.isTamed() && wolf.getOwner() == player) {
-                if (!wolf.getWorld().isClient) {
+                if (!wolf.getEntityWorld().isClient()) {
                     itemInHand.set(ModComponents.PET_TYPE, "Wolf");
                     itemInHand.set(ModComponents.MOB_NAME, wolf.getName().getString());
                     itemInHand.set(ModComponents.MOB_UUID, wolf.getUuidAsString());

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "A": {
-      "item": "minecraft:red_nether_bricks"
-    },
-    "B": {
-      "item": "minecraft:nether_bricks"
-    }
+    "A": "minecraft:red_nether_bricks",
+    "B": "minecraft:nether_bricks"
   },
   "pattern": [
     "ABA",

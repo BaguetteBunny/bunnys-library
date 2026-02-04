@@ -17,11 +17,6 @@ public class ModScreenHandlers {
             Registry.register(Registries.SCREEN_HANDLER, Identifier.of(LouisOverhaulMod.MOD_ID, "advanced_fletching_table_screen_handler"),
                     new ExtendedScreenHandlerType<>(AdvancedFletchingTableScreenHandler::new, BlockPos.PACKET_CODEC));
 
-    public static final ScreenHandlerType<SawmillScreenHandler> SAWMILL_SCREEN_HANDLER =
-            Registry.register(Registries.SCREEN_HANDLER,
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "sawmill_screen_handler"),
-                    new ScreenHandlerType<>(SawmillScreenHandler::new, FeatureFlags.VANILLA_FEATURES)
-            );
     public static void registerScreenHandlers() {
         LouisOverhaulMod.LOGGER.info("Registering Screen Handlers for " + LouisOverhaulMod.MOD_ID);
     }

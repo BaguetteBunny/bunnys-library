@@ -1,11 +1,9 @@
 package net.louis.overhaulmod.item.custom;
 
-import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.NameTagItem;
 import net.minecraft.item.tooltip.TooltipType;
@@ -43,7 +41,7 @@ public class ColoredNameTagItem extends NameTagItem {
         Text colorlessText = (Text)stack.get(DataComponentTypes.CUSTOM_NAME);
 
         if (colorlessText != null && !(entity instanceof PlayerEntity)) {
-            if (!user.getWorld().isClient && entity.isAlive()) {
+            if (!user.getEntityWorld().isClient && entity.isAlive()) {
 
                 if (this.firstTextColor != this.secondTextColor)
                     entity.setCustomName(setGradient(colorlessText, this.firstTextColor, this.secondTextColor));
@@ -70,7 +68,7 @@ public class ColoredNameTagItem extends NameTagItem {
                 stack.decrement(1);
             }
 
-            return ActionResult.success(user.getWorld().isClient);
+            return ActionResult.SUCCESS;
         } else {
             return ActionResult.PASS;
         }

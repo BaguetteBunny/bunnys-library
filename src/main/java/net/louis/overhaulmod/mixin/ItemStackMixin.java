@@ -8,9 +8,9 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.EnchantmentTags;
@@ -33,7 +33,7 @@ public class ItemStackMixin {
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
     private void LOM$addEnchantmentDescriptions(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
-        if (!(stack.getItem() instanceof EnchantedBookItem) || !ModConfig.INSTANCE.addEnchantmentDescriptions) return;
+        if (!(stack.getItem() == Items.ENCHANTED_BOOK) || !ModConfig.INSTANCE.addEnchantmentDescriptions) return;
 
         ItemEnchantmentsComponent enchantments = stack.get(DataComponentTypes.STORED_ENCHANTMENTS);
         if (enchantments == null || enchantments.isEmpty()) return;
@@ -136,7 +136,7 @@ public class ItemStackMixin {
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
     private void LOM$obfuscateCurseNames(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
-        if (stack.getItem() instanceof EnchantedBookItem || !ModConfig.INSTANCE.obfuscateCurses) return;
+        if (stack.getItem() == Items.ENCHANTED_BOOK || !ModConfig.INSTANCE.obfuscateCurses) return;
 
         List<Text> tooltip = cir.getReturnValue();
         ItemEnchantmentsComponent enchantments = stack.get(DataComponentTypes.ENCHANTMENTS);

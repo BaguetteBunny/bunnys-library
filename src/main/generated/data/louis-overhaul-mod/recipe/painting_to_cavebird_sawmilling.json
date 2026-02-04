@@ -1,8 +1,6 @@
 {
-  "type": "louis-overhaul-mod:sawmill",
-  "ingredient": {
-    "item": "minecraft:painting"
-  },
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:painting",
   "result": {
     "components": {
       "minecraft:entity_data": {

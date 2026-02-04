@@ -28,7 +28,7 @@ import static net.louis.overhaulmod.utils.ParticleShapeUtil.*;
 public class RareItemUtil {
     public static void spawnRareNametag(Item item, PlayerEntity player, BlockPos loc) {
         if (!(item instanceof ColoredNameTagItem nameTag)) return;
-        World world = player.getWorld();
+        World world = player.getEntityWorld();
 
         // Spawn Item
         ItemStack nameTagStack = new ItemStack(nameTag, 1);
@@ -39,12 +39,10 @@ public class RareItemUtil {
         // Particle Effects
         ServerWorld serverWorld = Objects.requireNonNull(player.getServer()).getWorld(world.getRegistryKey());
 
-        ArrayList<Integer> firstRingColors = intToRGB(nameTag.firstTextColor);
-        ParticleEffect firstRingParticles = new DustParticleEffect(new Vector3f(firstRingColors.get(0) / 255.0F, firstRingColors.get(1) / 255.0F, firstRingColors.get(2) / 255.0F), 1.0F);
+        ParticleEffect firstRingParticles = new DustParticleEffect(nameTag.firstTextColor, 1.0F);
         drawCircle(firstRingParticles, loc.toCenterPos(), 5, serverWorld, 1, new Vector4d(0,0,0,0));
 
-        ArrayList<Integer> secondRingColors = intToRGB(nameTag.secondTextColor);
-        ParticleEffect secondRingParticles = new DustParticleEffect(new Vector3f(secondRingColors.get(0) / 255.0F, secondRingColors.get(1) / 255.0F, secondRingColors.get(2) / 255.0F), 1.0F);
+        ParticleEffect secondRingParticles = new DustParticleEffect(nameTag.secondTextColor,  1.0F);
         drawCircle(secondRingParticles, loc.toCenterPos(), 10, serverWorld, 1, new Vector4d(0,0,0,0));
 
         // SFX

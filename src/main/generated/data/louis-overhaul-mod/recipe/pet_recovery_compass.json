@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:totem_of_undying"
-    },
-    {
-      "item": "minecraft:recovery_compass"
-    }
+    "minecraft:totem_of_undying",
+    "minecraft:recovery_compass"
   ],
   "result": {
     "count": 1,

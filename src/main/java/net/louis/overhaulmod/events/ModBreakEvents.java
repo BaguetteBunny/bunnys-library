@@ -19,7 +19,7 @@ public class ModBreakEvents {
     }
 
     public static void dropVolcanicNameTag(World world, PlayerEntity player, BlockPos pos, BlockState blockState, @Nullable BlockEntity blockEntity) {
-        if (playerInNether(player) && !blockState.isAir() && oneIn(player.getWorld(), 1_000_000)) {
+        if (playerInNether(player) && !blockState.isAir() && oneIn(player.getEntityWorld(), 1_000_000)) {
             RareItemUtil.spawnRareNametag(ModItems.VOLCANIC_NAME_TAG, player, player.getBlockPos());
         }
     }

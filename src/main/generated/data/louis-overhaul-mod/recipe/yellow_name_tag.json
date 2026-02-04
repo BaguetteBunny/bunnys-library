@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:yellow_dye"
-    },
-    {
-      "item": "minecraft:diamond"
-    },
-    {
-      "item": "minecraft:name_tag"
-    }
+    "minecraft:yellow_dye",
+    "minecraft:diamond",
+    "minecraft:name_tag"
   ],
   "result": {
     "count": 1,

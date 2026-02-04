@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "D": {
-      "item": "minecraft:prismarine_shard"
-    },
-    "N": {
-      "item": "minecraft:sculk_shrieker"
-    },
-    "S": {
-      "item": "minecraft:nether_star"
-    }
+    "D": "minecraft:prismarine_shard",
+    "N": "minecraft:sculk_shrieker",
+    "S": "minecraft:nether_star"
   },
   "pattern": [
     "DND",

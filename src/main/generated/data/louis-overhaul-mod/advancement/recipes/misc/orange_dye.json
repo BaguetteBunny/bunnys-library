@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:orange_dye"
+        "recipe": "minecraft:orange_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "louis-overhaul-mod:orange_dye"
+      "minecraft:orange_dye"
     ]
   }
 }

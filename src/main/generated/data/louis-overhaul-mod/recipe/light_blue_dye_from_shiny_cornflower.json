@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "louis-overhaul-mod:shiny_cornflower"
-    }
+    "louis-overhaul-mod:shiny_cornflower"
   ],
   "result": {
     "count": 2,

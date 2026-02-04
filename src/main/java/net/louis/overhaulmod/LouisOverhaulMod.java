@@ -4,10 +4,10 @@ import com.google.common.collect.ImmutableSet;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.louis.overhaulmod.block.ModBlocks;
 import net.louis.overhaulmod.block.entity.ModBlockEntities;
 import net.louis.overhaulmod.cauldron.ModCauldron;
@@ -22,8 +22,8 @@ import net.louis.overhaulmod.entity.custom.living.BearEntity;
 import net.louis.overhaulmod.events.*;
 import net.louis.overhaulmod.fluid.ModFluids;
 import net.louis.overhaulmod.item.ModItems;
+import net.louis.overhaulmod.mixin.accessor.PointOfInterestTypesAccessor;
 import net.louis.overhaulmod.potion.ModPotions;
-import net.louis.overhaulmod.recipe.ModRecipes;
 import net.louis.overhaulmod.screen.ModScreenHandlers;
 import net.louis.overhaulmod.sound.ModSounds;
 import net.louis.overhaulmod.utils.DespawnManager;
@@ -32,16 +32,21 @@ import net.louis.overhaulmod.utils.GlowManager;
 import net.louis.overhaulmod.events.ModLootTableEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.poi.PointOfInterestType;
+import net.minecraft.world.poi.PointOfInterestTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
 import java.util.Set;
 
 public class LouisOverhaulMod implements ModInitializer {
@@ -55,21 +60,28 @@ public class LouisOverhaulMod implements ModInitializer {
 		registerCustomBundleTooltip();
 		EnchantmentCapRegistry.register();
 
-		ModFluids.register();
 		ModSounds.registerSounds();
 		ModComponents.registerDataComponentTypes();
 		ModEffects.registerEffects();
 		ModPotions.registerPotions();
-		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModFluids.register();
+		ModItems.registerModItems();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 		ModCauldron.registerBehaviors();
-		ModRecipes.registerRecipes();
 		ModEnchantmentEffects.registerEnchantmentEffects();
 
 		ModLootTableEvents.modifyLootTables();
 		ModLootTableEvents.replaceLootTables();
+
+		ClientPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+			MinecraftClient client = MinecraftClient.getInstance();
+			client.execute(() -> {
+				System.out.println("=== CLIENT RECIPE CHECK ===");
+				System.out.println("Recipe manager: " + client.world.getRecipeManager().getClass());
+			});
+		});
 
 		// All Events
 		ModAttackEntityEvents.register();
@@ -116,8 +128,11 @@ public class LouisOverhaulMod implements ModInitializer {
 	}
 
 	private void replaceFletcherPOI() {
+		RegistryEntry<PointOfInterestType> fletcherPOI = Registries.POINT_OF_INTEREST_TYPE.getOrThrow(PointOfInterestTypes.FLETCHER);
 		Set<BlockState> states = ImmutableSet.copyOf(ModBlocks.ADVANCED_FLETCHING_TABLE.getStateManager().getStates());
-		PointOfInterestHelper.register(Identifier.ofVanilla("fletcher"), 1, 1, states);
+		Map<BlockState, RegistryEntry<PointOfInterestType>> poiMap = PointOfInterestTypesAccessor.getPoiStatesToType();
+
+		for (BlockState state : states) poiMap.put(state, fletcherPOI);
 	}
 
 	private void registerDispenserProjectles() {

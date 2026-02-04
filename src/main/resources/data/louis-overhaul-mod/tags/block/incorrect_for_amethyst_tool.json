@@ -1,8 +1,0 @@
-{
-  "values": [
-    "#minecraft:incorrect_for_stone_tool"
-  ],
-  "remove": [
-    "#louis-overhaul-mod:needs_amethyst_tool"
-  ]
-}

@@ -19,7 +19,7 @@ public abstract class SmallFireballEntityMixin {
 
         if (entityHitResult.getEntity() instanceof CreeperEntity creeper
                 && fireball.getOwner() instanceof PlayerEntity) {
-            World world = fireball.getWorld();
+            World world = fireball.getEntityWorld();
             if (!world.isClient()) creeper.ignite();
             ci.cancel();
         }

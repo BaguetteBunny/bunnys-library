@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:magenta_dye"
+        "recipe": "minecraft:magenta_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "louis-overhaul-mod:magenta_dye"
+      "minecraft:magenta_dye"
     ]
   }
 }

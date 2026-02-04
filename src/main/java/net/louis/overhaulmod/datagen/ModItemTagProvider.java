@@ -17,7 +17,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR_ENCHANTABLE)
-                .add(ModItems.NETHERITE_HORSE_ARMOR)
                 .add(Items.DIAMOND_HORSE_ARMOR)
                 .add(Items.IRON_HORSE_ARMOR)
                 .add(Items.GOLDEN_HORSE_ARMOR)

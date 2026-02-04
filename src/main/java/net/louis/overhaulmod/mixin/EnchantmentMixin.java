@@ -51,7 +51,7 @@ public class EnchantmentMixin {
         Enchantment thisEnchant = (Enchantment)(Object)this;
 
         String enchantId = world.getRegistryManager()
-                .get(RegistryKeys.ENCHANTMENT)
+                .getOrThrow(RegistryKeys.ENCHANTMENT)
                 .getId(thisEnchant)
                 .getPath();
 
@@ -89,7 +89,7 @@ public class EnchantmentMixin {
         Entity target = user;
 
         String enchantId = world.getRegistryManager()
-                .get(RegistryKeys.ENCHANTMENT)
+                .getOrThrow(RegistryKeys.ENCHANTMENT)
                 .getId(thisEnchant)
                 .getPath();
 

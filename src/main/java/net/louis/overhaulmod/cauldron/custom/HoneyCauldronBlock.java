@@ -25,7 +25,7 @@ public class HoneyCauldronBlock extends LeveledCauldronBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (world.isClient) return;
+        if (world.isClient()) return;
         int level = state.get(LEVEL);
 
         if (entity instanceof LivingEntity living && level > 0 && !living.getStatusEffects().isEmpty() && ModConfig.INSTANCE.enableHoneyClearEffects) {

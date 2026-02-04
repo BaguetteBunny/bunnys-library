@@ -25,7 +25,7 @@ public class ProjectileEntityMixin {
 
     @Inject(method = "onCollision", at = @At("HEAD"), cancellable = true)
     protected void LOM$breakOnCollision(HitResult hitResult, CallbackInfo ci) {
-        World world = self.getWorld();
+        World world = self.getEntityWorld();
 
         if (
                 !world.isClient && self instanceof ArrowEntity arrow &&
@@ -48,7 +48,7 @@ public class ProjectileEntityMixin {
 
     @Inject(method = "onCollision", at = @At("TAIl"), cancellable = true)
     protected void LOM$disableEntityIFrames(HitResult hitResult, CallbackInfo ci) {
-        World world = self.getWorld();
+        World world = self.getEntityWorld();
         if (
                 !world.isClient && self instanceof ArrowEntity arrow &&
                         hitResult.getType() == HitResult.Type.ENTITY &&

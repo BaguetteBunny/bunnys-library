@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "F": {
-      "item": "minecraft:flint"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    }
+    "F": "minecraft:flint",
+    "P": "#minecraft:planks"
   },
   "pattern": [
     "FF ",

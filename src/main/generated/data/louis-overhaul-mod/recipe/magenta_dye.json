@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "louis-overhaul-mod:heart_flower"
-    }
+    "louis-overhaul-mod:heart_flower"
   ],
   "result": {
     "count": 2,

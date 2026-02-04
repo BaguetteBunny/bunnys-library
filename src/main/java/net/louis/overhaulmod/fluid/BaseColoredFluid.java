@@ -1,16 +1,14 @@
 package net.louis.overhaulmod.fluid;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.render.LightmapTextureManager;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.*;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -19,17 +17,18 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.Optional;
 
-public class BaseColoredFluid extends FlowableFluid {
+public class BaseColoredFluid extends FlowableFluid implements FluidFillable {
     public ParticleEffect submergedParticle = getSubmergedParticle();
 
     @Override
     public Fluid getFlowing() {
         return null;
     }
+
+    LightBlock
 
     @Override
     public Fluid getStill() {
@@ -51,11 +50,7 @@ public class BaseColoredFluid extends FlowableFluid {
     }
 
     private ParticleEffect getSubmergedParticle() {
-        int color = getSPColor();
-        float r = ((color >> 16) & 0xFF) / 255.0F;
-        float g = ((color >> 8) & 0xFF) / 255.0F;
-        float b = (color & 0xFF) / 255.0F;
-        return new DustParticleEffect(new Vector3f(r, g, b), 1.0F);
+        return new DustParticleEffect(getSPColor(), 1.0F);
     }
 
     @Override
@@ -92,7 +87,7 @@ public class BaseColoredFluid extends FlowableFluid {
     }
 
     @Override
-    protected boolean isInfinite(World world) {
+    protected boolean isInfinite(ServerWorld world) {
         return world.getGameRules().getBoolean(GameRules.WATER_SOURCE_CONVERSION);
     }
 
@@ -124,7 +119,7 @@ public class BaseColoredFluid extends FlowableFluid {
 
     @Override
     protected boolean canBeReplacedWith(FluidState state, BlockView world, BlockPos pos, Fluid fluid, Direction direction) {
-        return false;
+        return direction == Direction.DOWN;
     }
 
     @Override
@@ -135,5 +130,15 @@ public class BaseColoredFluid extends FlowableFluid {
     @Override
     public Optional<SoundEvent> getBucketFillSound() {
         return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
+    }
+
+    @Override
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+        return false;
+    }
+
+    @Override
+    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
+        return false;
     }
 }

@@ -11,6 +11,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.conversion.EntityConversionContext;
+import net.minecraft.entity.conversion.EntityConversionType;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -289,9 +291,9 @@ public class ModUseEntityEvents {
             if ((int) (Math.random() * 200) == 1) {
                 stewSuccess(targetZombie, world, SoundEvents.ENTITY_ENDER_DRAGON_GROWL, .5f, ParticleTypes.ELECTRIC_SPARK);
                 stewSuccess(targetZombie, world, SoundEvents.ENTITY_ENDER_DRAGON_GROWL, .5f, ParticleTypes.ELECTRIC_SPARK);
-                Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.GENERIC_SCALE)).setBaseValue(6);
-                Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE)).setBaseValue(50);
-                Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.5);
+                Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.SCALE)).setBaseValue(6);
+                Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE)).setBaseValue(50);
+                Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)).setBaseValue(0.5);
                 targetZombie.setCustomName(Text.of(targetZombie.getCustomName() + " the Giant"));
             } else stewFail(targetZombie, world);
             return ActionResult.SUCCESS;
@@ -358,7 +360,7 @@ public class ModUseEntityEvents {
     }
 
     public static LivingEntity getTransformedEntity(LivingEntity living, EntityType<? extends LivingEntity> newType, World world) {
-        LivingEntity newEntity = newType.create(world);
+        LivingEntity newEntity = newType.create(world, SpawnReason.CONVERSION);
 
         assert newEntity != null;
         newEntity.refreshPositionAndAngles(living.getX(), living.getY(), living.getZ(), living.getYaw(), living.getPitch());
@@ -387,34 +389,22 @@ public class ModUseEntityEvents {
     }
 
     public static LivingEntity getTransformedVillager(VillagerEntity living, World world) {
-        ZombieVillagerEntity newEntity = living.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-        ServerWorldAccess access = (ServerWorldAccess) world;
-        assert newEntity != null;
+        living.convertTo(
+                EntityType.ZOMBIE_VILLAGER,
+                new EntityConversionContext(EntityConversionType.SINGLE, true, true, living.getScoreboardTeam()),
+                SpawnReason.CONVERSION,
 
-        newEntity.initialize(access, world.getLocalDifficulty(newEntity.getBlockPos()), SpawnReason.CONVERSION, new ZombieEntity.ZombieData(false, true));
-        newEntity.setVillagerData(living.getVillagerData());
-        newEntity.setGossipData(living.getGossip().serialize(NbtOps.INSTANCE));
-        newEntity.setOfferData(living.getOffers().copy());
-        newEntity.setXp(living.getExperience());
+                zombie -> {
+                    zombie.setPersistent();
+                    zombie.setVillagerData(living.getVillagerData());
+                    zombie.setGossipData(living.getGossip().serialize(NbtOps.INSTANCE));
+                    zombie.setOfferData(living.getOffers().copy());
+                    zombie.setXp(living.getExperience());
+                    for (StatusEffectInstance effect : living.getStatusEffects()) zombie.addStatusEffect(effect);
+                }
+        );
 
-        newEntity.refreshPositionAndAngles(living.getX(), living.getY(), living.getZ(), living.getYaw(), living.getPitch());
-        newEntity.setCustomName(living.getCustomName());
-        newEntity.setCustomNameVisible(living.isCustomNameVisible());
-        newEntity.setHealth(living.getHealth());
-        newEntity.setCurrentHand(living.getActiveHand());
-        newEntity.setAbsorptionAmount(living.getAbsorptionAmount());
-        newEntity.setAttacker(living.getAttacker());
-        newEntity.setBodyYaw(living.getBodyYaw());
-        newEntity.setFireTicks(living.getFireTicks());
-        newEntity.setFrozenTicks(living.getFrozenTicks());
-        newEntity.setInvulnerable(living.isInvulnerable());
-        newEntity.setInvisible(living.isInvisible());
-        newEntity.setSilent(living.isSilent());
-        newEntity.setPortalCooldown(living.getPortalCooldown());
-
-        for (StatusEffectInstance effect : living.getStatusEffects()) newEntity.addStatusEffect(effect);
-
-        return newEntity;
+        return living;
     }
 
     private static final List<EntityType<? extends LivingEntity>> TRANSFORMABLE_SLIMES = List.of(
@@ -463,7 +453,7 @@ public class ModUseEntityEvents {
     public static void makeBigger(LivingEntity entity) {
         if (entity == null) return;
 
-        EntityAttributeInstance scaleAttr = entity.getAttributes().getCustomInstance(EntityAttributes.GENERIC_SCALE);
+        EntityAttributeInstance scaleAttr = entity.getAttributes().getCustomInstance(EntityAttributes.SCALE);
         if (scaleAttr == null) return;
 
         if (scaleAttr.getModifier(RARE_UPSCALE_ID) != null) scaleAttr.removeModifier(RARE_UPSCALE_ID);

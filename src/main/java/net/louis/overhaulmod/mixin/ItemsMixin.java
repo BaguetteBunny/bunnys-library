@@ -2,14 +2,16 @@ package net.louis.overhaulmod.mixin;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BannerPatternsComponent;
-import net.minecraft.component.type.ContainerComponent;
-import net.minecraft.component.type.FoodComponent;
-import net.minecraft.component.type.FoodComponents;
+import net.minecraft.component.type.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.item.*;
+import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import org.spongepowered.asm.mixin.Final;
@@ -19,6 +21,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.function.Function;
 
 @Mixin(Items.class)
 public abstract class ItemsMixin {
@@ -121,29 +125,42 @@ public abstract class ItemsMixin {
                 MUSHROOM_STEW = new Item(new Item.Settings().maxCount(16).food(new FoodComponent.Builder()
                         .nutrition(6)
                         .saturationModifier(0.6f)
-                        .snack()
-                        .build()))
-        );
+                        .build(),
+                        ConsumableComponent
+                                .builder()
+                                .consumeSeconds(0.8f)
+                                .build()
+                )
+        ));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("beetroot_soup"),
                 BEETROOT_SOUP = new Item(new Item.Settings().maxCount(16).food(new FoodComponent.Builder()
                         .nutrition(6)
                         .saturationModifier(0.6f)
-                        .snack()
-                        .build()))
-        );
+                                .build(),
+                        ConsumableComponent
+                                .builder()
+                                .consumeSeconds(0.8f)
+                                .build()
+                )
+                ));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("rabbit_stew"),
                 RABBIT_STEW = new Item(new Item.Settings().maxCount(16).food(new FoodComponent.Builder()
                         .nutrition(10)
                         .saturationModifier(0.6f)
-                        .snack()
-                        .build()))
-        );
+                                .build(),
+                        ConsumableComponent
+                                .builder()
+                                .consumeSeconds(0.8f)
+                                .build()
+                )
+                ));
+
         Registry.register(Registries.ITEM, Identifier.ofVanilla("snowball"),
                 SNOWBALL = new SnowballItem(new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("egg"),
                 EGG = new EggItem(new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("honey_bottle"),
-                HONEY_BOTTLE = new HoneyBottleItem(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).maxCount(64)));
+                HONEY_BOTTLE = new Item(new Item.Settings().recipeRemainder(Items.GLASS_BOTTLE).food(FoodComponents.HONEY_BOTTLE).maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("armor_stand"),
                 ARMOR_STAND = new ArmorStandItem(new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("dragon_egg"),
@@ -255,40 +272,40 @@ public abstract class ItemsMixin {
                 BLACK_BED = new BedItem(Blocks.BLACK_BED, new Item.Settings().maxCount(16)));
 
         Registry.register(Registries.ITEM, Identifier.ofVanilla("minecart"),
-                MINECART = new MinecartItem(AbstractMinecartEntity.Type.RIDEABLE, new Item.Settings().maxCount(16)));
+                MINECART = new MinecartItem(EntityType.MINECART, new Item.Settings().maxCount(16)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("chest_minecart"),
-                CHEST_MINECART = new MinecartItem(AbstractMinecartEntity.Type.CHEST, new Item.Settings().maxCount(16)));
+                CHEST_MINECART = new MinecartItem(EntityType.CHEST_MINECART, new Item.Settings().maxCount(16)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("tnt_minecart"),
-                TNT_MINECART = new MinecartItem(AbstractMinecartEntity.Type.TNT, new Item.Settings().maxCount(16)));
+                TNT_MINECART = new MinecartItem(EntityType.TNT_MINECART, new Item.Settings().maxCount(16)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("furnace_minecart"),
-                FURNACE_MINECART = new MinecartItem(AbstractMinecartEntity.Type.FURNACE, new Item.Settings().maxCount(16)));
+                FURNACE_MINECART = new MinecartItem(EntityType.FURNACE_MINECART, new Item.Settings().maxCount(16)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("command_block_minecart"),
-                COMMAND_BLOCK_MINECART = new MinecartItem(AbstractMinecartEntity.Type.COMMAND_BLOCK, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
+                COMMAND_BLOCK_MINECART = new MinecartItem(EntityType.COMMAND_BLOCK_MINECART, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("hopper_minecart"),
-                HOPPER_MINECART = new MinecartItem(AbstractMinecartEntity.Type.HOPPER, new Item.Settings().maxCount(16)));
+                HOPPER_MINECART = new MinecartItem(EntityType.CHEST_MINECART, new Item.Settings().maxCount(16)));
 
         Registry.register(Registries.ITEM, Identifier.ofVanilla("oak_sign"),
-                OAK_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.OAK_SIGN, Blocks.OAK_WALL_SIGN));
+                OAK_SIGN = new SignItem(Blocks.OAK_SIGN, Blocks.OAK_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("spruce_sign"),
-                SPRUCE_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.SPRUCE_SIGN, Blocks.SPRUCE_WALL_SIGN));
+                SPRUCE_SIGN = new SignItem(Blocks.SPRUCE_SIGN, Blocks.SPRUCE_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("birch_sign"),
-                BIRCH_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.BIRCH_SIGN, Blocks.BIRCH_WALL_SIGN));
+                BIRCH_SIGN = new SignItem(Blocks.BIRCH_SIGN, Blocks.BIRCH_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("jungle_sign"),
-                JUNGLE_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.JUNGLE_SIGN, Blocks.JUNGLE_WALL_SIGN));
+                JUNGLE_SIGN = new SignItem(Blocks.JUNGLE_SIGN, Blocks.JUNGLE_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("acacia_sign"),
-                ACACIA_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.ACACIA_SIGN, Blocks.ACACIA_WALL_SIGN));
+                ACACIA_SIGN = new SignItem(Blocks.ACACIA_SIGN, Blocks.ACACIA_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("dark_oak_sign"),
-                DARK_OAK_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.DARK_OAK_SIGN, Blocks.DARK_OAK_WALL_SIGN));
+                DARK_OAK_SIGN = new SignItem(Blocks.DARK_OAK_SIGN, Blocks.DARK_OAK_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("mangrove_sign"),
-                MANGROVE_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.MANGROVE_SIGN, Blocks.MANGROVE_WALL_SIGN));
+                MANGROVE_SIGN = new SignItem(Blocks.MANGROVE_SIGN, Blocks.MANGROVE_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("cherry_sign"),
-                CHERRY_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.CHERRY_SIGN, Blocks.CHERRY_WALL_SIGN));
+                CHERRY_SIGN = new SignItem(Blocks.CHERRY_SIGN, Blocks.CHERRY_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("bamboo_sign"),
-                BAMBOO_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.BAMBOO_SIGN, Blocks.BAMBOO_WALL_SIGN));
+                BAMBOO_SIGN = new SignItem(Blocks.BAMBOO_SIGN, Blocks.BAMBOO_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("crimson_sign"),
-                CRIMSON_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.CRIMSON_SIGN, Blocks.CRIMSON_WALL_SIGN));
+                CRIMSON_SIGN = new SignItem(Blocks.CRIMSON_SIGN, Blocks.CRIMSON_WALL_SIGN, new Item.Settings().maxCount(64)));
         Registry.register(Registries.ITEM, Identifier.ofVanilla("warped_sign"),
-                WARPED_SIGN = new SignItem(new Item.Settings().maxCount(64), Blocks.WARPED_SIGN, Blocks.WARPED_WALL_SIGN));
+                WARPED_SIGN = new SignItem(Blocks.WARPED_SIGN, Blocks.WARPED_WALL_SIGN, new Item.Settings().maxCount(64)));
 
         Registry.register(Registries.ITEM, Identifier.ofVanilla("oak_hanging_sign"),
                 OAK_HANGING_SIGN = new HangingSignItem(Blocks.OAK_HANGING_SIGN, Blocks.OAK_WALL_HANGING_SIGN, new Item.Settings().maxCount(64)));

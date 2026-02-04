@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "minecraft:clock"
-    },
-    "E": {
-      "item": "louis-overhaul-mod:endermite_heart"
-    },
-    "P": {
-      "item": "minecraft:popped_chorus_fruit"
-    }
+    "C": "minecraft:clock",
+    "E": "louis-overhaul-mod:endermite_heart",
+    "P": "minecraft:popped_chorus_fruit"
   },
   "pattern": [
     "PEP",

@@ -18,7 +18,7 @@ public class DwarfismEffect extends StatusEffect {
 
     @Override
     public void onApplied(AttributeContainer attributes, int amplifier) {
-        EntityAttributeInstance scale = attributes.getCustomInstance(EntityAttributes.GENERIC_SCALE);
+        EntityAttributeInstance scale = attributes.getCustomInstance(EntityAttributes.SCALE);
         if (scale != null) {
             scale.addPersistentModifier(
                     new EntityAttributeModifier(
@@ -32,7 +32,7 @@ public class DwarfismEffect extends StatusEffect {
 
     @Override
     public void onRemoved(AttributeContainer attributes) {
-        EntityAttributeInstance scale = attributes.getCustomInstance(EntityAttributes.GENERIC_SCALE);
+        EntityAttributeInstance scale = attributes.getCustomInstance(EntityAttributes.SCALE);
         if (scale != null) {
             if (scale.getModifier(MODIFIER_ID) != null) {
                 scale.removeModifier(MODIFIER_ID);

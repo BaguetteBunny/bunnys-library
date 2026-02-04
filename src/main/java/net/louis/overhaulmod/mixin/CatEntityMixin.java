@@ -25,7 +25,7 @@ public class CatEntityMixin {
 
         if (itemInHand.getItem() instanceof PetRecoveryCompass) {
             if (cat.isTamed() && cat.getOwner() == player) {
-                if (!cat.getWorld().isClient) {
+                if (!cat.getEntityWorld().isClient()) {
                     itemInHand.set(ModComponents.PET_TYPE, "Cat");
                     itemInHand.set(ModComponents.MOB_NAME, cat.getName().getString());
                     itemInHand.set(ModComponents.MOB_UUID, cat.getUuidAsString());

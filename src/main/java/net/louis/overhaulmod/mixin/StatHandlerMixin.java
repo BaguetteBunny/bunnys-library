@@ -22,22 +22,22 @@ public abstract class StatHandlerMixin {
     private void LOM$rareNameTagSpawn(PlayerEntity player, Stat<?> stat, int amount, CallbackInfo ci) {
         if (!(player instanceof ServerPlayerEntity serverPlayer)) return;
 
-        if (Stats.CUSTOM.getOrCreateStat(Stats.SWIM_ONE_CM)  == stat && oneIn(serverPlayer.getWorld(), 500_000)) {
+        if (Stats.CUSTOM.getOrCreateStat(Stats.SWIM_ONE_CM)  == stat && oneIn(serverPlayer.getEntityWorld(), 500_000)) {
             spawnRareNametag(ModItems.AQUAMARINE_NAME_TAG, serverPlayer, serverPlayer.getBlockPos());
         }
-        if (Stats.CUSTOM.getOrCreateStat(Stats.EAT_CAKE_SLICE)  == stat && oneIn(serverPlayer.getWorld(), 20_000)) {
+        if (Stats.CUSTOM.getOrCreateStat(Stats.EAT_CAKE_SLICE)  == stat && oneIn(serverPlayer.getEntityWorld(), 20_000)) {
             spawnRareNametag(ModItems.FRAGRANT_NAME_TAG, serverPlayer, serverPlayer.getBlockPos());
         }
-        if (Stats.CUSTOM.getOrCreateStat(Stats.FISH_CAUGHT)  == stat && oneIn(serverPlayer.getWorld(), 10_000)) {
+        if (Stats.CUSTOM.getOrCreateStat(Stats.FISH_CAUGHT)  == stat && oneIn(serverPlayer.getEntityWorld(), 10_000)) {
             spawnRareNametag(ModItems.IRIDESCENT_NAME_TAG, serverPlayer, serverPlayer.getBlockPos());
         }
-        if (Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)  == stat && oneIn(serverPlayer.getWorld(), 18_000_000)) {
+        if (Stats.CUSTOM.getOrCreateStat(Stats.PLAY_TIME)  == stat && oneIn(serverPlayer.getEntityWorld(), 18_000_000)) {
             spawnRareNametag(ModItems.PRIMORDIAL_NAME_TAG, serverPlayer, serverPlayer.getBlockPos());
         }
-        if (Stats.CUSTOM.getOrCreateStat(Stats.ANIMALS_BRED) == stat && player.getWorld().getBiome(serverPlayer.getBlockPos()) == BiomeKeys.CHERRY_GROVE && oneIn(serverPlayer.getWorld(), 5_000)) {
+        if (Stats.CUSTOM.getOrCreateStat(Stats.ANIMALS_BRED) == stat && player.getEntityWorld().getBiome(serverPlayer.getBlockPos()) == BiomeKeys.CHERRY_GROVE && oneIn(serverPlayer.getEntityWorld(), 5_000)) {
             spawnRareNametag(ModItems.BLOSSOM_NAME_TAG, serverPlayer, serverPlayer.getBlockPos());
         }
-        if (Stats.USED.getOrCreateStat(Items.POTION) == stat && oneIn(serverPlayer.getWorld(), 10_000)) {
+        if (Stats.USED.getOrCreateStat(Items.POTION) == stat && oneIn(serverPlayer.getEntityWorld(), 10_000)) {
             spawnRareNametag(ModItems.RADIOACTIVE_NAME_TAG, serverPlayer, serverPlayer.getBlockPos());
         }
     }

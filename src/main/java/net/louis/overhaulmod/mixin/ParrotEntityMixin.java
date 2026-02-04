@@ -25,7 +25,7 @@ public class ParrotEntityMixin {
 
         if (itemInHand.getItem() instanceof PetRecoveryCompass) {
             if (parrot.isTamed() && parrot.getOwner() == player) {
-                if (!parrot.getWorld().isClient) {
+                if (!parrot.getEntityWorld().isClient()) {
                     itemInHand.set(ModComponents.PET_TYPE, "Parrot");
                     itemInHand.set(ModComponents.MOB_NAME, parrot.getName().getString());
                     itemInHand.set(ModComponents.MOB_UUID, parrot.getUuidAsString());

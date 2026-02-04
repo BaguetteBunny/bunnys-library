@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "A": {
-      "item": "minecraft:bone_meal"
-    },
-    "B": {
-      "item": "minecraft:charcoal"
-    }
+    "A": "minecraft:bone_meal",
+    "B": "minecraft:charcoal"
   },
   "pattern": [
     "AB",

@@ -39,16 +39,8 @@ import java.util.Map;
 import static net.louis.overhaulmod.utils.RadiusGetterUtil.*;
 
 public class PurifiedWaterEntity extends ThrownItemEntity {
-    public PurifiedWaterEntity(EntityType<? extends PurifiedWaterEntity> entityType, World world) {
-        super(entityType, world);
-    }
-
     public PurifiedWaterEntity(World world, LivingEntity owner) {
-        super(EntityType.SNOWBALL, owner, world);
-    }
-
-    public PurifiedWaterEntity(World world, double x, double y, double z) {
-        super(EntityType.SNOWBALL, x, y, z, world);
+        super(EntityType.SNOWBALL, owner, world, new ItemStack(ModItems.PURIFIED_WATER_BOTTLE));
     }
 
     private static Map<Block, Block> PURIFIED_WATER_BLOCK_TRANSFORM = new HashMap<>();
@@ -104,7 +96,7 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
     public void handleStatus(byte status) {
         if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
             ParticleEffect particleEffect = this.getParticleParameters();
-            World world = this.getWorld();
+            World world = this.getEntityWorld();
 
             for (int i = 0; i < 8; i++) {
                 world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
@@ -114,7 +106,11 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
 
     @Override
     protected void onCollision(HitResult hitResult) {
-        World world = this.getWorld();
+        World w = this.getEntityWorld();
+        if (w.isClient()) return;
+
+        ServerWorld world = (ServerWorld) w;
+
         BlockPos pos = null;
         if (hitResult instanceof BlockHitResult blockHitResult)
             pos = blockHitResult.getBlockPos();
@@ -134,7 +130,7 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
         for (LivingEntity entity : mobs) {
             entity.extinguish();
             if (entity instanceof HostileEntity)
-                entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 4);
+                entity.damage(world, this.getDamageSources().thrown(this, this.getOwner()), 4);
             if (entity instanceof AnimalEntity)
                 entity.heal(4.f);
             if (entity instanceof ServerPlayerEntity serverPlayer) {
@@ -144,15 +140,15 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
                         + serverPlayer.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.DAMAGE_ABSORBED));
                 if (totalDamageDealt/20 > totalDamageAbsorbed && totalDamageDealt > 10000) {
                     serverPlayer.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 4));
-                    serverPlayer.damage(this.getDamageSources().thrown(this, this.getOwner()), 8);
+                    serverPlayer.damage(world, this.getDamageSources().thrown(this, this.getOwner()), 8);
                 }
                 else if (totalDamageDealt/10 > totalDamageAbsorbed && totalDamageDealt > 1000) {
                     serverPlayer.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 2));
-                    serverPlayer.damage(this.getDamageSources().thrown(this, this.getOwner()), 5);
+                    serverPlayer.damage(world, this.getDamageSources().thrown(this, this.getOwner()), 5);
                 }
                 else if (totalDamageDealt/5 > totalDamageAbsorbed && totalDamageDealt > 100) {
                     serverPlayer.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1));
-                    serverPlayer.damage(this.getDamageSources().thrown(this, this.getOwner()), 2);
+                    serverPlayer.damage(world, this.getDamageSources().thrown(this, this.getOwner()), 2);
                 }
                 else {
                     serverPlayer.heal(2);
@@ -166,14 +162,14 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
         replaceBlocksInRadius(world, pos, 5, PURIFIED_WATER_BLOCK_TRANSFORM, true);
 
         // Explode in Nether
-        if (!world.isClient && world.getDimension().ultrawarm() && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
+        if (!world.isClient() && world.getDimension().ultrawarm() && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
             world.createExplosion(null, world.getDamageSources().badRespawnPoint(vec3d), null, vec3d, 5.0F, true, World.ExplosionSourceType.BLOCK);
             this.remove(RemovalReason.DISCARDED);
             return;
         }
 
         super.onCollision(hitResult);
-        this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
+        this.getEntityWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
         this.discard();
     }
 }
