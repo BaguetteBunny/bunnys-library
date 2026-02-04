@@ -2,7 +2,6 @@ package net.louis.overhaulmod.fluid;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.*;
 import net.minecraft.item.Item;
@@ -27,8 +26,6 @@ public class BaseColoredFluid extends FlowableFluid implements FluidFillable {
     public Fluid getFlowing() {
         return null;
     }
-
-    LightBlock
 
     @Override
     public Fluid getStill() {
