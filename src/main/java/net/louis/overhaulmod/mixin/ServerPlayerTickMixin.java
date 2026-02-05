@@ -2,6 +2,7 @@ package net.louis.overhaulmod.mixin;
 
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.GlowLightManager;
+import net.louis.overhaulmod.utils.accessors.LastTickHolder;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LightBlock;
 import net.minecraft.item.ItemStack;
@@ -16,10 +17,20 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayerEntity.class)
-public class ServerPlayerTickMixin {
-    @Unique @Nullable private BlockPos lastLightPos = null;
-
+public class ServerPlayerTickMixin implements LastTickHolder {
     ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;
+    @Unique @Nullable private BlockPos lastLightPos = null;
+    @Unique private boolean lastTick = false;
+
+    @Override
+    public boolean getLastTick() {
+        return this.lastTick;
+    }
+
+    @Override
+    public void setLastTick(boolean t) {
+        this.lastTick = t;
+    }
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void LOM$allowRecallClock(CallbackInfo ci) {
@@ -49,7 +60,7 @@ public class ServerPlayerTickMixin {
             lightPos = upPos;
         }
 
-        if (lightPos != null && serverWorld.getBlockState(lightPos) != Blocks.LIGHT.getDefaultState().with(LightBlock.LEVEL_15, lightLevel)) {
+        if (lightPos != null && serverWorld.getBlockState(lightPos) != Blocks.LIGHT.getDefaultState().with(LightBlock.LEVEL_15, lightLevel) && !this.lastTick) {
             if (lightLevel > 0) {
                 serverWorld.setBlockState(lightPos, Blocks.LIGHT.getDefaultState().with(LightBlock.LEVEL_15, lightLevel));
                 this.lastLightPos = lightPos;

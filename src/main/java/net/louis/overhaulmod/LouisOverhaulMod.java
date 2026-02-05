@@ -90,6 +90,7 @@ public class LouisOverhaulMod implements ModInitializer {
 		ModBreakEvents.register();
 
 		ModServerLivingEntityEvents.register();
+		ModServerPlayConnectionEvents.register();
 
 		ModUseBlockEvents.register();
 		ModUseEntityEvents.register();
