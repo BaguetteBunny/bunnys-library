@@ -4,6 +4,7 @@ import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
+import net.louis.overhaulmod.utils.StackSizeManager;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
@@ -166,5 +167,14 @@ public class ItemStackMixin {
                 }
             }
         }
+    }
+
+    @Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
+    private void LOM$overrideMaxStacks(CallbackInfoReturnable<Integer> cir) {
+        ItemStack self = (ItemStack) (Object) this;
+        Item item = self.getItem();
+
+        Integer override = StackSizeManager.MAX_STACK_OVERRIDES.get(item);
+        if (override != null) cir.setReturnValue(override);
     }
 }
