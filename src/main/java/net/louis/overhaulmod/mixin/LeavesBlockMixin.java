@@ -22,7 +22,6 @@ public class LeavesBlockMixin {
                 LeavesBlock.dropStack(world, pos, new ItemStack(Blocks.JUNGLE_SAPLING));
             }
             world.removeBlock(pos, false);
-            ci.cancel();
         }
     }
 }
