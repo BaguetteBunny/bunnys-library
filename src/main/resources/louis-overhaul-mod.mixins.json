@@ -56,7 +56,9 @@
 		"AnvilScreenHandlerMixin",
 		"WitherEntityMixin",
 		"WitherSkullEntityMixin",
-		"BlockItemMixin"
+		"BlockItemMixin",
+		"BundleContentsComponentBuilderMixin",
+		"BundleItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

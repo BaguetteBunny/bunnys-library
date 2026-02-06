@@ -1,0 +1,6 @@
+{
+  "parent": "louis-overhaul-mod:item/potion_pouch",
+  "textures": {
+    "layer0": "louis-overhaul-mod:item/potion_pouch_open_back"
+  }
+}

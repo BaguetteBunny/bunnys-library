@@ -5,14 +5,11 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.TooltipComponentCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.louis.overhaulmod.block.ModBlocks;
 import net.louis.overhaulmod.block.entity.ModBlockEntities;
 import net.louis.overhaulmod.cauldron.ModCauldron;
-import net.louis.overhaulmod.component.CustomBundleTooltipComponent;
-import net.louis.overhaulmod.component.CustomBundleTooltipData;
 import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.effect.ModEffects;
@@ -57,7 +54,6 @@ public class LouisOverhaulMod implements ModInitializer {
 	public void onInitialize() {
 		ModConfig.load();
 
-		registerCustomBundleTooltip();
 		EnchantmentCapRegistry.register();
 
 		ModSounds.registerSounds();
@@ -96,7 +92,6 @@ public class LouisOverhaulMod implements ModInitializer {
 		ModUseEntityEvents.register();
 		ModUseItemEvents.register();
 
-
 		registerDispenserProjectles();
 
 		tickGlobal();
@@ -110,15 +105,6 @@ public class LouisOverhaulMod implements ModInitializer {
 		ModEntities.registerModEntities();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.BROWN_BEAR, BearEntity.createBrownBearAttributes());
-	}
-
-	private void registerCustomBundleTooltip() {
-		TooltipComponentCallback.EVENT.register((tooltipData) -> {
-			if (tooltipData instanceof CustomBundleTooltipData custom) {
-				return new CustomBundleTooltipComponent(custom.contents());
-			}
-			return null;
-		});
 	}
 
 	private void tickGlobal() {

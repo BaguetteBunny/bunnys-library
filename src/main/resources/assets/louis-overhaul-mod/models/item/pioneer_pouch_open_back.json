@@ -1,0 +1,6 @@
+{
+  "parent": "louis-overhaul-mod:item/pioneer_pouch",
+  "textures": {
+    "layer0": "louis-overhaul-mod:item/pioneer_pouch_open_back"
+  }
+}

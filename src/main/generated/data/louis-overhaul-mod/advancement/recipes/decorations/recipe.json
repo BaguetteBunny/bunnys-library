@@ -2,7 +2,7 @@
   "criteria": {
     "has_painting": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:painting_to_cavebird_sawmilling"
+        "recipe": "louis-overhaul-mod:painting_to_fern_sawmilling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

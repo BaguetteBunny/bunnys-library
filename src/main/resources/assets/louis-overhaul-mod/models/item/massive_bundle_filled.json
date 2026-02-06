@@ -1,6 +1,0 @@
-{
-    "parent": "louis-overhaul-mod:item/massive_bundle",
-    "textures": {
-        "layer0": "louis-overhaul-mod:item/massive_bundle_filled"
-    }
-}

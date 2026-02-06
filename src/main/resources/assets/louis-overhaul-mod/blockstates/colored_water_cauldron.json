@@ -10,7 +10,6 @@
     "fluid_type=green":       { "model": "louis-overhaul-mod:block/colored_water_cauldron_green" },
     "fluid_type=lime":        { "model": "louis-overhaul-mod:block/colored_water_cauldron_lime" },
     "fluid_type=light_blue":  { "model": "louis-overhaul-mod:block/colored_water_cauldron_light_blue" },
-    "fluid_type=blue":        { "model": "louis-overhaul-mod:block/colored_water_cauldron_blue" },
     "fluid_type=gray":        { "model": "louis-overhaul-mod:block/colored_water_cauldron_gray" },
     "fluid_type=light_gray":  { "model": "louis-overhaul-mod:block/colored_water_cauldron_light_gray" },
     "fluid_type=brown":       { "model": "louis-overhaul-mod:block/colored_water_cauldron_brown" },

@@ -16,13 +16,14 @@ import net.louis.overhaulmod.entity.custom.client.BearEntityRenderer;
 import net.louis.overhaulmod.entity.custom.client.ChairRenderer;
 import net.louis.overhaulmod.fluid.ModFluids;
 import net.louis.overhaulmod.item.ModItems;
-import net.louis.overhaulmod.item.custom.BigBundleItem;
 import net.louis.overhaulmod.item.custom.PetRecoveryCompass;
 import net.louis.overhaulmod.screen.AdvancedFletchingTableScreen;
 import net.louis.overhaulmod.screen.ModScreenHandlers;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
@@ -66,9 +67,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
 
         // Add Predicate Texture Transform
         PetRecoveryCompass.registerModelPredicates();
-        BigBundleItem.registerBigBundlePredicate(ModItems.LARGE_BUNDLE);
-        BigBundleItem.registerBigBundlePredicate(ModItems.MASSIVE_BUNDLE);
-        BigBundleItem.registerBigBundlePredicate(ModItems.PIONEER_POUCH);
 
         addArrowPredicate();
         addAzuritePredicate();

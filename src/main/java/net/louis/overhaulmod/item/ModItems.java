@@ -183,15 +183,14 @@ public class ModItems {
 
     public static final Item POTION_POUCH = registerItem("potion_pouch",
             settings -> new PotionPouch(settings.maxCount(1).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT),
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "item/potion_pouch.png"),
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "item/potion_pouch.png")));
+                    Identifier.of(LouisOverhaulMod.MOD_ID, "potion_pouch_open_front"),
+                    Identifier.of(LouisOverhaulMod.MOD_ID, "potion_pouch_open_back")));
 
-    public static final Item LARGE_BUNDLE = registerItem("large_bundle",
-            settings -> new BigBundleItem(settings.maxCount(1), 128));
-    public static final Item MASSIVE_BUNDLE = registerItem("massive_bundle",
-            settings -> new BigBundleItem(settings.maxCount(1), 256));
     public static final Item PIONEER_POUCH = registerItem("pioneer_pouch",
-            settings -> new PioneerPouch(settings.maxCount(1), 512));
+            settings -> new PioneerPouch(settings.maxCount(1).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT),
+                    Identifier.of(LouisOverhaulMod.MOD_ID, "pioneer_pouch_open_front"),
+                    Identifier.of(LouisOverhaulMod.MOD_ID, "pioneer_pouch_open_back")));
+
 
     public static final Item SADDLED_GOAT_HORN = registerItem("saddled_goat_horn",
             settings -> new SaddledGoatHorn(settings.maxCount(1).rarity(Rarity.UNCOMMON)));
@@ -301,8 +300,6 @@ public class ModItems {
             entries.add(SADDLED_GOAT_HORN);
             entries.add(PET_RECOVERY_COMPASS);
             entries.add(RECALL_CLOCK);
-            entries.add(LARGE_BUNDLE);
-            entries.add(MASSIVE_BUNDLE);
             entries.add(PIONEER_POUCH);
         });
     }

@@ -2,8 +2,5 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "louis-overhaul-mod:item/pioneer_pouch"
-  },
-  "overrides": [
-    { "predicate": { "filled": 0.0000001 }, "model": "louis-overhaul-mod:item/pioneer_pouch_filled" }
-  ]
+  }
 }

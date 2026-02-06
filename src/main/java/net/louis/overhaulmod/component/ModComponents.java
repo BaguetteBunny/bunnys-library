@@ -17,11 +17,6 @@ import net.minecraft.util.Identifier;
 import java.util.function.UnaryOperator;
 
 public class ModComponents {
-    public static final ComponentType<CustomBundleContentsComponent> CUSTOM_BUNDLE_CONTENTS = Registry.register(
-            Registries.DATA_COMPONENT_TYPE,
-            Identifier.of(LouisOverhaulMod.MOD_ID, "custom_bundle_contents"),
-            ComponentType.<CustomBundleContentsComponent>builder().codec(CustomBundleContentsComponent.CODEC).build()
-    );
     public static final ComponentType<String> AZURITE_REFINE = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(LouisOverhaulMod.MOD_ID, "azurite_refine"),

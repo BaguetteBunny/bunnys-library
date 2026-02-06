@@ -2,6 +2,7 @@ package net.louis.overhaulmod.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.block.ModBlocks;
 import net.louis.overhaulmod.fluid.ModFluids;
 import net.louis.overhaulmod.item.ModItems;
@@ -158,9 +159,9 @@ public class ModModelProvider extends FabricModelProvider {
 
         for (DyeColor color : DyeColor.values()) {
             BlockStateModelGenerator.BlockTexturePool pool = blockStateModelGenerator.registerCubeAllModelTexturePool(Registries.BLOCK.get(Identifier.ofVanilla(color + "_concrete")));
-            pool.stairs(Registries.BLOCK.get(Identifier.of("louis-overhaul-mod", color + "_concrete_stairs")));
-            pool.slab(Registries.BLOCK.get(Identifier.of("louis-overhaul-mod", color + "_concrete_slab")));
-            pool.wall(Registries.BLOCK.get(Identifier.of("louis-overhaul-mod", color + "_concrete_wall")));
+            pool.stairs(Registries.BLOCK.get(Identifier.of(LouisOverhaulMod.MOD_ID, color + "_concrete_stairs")));
+            pool.slab(Registries.BLOCK.get(Identifier.of(LouisOverhaulMod.MOD_ID, color + "_concrete_slab")));
+            pool.wall(Registries.BLOCK.get(Identifier.of(LouisOverhaulMod.MOD_ID, color + "_concrete_wall")));
         }
 
         for (var block : COLORED_WATER_BLOCKS) blockStateModelGenerator.registerStateWithModelReference(block, Blocks.WATER);
@@ -176,7 +177,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BAT_FANG, Models.GENERATED);
         itemModelGenerator.register(ModItems.ENDERMITE_HEART, Models.GENERATED);
         itemModelGenerator.register(ModItems.DECAYING_FLESH, Models.GENERATED);
-        itemModelGenerator.register(ModItems.POTION_POUCH, Models.GENERATED);
         itemModelGenerator.register(ModItems.SADDLED_GOAT_HORN, Models.GENERATED);
         itemModelGenerator.register(ModItems.RECALL_CLOCK, Models.GENERATED);
         itemModelGenerator.register(ModItems.LLAMAS_SPIT, Models.GENERATED);

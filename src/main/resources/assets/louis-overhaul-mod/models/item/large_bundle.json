@@ -1,9 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "minecraft:item/bundle"
-    },
-    "overrides": [
-        { "predicate": { "filled": 0.0000001 }, "model": "louis-overhaul-mod:item/large_bundle_filled" }
-    ]
-}

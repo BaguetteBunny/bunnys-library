@@ -1,11 +1,11 @@
-// 1.21.3	2026-02-05T01:20:04.0973577	Louis' Overhaul Mod/Tags for minecraft:block
+// 1.21.3	2026-02-06T13:25:33.0947745	Louis' Overhaul Mod/Tags for minecraft:block
 80b0dae6ba4e6c10261638ebb69b0d61926617fa data\minecraft\tags\block\rails.json
 7df660695449f1976cf06fdd94888e28514c5a1e data\minecraft\tags\block\fences.json
 e15294c12176a7a6a00bcd3825042f8979238c66 data\minecraft\tags\block\small_flowers.json
 c247cda2289cc377eaba8334104834cf4af5af29 data\minecraft\tags\block\stone_buttons.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data\minecraft\tags\block\needs_stone_tool.json
-781d959bb6bbea7b36ae6b2d4a71ced43fd662b9 data\louis-overhaul-mod\tags\block\needs_amethyst_tool.json
 e205dd1674d27cf0d3f00df076e28b3628473f90 data\minecraft\tags\block\flower_pots.json
+781d959bb6bbea7b36ae6b2d4a71ced43fd662b9 data\louis-overhaul-mod\tags\block\needs_amethyst_tool.json
 0fc88eb8aceb968563434e0f2a4a6e8694b20c0d data\minecraft\tags\block\hoglin_repellents.json
 3459402c35d3bc980c05b8328405ba9704b03ffb data\minecraft\tags\block\stone_pressure_plates.json
 19f41911d55f5b68c04c65a95aed55784afd07ce data\minecraft\tags\block\walls.json

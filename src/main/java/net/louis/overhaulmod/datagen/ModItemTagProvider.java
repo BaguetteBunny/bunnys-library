@@ -22,6 +22,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.GOLDEN_HORSE_ARMOR)
                 .add(Items.LEATHER_HORSE_ARMOR);
 
+        getOrCreateTagBuilder(ItemTags.BUNDLES)
+                .add(ModItems.PIONEER_POUCH)
+                .add(ModItems.POTION_POUCH);
+
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(ModItems.AMETHYST_DAGGER);
 
