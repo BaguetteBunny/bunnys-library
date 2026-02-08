@@ -9,10 +9,13 @@ import net.louis.overhaulmod.entity.custom.living.BearVariant;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.PolarBearEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
+import net.minecraft.client.render.entity.state.PolarBearEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
@@ -29,7 +32,6 @@ public class BearEntityRenderer extends MobEntityRenderer<BearEntity, BearRender
                 map.put(BearVariant.SILLIEST,
                         Identifier.of(LouisOverhaulMod.MOD_ID, "textures/entity/bear/silliest_brown_bear.png"));
             });
-
 
     public BearEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new BearEntityModel(context.getPart(EntityModelLayers.POLAR_BEAR)), 0.9F);
@@ -60,5 +62,6 @@ public class BearEntityRenderer extends MobEntityRenderer<BearEntity, BearRender
     public void updateRenderState(BearEntity livingEntity, BearRenderState livingEntityRenderState, float f) {
         super.updateRenderState(livingEntity, livingEntityRenderState, f);
         livingEntityRenderState.variant = livingEntity.getVariant();
+        livingEntityRenderState.warningAnimationProgress = livingEntity.getWarningAnimationProgress(f);
     }
 }
