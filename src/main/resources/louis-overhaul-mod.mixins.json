@@ -57,8 +57,7 @@
 		"WitherEntityMixin",
 		"WitherSkullEntityMixin",
 		"BlockItemMixin",
-		"BundleContentsComponentBuilderMixin",
-		"BundleItemMixin"
+		"BundleContentsComponentBuilderMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

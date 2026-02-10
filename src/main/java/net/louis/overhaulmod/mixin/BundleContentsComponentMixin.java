@@ -1,6 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
-import net.louis.overhaulmod.item.ModItems;
+import net.louis.overhaulmod.component.ModComponents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.item.ItemStack;
@@ -12,31 +12,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-import static net.fabricmc.fabric.mixin.transfer.BundleContentsComponentAccessor.getOccupancy;
-import static net.minecraft.component.type.BundleContentsComponent.canBeBundled;
-
 @Mixin(BundleContentsComponent.class)
 public class BundleContentsComponentMixin {
-    @Inject(method = "getOccupancy", at = @At("RETURN"), cancellable = true)
-    private static void LOM$chageBundleCapacity(ItemStack stack, CallbackInfoReturnable<Fraction> cir) {
-        int factor = 1;
+    @Inject(method = "getOccupancy", at = @At("HEAD"), cancellable = true)
+    private static void LOM$makeUnstackablesInBundle(ItemStack stack, CallbackInfoReturnable<Fraction> cir) {
+        Fraction nouveau = calculateProperOccupancy(stack);
+        cir.setReturnValue(nouveau == null ? Fraction.ONE : nouveau);
+    }
 
-        if (stack.getItem() == ModItems.PIONEER_POUCH) {
-            factor *= 4;
-        }
-
-        Fraction original = cir.getReturnValue();
-        Fraction doubledCapacity = original.divideBy(Fraction.getFraction(factor, 1));
-        cir.setReturnValue(doubledCapacity);
-
+    private static Fraction calculateProperOccupancy(ItemStack stack) {
         if (stack.get(DataComponentTypes.BUNDLE_CONTENTS) != null ||
                 !stack.getOrDefault(DataComponentTypes.BEES, List.of()).isEmpty()) {
-            return;
+            return null;
         }
 
-        if (stack.getMaxCount() == 1) {
-            cir.setReturnValue(Fraction.getFraction(1, factor*8));
-        }
+        Integer ctx = stack.get(ModComponents.BUNDLE_CONTEXT);
+        int factor = ctx != null ? ctx : 1;
+
+        if (stack.getMaxCount() == 1) return Fraction.getFraction(1, 8*factor);
+        else if (stack.getMaxCount() == 16) return Fraction.getFraction(1, 32*factor);
+        else return Fraction.getFraction(1, 64*factor);
     }
 }
 

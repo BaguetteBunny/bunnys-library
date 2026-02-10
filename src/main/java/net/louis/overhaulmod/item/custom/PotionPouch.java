@@ -1,20 +1,16 @@
 package net.louis.overhaulmod.item.custom;
 
-import net.louis.overhaulmod.utils.BundleContext;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.StackReference;
 import net.minecraft.item.*;
 import net.minecraft.item.consume.UseAction;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ClickType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -72,26 +68,6 @@ public class PotionPouch extends BundleItem {
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return 0;
-    }
-
-    @Override
-    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
-        BundleContext.set(stack);
-        try {
-            return super.onStackClicked(stack, slot, clickType, player);
-        } finally {
-            BundleContext.clear();
-        }
-    }
-
-    @Override
-    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        BundleContext.set(stack);
-        try {
-            return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);
-        } finally {
-            BundleContext.clear();
-        }
     }
 }
 

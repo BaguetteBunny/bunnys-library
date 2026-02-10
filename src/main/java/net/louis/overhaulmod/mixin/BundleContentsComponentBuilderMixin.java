@@ -1,12 +1,8 @@
 package net.louis.overhaulmod.mixin;
 
-import net.louis.overhaulmod.item.custom.PioneerPouch;
-import net.louis.overhaulmod.item.custom.PotionPouch;
-import net.louis.overhaulmod.utils.BundleContext;
+import net.louis.overhaulmod.component.ModComponents;
 import net.minecraft.component.type.BundleContentsComponent;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.screen.slot.Slot;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,19 +31,15 @@ public abstract class BundleContentsComponentBuilderMixin {
         }
     }
 
-    @Inject(method = "add(Lnet/minecraft/item/ItemStack;)I", at = @At("HEAD"), cancellable = true)
-    private void LOM$filterByBundleType(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        ItemStack bundleStack = BundleContext.get();
+    @Inject(method = "add(Lnet/minecraft/world/item/ItemStack;)I", at = @At("HEAD"), cancellable = true)
+    private void LOM$wrapAddWithContext(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
+        if (!BundleContentsComponent.canBeBundled(stack)) return;
+        stack.set(ModComponents.BUNDLE_CONTEXT, 4);
+    }
 
-        if (bundleStack != null && bundleStack.getItem() instanceof PotionPouch) {
-            if (!(stack.getItem() instanceof PotionItem)) {
-                cir.setReturnValue(0);
-            }
-        }
-        else if (bundleStack != null && bundleStack.getItem() instanceof PioneerPouch) {
-            if (!(stack.getItem() instanceof BlockItem)) {
-                cir.setReturnValue(0);
-            }
-        }
+    @Inject(method = "removeSelected", at = @At("RETURN"))
+    private void LOM$cleanupRemovedItem(CallbackInfoReturnable<ItemStack> cir) {
+        ItemStack removed = cir.getReturnValue();
+        if (removed != null) removed.remove(ModComponents.BUNDLE_CONTEXT);
     }
 }
