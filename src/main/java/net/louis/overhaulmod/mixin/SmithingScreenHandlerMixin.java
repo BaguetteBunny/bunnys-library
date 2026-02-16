@@ -3,10 +3,10 @@ package net.louis.overhaulmod.mixin;
 import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.RepairableComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.BundleItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.screen.ForgingScreenHandler;
 import net.minecraft.screen.SmithingScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -20,6 +20,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import static net.louis.overhaulmod.utils.ToolArmorUtil.getToolMaterialItem;
+import static net.louis.overhaulmod.utils.ToolArmorUtil.isNetheriteArmor;
 
 @Mixin(SmithingScreenHandler.class)
 public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
@@ -51,7 +54,11 @@ public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
         ItemStack base = this.input.getStack(1);
         ItemStack addition = this.input.getStack(2);
 
-        if (addition.isEmpty() && !base.isEmpty() && base.get(DataComponentTypes.TRIM) != null) {
+        if (!addition.isEmpty() && addition.getItem() == ModItems.AZURITE && !base.isEmpty() && base.get(DataComponentTypes.TRIM) != null && base.getItem() instanceof ArmorItem armorItem) {
+            Item azuriteMat = getToolMaterialItem(addition.getOrDefault(ModComponents.AZURITE_REFINE, ""));
+            if (azuriteMat == null) return;
+            if (!base.canRepairWith(azuriteMat.getDefaultStack()) && !(isNetheriteArmor(armorItem) && azuriteMat == Items.NETHERITE_SCRAP)) return;
+
             if (template.isOf(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE)) {
                 ItemStack result = base.copy();
                 result.set(ModComponents.GLOW_AND_PULSATE, false);
@@ -110,9 +117,14 @@ public abstract class SmithingScreenHandlerMixin extends ForgingScreenHandler {
         ItemStack base = this.input.getStack(1);
         ItemStack addition = this.input.getStack(2);
 
-        if ((template.isOf(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE) ||template.isOf(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE)) && addition.isEmpty() && !base.isEmpty() && base.get(DataComponentTypes.TRIM) != null) {
+        if ((template.isOf(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE) || template.isOf(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE)) && !addition.isEmpty() && addition.getItem() == ModItems.AZURITE && !base.isEmpty() && base.get(DataComponentTypes.TRIM) != null && base.getItem() instanceof ArmorItem armorItem) {
+            Item azuriteMat = getToolMaterialItem(addition.getOrDefault(ModComponents.AZURITE_REFINE, ""));
+            if (azuriteMat == null) return;
+            if (!base.canRepairWith(azuriteMat.getDefaultStack()) && !(isNetheriteArmor(armorItem) && azuriteMat == Items.NETHERITE_SCRAP)) return;
+
             this.context.run((world, pos) -> {
                 template.decrement(1);
+                addition.decrement(1);
             });
         }
     }
