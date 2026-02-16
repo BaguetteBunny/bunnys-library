@@ -189,6 +189,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.EMPYREAN_POWDER, Models.GENERATED);
         itemModelGenerator.register(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.AMETHYST_DAGGER, Models.HANDHELD);
         itemModelGenerator.register(ModItems.BEAR_CLAW, Models.HANDHELD_ROD);
 

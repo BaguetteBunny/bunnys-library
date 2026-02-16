@@ -37,7 +37,35 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
                 .add(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE)
-                .add(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE);
+                .add(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE)
+                .add(ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE)
+                .add(ModItems.TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
+
+        getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
+                .add(ModItems.AZURITE);
+
+        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.POTION_POUCH)
+                .add(ModItems.PIONEER_POUCH)
+
+                .add(Items.BUNDLE)
+                .add(Items.BUNDLE)
+                .add(Items.WHITE_BUNDLE)
+                .add(Items.ORANGE_BUNDLE)
+                .add(Items.MAGENTA_BUNDLE)
+                .add(Items.LIGHT_BLUE_BUNDLE)
+                .add(Items.YELLOW_BUNDLE)
+                .add(Items.LIME_BUNDLE)
+                .add(Items.PINK_BUNDLE)
+                .add(Items.GRAY_BUNDLE)
+                .add(Items.LIGHT_GRAY_BUNDLE)
+                .add(Items.CYAN_BUNDLE)
+                .add(Items.BLACK_BUNDLE)
+                .add(Items.BROWN_BUNDLE)
+                .add(Items.GREEN_BUNDLE)
+                .add(Items.RED_BUNDLE)
+                .add(Items.BLUE_BUNDLE)
+                .add(Items.PURPLE_BUNDLE);
 
         getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
                 .add(Items.END_STONE)

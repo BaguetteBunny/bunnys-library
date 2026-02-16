@@ -58,7 +58,8 @@
 		"WitherSkullEntityMixin",
 		"BlockItemMixin",
 		"BundleContentsComponentBuilderMixin",
-		"ArmorMaterialMixin"
+		"ArmorMaterialMixin",
+		"BundleItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

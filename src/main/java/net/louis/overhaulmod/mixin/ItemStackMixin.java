@@ -9,6 +9,7 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BundleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -106,7 +107,7 @@ public class ItemStackMixin {
     }
 
     @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void LOM$addUpgradeTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+    private void LOM$addGlowPulsateUpgradeTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
         String name = "";
         if (stack.getItem() == ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE) name = "Glow";
         if (stack.getItem() == ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE) name = "Pulsing";
@@ -117,6 +118,42 @@ public class ItemStackMixin {
             tooltip.add(2, Text.empty());
             tooltip.add(3, Text.literal("Applies to:").formatted(Formatting.GRAY));
             tooltip.add(4, Text.literal(" Trimmed Equipment").formatted(Formatting.BLUE));
+            tooltip.add(5, Text.literal("Ingredients").formatted(Formatting.GRAY));
+            tooltip.add(6, Text.literal(" Reinforced Azurite").formatted(Formatting.BLUE));
+        }
+    }
+
+    @Inject(method = "getTooltip", at = @At("RETURN"))
+    private void LOM$addBundleTrimTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+        if (!(stack.getItem() instanceof BundleItem)) return;
+
+        List<Text> tooltip = cir.getReturnValue();
+        Text newTooltip;
+
+        int bundleFinalFactor;
+        int bundleMaxFactor = stack.getComponents().getOrDefault(ModComponents.BUNDLE_MAX_FACTOR, 0);
+
+        if (stack.getItem() == ModItems.PIONEER_POUCH) bundleFinalFactor = 64 * (4 + bundleMaxFactor);
+        else if (stack.getItem() == ModItems.POTION_POUCH) bundleFinalFactor = 64 * (2 + bundleMaxFactor);
+        else bundleFinalFactor = 64 * (bundleMaxFactor == 0 ? 1 : bundleMaxFactor);
+
+        newTooltip = Text.literal("Maximum Capacity: " + bundleFinalFactor + " Items.").formatted(Formatting.BLUE);
+
+        tooltip.add(1, newTooltip);
+    }
+
+    @Inject(method = "getTooltip", at = @At("RETURN"))
+    private void LOM$addBundleUpgradeTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+        String name = "";
+        if (stack.getItem() == ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE) name = "Big";
+        if (stack.getItem() == ModItems.TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE) name = "Titanic";
+
+        if (!name.isEmpty()) {
+            List<Text> tooltip = cir.getReturnValue();
+            tooltip.add(1, Text.literal(name + " Bundle Upgrade").formatted(Formatting.GRAY));
+            tooltip.add(2, Text.empty());
+            tooltip.add(3, Text.literal("Applies to:").formatted(Formatting.GRAY));
+            tooltip.add(4, Text.literal(" Bundle Items").formatted(Formatting.BLUE));
             tooltip.add(5, Text.literal("Ingredients").formatted(Formatting.GRAY));
             tooltip.add(6, Text.literal(" None").formatted(Formatting.BLUE));
         }

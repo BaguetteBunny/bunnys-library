@@ -92,10 +92,13 @@ public class ModItems {
                             .build())));
 
     public static final Item GLOW_UPGRADE_SMITHING_TEMPLATE = registerItem("glow_upgrade_smithing_template",
-            Item::new);
-
-    public static final Item PULSING_UPGRADE_SMITHING_TEMPLATE = registerItem("pulsing_upgrade_smithing_template",
             settings -> new Item(settings.rarity(Rarity.UNCOMMON)));
+    public static final Item PULSING_UPGRADE_SMITHING_TEMPLATE = registerItem("pulsing_upgrade_smithing_template",
+            settings -> new Item(settings.rarity(Rarity.RARE)));
+    public static final Item BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE = registerItem("big_bundle_upgrade_smithing_template",
+            settings -> new Item(settings.rarity(Rarity.UNCOMMON)));
+    public static final Item TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE = registerItem("titanic_bundle_upgrade_smithing_template",
+            settings -> new Item(settings.rarity(Rarity.RARE)));
 
     public static final Item PURIFIED_WATER_BOTTLE = registerItem("purified_water_bottle",
             settings -> new Item(settings.maxCount(1).rarity(Rarity.RARE)));
@@ -239,6 +242,8 @@ public class ModItems {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(AZURITE);
+            entries.add(BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
+            entries.add(TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
             entries.add(GLOW_UPGRADE_SMITHING_TEMPLATE);
             entries.add(PULSING_UPGRADE_SMITHING_TEMPLATE);
             entries.add(EMPYREAN_POWDER);

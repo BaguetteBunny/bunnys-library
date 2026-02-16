@@ -480,6 +480,26 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
                         .offerTo(exporter);
 
+                createShaped(RecipeCategory.MISC, ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE, 1)
+                        .pattern("LRL")
+                        .pattern("LSL")
+                        .pattern("LRL")
+                        .input('L', Items.LEATHER)
+                        .input('R', Items.RABBIT_HIDE)
+                        .input('S', Items.STRING)
+                        .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.MISC, ModItems.TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE, 1)
+                        .pattern("LXL")
+                        .pattern("LBL")
+                        .pattern("LXL")
+                        .input('L', Items.LEATHER)
+                        .input('X', ModItems.BAT_FANG)
+                        .input('B', ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE)
+                        .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
+                        .offerTo(exporter);
+
                 createShapeless(RecipeCategory.MISC, Items.BUNDLE, 1)
                         .input(Items.LEATHER)
                         .input(Items.STRING)

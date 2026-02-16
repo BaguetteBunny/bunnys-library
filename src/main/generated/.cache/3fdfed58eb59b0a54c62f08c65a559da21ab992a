@@ -1,8 +1,10 @@
-// 1.21.3	2026-02-16T16:19:04.6890307	Louis' Overhaul Mod/Tags for minecraft:item
-954fa8893f0b9f3e697312c72fd465ee1031dedd data\minecraft\tags\item\shovels.json
+// 1.21.3	2026-02-16T22:07:42.6972308	Louis' Overhaul Mod/Tags for minecraft:item
 663c293af4e072e0385a3d1d6c193fe2e01bc55f data\minecraft\tags\item\arrows.json
-eee95e890a0c6f037a650f51025f708b63092f82 data\minecraft\tags\item\trim_templates.json
+954fa8893f0b9f3e697312c72fd465ee1031dedd data\minecraft\tags\item\shovels.json
+eac5b5651241dfc8743e603434a90bc0f8b249eb data\minecraft\tags\item\trim_templates.json
 7aa76566ec1a02968be26aa6f43fdfab09f064de data\minecraft\tags\item\enchantable\chest_armor.json
+8dbf41ee2ca1b1dd6b66fe24b54b2f11efd56277 data\minecraft\tags\item\trim_materials.json
 6d8d91d4ca805663d91f068ba58fec61cb3df37f data\minecraft\tags\item\stone_tool_materials.json
 99ca515b1394ca3c256f026275b4c61d2d875b82 data\minecraft\tags\item\bundles.json
 a70380348c16fe92b373bcbcfe1b7f3e7a673b3e data\minecraft\tags\item\pickaxes.json
+46b4cbd417313ead799d873f17b15bee35b15dc8 data\minecraft\tags\item\trimmable_armor.json
