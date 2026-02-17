@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.louis.overhaulmod.block.ModBlocks;
 import net.louis.overhaulmod.block.entity.ModBlockEntities;
@@ -30,6 +31,9 @@ import net.louis.overhaulmod.events.ModLootTableEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.EquippableComponent;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.entity.SpawnRestriction;
@@ -43,8 +47,11 @@ import net.minecraft.world.poi.PointOfInterestTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import static net.louis.overhaulmod.utils.ItemManager.HEAD_EQUIPPABLE_ITEMS;
 
 public class LouisOverhaulMod implements ModInitializer {
 	public static final String MOD_ID = "louis-overhaul-mod";
@@ -82,29 +89,25 @@ public class LouisOverhaulMod implements ModInitializer {
 		// All Events
 		ModAttackEntityEvents.register();
 		ModAttackBlockEvents.register();
-
 		ModBreakEvents.register();
-
 		ModServerLivingEntityEvents.register();
 		ModServerPlayConnectionEvents.register();
-
 		ModUseBlockEvents.register();
 		ModUseEntityEvents.register();
 		ModUseItemEvents.register();
 
+		// Misc
 		registerDispenserProjectles();
-
 		tickGlobal();
 		replaceFletcherPOI();
+		setCertainBlocksAsEquippables();
 
-		BiomeModifications.addSpawn(
-				BiomeSelectors.includeByKey(BiomeKeys.CHERRY_GROVE, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.RIVER, BiomeKeys.FLOWER_FOREST),
-				SpawnGroup.CREATURE, ModEntities.BROWN_BEAR, 10, 1, 2);
-		SpawnRestriction.register(ModEntities.BROWN_BEAR, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
-
+		// Mob
+		registerSpawning();
 		ModEntities.registerModEntities();
+		registerMobAttributes();
 
-		FabricDefaultAttributeRegistry.register(ModEntities.BROWN_BEAR, BearEntity.createBrownBearAttributes());
+
 	}
 
 	private void tickGlobal() {
@@ -124,5 +127,26 @@ public class LouisOverhaulMod implements ModInitializer {
 
 	private void registerDispenserProjectles() {
 		DispenserBlock.registerProjectileBehavior(ModItems.ADVANCED_ARROW);
+	}
+
+	private void registerSpawning() {
+		BiomeModifications.addSpawn(
+				BiomeSelectors.includeByKey(BiomeKeys.CHERRY_GROVE, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST, BiomeKeys.WINDSWEPT_FOREST, BiomeKeys.RIVER, BiomeKeys.FLOWER_FOREST),
+				SpawnGroup.CREATURE, ModEntities.BROWN_BEAR, 10, 1, 2);
+		SpawnRestriction.register(ModEntities.BROWN_BEAR, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, AnimalEntity::isValidNaturalSpawn);
+
+	}
+
+	private void registerMobAttributes() {
+		FabricDefaultAttributeRegistry.register(ModEntities.BROWN_BEAR, BearEntity.createBrownBearAttributes());
+	}
+
+	private void setCertainBlocksAsEquippables() {
+		DefaultItemComponentEvents.MODIFY.register(context -> {
+			context.modify(
+                    new HashSet<>(HEAD_EQUIPPABLE_ITEMS),
+					(builder, item) -> builder.add(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.HEAD).build())
+			);
+		});
 	}
 }

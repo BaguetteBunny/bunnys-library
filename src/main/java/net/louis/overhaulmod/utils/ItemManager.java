@@ -1,15 +1,102 @@
 package net.louis.overhaulmod.utils;
 
+import net.louis.overhaulmod.block.ModBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-public final class StackSizeManager {
+public final class ItemManager {
+
+    public static final Set<Item> HEAD_EQUIPPABLE_ITEMS = new HashSet<>();
+    static {
+        // Glass
+        HEAD_EQUIPPABLE_ITEMS.add(Items.GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.TINTED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.WHITE_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.ORANGE_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.MAGENTA_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIGHT_BLUE_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.YELLOW_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIME_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.PINK_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.GRAY_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIGHT_GRAY_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.CYAN_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.PURPLE_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BLUE_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BROWN_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.GREEN_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.RED_STAINED_GLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BLACK_STAINED_GLASS);
+
+        // Pressure Plate
+        HEAD_EQUIPPABLE_ITEMS.add(Items.STONE_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.POLISHED_BLACKSTONE_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.HEAVY_WEIGHTED_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIGHT_WEIGHTED_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(ModBlocks.END_STONE_PRESSURE_PLATE.asItem());
+        HEAD_EQUIPPABLE_ITEMS.add(Items.OAK_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.SPRUCE_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BIRCH_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.JUNGLE_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.ACACIA_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.DARK_OAK_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.MANGROVE_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.CHERRY_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BAMBOO_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.CRIMSON_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.WARPED_PRESSURE_PLATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.PALE_OAK_PRESSURE_PLATE);
+
+        // Fence Gates
+        HEAD_EQUIPPABLE_ITEMS.add(Items.OAK_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.SPRUCE_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BIRCH_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.JUNGLE_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.ACACIA_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.DARK_OAK_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.MANGROVE_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.CHERRY_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BAMBOO_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.CRIMSON_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.WARPED_FENCE_GATE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.PALE_OAK_FENCE_GATE);
+
+        // Banners
+        HEAD_EQUIPPABLE_ITEMS.add(Items.WHITE_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.ORANGE_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.MAGENTA_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIGHT_BLUE_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.YELLOW_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIME_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.PINK_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.GRAY_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIGHT_GRAY_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.CYAN_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.PURPLE_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BLUE_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BROWN_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.GREEN_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.RED_BANNER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BLACK_BANNER);
+
+        HEAD_EQUIPPABLE_ITEMS.add(Items.END_ROD);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.SPYGLASS);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.BONE);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LEAD);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.COD);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.LIGHTNING_ROD);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.FEATHER);
+        HEAD_EQUIPPABLE_ITEMS.add(Items.SHIELD);
+    }
 
     public static final Map<Item, Integer> MAX_STACK_OVERRIDES = new HashMap<>();
-
     static {
         // 64
         MAX_STACK_OVERRIDES.put(Items.SNOWBALL, 64);
@@ -113,5 +200,5 @@ public final class StackSizeManager {
     }
 
 
-    private StackSizeManager() {}
+    private ItemManager() {}
 }
