@@ -59,7 +59,8 @@
 		"BlockItemMixin",
 		"BundleContentsComponentBuilderMixin",
 		"ArmorMaterialMixin",
-		"BundleItemMixin"
+		"BundleItemMixin",
+		"EndermanEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
