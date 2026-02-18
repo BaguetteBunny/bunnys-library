@@ -66,6 +66,9 @@ public class ModConfigScreen {
         entityModule.addEntry(entry.startBooleanToggle(
                 Text.of("Withers go Through Bedrock"),
                 ModConfig.INSTANCE.disableWitherBedrockCollision).setSaveConsumer(v -> ModConfig.INSTANCE.disableWitherBedrockCollision = v).build());
+        entityModule.addEntry(entry.startBooleanToggle(
+                Text.of("Endermen become Immune to Water with Water Breathing"),
+                ModConfig.INSTANCE.endermanImmuneToWaterWithEffect).setSaveConsumer(v -> ModConfig.INSTANCE.endermanImmuneToWaterWithEffect = v).build());
         entityModule.addEntry(entry.startLongSlider(
                 Text.of("Mob Detection Range when wearing their Head"),
                 ModConfig.INSTANCE.decreaseMobHeadDetectionRange,

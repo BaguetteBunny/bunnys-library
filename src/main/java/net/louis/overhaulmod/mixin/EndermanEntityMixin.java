@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.EndermanEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +14,8 @@ public class EndermanEntityMixin {
 
     @Inject(method = "hurtByWater", at = @At("HEAD"), cancellable = true)
     private void LOM$disableIfWaterBreathing(CallbackInfoReturnable<Boolean> cir) {
-        if (self.hasStatusEffect(StatusEffects.WATER_BREATHING)) cir.setReturnValue(false);
+        if (ModConfig.INSTANCE.endermanImmuneToWaterWithEffect
+                && self.hasStatusEffect(StatusEffects.WATER_BREATHING))
+            cir.setReturnValue(false);
     }
 }

@@ -33,6 +33,7 @@ public class ModConfig {
     public boolean moreAggressivePolarBears = true;
     public boolean strongerWither = true;
     public boolean enableWitherBossPhases = true;
+    public boolean endermanImmuneToWaterWithEffect = true;
     public long decreaseMobHeadDetectionRange = 0;
     public int saddledGoatHornCooldownInSeconds = 5;
 
