@@ -58,6 +58,7 @@ public class ModConfig {
     public boolean enableFeatherAttack = true;
     public boolean disableCropTrampleWithFeatherFalling = true;
     public boolean sculkCatalystBloomsEchoShards = true;
+    public boolean enableDynamicLighting = true;
 
     // --- load ---
     public static void load() {

@@ -132,7 +132,9 @@ public class ModConfigScreen {
         miscModule.addEntry(entry.startBooleanToggle(
                 Text.of("Feather Falling disables Crop Trampling"),
                 ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling).setSaveConsumer(v -> ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling = v).build());
-
+        miscModule.addEntry(entry.startBooleanToggle(
+                Text.of("Enable Dynamic Lighting"),
+                ModConfig.INSTANCE.enableDynamicLighting).setSaveConsumer(v -> ModConfig.INSTANCE.enableDynamicLighting = v).build());
 
         builder.setSavingRunnable(ModConfig::save);
         return builder.build();
