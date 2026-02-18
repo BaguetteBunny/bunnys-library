@@ -206,6 +206,15 @@ public class ItemStackMixin {
         }
     }
 
+    @Inject(method = "getTooltip", at = @At("RETURN"))
+    private void LOM$addEquippableTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
+        if (!ItemManager.HEAD_EQUIPPABLE_ITEMS.contains(stack.getItem())) return;
+
+        List<Text> tooltip = cir.getReturnValue();
+        tooltip.add(1, Text.literal("Equippable")
+                .formatted(Formatting.GRAY));
+    }
+
     @Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
     private void LOM$overrideMaxStacks(CallbackInfoReturnable<Integer> cir) {
         ItemStack self = (ItemStack) (Object) this;

@@ -3,6 +3,7 @@ package net.louis.overhaulmod.events;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.config.ModConfig;
+import net.louis.overhaulmod.config.ModConfigScreen;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.BrickEntity;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.NetherBrickEntity;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.PurifiedWaterEntity;
@@ -10,6 +11,7 @@ import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.GlowLightManager;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.LlamaSpitEntity;
@@ -30,6 +32,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static net.louis.overhaulmod.utils.EnchantmentUtils.hasEnchant;
+import static net.louis.overhaulmod.utils.ItemManager.HEAD_EQUIPPABLE_ITEMS;
 
 public class ModUseItemEvents {
     public static void register() {
@@ -37,11 +40,19 @@ public class ModUseItemEvents {
         UseItemCallback.EVENT.register(ModUseItemEvents::useGlowInk);
         UseItemCallback.EVENT.register(ModUseItemEvents::useFireBlastEnchant);
         UseItemCallback.EVENT.register(ModUseItemEvents::useSeasoning);
+        UseItemCallback.EVENT.register(ModUseItemEvents::cancelItemEquipIfHelmed);
 
         // Projectiles
         UseItemCallback.EVENT.register(ModUseItemEvents::useBrick);
         UseItemCallback.EVENT.register(ModUseItemEvents::useNetherBrick);
         UseItemCallback.EVENT.register(ModUseItemEvents::usePurifiedWaterBottle);
+    }
+
+    private static ActionResult cancelItemEquipIfHelmed(PlayerEntity player, World world, Hand hand) {
+        if (player.hasStackEquipped(EquipmentSlot.HEAD) && HEAD_EQUIPPABLE_ITEMS.contains(player.getStackInHand(hand).getItem())) {
+            return ActionResult.FAIL;
+        }
+        return ActionResult.PASS;
     }
 
     private static ActionResult getLlamaSpitBottle(PlayerEntity player, World world, Hand hand) {

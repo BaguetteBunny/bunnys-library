@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.mixin;
 
+import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.GlowLightManager;
 import net.louis.overhaulmod.utils.accessors.LastTickHolder;
@@ -41,6 +42,8 @@ public class ServerPlayerTickMixin implements LastTickHolder {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void LOM$dynamicLighting(CallbackInfo ci) {
+        if (!ModConfig.INSTANCE.enableDynamicLighting && this.lastLightPos == null) return;
+
         ServerWorld serverWorld = this.player.getServerWorld();
         Integer lightLevel = hasLightItem(this.player);
         if (lightLevel == null) lightLevel = 0;
