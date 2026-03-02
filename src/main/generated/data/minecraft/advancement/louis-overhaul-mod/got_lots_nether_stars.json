@@ -1,0 +1,33 @@
+{
+  "criteria": {
+    "got_lots_nether_stars": {
+      "conditions": {
+        "items": [
+          {
+            "count": {
+              "min": 64
+            },
+            "items": "minecraft:nether_star"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/blocks/ancient_debris_side.png",
+    "description": "Obtain 64 Nether Stars",
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:diamond_sword"
+    },
+    "title": "The first step to perfection"
+  },
+  "requirements": [
+    [
+      "got_lots_nether_stars"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
