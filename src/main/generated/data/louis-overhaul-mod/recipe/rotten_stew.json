@@ -5,10 +5,8 @@
     "minecraft:bowl",
     "minecraft:rotten_flesh",
     "minecraft:rotten_flesh",
-    "louis-overhaul-mod:decaying_flesh",
-    "louis-overhaul-mod:decaying_flesh",
-    "louis-overhaul-mod:sandy_flesh",
-    "louis-overhaul-mod:sandy_flesh"
+    "minecraft:spider_eye",
+    "minecraft:gunpowder"
   ],
   "result": {
     "count": 1,

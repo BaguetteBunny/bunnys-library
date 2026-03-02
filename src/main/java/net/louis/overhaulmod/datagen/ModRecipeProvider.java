@@ -250,10 +250,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input(Items.BOWL)
                         .input(Items.ROTTEN_FLESH)
                         .input(Items.ROTTEN_FLESH)
-                        .input(ModItems.DECAYING_FLESH)
-                        .input(ModItems.DECAYING_FLESH)
-                        .input(ModItems.SANDY_FLESH)
-                        .input(ModItems.SANDY_FLESH)
+                        .input(Items.SPIDER_EYE)
+                        .input(Items.GUNPOWDER)
                         .criterion(hasItem(Items.BOWL), conditionsFromItem(Items.BOWL))
                         .offerTo(exporter);
 

@@ -1,0 +1,175 @@
+{
+  "parent": "minecraft:louis-overhaul-mod/obtain_rare_name_tag",
+  "criteria": {
+    "got_aquamarine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:aquamarine_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_ashen": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:ashen_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_blossom": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:blossom_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_cataclysm": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:cataclysm_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_fragrant": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:fragrant_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_immolation": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:immolation_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_iridescent": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:iridescent_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_peach": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:peach_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_primordial": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:primordial_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_radioactive": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:radioactive_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_volcanic": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:volcanic_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "got_wisp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "louis-overhaul-mod:wisp_name_tag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/block/ancient_debris_side.png",
+    "description": "Obtain All Rare Name Tag",
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:name_tag"
+    },
+    "title": "Name Tag Mastery"
+  },
+  "requirements": [
+    [
+      "got_aquamarine"
+    ],
+    [
+      "got_cataclysm"
+    ],
+    [
+      "got_immolation"
+    ],
+    [
+      "got_ashen"
+    ],
+    [
+      "got_peach"
+    ],
+    [
+      "got_wisp"
+    ],
+    [
+      "got_primordial"
+    ],
+    [
+      "got_iridescent"
+    ],
+    [
+      "got_radioactive"
+    ],
+    [
+      "got_fragrant"
+    ],
+    [
+      "got_volcanic"
+    ],
+    [
+      "got_blossom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

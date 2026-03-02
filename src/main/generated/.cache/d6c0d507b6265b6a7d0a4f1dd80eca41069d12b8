@@ -1,4 +1,4 @@
-// 1.21.3	2026-02-18T13:20:50.9463953	Louis' Overhaul Mod/LouisOverhaulMod Recipes
+// 1.21.3	2026-03-02T22:06:27.2324346	Louis' Overhaul Mod/LouisOverhaulMod Recipes
 2634b11cd6f15126b051b50aef0c33d3ff3e2bb6 data\louis-overhaul-mod\advancement\recipes\misc\light_blue_dye_from_shiny_cornflower.json
 9e36894f75b627b0d4bd84b47aed6d1cc2943383 data\louis-overhaul-mod\recipe\dripstone_wall_from_dripstone_block_stonecutting.json
 d94f37f9fafdfb38b0045f86e854f4f88554e68e data\louis-overhaul-mod\recipe\light_blue_concrete_wall_from_light_blue_concrete_stonecutting.json
@@ -69,7 +69,7 @@ b615b2f71c949238b5d891e9705305bd2d5c42f0 data\louis-overhaul-mod\recipe\quartz_b
 a97cfd1fee427605ca282c6454ae15cbeb9c3ed3 data\louis-overhaul-mod\recipe\acacia_door_from_acacia_planks_stonecutting.json
 d64019a5cd1d58770109e37dd64eacdd79597f75 data\louis-overhaul-mod\advancement\recipes\building_blocks\quartz_bricks_stairs.json
 e47c1e042136a46dad5436372a4bf16745447bb6 data\louis-overhaul-mod\recipe\pink_concrete_stairs.json
-1d85861dc4725a3798baa2b0f02572872528b7b8 data\louis-overhaul-mod\advancement\recipes\decorations\recipe.json
+e3ba36b0868e023891c161bdffdde7bc16fcd4b2 data\louis-overhaul-mod\advancement\recipes\decorations\recipe.json
 fe08553f7762cdc23600216f96ee78cb9cb63ff6 data\louis-overhaul-mod\advancement\recipes\building_blocks\chiseled_lavender_quartz_from_lavender_quartz_bricks_stonecutting.json
 e3b61940f36ccfc9278772c3d36d3f8e71f5fe91 data\louis-overhaul-mod\advancement\recipes\building_blocks\rose_quartz_stairs.json
 57a9459f387ea4a424b9683a74b7e26eec8c6d2c data\louis-overhaul-mod\advancement\recipes\building_blocks\birch_pressure_plate_from_birch_planks_stonecutting.json
@@ -339,7 +339,7 @@ dc5c4e152f5d13fba9bd2bbb965ea6da4397b757 data\louis-overhaul-mod\advancement\rec
 242ace66738fc2ffce8f71d237f7ab1a8979e6c9 data\louis-overhaul-mod\recipe\light_blue_name_tag.json
 398a8c5cad6ccbad89a63656bb0e50f597837051 data\louis-overhaul-mod\recipe\prismarine_bricks_wall_from_prismarine_bricks_stonecutting.json
 a73f98ceb9836a62a53d3708468ac37b944a2b67 data\louis-overhaul-mod\recipe\dark_prismarine_wall_from_dark_prismarine_stonecutting.json
-52ab8710c4c5ef36b87c02ad2ae81fb5728cb91a data\louis-overhaul-mod\recipe\rotten_stew.json
+bcb80a0f678d3d922bd2abfa6820c3411262e13d data\louis-overhaul-mod\recipe\rotten_stew.json
 cd113713c9c42cab838393a3f7091e85f9e1d2cd data\louis-overhaul-mod\recipe\glow_upgrade_smithing_template.json
 ea0b8a35ebac23684e1d63572225218dd325152b data\louis-overhaul-mod\recipe\painting_to_water_sawmilling.json
 bcb80f1ccdb2a53ad322d03c2e5c10e3c66da905 data\louis-overhaul-mod\recipe\bamboo_mosaic_slab_from_bamboo_planks_stonecutting.json

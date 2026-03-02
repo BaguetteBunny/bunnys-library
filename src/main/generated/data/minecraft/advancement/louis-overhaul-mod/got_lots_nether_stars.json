@@ -15,14 +15,14 @@
     }
   },
   "display": {
-    "background": "minecraft:textures/blocks/ancient_debris_side.png",
+    "background": "minecraft:textures/block/ancient_debris_side.png",
     "description": "Obtain 64 Nether Stars",
     "frame": "goal",
     "icon": {
       "count": 1,
       "id": "minecraft:diamond_sword"
     },
-    "title": "The first step to perfection"
+    "title": "Mastery"
   },
   "requirements": [
     [
