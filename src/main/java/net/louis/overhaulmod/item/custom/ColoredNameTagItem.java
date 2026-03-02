@@ -57,6 +57,10 @@ public class ColoredNameTagItem extends NameTagItem {
                     entity.setCustomName(colorlessText.copy().withColor(14863280));
                 else if (Objects.equals(colorlessText.getString(), "Dawk1203"))
                     entity.setCustomName(colorlessText.copy().withColor(15511040));
+                else if (Objects.equals(colorlessText.getString(), "Mogswamp"))
+                    entity.setCustomName(colorlessText.copy().withColor(4388243));
+                else if (Objects.equals(colorlessText.getString(), "Fundy"))
+                    entity.setCustomName(colorlessText.copy().withColor(16570281));
                 else
                     entity.setCustomName(colorlessText.copy().withColor(this.firstTextColor));
 
