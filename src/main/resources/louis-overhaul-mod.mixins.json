@@ -42,7 +42,6 @@
 		"EnchantmentMixin",
 		"BlockMixin",
 		"ShovelItemMixin",
-		"ClientRecipeBookMixin",
 		"HoeItemMixin",
 		"SmallFireballEntityMixin",
 		"PigEntityMixin",
