@@ -13,13 +13,20 @@ import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Mixin(FishingBobberEntity.class)
 public class FishingBobberEntityMixin {
@@ -48,5 +55,16 @@ public class FishingBobberEntityMixin {
             entity.setVelocity(entity.getVelocity().add(vec3d));
         }
         ci.cancel();
+    }
+
+    @ModifyVariable(method = "use", at = @At(value = "STORE"), name = "list")
+    private List<ItemStack> LOM$addDoubleHookLogic(List<ItemStack> list) {
+        if (doubleHookEnchantLevel > 0 && self.getWorld().getRandom().nextInt(5) == 0) {
+            Entity o = self.getOwner() == null ? self : self.getOwner();
+
+            self.getWorld().playSound(null, o.getX(), o.getY(), o.getZ(), SoundEvents.ENTITY_GENERIC_SPLASH, SoundCategory.NEUTRAL, 2.f, 0.5f);
+            return list.stream().flatMap(item -> Stream.of(item, item)).toList();
+        }
+        return list;
     }
 }
