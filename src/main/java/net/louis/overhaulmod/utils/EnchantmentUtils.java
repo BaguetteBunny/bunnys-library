@@ -30,6 +30,20 @@ public class EnchantmentUtils {
         return false;
     }
 
+    public static int returnEnchantLevel(ItemStack stack, String path) {
+        ItemEnchantmentsComponent enchantments = stack.getOrDefault(DataComponentTypes.ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT);
+
+        Identifier modId = Identifier.of(LouisOverhaulMod.MOD_ID, path);
+        Identifier vanillaId = Identifier.ofVanilla(path);
+
+        for (var entry : enchantments.getEnchantmentEntries()) {
+            RegistryEntry<Enchantment> enchantment = entry.getKey();
+            if (enchantment.matchesId(modId) || enchantment.matchesId(vanillaId))
+                return enchantments.getLevel(enchantment);
+        }
+        return 0;
+    }
+
     public static final Map<Block, Item> SMELTING_TRANSFORM_MAP = new HashMap<>();
     static {
         SMELTING_TRANSFORM_MAP.put(Blocks.IRON_ORE, Items.IRON_INGOT);

@@ -350,6 +350,12 @@
   "enchantment.louis-overhaul-mod.illagers_bane": "Illager's Bane",
   "enchantment.louis-overhaul-mod.illagers_bane.desc": "Deals more damage to illagers",
 
+  "enchantment.louis-overhaul-mod.reeling": "Reeling",
+  "enchantment.louis-overhaul-mod.reeling.desc": "Increases range of fishing rod pull.",
+
+  "enchantment.louis-overhaul-mod.double_hook": "Double Hook",
+  "enchantment.louis-overhaul-mod.double_hook.desc": "Gain a chance to hook two items at once.",
+
   "enchantment.minecraft.protection.desc": "Reduces damage from melee damage",
   "enchantment.minecraft.fire_protection.desc": "Reduces void, fire, frost, environmental damage",
   "enchantment.minecraft.feather_falling.desc": "Reduces fall damage",

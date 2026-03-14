@@ -29,6 +29,10 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "giant_killer"));
     public static final RegistryKey<Enchantment> ILLAGERS_BANE =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "illagers_bane"));
+    public static final RegistryKey<Enchantment> REELING =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "reeling"));
+    public static final RegistryKey<Enchantment> DOUBLE_HOOK =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "double_hook"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -67,7 +71,7 @@ public class ModEnchantments {
                         Enchantment.leveledCost(23, 2),
                         Enchantment.leveledCost(35, 5),
                         0,
-                        AttributeModifierSlot.MAINHAND))
+                        AttributeModifierSlot.HAND))
                 .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.MINING_EXCLUSIVE_SET)));
 
         register(registerable, FIRE_BLAST, Enchantment.builder(Enchantment.definition(
@@ -113,6 +117,26 @@ public class ModEnchantments {
                         0,
                         AttributeModifierSlot.MAINHAND))
                 .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET)));
+
+        register(registerable, REELING, Enchantment.builder(Enchantment.definition(
+                        items.getOrThrow(ItemTags.FISHING_ENCHANTABLE),
+                        items.getOrThrow(ItemTags.FISHING_ENCHANTABLE),
+                        2,
+                        3,
+                        Enchantment.leveledCost(5, 8),
+                        Enchantment.leveledCost(25, 8),
+                        0,
+                        AttributeModifierSlot.MAINHAND)));
+
+        register(registerable, DOUBLE_HOOK, Enchantment.builder(Enchantment.definition(
+                items.getOrThrow(ItemTags.FISHING_ENCHANTABLE),
+                items.getOrThrow(ItemTags.FISHING_ENCHANTABLE),
+                1,
+                1,
+                Enchantment.leveledCost(30, 8),
+                Enchantment.leveledCost(30, 8),
+                0,
+                AttributeModifierSlot.MAINHAND)));
     }
 
     private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {

@@ -20,12 +20,15 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SMELTING)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.REELING)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.TRADEABLE)
                 .add(ModEnchantments.VAMPIRISM)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.REELING)
+                .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT)
@@ -39,29 +42,32 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SMELTING)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.REELING)
+                .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_TRADED_EQUIPMENT)
                 .add(ModEnchantments.VAMPIRISM)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.REELING)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.DOUBLE_TRADE_PRICE)
-                .add(ModEnchantments.VAMPIRISM)
-                .add(ModEnchantments.TILLING)
-                .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE)
                 .add(ModEnchantments.VAMPIRISM)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.REELING)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.TREASURE)
                 .add(ModEnchantments.SMELTING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.GIANT_KILLER);
 
     }

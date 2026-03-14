@@ -15,7 +15,7 @@
   },
   "primary_items": "#louis-overhaul-mod:shovel_hoe_enchantable",
   "slots": [
-    "mainhand"
+    "hand"
   ],
   "supported_items": "#louis-overhaul-mod:shovel_hoe_enchantable",
   "weight": 1
