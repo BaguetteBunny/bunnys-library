@@ -144,7 +144,7 @@ public class WitherEntityMixin implements WitherHealthAccessor {
                     false,
                     World.ExplosionSourceType.MOB
             );
-            List<LivingEntity> entities = getEntitiesInRadius(self.getEntityWorld(), self.getPos(), 10);
+            List<LivingEntity> entities = getLivingEntitiesInRadius(self.getEntityWorld(), self.getPos(), 10);
             for (LivingEntity le : entities) {
                 if (!(le instanceof PlayerEntity)) continue;
                 le.setInvulnerable(false);

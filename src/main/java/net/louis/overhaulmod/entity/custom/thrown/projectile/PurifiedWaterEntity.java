@@ -126,7 +126,7 @@ public class PurifiedWaterEntity extends ThrownItemEntity {
         ParticleShapeUtil.drawCircle(ParticleTypes.EFFECT, vec3d, 3F, (ServerWorld) world, 1, new Vector4d(0,0,0,0));
 
         // Damage/heal all mobs in radius
-        List<LivingEntity> mobs = getEntitiesInRadius(world, vec3d, 5);
+        List<LivingEntity> mobs = getLivingEntitiesInRadius(world, vec3d, 5);
         for (LivingEntity entity : mobs) {
             entity.extinguish();
             if (entity instanceof HostileEntity)

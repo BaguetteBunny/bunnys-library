@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
@@ -12,21 +11,19 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class RadiusGetterUtil {
 
     public static Optional<LivingEntity> getNearestEntity(ServerWorld world, BlockPos pos, double radius) {
-        List<LivingEntity> entities = getEntitiesInRadius(world, pos.toCenterPos(), radius);
+        List<LivingEntity> entities = getLivingEntitiesInRadius(world, pos.toCenterPos(), radius);
 
         return entities.stream()
                 .min(Comparator.comparingDouble(e -> e.squaredDistanceTo(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)));
     }
 
-    public static List<LivingEntity> getEntitiesInRadius(World world, Vec3d pos, double radius) {
+    public static List<LivingEntity> getLivingEntitiesInRadius(World world, Vec3d pos, double radius) {
         Box box = new Box(
                 pos.x - radius, pos.y - radius, pos.z - radius,
                 pos.x + radius, pos.y + radius, pos.z + radius
@@ -34,6 +31,19 @@ public class RadiusGetterUtil {
 
         return world.getEntitiesByClass(
                 LivingEntity.class,
+                box,
+                entity -> entity.squaredDistanceTo(pos) <= radius * radius
+        );
+    }
+
+    public static List<Entity> getEntitiesInRadius(World world, Vec3d pos, double radius) {
+        Box box = new Box(
+                pos.x - radius, pos.y - radius, pos.z - radius,
+                pos.x + radius, pos.y + radius, pos.z + radius
+        );
+
+        return world.getEntitiesByClass(
+                Entity.class,
                 box,
                 entity -> entity.squaredDistanceTo(pos) <= radius * radius
         );
