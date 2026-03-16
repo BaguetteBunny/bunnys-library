@@ -60,7 +60,8 @@
 		"ArmorMaterialMixin",
 		"BundleItemMixin",
 		"EndermanEntityMixin",
-		"FishingBobberEntityMixin"
+		"FishingBobberEntityMixin",
+		"PlayerEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

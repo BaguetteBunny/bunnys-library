@@ -22,6 +22,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.ILLAGERS_BANE)
                 .add(ModEnchantments.REELING)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.TRADEABLE)
@@ -31,6 +32,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.REELING)
                 .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT)
@@ -47,6 +49,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.REELING)
                 .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_TRADED_EQUIPMENT)
@@ -55,6 +58,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.ILLAGERS_BANE)
                 .add(ModEnchantments.REELING)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.DOUBLE_TRADE_PRICE)
@@ -68,6 +72,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.ILLAGERS_BANE)
                 .add(ModEnchantments.REELING)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.TREASURE)

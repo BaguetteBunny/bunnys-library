@@ -35,6 +35,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "double_hook"));
     public static final RegistryKey<Enchantment> SHIELD_BASH =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "shield_bash"));
+    public static final RegistryKey<Enchantment> RECOVERY =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "recovery"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -147,6 +149,16 @@ public class ModEnchantments {
                 1,
                 Enchantment.leveledCost(30, 8),
                 Enchantment.leveledCost(30, 8),
+                0,
+                AttributeModifierSlot.OFFHAND)));
+
+        register(registerable, RECOVERY, Enchantment.builder(Enchantment.definition(
+                items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                3,
+                3,
+                Enchantment.leveledCost(10, 10),
+                Enchantment.leveledCost(30, 5),
                 0,
                 AttributeModifierSlot.OFFHAND)));
     }

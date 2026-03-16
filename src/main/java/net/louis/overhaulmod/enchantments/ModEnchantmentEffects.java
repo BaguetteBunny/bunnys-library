@@ -29,6 +29,8 @@ public class ModEnchantmentEffects {
             registerEntityEffect("double_hook", DoubleHookEnchantmentEffect.CODEC);
     public static final MapCodec<? extends EnchantmentEntityEffect> SHIELD_BASH =
             registerEntityEffect("shield_bash", ShieldBashEnchantmentEffect.CODEC);
+    public static final MapCodec<? extends EnchantmentEntityEffect> RECOVERY =
+            registerEntityEffect("recovery", RecoveryEnchantmentEffect.CODEC);
 
     private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name, MapCodec<? extends EnchantmentEntityEffect> codec) {
         return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Identifier.of(LouisOverhaulMod.MOD_ID, name), codec);
