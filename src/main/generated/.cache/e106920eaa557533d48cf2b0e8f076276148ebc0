@@ -1,10 +1,11 @@
-// 1.21.3	2026-03-14T17:53:26.6044188	Louis' Overhaul Mod/
+// 1.21.3	2026-03-16T23:18:13.4323071	Louis' Overhaul Mod/
 fd63c07687d8e012114ed53d86d699ed087f84e1 data\louis-overhaul-mod\enchantment\magic_touch.json
-9d8478eea4f4be2f671c084434d62727c92c3981 data\louis-overhaul-mod\enchantment\illagers_bane.json
+da8ba7d9586a733563965d61e42e82c8b629c506 data\louis-overhaul-mod\enchantment\shield_bash.json
 88af3d49f249d5e92ab089692f67b80b87d2c8e7 data\louis-overhaul-mod\enchantment\smelting.json
+9d8478eea4f4be2f671c084434d62727c92c3981 data\louis-overhaul-mod\enchantment\illagers_bane.json
 f1a7862ea17170efa1b4e8b5af4fd2471e197b86 data\louis-overhaul-mod\enchantment\giant_killer.json
 617eeca61f28a1e4b8dd54b2536f7fb597290683 data\louis-overhaul-mod\enchantment\double_hook.json
 039d7907611a995e2f74c7bc1b19139cd01dfa2d data\louis-overhaul-mod\enchantment\vampirism.json
-28ad7432fae1a25308efa32e68f32d7b7c1af890 data\louis-overhaul-mod\enchantment\fire_blast.json
 57d4b15de4263de5ff3883bc0ad344a5140f89a3 data\louis-overhaul-mod\enchantment\tilling.json
+28ad7432fae1a25308efa32e68f32d7b7c1af890 data\louis-overhaul-mod\enchantment\fire_blast.json
 fc66e6116cff90aa0aa0d6b8016db6824dba9e85 data\louis-overhaul-mod\enchantment\reeling.json

@@ -19,6 +19,7 @@ import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.item.custom.PetRecoveryCompass;
 import net.louis.overhaulmod.screen.AdvancedFletchingTableScreen;
 import net.louis.overhaulmod.screen.ModScreenHandlers;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
@@ -73,10 +74,12 @@ public class LouisOverhaulModClient implements ClientModInitializer {
 
         addColoredWater();
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.world == null) return;
-            PULSE_DEGREES = (PULSE_DEGREES + 5) % 360;
-        });
+        ClientTickEvents.END_CLIENT_TICK.register(this::clientLoop);
+    }
+
+    private void clientLoop(MinecraftClient client) {
+        if (client.world == null) return;
+        PULSE_DEGREES = (PULSE_DEGREES + 5) % 360;
     }
 
     public static void addAzuritePredicate() {

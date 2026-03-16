@@ -33,6 +33,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "reeling"));
     public static final RegistryKey<Enchantment> DOUBLE_HOOK =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "double_hook"));
+    public static final RegistryKey<Enchantment> SHIELD_BASH =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "shield_bash"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -137,6 +139,16 @@ public class ModEnchantments {
                 Enchantment.leveledCost(30, 8),
                 0,
                 AttributeModifierSlot.MAINHAND)));
+
+        register(registerable, SHIELD_BASH, Enchantment.builder(Enchantment.definition(
+                items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                2,
+                1,
+                Enchantment.leveledCost(30, 8),
+                Enchantment.leveledCost(30, 8),
+                0,
+                AttributeModifierSlot.OFFHAND)));
     }
 
     private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {
