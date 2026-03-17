@@ -1,7 +1,7 @@
 package net.louis.overhaulmod.enchantments;
 
 import net.louis.overhaulmod.LouisOverhaulMod;
-import net.louis.overhaulmod.enchantments.custom.LifestealEnchantmentEffect;
+import net.louis.overhaulmod.enchantments.custom.*;
 import net.louis.overhaulmod.tags.ModTags;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -37,6 +37,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "shield_bash"));
     public static final RegistryKey<Enchantment> RECOVERY =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "recovery"));
+    public static final RegistryKey<Enchantment> SHIELD_AURA =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "shield_aura"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -161,6 +163,18 @@ public class ModEnchantments {
                 Enchantment.leveledCost(30, 5),
                 0,
                 AttributeModifierSlot.OFFHAND)));
+
+        register(registerable, SHIELD_AURA, Enchantment.builder(Enchantment.definition(
+                items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                1,
+                1,
+                Enchantment.leveledCost(30, 10),
+                Enchantment.leveledCost(30, 10),
+                0,
+                AttributeModifierSlot.HAND))
+                .addEffect(EnchantmentEffectComponentTypes.TICK, new ShieldAuraEnchantmentEffect())
+        );
     }
 
     private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {

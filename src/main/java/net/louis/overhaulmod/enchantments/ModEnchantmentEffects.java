@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.enchantments.custom.*;
 import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
+import net.minecraft.enchantment.effect.EnchantmentLocationBasedEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -31,6 +32,8 @@ public class ModEnchantmentEffects {
             registerEntityEffect("shield_bash", ShieldBashEnchantmentEffect.CODEC);
     public static final MapCodec<? extends EnchantmentEntityEffect> RECOVERY =
             registerEntityEffect("recovery", RecoveryEnchantmentEffect.CODEC);
+    public static final MapCodec<? extends EnchantmentEntityEffect> SHIELD_AURA =
+            registerEntityEffect("shield_aura", ShieldAuraEnchantmentEffect.CODEC);
 
     private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name, MapCodec<? extends EnchantmentEntityEffect> codec) {
         return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Identifier.of(LouisOverhaulMod.MOD_ID, name), codec);
