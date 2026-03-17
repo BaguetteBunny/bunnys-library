@@ -1,8 +1,5 @@
 package net.louis.overhaulmod.utils;
 
-import net.louis.overhaulmod.block.ModBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -12,6 +9,13 @@ import java.util.Map;
 import java.util.Set;
 
 public final class ItemManager {
+
+    public static final Set<Item> ENCHANTABLE = new HashSet<>();
+    static {
+        ENCHANTABLE.add(Items.SHEARS);
+        ENCHANTABLE.add(Items.FLINT_AND_STEEL);
+        ENCHANTABLE.add(Items.SHIELD);
+    }
 
     public static final Set<Item> HEAD_EQUIPPABLE_ITEMS = new HashSet<>();
     static {

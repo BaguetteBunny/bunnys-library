@@ -4,8 +4,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -16,6 +19,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.ofVanilla("enchantable/in_enchanting_table")))
+                .add(Items.SHIELD);
+
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR_ENCHANTABLE)
                 .add(Items.DIAMOND_HORSE_ARMOR)
                 .add(Items.IRON_HORSE_ARMOR)

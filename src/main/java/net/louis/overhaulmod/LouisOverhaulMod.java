@@ -32,6 +32,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.EnchantableComponent;
 import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnGroup;
@@ -51,6 +52,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static net.louis.overhaulmod.utils.ItemManager.ENCHANTABLE;
 import static net.louis.overhaulmod.utils.ItemManager.HEAD_EQUIPPABLE_ITEMS;
 
 public class LouisOverhaulMod implements ModInitializer {
@@ -100,7 +102,7 @@ public class LouisOverhaulMod implements ModInitializer {
 		registerDispenserProjectles();
 		tickGlobal();
 		replaceFletcherPOI();
-		setCertainBlocksAsEquippables();
+		addDataComponentsToExistingItems();
 
 		// Mob
 		registerSpawning();
@@ -141,11 +143,18 @@ public class LouisOverhaulMod implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.BROWN_BEAR, BearEntity.createBrownBearAttributes());
 	}
 
-	private void setCertainBlocksAsEquippables() {
+	private void addDataComponentsToExistingItems() {
 		DefaultItemComponentEvents.MODIFY.register(context -> {
 			context.modify(
                     new HashSet<>(HEAD_EQUIPPABLE_ITEMS),
 					(builder, item) -> builder.add(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.HEAD).build())
+			);
+		});
+
+		DefaultItemComponentEvents.MODIFY.register(context -> {
+			context.modify(
+					new HashSet<>(ENCHANTABLE),
+					(builder, item) -> builder.add(DataComponentTypes.ENCHANTABLE, new EnchantableComponent(10))
 			);
 		});
 	}
