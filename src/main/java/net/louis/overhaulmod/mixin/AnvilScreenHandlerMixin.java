@@ -100,7 +100,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
         ItemStack leftStack = this.input.getStack(0);
         ItemStack rightStack = this.input.getStack(1);
         if (leftStack.isEmpty() || leftStack.getItem() == Items.ENCHANTED_BOOK) return;
-        if (leftStack.isDamaged() && !rightStack.isEmpty() && rightStack.getItem() != ModItems.AZURITE) {
+        if (leftStack.isDamaged() && !rightStack.isEmpty() && rightStack.getItem() != ModItems.AZURITE && rightStack.getItem() != Items.ENCHANTED_BOOK) {
             ci.cancel();
             return;
         }
