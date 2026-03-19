@@ -149,8 +149,8 @@ public class ModEnchantments {
                 items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
                 2,
                 1,
-                Enchantment.leveledCost(30, 8),
-                Enchantment.leveledCost(30, 8),
+                Enchantment.leveledCost(25, 3),
+                Enchantment.leveledCost(35, 3),
                 0,
                 AttributeModifierSlot.OFFHAND)));
 
@@ -167,10 +167,10 @@ public class ModEnchantments {
         register(registerable, SHIELD_AURA, Enchantment.builder(Enchantment.definition(
                 items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
                 items.getOrThrow(ModTags.Items.SHIELD_ENCHANTABLE),
+                2,
                 1,
-                1,
-                Enchantment.leveledCost(30, 10),
-                Enchantment.leveledCost(30, 10),
+                Enchantment.leveledCost(25, 3),
+                Enchantment.leveledCost(35, 3),
                 0,
                 AttributeModifierSlot.HAND))
                 .addEffect(EnchantmentEffectComponentTypes.TICK, new ShieldAuraEnchantmentEffect())

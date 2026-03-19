@@ -20,8 +20,8 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SMELTING)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
-                .add(ModEnchantments.REELING)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.SHIELD_AURA)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
@@ -31,7 +31,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.ILLAGERS_BANE)
                 .add(ModEnchantments.REELING)
                 .add(ModEnchantments.DOUBLE_HOOK)
-                .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.SHIELD_AURA)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.GIANT_KILLER);
 
@@ -79,6 +79,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SMELTING)
                 .add(ModEnchantments.ILLAGERS_BANE)
                 .add(ModEnchantments.DOUBLE_HOOK)
+                .add(ModEnchantments.SHIELD_BASH)
                 .add(ModEnchantments.GIANT_KILLER);
 
     }

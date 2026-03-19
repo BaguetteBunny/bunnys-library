@@ -13,17 +13,17 @@
     ]
   },
   "max_cost": {
-    "base": 30,
+    "base": 25,
     "per_level_above_first": 10
   },
   "max_level": 1,
   "min_cost": {
-    "base": 30,
+    "base": 25,
     "per_level_above_first": 10
   },
   "primary_items": "#louis-overhaul-mod:shield_enchantable",
   "slots": [
-    "offhand"
+    "hand"
   ],
   "supported_items": "#louis-overhaul-mod:shield_enchantable",
   "weight": 1

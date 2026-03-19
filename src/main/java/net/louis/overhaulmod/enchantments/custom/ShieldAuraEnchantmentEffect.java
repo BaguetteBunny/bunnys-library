@@ -17,8 +17,9 @@ public record ShieldAuraEnchantmentEffect() implements EnchantmentEntityEffect {
     public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
         if (user instanceof PlayerEntity player
                 && player.isBlocking()
-                && player.getStatusEffect(StatusEffects.RESISTANCE) == null) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 20, 0, true, true));
+                && (player.getStatusEffect(StatusEffects.RESISTANCE) == null || player.getStatusEffect(StatusEffects.RESISTANCE).getDuration() <= 2)
+        ) {
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 2, 0, true, true));
         }
     }
 
