@@ -39,6 +39,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "recovery"));
     public static final RegistryKey<Enchantment> SHIELD_AURA =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "shield_aura"));
+    public static final RegistryKey<Enchantment> TAILORING =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "tailoring"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -175,6 +177,16 @@ public class ModEnchantments {
                 AttributeModifierSlot.HAND))
                 .addEffect(EnchantmentEffectComponentTypes.TICK, new ShieldAuraEnchantmentEffect())
         );
+
+        register(registerable, TAILORING, Enchantment.builder(Enchantment.definition(
+                items.getOrThrow(ModTags.Items.SHEARS_ENCHANTABLE),
+                items.getOrThrow(ModTags.Items.SHEARS_ENCHANTABLE),
+                3,
+                3,
+                Enchantment.leveledCost(10, 10),
+                Enchantment.leveledCost(30, 5),
+                0,
+                AttributeModifierSlot.MAINHAND)));
     }
 
     private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {

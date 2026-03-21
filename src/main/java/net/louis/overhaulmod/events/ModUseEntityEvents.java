@@ -5,6 +5,7 @@ import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.mixin.accessor.ArmorStandEntityAccessor;
+import net.louis.overhaulmod.utils.EnchantmentUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.SuspiciousStewEffectsComponent;
 import net.minecraft.entity.*;
@@ -16,6 +17,7 @@ import net.minecraft.entity.conversion.EntityConversionType;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.BoggedEntity;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
@@ -25,6 +27,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -50,6 +53,7 @@ public class ModUseEntityEvents {
         UseEntityCallback.EVENT.register(ModUseEntityEvents::dyeShulkers);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useBrushOnDyedShulkers);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useChilledBonemealOnAnimal);
+        UseEntityCallback.EVENT.register(ModUseEntityEvents::useTailoringShears);
 
         // Stews
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useMushroomStew);
@@ -57,6 +61,52 @@ public class ModUseEntityEvents {
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useFishStew);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useRottenStew);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useSuspiciousStew);
+    }
+
+    private static ActionResult useTailoringShears(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
+        if (world.isClient() || player.getStackInHand(hand).getItem() != Items.SHEARS) return ActionResult.PASS;
+        ItemStack stack = player.getStackInHand(hand);
+
+        // 1. Sheep
+        if (entity instanceof SheepEntity sheep && sheep.isShearable()) {
+            int doubledLevel = 2*EnchantmentUtils.returnEnchantLevel(stack, "tailoring");
+
+            if (doubledLevel > 0) {
+                Item wool = Registries.ITEM.get(Identifier.ofVanilla(sheep.getColor().getName() + "_wool"));
+
+                for (int i = 0; i < doubledLevel; i++)
+                    if (world.getRandom().nextInt(2) == 1)
+                        sheep.dropStack((ServerWorld) world, new ItemStack(wool), 1.0F);
+            }
+        }
+
+        // 2. Mooshroom
+        if (entity instanceof MooshroomEntity mooshroom) {
+            int tripledLevel = 3*EnchantmentUtils.returnEnchantLevel(stack, "tailoring");
+
+            if (tripledLevel > 0) {
+                Item mushroom = mooshroom.getVariant() == MooshroomEntity.Type.BROWN ? Items.BROWN_MUSHROOM : Items.RED_MUSHROOM;
+
+                for (int i = 0; i < tripledLevel; i++)
+                    if (world.getRandom().nextInt(2) == 1)
+                        mooshroom.dropStack((ServerWorld) world, new ItemStack(mushroom), 1.0F);
+            }
+        }
+
+        // 3. Bogged
+        if (entity instanceof BoggedEntity bogged && bogged.isShearable()) {
+            int tripledLevel = 3*EnchantmentUtils.returnEnchantLevel(stack, "tailoring");
+
+            if (tripledLevel > 0) {
+                for (int i = 0; i < tripledLevel; i++)
+                    if (world.getRandom().nextInt(2) == 1) {
+                        Item mushroom = world.getRandom().nextInt(2) == 1 ? Items.BROWN_MUSHROOM : Items.RED_MUSHROOM;
+                        bogged.dropStack((ServerWorld) world, new ItemStack(mushroom), 1.0F);
+                    }
+            }
+        }
+
+        return ActionResult.PASS;
     }
 
     private static ActionResult changeArmorStandVariant(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {

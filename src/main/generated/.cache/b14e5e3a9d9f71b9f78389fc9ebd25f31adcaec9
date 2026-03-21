@@ -1,9 +1,9 @@
-// 1.21.3	2026-03-19T17:47:59.0886301	Louis' Overhaul Mod/Tags for minecraft:enchantment
-38bf20b8948578c1a45e607eaeecfbdedf7b2082 data\minecraft\tags\enchantment\non_treasure.json
-9f0f73abed6b3522ca7f2ccb6e12dd015326eb67 data\minecraft\tags\enchantment\tradeable.json
+// 1.21.3	2026-03-21T16:13:40.1792674	Louis' Overhaul Mod/Tags for minecraft:enchantment
+6a347a2c27bc5e15a2232b156b1da15174e1012a data\minecraft\tags\enchantment\non_treasure.json
+cbfefa877a73e525bbce40a9d08130f69cd6c0a5 data\minecraft\tags\enchantment\tradeable.json
 f665183bfb774f26b5e8938211a20a8acc9b08c0 data\minecraft\tags\enchantment\double_trade_price.json
-0e510b053506da9fdc1743f533921de4ee5c2947 data\minecraft\tags\enchantment\on_random_loot.json
+0ce6352f6aa8f126f20785fb8deeda5dab1f61d0 data\minecraft\tags\enchantment\on_random_loot.json
 e2bdbf095cac41a923307a92cc2bd62d498fca65 data\minecraft\tags\enchantment\on_mob_spawn_equipment.json
-38bf20b8948578c1a45e607eaeecfbdedf7b2082 data\minecraft\tags\enchantment\on_traded_equipment.json
+6a347a2c27bc5e15a2232b156b1da15174e1012a data\minecraft\tags\enchantment\on_traded_equipment.json
 28bca4081f1a1a7774aaa63f79ad0785bac7570a data\minecraft\tags\enchantment\treasure.json
-3267266ed90580239c45b4ddc7e4713d22b31ea7 data\minecraft\tags\enchantment\in_enchanting_table.json
+482ae601c91597efcd349ca06e8d4e92fb43fa77 data\minecraft\tags\enchantment\in_enchanting_table.json

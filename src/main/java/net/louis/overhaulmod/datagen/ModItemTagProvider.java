@@ -20,7 +20,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.ofVanilla("enchantable/in_enchanting_table")))
-                .add(Items.SHIELD);
+                .add(Items.SHIELD)
+                .add(Items.FLINT_AND_STEEL)
+                .add(Items.SHEARS);
 
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR_ENCHANTABLE)
                 .add(Items.DIAMOND_HORSE_ARMOR)
