@@ -290,6 +290,25 @@ public class ModLootTableEvents {
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
+
+            // Make BT Drop Sea Conqueror
+            if (LootTables.BURIED_TREASURE_CHEST.equals(key)) {
+                RegistryEntry<Enchantment> sc = registry.getOrThrow(RegistryKeys.ENCHANTMENT)
+                        .getOrThrow(ModEnchantments.SEA_CONQUEROR);
+
+                ItemEnchantmentsComponent.Builder enchantmentBuilder =
+                        new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+                enchantmentBuilder.add(sc, 1);
+
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.1f))
+                        .with(ItemEntry.builder(Items.ENCHANTED_BOOK)
+                                .apply(SetComponentsLootFunction.builder(DataComponentTypes.STORED_ENCHANTMENTS, enchantmentBuilder.build())));
+
+                tableBuilder.pool(poolBuilder);
+            }
+
             // Make bats drop bat fangs
             if (BAT_ID.equals(key.getValue())) {
                 LootPool.Builder poolBuilder = LootPool.builder()

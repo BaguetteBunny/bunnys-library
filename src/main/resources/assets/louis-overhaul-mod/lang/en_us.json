@@ -371,6 +371,9 @@
   "enchantment.louis-overhaul-mod.excavator": "Excavator",
   "enchantment.louis-overhaul-mod.excavator.desc": "Increases tools block range",
 
+  "enchantment.louis-overhaul-mod.sea_conqueror": "Sea Conqueror",
+  "enchantment.louis-overhaul-mod.sea_conqueror.desc": "Turtle helmet gain 1 extra entity reach",
+
   "enchantment.minecraft.protection.desc": "Reduces damage from melee damage",
   "enchantment.minecraft.fire_protection.desc": "Reduces void, fire, frost, environmental damage",
   "enchantment.minecraft.feather_falling.desc": "Reduces fall damage",

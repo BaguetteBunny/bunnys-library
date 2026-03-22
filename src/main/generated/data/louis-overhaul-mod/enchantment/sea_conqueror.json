@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 0,
+  "description": {
+    "translate": "enchantment.louis-overhaul-mod.sea_conqueror"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 1.0,
+          "per_level_above_first": 0.0
+        },
+        "attribute": "minecraft:entity_interaction_range",
+        "id": "louis-overhaul-mod:sea_conqueror_range",
+        "operation": "add_value"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 30,
+    "per_level_above_first": 5
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 5
+  },
+  "primary_items": "#louis-overhaul-mod:turtle_helmet_enchantable",
+  "slots": [
+    "head"
+  ],
+  "supported_items": "#louis-overhaul-mod:turtle_helmet_enchantable",
+  "weight": 1
+}

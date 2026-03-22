@@ -49,6 +49,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "tailoring"));
     public static final RegistryKey<Enchantment> EXCAVATOR =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "excavator"));
+    public static final RegistryKey<Enchantment> SEA_CONQUEROR =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "sea_conqueror"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -209,6 +211,23 @@ public class ModEnchantments {
                         Identifier.of(LouisOverhaulMod.MOD_ID, "excavator_range"),
                         EntityAttributes.BLOCK_INTERACTION_RANGE,
                         EnchantmentLevelBasedValue.linear(1.0f, 0.5f),
+                        EntityAttributeModifier.Operation.ADD_VALUE
+                ))
+        );
+
+        register(registerable, SEA_CONQUEROR, Enchantment.builder(Enchantment.definition(
+                        items.getOrThrow(ModTags.Items.TURTLE_HELMET_ENCHANTABLE),
+                        items.getOrThrow(ModTags.Items.TURTLE_HELMET_ENCHANTABLE),
+                        1,
+                        1,
+                        Enchantment.leveledCost(25, 5),
+                        Enchantment.leveledCost(30, 5),
+                        0,
+                        AttributeModifierSlot.HEAD))
+                .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES, new AttributeEnchantmentEffect(
+                        Identifier.of(LouisOverhaulMod.MOD_ID, "sea_conqueror_range"),
+                        EntityAttributes.ENTITY_INTERACTION_RANGE,
+                        EnchantmentLevelBasedValue.linear(1.0f, 0.0f),
                         EntityAttributeModifier.Operation.ADD_VALUE
                 ))
         );
