@@ -24,6 +24,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SHIELD_AURA)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.TAILORING)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.TRADEABLE)
@@ -35,12 +36,14 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SHIELD_AURA)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.TAILORING)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT)
                 .add(ModEnchantments.VAMPIRISM)
                 .add(ModEnchantments.TILLING)
                 .add(ModEnchantments.ILLAGERS_BANE)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_RANDOM_LOOT)
@@ -53,6 +56,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SHIELD_BASH)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.TAILORING)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.ON_TRADED_EQUIPMENT)
@@ -63,11 +67,13 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SHIELD_BASH)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.TAILORING)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.DOUBLE_TRADE_PRICE)
                 .add(ModEnchantments.DOUBLE_HOOK)
                 .add(ModEnchantments.SHIELD_BASH)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE)
@@ -78,6 +84,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SHIELD_BASH)
                 .add(ModEnchantments.RECOVERY)
                 .add(ModEnchantments.TAILORING)
+                .add(ModEnchantments.EXCAVATOR)
                 .add(ModEnchantments.GIANT_KILLER);
 
         getOrCreateTagBuilder(EnchantmentTags.TREASURE)

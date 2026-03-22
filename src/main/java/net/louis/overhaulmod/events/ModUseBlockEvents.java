@@ -45,6 +45,18 @@ public class ModUseBlockEvents {
         UseBlockCallback.EVENT.register(ModUseBlockEvents::useDecrepitBonemealOnCrops);
         UseBlockCallback.EVENT.register(ModUseBlockEvents::rcHarvest);
         UseBlockCallback.EVENT.register(ModUseBlockEvents::sitOnSaddleUse);
+        UseBlockCallback.EVENT.register(ModUseBlockEvents::shearsStopGrowth);
+    }
+
+    private static ActionResult shearsStopGrowth(PlayerEntity player, World world, Hand hand, BlockHitResult blockHitResult) {
+        ItemStack stack = player.getStackInHand(hand);
+
+        if (!world.isClient() && stack.getItem() == Items.SHEARS) {
+
+
+        }
+
+        return ActionResult.PASS;
     }
 
     private static ActionResult oxidizeCopperWithClock(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {

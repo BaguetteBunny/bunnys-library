@@ -36,6 +36,8 @@ public class ModEnchantmentEffects {
             registerEntityEffect("shield_aura", ShieldAuraEnchantmentEffect.CODEC);
     public static final MapCodec<? extends EnchantmentEntityEffect> TAILORING =
             registerEntityEffect("tailoring", TailoringEnchantmentEffect.CODEC);
+    public static final MapCodec<? extends EnchantmentEntityEffect> EXCAVATOR =
+            registerEntityEffect("excavator", ExcavatorEnchantmentEffect.CODEC);
 
     private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name, MapCodec<? extends EnchantmentEntityEffect> codec) {
         return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Identifier.of(LouisOverhaulMod.MOD_ID, name), codec);

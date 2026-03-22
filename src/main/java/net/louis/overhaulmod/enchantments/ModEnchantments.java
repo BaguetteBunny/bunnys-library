@@ -5,8 +5,14 @@ import net.louis.overhaulmod.enchantments.custom.*;
 import net.louis.overhaulmod.tags.ModTags;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentLevelBasedValue;
+import net.minecraft.enchantment.effect.AttributeEnchantmentEffect;
 import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
+import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -41,6 +47,8 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "shield_aura"));
     public static final RegistryKey<Enchantment> TAILORING =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "tailoring"));
+    public static final RegistryKey<Enchantment> EXCAVATOR =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(LouisOverhaulMod.MOD_ID, "excavator"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
@@ -187,6 +195,23 @@ public class ModEnchantments {
                 Enchantment.leveledCost(30, 5),
                 0,
                 AttributeModifierSlot.MAINHAND)));
+
+        register(registerable, EXCAVATOR, Enchantment.builder(Enchantment.definition(
+                items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
+                items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
+                2,
+                3,
+                Enchantment.leveledCost(10, 10),
+                Enchantment.leveledCost(30, 5),
+                0,
+                AttributeModifierSlot.MAINHAND))
+                .addEffect(EnchantmentEffectComponentTypes.ATTRIBUTES, new AttributeEnchantmentEffect(
+                        Identifier.of(LouisOverhaulMod.MOD_ID, "excavator_range"),
+                        EntityAttributes.BLOCK_INTERACTION_RANGE,
+                        EnchantmentLevelBasedValue.linear(1.0f, 0.5f),
+                        EntityAttributeModifier.Operation.ADD_VALUE
+                ))
+        );
     }
 
     private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {

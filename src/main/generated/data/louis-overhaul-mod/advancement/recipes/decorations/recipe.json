@@ -2,7 +2,7 @@
   "criteria": {
     "has_painting": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:painting_to_fighters_sawmilling"
+        "recipe": "louis-overhaul-mod:painting_to_donkey_kong_sawmilling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
