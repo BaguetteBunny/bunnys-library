@@ -93,12 +93,12 @@ public class EnchantmentCapRegistry {
         ENCHANTMENT_CAPS.put(Items.NETHERITE_HOE, baseHoe);
 
         // Other
-        ENCHANTMENT_CAPS.put(Items.TURTLE_HELMET, baseHelmet + 3);
+        ENCHANTMENT_CAPS.put(Items.TURTLE_HELMET, baseHelmet + 2);
         ENCHANTMENT_CAPS.put(Items.ELYTRA, baseChestplate - 1);
         ENCHANTMENT_CAPS.put(Items.SHIELD, 3);
         ENCHANTMENT_CAPS.put(Items.BOW, 4);
         ENCHANTMENT_CAPS.put(Items.CROSSBOW, 3);
-        ENCHANTMENT_CAPS.put(Items.TRIDENT, 5);
+        ENCHANTMENT_CAPS.put(Items.TRIDENT, baseSword);
         ENCHANTMENT_CAPS.put(Items.FISHING_ROD, 3);
         ENCHANTMENT_CAPS.put(Items.SHEARS, 2);
         ENCHANTMENT_CAPS.put(Items.FLINT_AND_STEEL, 2);
