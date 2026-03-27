@@ -52,8 +52,21 @@ public class ModUseBlockEvents {
         ItemStack stack = player.getStackInHand(hand);
 
         if (!world.isClient() && stack.getItem() == Items.SHEARS) {
+            BlockPos pos = blockHitResult.getBlockPos();
+            BlockState blockState = world.getBlockState(pos);
 
+            boolean validBlockState = blockState.contains(SugarCaneBlock.AGE) || blockState.contains(BambooBlock.AGE) || blockState.contains(CactusBlock.AGE) || blockState.getBlock() == Blocks.BAMBOO_SAPLING;
 
+            if (validBlockState && world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
+                if (world.getBlockState(pos.up()).getBlock() == Blocks.AIR) world.setBlockState(pos.up(), Blocks.LIGHT.getDefaultState().with(LightBlock.LEVEL_15, 0), Block.NOTIFY_LISTENERS);
+                else if (world.getBlockState(pos.up()).getBlock() == Blocks.LIGHT) world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), Block.NOTIFY_LISTENERS);
+                else return ActionResult.PASS;
+
+                world.playSound(null, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP,
+                        SoundCategory.PLAYERS, 1.0F, 1.F);
+
+                return ActionResult.SUCCESS_SERVER;
+            }
         }
 
         return ActionResult.PASS;
