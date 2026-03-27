@@ -153,7 +153,7 @@ public class ModUseBlockEvents {
                         0.075
                 );
 
-                return ActionResult.SUCCESS;
+                return ActionResult.SUCCESS_SERVER;
             }
         }
 
@@ -179,7 +179,7 @@ public class ModUseBlockEvents {
 
                     if (!player.getAbilities().creativeMode) {heldItem.decrement(1);}
                     player.sendMessage(Text.literal("Changed head texture to: " + playerName), true);
-                    return ActionResult.SUCCESS;
+                    return ActionResult.SUCCESS_SERVER;
                 }
             } else {
                 player.sendMessage(Text.literal("Name tag must have a custom name!"), true);
@@ -227,7 +227,7 @@ public class ModUseBlockEvents {
                             0.5, 0.5, 0.5,
                             0.2
                     );
-                    return ActionResult.SUCCESS;
+                    return ActionResult.SUCCESS_SERVER;
                 }
             }
         }
@@ -255,7 +255,7 @@ public class ModUseBlockEvents {
                             0.5, 0.5, 0.5,
                             0.2
                     );
-                    return ActionResult.SUCCESS;
+                    return ActionResult.SUCCESS_SERVER;
                 }
             }
         }
@@ -278,7 +278,7 @@ public class ModUseBlockEvents {
                             0.5, 0.5, 0.5,
                             0.2
                     );
-                    return ActionResult.SUCCESS;
+                    return ActionResult.SUCCESS_SERVER;
                 }
                 else if (!world.getBlockState(pos).isOf(Blocks.VINE)) {
                     break;
@@ -318,7 +318,7 @@ public class ModUseBlockEvents {
                         0.5, 0.5, 0.5,
                         0.2
                 );
-                return ActionResult.SUCCESS;
+                return ActionResult.SUCCESS_SERVER;
             }
         }
 
@@ -339,7 +339,7 @@ public class ModUseBlockEvents {
                         0.5, 0.5, 0.5,
                         0.2
                 );
-                return ActionResult.SUCCESS;
+                return ActionResult.SUCCESS_SERVER;
             }
         }
         return ActionResult.PASS;
@@ -360,7 +360,7 @@ public class ModUseBlockEvents {
                     SoundCategory.PLAYERS, 2.0F, 0.5F);
 
             player.swingHand(hand, true);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
         return ActionResult.PASS;
     }
@@ -409,7 +409,7 @@ public class ModUseBlockEvents {
                    (world.getRandom().nextFloat() * 0.2F + 1.5F)
             );
             player.swingHand(Hand.MAIN_HAND, true);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
         return ActionResult.PASS;
     }
@@ -439,7 +439,7 @@ public class ModUseBlockEvents {
             world.playSound(null, pos, SoundEvents.ENTITY_HORSE_SADDLE, SoundCategory.PLAYERS, 5, 2f);
 
             player.swingHand(Hand.MAIN_HAND, true);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         } return ActionResult.PASS;
     }
 

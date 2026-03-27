@@ -153,7 +153,7 @@ public class ModUseEntityEvents {
         }
 
         world.playSound(null, stand.getBlockPos(), SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.BLOCKS, 1.0F, 1.0F);
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult dyeShulkers(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
@@ -165,7 +165,7 @@ public class ModUseEntityEvents {
             shulker.setVariant(Optional.ofNullable(dyeItem.getColor()));
 
             player.swingHand(hand, true);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
 
         return ActionResult.PASS;
@@ -199,7 +199,7 @@ public class ModUseEntityEvents {
         world.spawnEntity(dyeItemEntity);
 
         player.swingHand(hand, true);
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult useChilledBonemealOnAnimal(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
@@ -287,7 +287,7 @@ public class ModUseEntityEvents {
 
         } else stewFail(targetCow, world);
 
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult useRabbitStew(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
@@ -303,7 +303,7 @@ public class ModUseEntityEvents {
                 stewSuccess(targetRabbit, world, SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 2, ParticleTypes.ANGRY_VILLAGER);
                 targetRabbit.setVariant(RabbitEntity.RabbitType.EVIL);
             } else stewFail(targetRabbit, world);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
 
         }
         return ActionResult.PASS;
@@ -324,7 +324,7 @@ public class ModUseEntityEvents {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 36000, 0));
             }
             else stewFail(targetDolphin, world);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
         return ActionResult.PASS;
     }
@@ -346,7 +346,7 @@ public class ModUseEntityEvents {
                 Objects.requireNonNull(targetZombie.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)).setBaseValue(0.5);
                 targetZombie.setCustomName(Text.of(targetZombie.getCustomName() + " the Giant"));
             } else stewFail(targetZombie, world);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
 
         if (entity.getClass() == VillagerEntity.class) {
@@ -360,7 +360,7 @@ public class ModUseEntityEvents {
                 world.spawnEntity(getTransformedVillager(targetVillager, world));
                 targetVillager.discard();
             } else stewFail(targetVillager, world);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
 
         return ActionResult.PASS;
@@ -405,7 +405,7 @@ public class ModUseEntityEvents {
             player.swingHand(hand, true);
             entity.discard();
             if (!player.getAbilities().creativeMode) stack.decrement(1);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         } else return ActionResult.FAIL;
     }
 

@@ -91,7 +91,7 @@ public class ModUseItemEvents {
                 world.playSound(null, targetSpit.getBlockPos(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH,
                         SoundCategory.PLAYERS, 1.0F, 1.0F);
                 targetSpit.discard();
-                return ActionResult.SUCCESS;
+                return ActionResult.SUCCESS_SERVER;
             }
         }
         return ActionResult.PASS;
@@ -123,7 +123,7 @@ public class ModUseItemEvents {
         stack.decrementUnlessCreative(1, player);
         player.getItemCooldownManager().set(stack, 20);
 
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult useNetherBrick(PlayerEntity player, World world, Hand hand) {
@@ -151,7 +151,7 @@ public class ModUseItemEvents {
         stack.decrementUnlessCreative(1, player);
         player.getItemCooldownManager().set(stack, 20);
 
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult usePurifiedWaterBottle(PlayerEntity player, World world, Hand hand) {
@@ -169,7 +169,7 @@ public class ModUseItemEvents {
         stack.decrementUnlessCreative(1, player);
         player.getItemCooldownManager().set(stack, 5);
 
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult useGlowInk(PlayerEntity player, World world, Hand hand) {
@@ -201,7 +201,7 @@ public class ModUseItemEvents {
         );
 
         player.swingHand(hand, true);
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 
     private static ActionResult useFireBlastEnchant(PlayerEntity player, World world, Hand hand) {
@@ -223,7 +223,7 @@ public class ModUseItemEvents {
 
             stack.damage(3, player, player.getPreferredEquipmentSlot(stack));
             player.swingHand(hand, true);
-            return ActionResult.SUCCESS;
+            return ActionResult.SUCCESS_SERVER;
         }
         return ActionResult.PASS;
     }
@@ -247,6 +247,6 @@ public class ModUseItemEvents {
         powderStack.decrementUnlessCreative(1, player);
         world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_HOE_TILL, SoundCategory.PLAYERS, 1f, 2f);
         player.swingHand(hand, true);
-        return ActionResult.SUCCESS;
+        return ActionResult.SUCCESS_SERVER;
     }
 }
