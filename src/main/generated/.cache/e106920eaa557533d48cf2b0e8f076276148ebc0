@@ -1,16 +1,16 @@
-// 1.21.3	2026-03-23T02:50:20.5872757	Louis' Overhaul Mod/
-525545ef45a2786732ee7c8d500a69dc83958086 data\louis-overhaul-mod\enchantment\shield_bash.json
-88af3d49f249d5e92ab089692f67b80b87d2c8e7 data\louis-overhaul-mod\enchantment\smelting.json
-039d7907611a995e2f74c7bc1b19139cd01dfa2d data\louis-overhaul-mod\enchantment\vampirism.json
-28ad7432fae1a25308efa32e68f32d7b7c1af890 data\louis-overhaul-mod\enchantment\fire_blast.json
-3702f9c1d390d0b435703c3f57d20154b465d499 data\louis-overhaul-mod\enchantment\sea_conqueror.json
-2e1c759765156dfd0228d7ce122fcd950041998b data\louis-overhaul-mod\enchantment\tailoring.json
-fd63c07687d8e012114ed53d86d699ed087f84e1 data\louis-overhaul-mod\enchantment\magic_touch.json
-9d8478eea4f4be2f671c084434d62727c92c3981 data\louis-overhaul-mod\enchantment\illagers_bane.json
-3a4f3532198929fd939747f50a58b9b3fee83b45 data\louis-overhaul-mod\enchantment\shield_aura.json
-f1a7862ea17170efa1b4e8b5af4fd2471e197b86 data\louis-overhaul-mod\enchantment\giant_killer.json
-617eeca61f28a1e4b8dd54b2536f7fb597290683 data\louis-overhaul-mod\enchantment\double_hook.json
-f5433aa19ff5676d9e2ced0b9ec9bd34b9608388 data\louis-overhaul-mod\enchantment\excavator.json
-57d4b15de4263de5ff3883bc0ad344a5140f89a3 data\louis-overhaul-mod\enchantment\tilling.json
-fc66e6116cff90aa0aa0d6b8016db6824dba9e85 data\louis-overhaul-mod\enchantment\reeling.json
-d9c4f3351111152bd71576bb2e02a2a6a8f03eb1 data\louis-overhaul-mod\enchantment\recovery.json
+// 1.21.4	-999999999-01-01T00:00:00	Louis' Overhaul Mod/
+617eeca61f28a1e4b8dd54b2536f7fb597290683 data/louis-overhaul-mod/enchantment/double_hook.json
+f5433aa19ff5676d9e2ced0b9ec9bd34b9608388 data/louis-overhaul-mod/enchantment/excavator.json
+28ad7432fae1a25308efa32e68f32d7b7c1af890 data/louis-overhaul-mod/enchantment/fire_blast.json
+f1a7862ea17170efa1b4e8b5af4fd2471e197b86 data/louis-overhaul-mod/enchantment/giant_killer.json
+9d8478eea4f4be2f671c084434d62727c92c3981 data/louis-overhaul-mod/enchantment/illagers_bane.json
+fd63c07687d8e012114ed53d86d699ed087f84e1 data/louis-overhaul-mod/enchantment/magic_touch.json
+d9c4f3351111152bd71576bb2e02a2a6a8f03eb1 data/louis-overhaul-mod/enchantment/recovery.json
+fc66e6116cff90aa0aa0d6b8016db6824dba9e85 data/louis-overhaul-mod/enchantment/reeling.json
+3702f9c1d390d0b435703c3f57d20154b465d499 data/louis-overhaul-mod/enchantment/sea_conqueror.json
+3a4f3532198929fd939747f50a58b9b3fee83b45 data/louis-overhaul-mod/enchantment/shield_aura.json
+525545ef45a2786732ee7c8d500a69dc83958086 data/louis-overhaul-mod/enchantment/shield_bash.json
+88af3d49f249d5e92ab089692f67b80b87d2c8e7 data/louis-overhaul-mod/enchantment/smelting.json
+2e1c759765156dfd0228d7ce122fcd950041998b data/louis-overhaul-mod/enchantment/tailoring.json
+57d4b15de4263de5ff3883bc0ad344a5140f89a3 data/louis-overhaul-mod/enchantment/tilling.json
+039d7907611a995e2f74c7bc1b19139cd01dfa2d data/louis-overhaul-mod/enchantment/vampirism.json

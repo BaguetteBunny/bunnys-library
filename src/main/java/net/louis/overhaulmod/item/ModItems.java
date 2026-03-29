@@ -185,14 +185,10 @@ public class ModItems {
     );
 
     public static final Item POTION_POUCH = registerItem("potion_pouch",
-            settings -> new PotionPouch(settings.maxCount(1).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT),
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "potion_pouch_open_front"),
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "potion_pouch_open_back")));
+            settings -> new PotionPouch(settings.maxCount(1).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT)));
 
     public static final Item PIONEER_POUCH = registerItem("pioneer_pouch",
-            settings -> new PioneerPouch(settings.maxCount(1).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT),
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "pioneer_pouch_open_front"),
-                    Identifier.of(LouisOverhaulMod.MOD_ID, "pioneer_pouch_open_back")));
+            settings -> new PioneerPouch(settings.maxCount(1).component(DataComponentTypes.BUNDLE_CONTENTS, BundleContentsComponent.DEFAULT)));
 
 
     public static final Item SADDLED_GOAT_HORN = registerItem("saddled_goat_horn",
@@ -211,7 +207,7 @@ public class ModItems {
             AmethystDagger::new);
 
     public static final Item BROWN_BEAR_SPAWN_EGG = registerItem("brown_bear_spawn_egg",
-            settings -> new SpawnEggItem(ModEntities.BROWN_BEAR, 0xa37539, 0xbf935a, settings));
+            settings -> new SpawnEggItem(ModEntities.BROWN_BEAR, settings));
 
     public static Item registerItem(String name, Function<Item.Settings, Item> function) {
         return Registry.register(Registries.ITEM, Identifier.of(LouisOverhaulMod.MOD_ID, name),

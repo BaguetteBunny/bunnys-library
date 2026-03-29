@@ -1,0 +1,15 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "component": "louis-overhaul-mod:mob_uuid",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "louis-overhaul-mod:item/pet_recovery_compass"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "louis-overhaul-mod:item/pet_recovery_compass_full"
+    },
+    "property": "minecraft:has_component"
+  }
+}

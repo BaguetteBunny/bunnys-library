@@ -1,0 +1,13 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "louis-overhaul-mod:azurite_refine",
+    "cases": [
+      { "when": "iron", "model": { "type": "minecraft:model", "model": "louis-overhaul-mod:item/azurite/iron_azurite" }},
+      { "when": "gold", "model": { "type": "minecraft:model", "model": "louis-overhaul-mod:item/azurite/gold_azurite" }},
+      { "when": "diamond", "model": { "type": "minecraft:model", "model": "louis-overhaul-mod:item/azurite/diamond_azurite" }},
+      { "when": "netherite", "model": { "type": "minecraft:model", "model": "louis-overhaul-mod:item/azurite/netherite_azurite" }}
+    ],
+    "fallback": { "type": "minecraft:model", "model": "louis-overhaul-mod:item/azurite/azurite" }
+  }
+}

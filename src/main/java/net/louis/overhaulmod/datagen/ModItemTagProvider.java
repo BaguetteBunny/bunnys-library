@@ -43,12 +43,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ItemTags.ARROWS)
                 .add(ModItems.ADVANCED_ARROW);
 
-        getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES)
-                .add(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE)
-                .add(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE)
-                .add(ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE)
-                .add(ModItems.TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
-
         getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS)
                 .add(ModItems.AZURITE);
 

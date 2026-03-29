@@ -16,8 +16,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class PotionPouch extends BundleItem {
-    public PotionPouch(Settings settings, Identifier openFrontTexture, Identifier openBackTexture) {
-        super(openFrontTexture, openBackTexture, settings);
+    public PotionPouch(Settings settings) {
+        super(settings);
     }
 
     @Override

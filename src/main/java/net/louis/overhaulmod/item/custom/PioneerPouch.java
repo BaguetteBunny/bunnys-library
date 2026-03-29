@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PioneerPouch extends BundleItem {
-    public PioneerPouch(Settings settings, Identifier openFrontTexture, Identifier openBackTexture) {
-        super(openFrontTexture, openBackTexture, settings);
+    public PioneerPouch(Settings settings) {
+        super(settings);
     }
 
     @Override

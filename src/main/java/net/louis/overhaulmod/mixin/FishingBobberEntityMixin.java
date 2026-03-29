@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
@@ -35,8 +36,12 @@ public class FishingBobberEntityMixin {
     @Unique private int reelingEnchantLevel;
     @Unique private int doubleHookEnchantLevel;
 
-    @Inject(method = "<init>(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/world/World;IILnet/minecraft/item/ItemStack;)V", at = @At("TAIL"))
-    private void LOM$setEnchantsOnInit(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks, ItemStack stack, CallbackInfo ci) {
+    @Inject(method = "<init>(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/world/World;II)V", at = @At("TAIL"))
+    private void LOM$setEnchantsOnInit(PlayerEntity thrower, World world, int luckBonus, int waitTimeReductionTicks, CallbackInfo ci) {
+        ItemStack stack = thrower.getMainHandStack().isOf(Items.FISHING_ROD)
+                ? thrower.getMainHandStack()
+                : thrower.getOffHandStack();
+
         this.reelingEnchantLevel = EnchantmentUtils.returnEnchantLevel(stack, "reeling");
         this.doubleHookEnchantLevel = EnchantmentUtils.returnEnchantLevel(stack, "double_hook");
     }

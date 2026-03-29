@@ -1,14 +1,19 @@
 package net.louis.overhaulmod.datagen;
 
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.louis.overhaulmod.LouisOverhaulMod;
 import net.louis.overhaulmod.block.ModBlocks;
+import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.fluid.ModFluids;
 import net.louis.overhaulmod.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.client.*;
+import net.minecraft.client.data.*;
+import net.minecraft.client.item.ItemAsset;
+import net.minecraft.client.render.item.model.ConditionItemModel;
+import net.minecraft.client.render.item.model.ItemModel;
+import net.minecraft.client.render.item.property.bool.HasComponentProperty;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -47,12 +52,12 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerLantern(ModBlocks.GLOW_LANTERN);
 
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.MYSTIC_ROSE, ModBlocks.POTTED_MYSTIC_ROSE, BlockStateModelGenerator.TintType.NOT_TINTED);
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.COBALT_FLOWER, ModBlocks.POTTED_COBALT_FLOWER, BlockStateModelGenerator.TintType.NOT_TINTED);
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.WILTED_POPPY, ModBlocks.POTTED_WILTED_POPPY, BlockStateModelGenerator.TintType.NOT_TINTED);
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.SHINY_CORNFLOWER, ModBlocks.POTTED_SHINY_CORNFLOWER, BlockStateModelGenerator.TintType.NOT_TINTED);
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.LAVENDER_DANDELION, ModBlocks.POTTED_LAVENDER_DANDELION, BlockStateModelGenerator.TintType.NOT_TINTED);
-        blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.HEART_FLOWER, ModBlocks.POTTED_HEART_FLOWER, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.MYSTIC_ROSE, ModBlocks.POTTED_MYSTIC_ROSE, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.COBALT_FLOWER, ModBlocks.POTTED_COBALT_FLOWER, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.WILTED_POPPY, ModBlocks.POTTED_WILTED_POPPY, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.SHINY_CORNFLOWER, ModBlocks.POTTED_SHINY_CORNFLOWER, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.LAVENDER_DANDELION, ModBlocks.POTTED_LAVENDER_DANDELION, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.HEART_FLOWER, ModBlocks.POTTED_HEART_FLOWER, BlockStateModelGenerator.CrossType.NOT_TINTED);
 
         blockStateModelGenerator.registerLog(ModBlocks.CHILLED_BONE_BLOCK);
         blockStateModelGenerator.registerLog(ModBlocks.TOXIC_BONE_BLOCK);
@@ -240,8 +245,19 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.VOLCANIC_NAME_TAG, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.BROWN_BEAR_SPAWN_EGG, new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
-        // Pet Recovery Compass Generated Manually
-        // Azurite Generated Manually
-        // Advanced Arrow Generated Manually
+
+        ItemModel.Unbaked unbakedCompass = ItemModels.basic(itemModelGenerator.upload(ModItems.PET_RECOVERY_COMPASS, Models.GENERATED));
+        ItemModel.Unbaked unbakedCompassFull = ItemModels.basic(itemModelGenerator.registerSubModel(ModItems.PET_RECOVERY_COMPASS, "_full", Models.GENERATED));
+
+        itemModelGenerator.output.accept(ModItems.PET_RECOVERY_COMPASS,
+                new ItemAsset(
+                        new ConditionItemModel.Unbaked(
+                                new HasComponentProperty(ModComponents.MOB_UUID, false),
+                                unbakedCompassFull,
+                                unbakedCompass
+                        ),
+                        new ItemAsset.Properties(false)
+                ).model()
+        );
     }
 }

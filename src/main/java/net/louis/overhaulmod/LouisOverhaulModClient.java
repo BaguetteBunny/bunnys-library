@@ -9,27 +9,21 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.louis.overhaulmod.block.ModBlocks;
-import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.entity.ModEntities;
 import net.louis.overhaulmod.entity.custom.client.BearEntityModel;
 import net.louis.overhaulmod.entity.custom.client.BearEntityRenderer;
 import net.louis.overhaulmod.entity.custom.client.ChairRenderer;
 import net.louis.overhaulmod.fluid.ModFluids;
-import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.item.custom.PetRecoveryCompass;
 import net.louis.overhaulmod.screen.AdvancedFletchingTableScreen;
 import net.louis.overhaulmod.screen.ModScreenHandlers;
+import net.louis.overhaulmod.utils.properties.AdvancedArrowProperty;
+import net.louis.overhaulmod.utils.properties.AzuriteRefineProperty;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BundleContentsComponent;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.client.render.item.property.select.SelectProperties;
 import net.minecraft.util.Identifier;
-
-import java.util.Objects;
 
 import static net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler.coloredWater;
 
@@ -40,6 +34,16 @@ public class LouisOverhaulModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // Properties
+        SelectProperties.ID_MAPPER.put(
+                Identifier.of(LouisOverhaulMod.MOD_ID, "azurite_refine"),
+                AzuriteRefineProperty.TYPE
+        );
+        SelectProperties.ID_MAPPER.put(
+                Identifier.of(LouisOverhaulMod.MOD_ID, "atid"),
+                AdvancedArrowProperty.TYPE
+        );
+
         // Render Screen
         HandledScreens.register(ModScreenHandlers.ADVANCED_FLETCHING_TABLE_SCREEN_HANDLER, AdvancedFletchingTableScreen::new);
 
@@ -67,10 +71,10 @@ public class LouisOverhaulModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_HEART_FLOWER, RenderLayer.getCutout());
 
         // Add Predicate Texture Transform
-        PetRecoveryCompass.registerModelPredicates();
+        //PetRecoveryCompass.registerModelPredicates();
 
-        addArrowPredicate();
-        addAzuritePredicate();
+//        addArrowPredicate();
+//        addAzuritePredicate();
 
         addColoredWater();
 
@@ -81,47 +85,47 @@ public class LouisOverhaulModClient implements ClientModInitializer {
         if (client.world == null) return;
         PULSE_DEGREES = (PULSE_DEGREES + 5) % 360;
     }
+//
+//    public static void addAzuritePredicate() {
+//        ModelPredicateProviderRegistry.register(
+//                ModItems.AZURITE,
+//                Identifier.of(LouisOverhaulMod.MOD_ID,"azurite_refine_id"),
+//                (stack, world, entity, seed) -> {
+//                    String materialString = stack.get(ModComponents.AZURITE_REFINE);
+//                    if (Objects.equals(materialString, "iron")) return 0.1f;
+//                    if (Objects.equals(materialString, "gold")) return 0.2f;
+//                    if (Objects.equals(materialString, "diamond")) return 0.3f;
+//                    if (Objects.equals(materialString, "netherite")) return 0.4f;
+//                    return 0.f;
+//                }
+//        );
+//    }
 
-    public static void addAzuritePredicate() {
-        ModelPredicateProviderRegistry.register(
-                ModItems.AZURITE,
-                Identifier.of(LouisOverhaulMod.MOD_ID,"azurite_refine_id"),
-                (stack, world, entity, seed) -> {
-                    String materialString = stack.get(ModComponents.AZURITE_REFINE);
-                    if (Objects.equals(materialString, "iron")) return 0.1f;
-                    if (Objects.equals(materialString, "gold")) return 0.2f;
-                    if (Objects.equals(materialString, "diamond")) return 0.3f;
-                    if (Objects.equals(materialString, "netherite")) return 0.4f;
-                    return 0.f;
-                }
-        );
-    }
-
-    public void addArrowPredicate() {
-        ModelPredicateProviderRegistry.register(
-                ModItems.ADVANCED_ARROW,
-                Identifier.of(LouisOverhaulMod.MOD_ID, "atid"),
-                (stack, world, entity, seed) -> {
-                    int total = 0;
-                    Item foot = stack.get(ModComponents.ARROW_FOOT);
-                    Item shaft = stack.get(ModComponents.ARROW_SHAFT);
-                    Item head = stack.get(ModComponents.ARROW_HEAD);
-
-                    if (head == Items.AMETHYST_SHARD) total += 1;
-                    if (head == Items.ECHO_SHARD) total += 2;
-                    if (head == Items.PRISMARINE_SHARD) total += 3;
-
-                    if (shaft == Items.BLAZE_ROD) total += 10;
-                    if (shaft == Items.BREEZE_ROD) total += 20;
-
-                    if (foot == Items.PHANTOM_MEMBRANE) total += 100;
-                    if (foot == Items.DRIED_KELP) total += 200;
-                    if (foot == Items.ARMADILLO_SCUTE) total += 300;
-
-                    return Math.round((total / 1000f) * 1000f) / 1000f;
-                }
-        );
-    }
+//    public void addArrowPredicate() {
+//        ItemModelComponentTransformer.register(
+//                ModItems.ADVANCED_ARROW,
+//                Identifier.of(LouisOverhaulMod.MOD_ID, "atid"),
+//                (stack, world, entity, seed) -> {
+//                    int total = 0;
+//                    Item foot = stack.get(ModComponents.ARROW_FOOT);
+//                    Item shaft = stack.get(ModComponents.ARROW_SHAFT);
+//                    Item head = stack.get(ModComponents.ARROW_HEAD);
+//
+//                    if (head == Items.AMETHYST_SHARD) total += 1;
+//                    if (head == Items.ECHO_SHARD) total += 2;
+//                    if (head == Items.PRISMARINE_SHARD) total += 3;
+//
+//                    if (shaft == Items.BLAZE_ROD) total += 10;
+//                    if (shaft == Items.BREEZE_ROD) total += 20;
+//
+//                    if (foot == Items.PHANTOM_MEMBRANE) total += 100;
+//                    if (foot == Items.DRIED_KELP) total += 200;
+//                    if (foot == Items.ARMADILLO_SCUTE) total += 300;
+//
+//                    return Math.round((total / 1000f) * 1000f) / 1000f;
+//                }
+//        );
+//    }
 
     public void addColoredWater() {
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_WHITE_WATER, ModFluids.FLOWING_WHITE_WATER, coloredWater(0xF9FFFE));

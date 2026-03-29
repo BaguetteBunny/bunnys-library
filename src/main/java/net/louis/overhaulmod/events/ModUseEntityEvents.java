@@ -449,7 +449,7 @@ public class ModUseEntityEvents {
                     zombie.setVillagerData(living.getVillagerData());
                     zombie.setGossipData(living.getGossip().serialize(NbtOps.INSTANCE));
                     zombie.setOfferData(living.getOffers().copy());
-                    zombie.setXp(living.getExperience());
+                    zombie.setExperience(living.getExperience());
                     for (StatusEffectInstance effect : living.getStatusEffects()) zombie.addStatusEffect(effect);
                 }
         );

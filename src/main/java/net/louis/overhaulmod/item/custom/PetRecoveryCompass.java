@@ -5,7 +5,6 @@ import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.mixin.accessor.CatAccessor;
 import net.louis.overhaulmod.mixin.accessor.WolfAccessor;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.SpawnReason;
@@ -37,17 +36,6 @@ import java.util.UUID;
 public class PetRecoveryCompass extends Item {
     public PetRecoveryCompass(Settings settings) {
         super(settings);
-    }
-
-    public static void registerModelPredicates() {
-        ModelPredicateProviderRegistry.register(
-                ModItems.PET_RECOVERY_COMPASS,
-                Identifier.of("full"),
-                (stack, world, entity, seed) -> {
-                    String uuid = stack.get(ModComponents.MOB_UUID);
-                    return (uuid != null && !uuid.isEmpty()) ? 1.0f : 0.0f;
-                }
-        );
     }
 
     @Override
