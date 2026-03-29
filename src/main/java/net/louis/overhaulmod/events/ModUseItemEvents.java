@@ -7,6 +7,7 @@ import net.louis.overhaulmod.config.ModConfigScreen;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.BrickEntity;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.NetherBrickEntity;
 import net.louis.overhaulmod.entity.custom.thrown.projectile.PurifiedWaterEntity;
+import net.louis.overhaulmod.entity.custom.thrown.projectile.ResinBrickEntity;
 import net.louis.overhaulmod.item.ModItems;
 import net.louis.overhaulmod.utils.GlowLightManager;
 import net.minecraft.component.DataComponentTypes;
@@ -45,6 +46,7 @@ public class ModUseItemEvents {
         // Projectiles
         UseItemCallback.EVENT.register(ModUseItemEvents::useBrick);
         UseItemCallback.EVENT.register(ModUseItemEvents::useNetherBrick);
+        UseItemCallback.EVENT.register(ModUseItemEvents::useResinBrick);
         UseItemCallback.EVENT.register(ModUseItemEvents::usePurifiedWaterBottle);
     }
 
@@ -101,7 +103,7 @@ public class ModUseItemEvents {
     private static ActionResult useBrick(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!stack.isOf(Items.BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
+        if (world.isClient() || !stack.isOf(Items.BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
             return ActionResult.PASS;
         }
 
@@ -129,7 +131,7 @@ public class ModUseItemEvents {
     private static ActionResult useNetherBrick(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!stack.isOf(Items.NETHER_BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
+        if (world.isClient() || !stack.isOf(Items.NETHER_BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
             return ActionResult.PASS;
         }
 
@@ -154,10 +156,38 @@ public class ModUseItemEvents {
         return ActionResult.SUCCESS_SERVER;
     }
 
+    private static ActionResult useResinBrick(PlayerEntity player, World world, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+
+        if (world.isClient() || !stack.isOf(Items.RESIN_BRICK) || player.getItemCooldownManager().isCoolingDown(stack) || !ModConfig.INSTANCE.enableThrowableBricks) {
+            return ActionResult.PASS;
+        }
+
+        world.playSound(
+                null,
+                player.getX(),
+                player.getY(),
+                player.getZ(),
+                SoundEvents.ENTITY_SNOWBALL_THROW,
+                SoundCategory.NEUTRAL,
+                0.75F,
+                (world.getRandom().nextFloat() * 0.2F + 0.5F)
+        );
+        ResinBrickEntity brickEntity = new ResinBrickEntity(world, player);
+        brickEntity.setItem(stack);
+        brickEntity.setVelocity(player, player.getPitch(), player.getYaw(), 10.0F, 1.0F, 1.0F);
+        world.spawnEntity(brickEntity);
+
+        stack.decrementUnlessCreative(1, player);
+        player.getItemCooldownManager().set(stack, 20);
+
+        return ActionResult.SUCCESS_SERVER;
+    }
+
     private static ActionResult usePurifiedWaterBottle(PlayerEntity player, World world, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!stack.isOf(ModItems.PURIFIED_WATER_BOTTLE) || player.getItemCooldownManager().isCoolingDown(stack)) return ActionResult.PASS;
+        if (world.isClient() || !stack.isOf(ModItems.PURIFIED_WATER_BOTTLE) || player.getItemCooldownManager().isCoolingDown(stack)) return ActionResult.PASS;
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SPLASH_POTION_THROW,
                 SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));

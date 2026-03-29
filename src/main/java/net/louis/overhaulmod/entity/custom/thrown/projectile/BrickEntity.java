@@ -1,5 +1,6 @@
 package net.louis.overhaulmod.entity.custom.thrown.projectile;
 
+import net.louis.overhaulmod.utils.ItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -30,44 +31,6 @@ public class BrickEntity extends ThrownItemEntity {
     public BrickEntity(World world, LivingEntity owner) {
         super(EntityType.SNOWBALL, owner, world, new ItemStack(Items.BRICK));
     }
-
-    private static final Set<Block> BREAKABLE_GLASS_BLOCKS = Set.of(
-            Blocks.GLASS,
-            Blocks.WHITE_STAINED_GLASS,
-            Blocks.ORANGE_STAINED_GLASS,
-            Blocks.MAGENTA_STAINED_GLASS,
-            Blocks.LIGHT_BLUE_STAINED_GLASS,
-            Blocks.YELLOW_STAINED_GLASS,
-            Blocks.LIME_STAINED_GLASS,
-            Blocks.PINK_STAINED_GLASS,
-            Blocks.GRAY_STAINED_GLASS,
-            Blocks.LIGHT_GRAY_STAINED_GLASS,
-            Blocks.CYAN_STAINED_GLASS,
-            Blocks.PURPLE_STAINED_GLASS,
-            Blocks.BLUE_STAINED_GLASS,
-            Blocks.BROWN_STAINED_GLASS,
-            Blocks.GREEN_STAINED_GLASS,
-            Blocks.RED_STAINED_GLASS,
-            Blocks.BLACK_STAINED_GLASS,
-
-            Blocks.GLASS_PANE,
-            Blocks.WHITE_STAINED_GLASS_PANE,
-            Blocks.ORANGE_STAINED_GLASS_PANE,
-            Blocks.MAGENTA_STAINED_GLASS_PANE,
-            Blocks.LIGHT_BLUE_STAINED_GLASS_PANE,
-            Blocks.YELLOW_STAINED_GLASS_PANE,
-            Blocks.LIME_STAINED_GLASS_PANE,
-            Blocks.PINK_STAINED_GLASS_PANE,
-            Blocks.GRAY_STAINED_GLASS_PANE,
-            Blocks.LIGHT_GRAY_STAINED_GLASS_PANE,
-            Blocks.CYAN_STAINED_GLASS_PANE,
-            Blocks.PURPLE_STAINED_GLASS_PANE,
-            Blocks.BLUE_STAINED_GLASS_PANE,
-            Blocks.BROWN_STAINED_GLASS_PANE,
-            Blocks.GREEN_STAINED_GLASS_PANE,
-            Blocks.RED_STAINED_GLASS_PANE,
-            Blocks.BLACK_STAINED_GLASS_PANE
-    );
 
     @Override
     protected Item getDefaultItem() {
@@ -114,7 +77,7 @@ public class BrickEntity extends ThrownItemEntity {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState state = world.getBlockState(pos);
 
-            if (BREAKABLE_GLASS_BLOCKS.contains(state.getBlock())) {
+            if (ItemManager.BRICK_BREAKABLE_GLASS_BLOCKS.contains(state.getBlock())) {
                 world.breakBlock(pos, true, this);
                 world.playSound(null, pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 3.0F, 1.0F);
             }

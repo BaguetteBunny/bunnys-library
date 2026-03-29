@@ -1,5 +1,7 @@
 package net.louis.overhaulmod.utils;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -192,6 +194,49 @@ public final class ItemManager {
         MAX_STACK_OVERRIDES.put(Items.DRAGON_EGG, 1);
     }
 
+    public static final Set<Block> BRICK_BREAKABLE_GLASS_BLOCKS = new HashSet<>(Set.of(
+            Blocks.GLASS,
+            Blocks.WHITE_STAINED_GLASS,
+            Blocks.ORANGE_STAINED_GLASS,
+            Blocks.MAGENTA_STAINED_GLASS,
+            Blocks.LIGHT_BLUE_STAINED_GLASS,
+            Blocks.YELLOW_STAINED_GLASS,
+            Blocks.LIME_STAINED_GLASS,
+            Blocks.PINK_STAINED_GLASS,
+            Blocks.GRAY_STAINED_GLASS,
+            Blocks.LIGHT_GRAY_STAINED_GLASS,
+            Blocks.CYAN_STAINED_GLASS,
+            Blocks.PURPLE_STAINED_GLASS,
+            Blocks.BLUE_STAINED_GLASS,
+            Blocks.BROWN_STAINED_GLASS,
+            Blocks.GREEN_STAINED_GLASS,
+            Blocks.RED_STAINED_GLASS,
+            Blocks.BLACK_STAINED_GLASS,
+
+            Blocks.GLASS_PANE,
+            Blocks.WHITE_STAINED_GLASS_PANE,
+            Blocks.ORANGE_STAINED_GLASS_PANE,
+            Blocks.MAGENTA_STAINED_GLASS_PANE,
+            Blocks.LIGHT_BLUE_STAINED_GLASS_PANE,
+            Blocks.YELLOW_STAINED_GLASS_PANE,
+            Blocks.LIME_STAINED_GLASS_PANE,
+            Blocks.PINK_STAINED_GLASS_PANE,
+            Blocks.GRAY_STAINED_GLASS_PANE,
+            Blocks.LIGHT_GRAY_STAINED_GLASS_PANE,
+            Blocks.CYAN_STAINED_GLASS_PANE,
+            Blocks.PURPLE_STAINED_GLASS_PANE,
+            Blocks.BLUE_STAINED_GLASS_PANE,
+            Blocks.BROWN_STAINED_GLASS_PANE,
+            Blocks.GREEN_STAINED_GLASS_PANE,
+            Blocks.RED_STAINED_GLASS_PANE,
+            Blocks.BLACK_STAINED_GLASS_PANE
+    ));
+
+    public static final Set<Block> BRICK_BREAKABLE_GLASS_AND_TINTED_BLOCKS = new HashSet<>();
+    static {
+        BRICK_BREAKABLE_GLASS_AND_TINTED_BLOCKS.addAll(BRICK_BREAKABLE_GLASS_BLOCKS);
+        BRICK_BREAKABLE_GLASS_AND_TINTED_BLOCKS.add(Blocks.TINTED_GLASS);
+    }
 
     private ItemManager() {}
 }
