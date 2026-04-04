@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chilled_bone": {
+    "has_nether_wart": {
       "conditions": {
         "items": [
           {
-            "items": "louis-overhaul-mod:chilled_bone"
+            "items": "minecraft:nether_wart"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:chilled_bone_meal"
+        "recipe": "louis-overhaul-mod:infused_bone_meal"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_chilled_bone"
+      "has_nether_wart"
     ]
   ],
   "rewards": {
     "recipes": [
-      "louis-overhaul-mod:chilled_bone_meal"
+      "louis-overhaul-mod:infused_bone_meal"
     ]
   }
 }

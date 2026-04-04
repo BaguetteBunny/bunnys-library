@@ -290,7 +290,7 @@ public class ModUseBlockEvents {
 
     private static ActionResult useDecrepitBonemealOnCrops(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
         ItemStack heldItem = player.getStackInHand(hand);
-        if (world.isClient() || !heldItem.isOf(ModItems.DECREPIT_BONE_MEAL)) {
+        if (world.isClient() || !heldItem.isOf(ModItems.INFUSED_BONE_MEAL)) {
             return ActionResult.PASS;
         }
 

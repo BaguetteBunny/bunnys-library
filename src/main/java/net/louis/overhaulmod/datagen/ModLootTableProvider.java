@@ -45,11 +45,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.COPPER_RAIL);
 
-        addDrop(ModBlocks.GLOW_LANTERN);
-
-        addDrop(ModBlocks.CHILLED_BONE_BLOCK);
-        addDrop(ModBlocks.TOXIC_BONE_BLOCK);
-        addDrop(ModBlocks.DECREPIT_BONE_BLOCK);
+        addDrop(ModBlocks.INFUSED_BONE_BLOCK);
 
         addDrop(ModBlocks.END_STONE_WALL);
         addDrop(ModBlocks.END_STONE_PRESSURE_PLATE);

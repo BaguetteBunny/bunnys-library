@@ -103,49 +103,16 @@ public class ModItems {
     public static final Item PURIFIED_WATER_BOTTLE = registerItem("purified_water_bottle",
             settings -> new Item(settings.maxCount(1).rarity(Rarity.RARE)));
 
+    public static final Item INFUSED_BONE_MEAL = registerItem("infused_bone_meal",
+            Item::new);
+
     public static final Item ADVANCED_ARROW = registerItem("advanced_arrow",
             ArrowItem::new);
-
-    public static final Item CHILLED_BONE = registerItem("chilled_bone",
-            Item::new);
-    public static final Item CHILLED_BONE_MEAL = registerItem("chilled_bone_meal",
-            Item::new);
-    public static final Item TOXIC_BONE = registerItem("toxic_bone",
-            Item::new);
-    public static final Item TOXIC_BONE_MEAL = registerItem("toxic_bone_meal",
-            Item::new);
-    public static final Item DECREPIT_BONE = registerItem("decrepit_bone",
-            Item::new);
-    public static final Item DECREPIT_BONE_MEAL = registerItem("decrepit_bone_meal",
-            Item::new);
 
     public static final Item BAT_FANG = registerItem("bat_fang",
             Item::new);
     public static final Item ENDERMITE_HEART = registerItem("endermite_heart",
             Item::new);
-    public static final Item DECAYING_FLESH = registerItem("decaying_flesh",
-            settings -> new Item(settings.food(new FoodComponent.Builder()
-                    .nutrition(4)
-                    .saturationModifier(0.1f)
-                    .build(),
-                    ConsumableComponent
-                            .builder()
-                            .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.HUNGER, 900), 1f))
-                            .build()
-            ))
-    );
-
-    public static final Item SANDY_FLESH = registerItem("sandy_flesh",
-            settings -> new Item(settings.food(new FoodComponent.Builder()
-                    .nutrition(4)
-                    .saturationModifier(0.1f)
-                    .build(),
-                    ConsumableComponent
-                            .builder()
-                            .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.HUNGER, 900), 1f))
-                            .build()
-            ))
-    );
 
     public static final Item FISH_STEW = registerItem("fish_stew",
             settings -> new Item(settings.maxCount(16).food(new FoodComponent.Builder()
@@ -242,14 +209,7 @@ public class ModItems {
             entries.add(LLAMAS_SPIT);
             entries.add(BAT_FANG);
             entries.add(ENDERMITE_HEART);
-            entries.add(DECAYING_FLESH);
-            entries.add(SANDY_FLESH);
-            entries.add(CHILLED_BONE);
-            entries.add(TOXIC_BONE);
-            entries.add(DECREPIT_BONE);
-            entries.add(CHILLED_BONE_MEAL);
-            entries.add(TOXIC_BONE_MEAL);
-            entries.add(DECREPIT_BONE_MEAL);
+            entries.add(INFUSED_BONE_MEAL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.add(ADVANCED_ARROW);

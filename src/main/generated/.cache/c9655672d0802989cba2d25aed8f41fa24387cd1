@@ -52,7 +52,6 @@ e4416e74f53a4ded458fd20fd18f00ceee6352de assets/louis-overhaul-mod/blockstates/d
 92bf83fca97802f1d459daf4d120ec524941ddce assets/louis-overhaul-mod/blockstates/end_stone_slab.json
 d02f8b148ac16c3edea3a38006ee205aecd9f130 assets/louis-overhaul-mod/blockstates/end_stone_stairs.json
 11ed721f7445262e72d45669d2b0b2e82ababe5b assets/louis-overhaul-mod/blockstates/end_stone_wall.json
-8f980bdc59608ce7a3ea0e5ab835316a6f261257 assets/louis-overhaul-mod/blockstates/glow_lantern.json
 31a6287946808377a8ef7f605a8daf689c2459a2 assets/louis-overhaul-mod/blockstates/gray_concrete_slab.json
 a84043cd98529084357dce93bd5cd463ddea56b2 assets/louis-overhaul-mod/blockstates/gray_concrete_stairs.json
 c04fab51144a23c0748917d8aea64aa9251bf0d6 assets/louis-overhaul-mod/blockstates/gray_concrete_wall.json
@@ -171,9 +170,6 @@ c45d5f113399d34a0b792e041a3cf60b39fcf9c8 assets/louis-overhaul-mod/items/calcite
 5ea89309c1129e0b71a9386249c27f4fdde6c606 assets/louis-overhaul-mod/items/calcite_stairs.json
 92a4f6014d35a3e066e8cae2e432def2b7adb0f7 assets/louis-overhaul-mod/items/calcite_wall.json
 9f7629e15b31a972be73cd5ac2e7ce5df9631506 assets/louis-overhaul-mod/items/cataclysm_name_tag.json
-003199653e43d67e2e31cb1d51ac45bfca5f69d3 assets/louis-overhaul-mod/items/chilled_bone.json
-30e686d0d38ee041d488b2f54beca70d1bb1e11b assets/louis-overhaul-mod/items/chilled_bone_block.json
-d5c7564aab834720a769ffd9181b017f4d3ba10e assets/louis-overhaul-mod/items/chilled_bone_meal.json
 d11cd00e52c8735ea1d8bd263d7a96d6494cb91e assets/louis-overhaul-mod/items/chiseled_bricks.json
 51f6efa38fff071ba65d36f58ac38c6fdd1be5a9 assets/louis-overhaul-mod/items/chiseled_dark_prismarine.json
 992e80f2c4e8fedadfa8b235f48ec6f4062e2636 assets/louis-overhaul-mod/items/chiseled_deepslate_bricks.json
@@ -208,10 +204,6 @@ ad551c5296afdb3db4f9929022b462e64aaf6a4f assets/louis-overhaul-mod/items/cyan_co
 f189f3fc39c17a3f90583293a5540c928851b31d assets/louis-overhaul-mod/items/cyan_name_tag.json
 f46d413de527b88f0e6ee149e2ec708669475209 assets/louis-overhaul-mod/items/cyan_water_bucket.json
 fc25b997e076e81f763d5792811578f25dda197c assets/louis-overhaul-mod/items/dark_prismarine_wall.json
-ca609c1207ff06095c52dabcebfe477778d64649 assets/louis-overhaul-mod/items/decaying_flesh.json
-ff8f2f977195c08ff190c39df5ed524fbba949cc assets/louis-overhaul-mod/items/decrepit_bone.json
-7687bd23cda3bbb9c0fdb5c05d33e54e9c0f8448 assets/louis-overhaul-mod/items/decrepit_bone_block.json
-fbf2998b7fb9d620bf11441744cf45d78776e1d2 assets/louis-overhaul-mod/items/decrepit_bone_meal.json
 39bbfcb38e1c4ef6924666f6e4db8f32009f249b assets/louis-overhaul-mod/items/dragon_breath_cauldron.json
 04e4179a1eaebadf729fb56645bbe532022befc1 assets/louis-overhaul-mod/items/dripstone_slab.json
 08c23a04f361a93277f8195cf6c3eb43101f7d54 assets/louis-overhaul-mod/items/dripstone_stairs.json
@@ -224,7 +216,6 @@ b0f7ec8e5d6ae0565c8820a71d4c6bdc7aa57c6e assets/louis-overhaul-mod/items/end_sto
 d45855c3b354f2cd63c41fe00a247a39e1fb39ec assets/louis-overhaul-mod/items/endermite_heart.json
 d110865a56d581259624380304c90b2273106824 assets/louis-overhaul-mod/items/fish_stew.json
 42137f4167894f110e7b264ff769628e73f860eb assets/louis-overhaul-mod/items/fragrant_name_tag.json
-ea60e3cac875ebb86757f8efa7051ce9fcea5a94 assets/louis-overhaul-mod/items/glow_lantern.json
 b1576f100f173ad5056c61ba59763360b3a10e54 assets/louis-overhaul-mod/items/glow_upgrade_smithing_template.json
 fdedef1f5d2bcf1fa1b2efbd67b3fc2bbdfec8fa assets/louis-overhaul-mod/items/gray_concrete_slab.json
 ca9e8840d54b34e0a4859a87300847293ee1c0bf assets/louis-overhaul-mod/items/gray_concrete_stairs.json
@@ -239,6 +230,8 @@ ca9e8840d54b34e0a4859a87300847293ee1c0bf assets/louis-overhaul-mod/items/gray_co
 9573e809100c51455b9d54fd99a1a3264b49f8f0 assets/louis-overhaul-mod/items/heart_flower.json
 3b413b70c15929300d2862e98d34f37d523ed61a assets/louis-overhaul-mod/items/honey_cauldron.json
 f612d9a0a03fe1773ae3b7b21c08602ab7bd077b assets/louis-overhaul-mod/items/immolation_name_tag.json
+25ce3ab433be43c99122039d6b0e6c44aa3515c2 assets/louis-overhaul-mod/items/infused_bone_block.json
+5d0d0a3f4ee6996679f2a62a60c8bd7d545556c7 assets/louis-overhaul-mod/items/infused_bone_meal.json
 7b1a7011b8669571f5d6175916a1193daf172141 assets/louis-overhaul-mod/items/iridescent_name_tag.json
 bf53d8163bdd53d2669ffa2afda6781552a2bbbf assets/louis-overhaul-mod/items/lavender_dandelion.json
 62505fbec928efd65dffbb9669361080fdc65d81 assets/louis-overhaul-mod/items/lavender_quartz_bricks.json
@@ -321,7 +314,6 @@ b6dcc6be1006025989fc83d3f65b0ef5bef37203 assets/louis-overhaul-mod/items/rose_qu
 97026eafb28f6bf04981b0f31f14d5a6d2fe6b7d assets/louis-overhaul-mod/items/rose_quartz_wall.json
 b28a79cf0c8afa859bf9769a738f43c0612070f9 assets/louis-overhaul-mod/items/rotten_stew.json
 c2c1205915820d2dffc40f5359b730111eae57f5 assets/louis-overhaul-mod/items/saddled_goat_horn.json
-b29ef94108b885ff4c4a7ccb429639e2b8f72911 assets/louis-overhaul-mod/items/sandy_flesh.json
 ceaf7422d2b36f6ad6fe02882c54f071013cbcfe assets/louis-overhaul-mod/items/shiny_cornflower.json
 a5c87b35e1d91bfe935da64868b321e2275a97b9 assets/louis-overhaul-mod/items/smooth_basalt_slab.json
 2965d2d560a7714a8343d49acad42d6938dafc2f assets/louis-overhaul-mod/items/smooth_basalt_stairs.json
@@ -333,9 +325,6 @@ aef9cf01fb2b63fc37deff8044fdd049a151968c assets/louis-overhaul-mod/items/smooth_
 b9a138cd8491c9a4a3d93a479469f40e5674ec5a assets/louis-overhaul-mod/items/smooth_stone_wall.json
 cefa82141afcb281daf35e35c8f07922076f9c3f assets/louis-overhaul-mod/items/stone_wall.json
 8bc83bb6067544c017a977235796e756e459ad0c assets/louis-overhaul-mod/items/titanic_bundle_upgrade_smithing_template.json
-0c0c0d06662616c6b973f9ae8eb64f1dda539bfc assets/louis-overhaul-mod/items/toxic_bone.json
-a2e38c618e75256a027f3963dca37f98a1d1c8ec assets/louis-overhaul-mod/items/toxic_bone_block.json
-61944a79bf5ce0870b3b4b08c147eb8424d3d95b assets/louis-overhaul-mod/items/toxic_bone_meal.json
 bb576a0526668685066b3128136728f5589a1f75 assets/louis-overhaul-mod/items/vegetable_stew.json
 6a01f4740dbb9c18e1bc541b910e86ab1d32b771 assets/louis-overhaul-mod/items/volcanic_name_tag.json
 1850122929d8d82b65ceebd476721f76105bf352 assets/louis-overhaul-mod/items/white_concrete_slab.json
@@ -459,8 +448,6 @@ df918bd3dfffef986b3f7b8f42d448f8f060f0fa assets/louis-overhaul-mod/models/block/
 cfea9d16d2674212bdfe5e0672a9df3dc0f99fe7 assets/louis-overhaul-mod/models/block/end_stone_wall_post.json
 b72fdaa01684150f9254f37b58b41dea09c8ea00 assets/louis-overhaul-mod/models/block/end_stone_wall_side.json
 30d1e7df818e5ff230e35231cbc597f5d774d3e2 assets/louis-overhaul-mod/models/block/end_stone_wall_side_tall.json
-9b6960c7372a94e5d9fe3b8b27d9f66b18fe3345 assets/louis-overhaul-mod/models/block/glow_lantern.json
-4b325a4c406f3044c6ed498bece9b110f4436c2b assets/louis-overhaul-mod/models/block/glow_lantern_hanging.json
 7ebfc4d1374507daa195c3bb72f8b2df0a79df49 assets/louis-overhaul-mod/models/block/gray_concrete_slab.json
 312a6e5a09a16474e566789d89811da6bbff2a5f assets/louis-overhaul-mod/models/block/gray_concrete_slab_top.json
 72bb83e3f66d216e7f32587db5fc174c345ae828 assets/louis-overhaul-mod/models/block/gray_concrete_stairs.json
@@ -688,19 +675,13 @@ ff65b5c74f9a3700d86eedb63cbedebe0ad42314 assets/louis-overhaul-mod/models/item/b
 da96586b993437266553d46a5fb17f59bb720848 assets/louis-overhaul-mod/models/item/brown_name_tag.json
 c099a0bf8a76735d9fbcdc0179720bdebafd11ce assets/louis-overhaul-mod/models/item/brown_water_bucket.json
 a5541dda913397483e6a9091d82ca1f3b46681ac assets/louis-overhaul-mod/models/item/cataclysm_name_tag.json
-7b7f80431280161b6c1e72d659e0a3750441a1f5 assets/louis-overhaul-mod/models/item/chilled_bone.json
-581f4f9f4502bed85afef7368ecf7281b35b4b89 assets/louis-overhaul-mod/models/item/chilled_bone_meal.json
 100b6059e585f91e1dfc1a89277ac238871279bf assets/louis-overhaul-mod/models/item/cobalt_flower.json
 aeecf34ba4545d3159ad1ac88c0baf495a706251 assets/louis-overhaul-mod/models/item/copper_rail.json
 81bbe4ddf2b0b13330232d372294e57bc5c6c8f2 assets/louis-overhaul-mod/models/item/cyan_name_tag.json
 9360ac88452a25413dc3084e057a210428966145 assets/louis-overhaul-mod/models/item/cyan_water_bucket.json
-f55d706a81c188156a8a6ca95a8b86a0725b84c5 assets/louis-overhaul-mod/models/item/decaying_flesh.json
-cf7e16e6cac007842581fcbaffa94fb9330ba9da assets/louis-overhaul-mod/models/item/decrepit_bone.json
-3dd729f7acf1e36444e40d577bd7e95dad1c36ce assets/louis-overhaul-mod/models/item/decrepit_bone_meal.json
 697444fe1a2e53f16a640394f21642aa4d503bdb assets/louis-overhaul-mod/models/item/endermite_heart.json
 eb2292513f20bb811c16969d68e076d31bbdae4a assets/louis-overhaul-mod/models/item/fish_stew.json
 e3fb7e157dc90074a3da5bd43df33f74259f781d assets/louis-overhaul-mod/models/item/fragrant_name_tag.json
-8476f972b8545b67e81aa00b15206f6e1161c9c9 assets/louis-overhaul-mod/models/item/glow_lantern.json
 c6a11a1af71fe9354450cd0e7b86f295baf77742 assets/louis-overhaul-mod/models/item/glow_upgrade_smithing_template.json
 3b3ee0967c8302b1d8e69e850f4f0ebef9fed177 assets/louis-overhaul-mod/models/item/gray_name_tag.json
 c645e5266587cfb41b61a3931a6d939d4e692073 assets/louis-overhaul-mod/models/item/gray_water_bucket.json
@@ -708,6 +689,7 @@ db1ee1d90116186f78d6ad6eb9a937a0d6e340c3 assets/louis-overhaul-mod/models/item/g
 88c4d8f675a8556d8075dc79d959ed09221278bd assets/louis-overhaul-mod/models/item/green_water_bucket.json
 a66e6b63f874428bc5e7048de8801603160f1352 assets/louis-overhaul-mod/models/item/heart_flower.json
 7f0f5f10f5eb599c7a8cd97e94ecba3a093438ab assets/louis-overhaul-mod/models/item/immolation_name_tag.json
+a2c6e4f4b233d933dffa80d276c565c03bd3685e assets/louis-overhaul-mod/models/item/infused_bone_meal.json
 2cc51c349aacad4af43d1602054d33f052280bca assets/louis-overhaul-mod/models/item/iridescent_name_tag.json
 085e5c4aa7c4ecc86eb493cc871157de93bd6027 assets/louis-overhaul-mod/models/item/lavender_dandelion.json
 2b523f2b0f8ce52acdb8235b4fbfbff2832bea86 assets/louis-overhaul-mod/models/item/light_blue_name_tag.json
@@ -738,11 +720,8 @@ ebb59dee1436b3e9592b509dfb0b638d80006aaf assets/louis-overhaul-mod/models/item/r
 89093f625a90570e461757e8368e75d9c2936ab0 assets/louis-overhaul-mod/models/item/red_water_bucket.json
 1b6ccf051e7d90affce940b13b61c5cf82fd92fd assets/louis-overhaul-mod/models/item/rotten_stew.json
 6f63ff1e128c211e3798e888c406cc466b85838e assets/louis-overhaul-mod/models/item/saddled_goat_horn.json
-84230e391952d8fff8ae618d96f63f085e60549d assets/louis-overhaul-mod/models/item/sandy_flesh.json
 af8722453605635bcec0936ecc033431d4e8e65d assets/louis-overhaul-mod/models/item/shiny_cornflower.json
 b08212e7b6a52b79c8687c09471adbf936dfb004 assets/louis-overhaul-mod/models/item/titanic_bundle_upgrade_smithing_template.json
-54dc8c81bebc06c81a49e5924cb8e88364ea9240 assets/louis-overhaul-mod/models/item/toxic_bone.json
-2be797af6a9f92363a9a2437667673f9df5a1321 assets/louis-overhaul-mod/models/item/toxic_bone_meal.json
 41117d514d463e9f81f955a2e8c3c9f87f661296 assets/louis-overhaul-mod/models/item/vegetable_stew.json
 6e97365a49ddacfa0331526d83446a60eb66115c assets/louis-overhaul-mod/models/item/volcanic_name_tag.json
 ff1eb254c954e477cac5d6dbe532a571892f997c assets/louis-overhaul-mod/models/item/white_water_bucket.json

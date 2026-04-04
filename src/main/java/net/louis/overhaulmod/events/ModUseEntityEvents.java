@@ -20,7 +20,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.BoggedEntity;
 import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -38,7 +37,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,7 +50,6 @@ public class ModUseEntityEvents {
         UseEntityCallback.EVENT.register(ModUseEntityEvents::changeArmorStandVariant);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::dyeShulkers);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useBrushOnDyedShulkers);
-        UseEntityCallback.EVENT.register(ModUseEntityEvents::useChilledBonemealOnAnimal);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useTailoringShears);
 
         // Stews
@@ -201,41 +198,6 @@ public class ModUseEntityEvents {
         player.swingHand(hand, true);
         return ActionResult.SUCCESS_SERVER;
     }
-
-    private static ActionResult useChilledBonemealOnAnimal(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (hand != Hand.MAIN_HAND) return ActionResult.PASS;
-        ItemStack stack = player.getStackInHand(hand);
-        if (world.isClient
-                || stack.getItem() != ModItems.CHILLED_BONE_MEAL
-                || !(entity instanceof PassiveEntity animal)
-                || !animal.isBaby()
-                || entityHitResult == null
-        ) return ActionResult.PASS;
-
-        double x = animal.getX();
-        double y = animal.getY();
-        double z = animal.getZ();
-
-
-        if (animal.getBreedingAge() < -24000) {
-            animal.setBreedingAge(-24000);
-            world.playSound(null, x, y, z, SoundEvents.BLOCK_BEACON_DEACTIVATE, SoundCategory.NEUTRAL,
-                    0.75F,
-                    (world.getRandom().nextFloat() * 0.2F + 0.5F)
-            );
-        } else {
-            animal.setBreedingAge(Integer.MIN_VALUE);
-            world.playSound(null, x, y, z, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.NEUTRAL,
-                    0.75F,
-                    (world.getRandom().nextFloat() * 0.2F + 0.5F)
-            );
-        }
-
-        stack.decrementUnlessCreative(1, player);
-        player.swingHand(hand, true);
-        return ActionResult.CONSUME;
-    }
-
 
     private static final Identifier RARE_UPSCALE_ID = Identifier.of(LouisOverhaulMod.MOD_ID, "rare_upscale_id");
 

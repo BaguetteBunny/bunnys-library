@@ -61,16 +61,8 @@ public class ModBlocks {
     public static final Block POTTED_SHINY_CORNFLOWER = registerBlock("potted_shiny_cornflower",
             properties -> new FlowerPotBlock(ModBlocks.SHINY_CORNFLOWER, properties.breakInstantly().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
-    public static final Block GLOW_LANTERN = registerBlock("glow_lantern",
-            properties -> new LanternBlock(properties.mapColor(MapColor.IRON_GRAY).solid().requiresTool().strength(3.5F).sounds(BlockSoundGroup.LANTERN).luminance((state) -> 10).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
-
-    // BONE BLOCKS
-    public static final Block CHILLED_BONE_BLOCK = registerBlock("chilled_bone_block",
-            properties -> new PillarBlock(properties.mapColor(DyeColor.LIGHT_BLUE).slipperiness(0.95f).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
-    public static final Block TOXIC_BONE_BLOCK = registerBlock("toxic_bone_block",
-            properties -> new PillarBlock(properties.mapColor(DyeColor.LIME).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
-    public static final Block DECREPIT_BONE_BLOCK = registerBlock("decrepit_bone_block",
-            properties -> new PillarBlock(properties.mapColor(DyeColor.BLACK).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
+    public static final Block INFUSED_BONE_BLOCK = registerBlock("infused_bone_block",
+            properties -> new PillarBlock(properties.mapColor(DyeColor.PINK).slipperiness(0.95f).instrument(NoteBlockInstrument.XYLOPHONE).requiresTool().strength(2.0F).sounds(BlockSoundGroup.BONE)));
 
     // ENDSTONE FAMILY
     public static final Block END_STONE_SLAB = registerBlock("end_stone_slab",
@@ -312,11 +304,7 @@ public class ModBlocks {
             entries.add(ModBlocks.END_STONE_BUTTON);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
-            entries.add(ModBlocks.GLOW_LANTERN);
-
-            entries.add(ModBlocks.CHILLED_BONE_BLOCK);
-            entries.add(ModBlocks.TOXIC_BONE_BLOCK);
-            entries.add(ModBlocks.DECREPIT_BONE_BLOCK);
+            entries.add(ModBlocks.INFUSED_BONE_BLOCK);
 
             entries.add(ModBlocks.ROSE_QUARTZ_BRICKS);
             entries.add(ModBlocks.ROSE_QUARTZ_PILLAR);

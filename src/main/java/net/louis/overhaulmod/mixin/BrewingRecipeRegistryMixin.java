@@ -46,7 +46,7 @@ public class BrewingRecipeRegistryMixin {
         builder.registerPotionRecipe(Potions.LONG_POISON, Items.REDSTONE_BLOCK, ModPotions.LONGEST_POISON);
         builder.registerPotionRecipe(Potions.STRONG_POISON, Items.GLOWSTONE, ModPotions.STRONGEST_POISON);
 
-        builder.registerPotionRecipe(Potions.MUNDANE, ModItems.CHILLED_BONE, Potions.WEAKNESS);
+        builder.registerPotionRecipe(Potions.MUNDANE, Items.WARPED_FUNGUS, Potions.WEAKNESS);
         builder.registerPotionRecipe(Potions.WEAKNESS, Items.REDSTONE, Potions.LONG_WEAKNESS);
         builder.registerPotionRecipe(Potions.WEAKNESS, Items.GLOWSTONE_DUST, ModPotions.STRONG_WEAKNESS);
         builder.registerPotionRecipe(Potions.LONG_WEAKNESS, Items.REDSTONE_BLOCK, ModPotions.LONGEST_WEAKNESS);
@@ -66,14 +66,11 @@ public class BrewingRecipeRegistryMixin {
         builder.registerPotionRecipe(ModPotions.BLINDNESS, Items.REDSTONE, ModPotions.LONG_BLINDNESS);
         builder.registerPotionRecipe(ModPotions.LONG_BLINDNESS, Items.REDSTONE_BLOCK, ModPotions.LONGEST_BLINDNESS);
 
-        builder.registerPotionRecipe(Potions.MUNDANE, Items.ROTTEN_FLESH, ModPotions.HUNGER);
+        builder.registerPotionRecipe(Potions.MUNDANE, Items.PALE_MOSS_BLOCK, ModPotions.HUNGER);
         builder.registerPotionRecipe(ModPotions.HUNGER, Items.REDSTONE, ModPotions.LONG_HUNGER);
         builder.registerPotionRecipe(ModPotions.HUNGER, Items.GLOWSTONE_DUST, ModPotions.STRONG_HUNGER);
         builder.registerPotionRecipe(ModPotions.LONG_HUNGER, Items.REDSTONE_BLOCK, ModPotions.LONGEST_HUNGER);
         builder.registerPotionRecipe(ModPotions.STRONG_HUNGER, Items.GLOWSTONE, ModPotions.STRONGEST_HUNGER);
-
-        // DECAYED FLESH -> REVERSE WATER BREATHING
-        // ADD VARIATIONS HERE
 
         builder.registerPotionRecipe(Potions.MUNDANE, Items.WITHER_ROSE, ModPotions.WITHER);
         builder.registerPotionRecipe(ModPotions.WITHER, Items.REDSTONE, ModPotions.LONG_WITHER);
@@ -168,9 +165,6 @@ public class BrewingRecipeRegistryMixin {
         builder.registerPotionRecipe(Potions.LUCK, Items.GLOWSTONE_DUST, ModPotions.STRONG_LUCK);
         builder.registerPotionRecipe(ModPotions.LONG_LUCK, Items.REDSTONE_BLOCK, ModPotions.LONGEST_LUCK);
         builder.registerPotionRecipe(ModPotions.STRONG_LUCK, Items.GLOWSTONE, ModPotions.STRONGEST_LUCK);
-
-        // ??? -> HASTE
-        // ADD VARIATIONS HERE
 
         builder.registerPotionRecipe(Potions.AWKWARD, ModItems.BAT_FANG, Potions.SLOW_FALLING);
         builder.registerPotionRecipe(Potions.SLOW_FALLING, Items.REDSTONE, Potions.LONG_SLOW_FALLING);

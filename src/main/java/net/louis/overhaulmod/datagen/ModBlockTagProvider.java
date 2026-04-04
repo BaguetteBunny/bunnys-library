@@ -63,10 +63,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
                 .add(ModBlocks.COPPER_RAIL)
 
-                .add(ModBlocks.GLOW_LANTERN)
-                .add(ModBlocks.CHILLED_BONE_BLOCK)
-                .add(ModBlocks.TOXIC_BONE_BLOCK)
-                .add(ModBlocks.DECREPIT_BONE_BLOCK)
+                .add(ModBlocks.INFUSED_BONE_BLOCK)
 
                 .add(ModBlocks.END_STONE_STAIRS)
                 .add(ModBlocks.END_STONE_WALL)
@@ -308,7 +305,5 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.FENCES)
                 .add(ModBlocks.RED_NETHER_BRICK_FENCE);
 
-        getOrCreateTagBuilder(BlockTags.HOGLIN_REPELLENTS)
-                .add(ModBlocks.GLOW_LANTERN);
     }
 }

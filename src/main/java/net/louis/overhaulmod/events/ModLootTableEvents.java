@@ -19,7 +19,6 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.*;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.potion.Potions;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -30,11 +29,8 @@ public class ModLootTableEvents {
     private static final Identifier BAT_ID = Identifier.ofVanilla("entities/bat");
     private static final Identifier ENDERMITE_ID = Identifier.ofVanilla("entities/endermite");
     private static final Identifier HUSK_ID = Identifier.ofVanilla("entities/husk");
-    private static final Identifier STRAY_ID = Identifier.ofVanilla("entities/stray");
     private static final Identifier WARDEN_ID = Identifier.ofVanilla("entities/warden");
     private static final Identifier DROWNED_ID = Identifier.ofVanilla("entities/drowned");
-    private static final Identifier BOGGED_ID = Identifier.ofVanilla("entities/bogged");
-    private static final Identifier WITHER_SKELETON_ID = Identifier.ofVanilla("entities/wither_skeleton");
     private static final Identifier WITHER_ID = Identifier.ofVanilla("entities/wither");
 
     public static void replaceLootTables() {
@@ -124,11 +120,10 @@ public class ModLootTableEvents {
 
             if (HUSK_ID.equals(key.getValue())) {
                 LootTable.Builder table = LootTable.builder()
-                        // Sandy Flesh
                         .pool(LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1))
                                 .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(ModItems.SANDY_FLESH))
+                                .with(ItemEntry.builder(Items.ROTTEN_FLESH))
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
                                 .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
 
@@ -163,11 +158,10 @@ public class ModLootTableEvents {
 
             if (DROWNED_ID.equals(key.getValue())) {
                 LootTable.Builder table = LootTable.builder()
-                        // Decaying Flesh
                         .pool(LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1))
                                 .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(ModItems.DECAYING_FLESH))
+                                .with(ItemEntry.builder(Items.ROTTEN_FLESH))
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
                                 .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
 
@@ -187,93 +181,6 @@ public class ModLootTableEvents {
                                 .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registry, 0.008333f,0.003333f))
                                 .with(ItemEntry.builder(Items.NAUTILUS_SHELL))
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build()));
-                return table.build();
-            }
-
-            if (STRAY_ID.equals(key.getValue())) {
-                LootTable.Builder table = LootTable.builder()
-                        // Chilled Bone
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(ModItems.CHILLED_BONE))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
-
-                        // Arrow
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(Items.ARROW))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
-
-                        // Slowness Arrow
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(KilledByPlayerLootCondition.builder())
-                                .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registry, 0.5f,0.15f))
-                                .with(ItemEntry.builder(Items.TIPPED_ARROW).apply(SetPotionLootFunction.builder(Potions.SLOWNESS)))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 1.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()));
-                return table.build();
-            }
-
-            if (BOGGED_ID.equals(key.getValue())) {
-                LootTable.Builder table = LootTable.builder()
-                        // Toxic Bone
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(ModItems.TOXIC_BONE))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
-
-                        // Arrow
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(Items.ARROW))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
-
-                        // Poison Arrow
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(KilledByPlayerLootCondition.builder())
-                                .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registry, 0.5f,0.15f))
-                                .with(ItemEntry.builder(Items.TIPPED_ARROW).apply(SetPotionLootFunction.builder(Potions.POISON)))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 1.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()));
-                return table.build();
-            }
-
-            if (WITHER_SKELETON_ID.equals(key.getValue())) {
-                LootTable.Builder table = LootTable.builder()
-                        // Decrepit Bone
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(ModItems.DECREPIT_BONE))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
-
-                        // Coal
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(RandomChanceLootCondition.builder(1f))
-                                .with(ItemEntry.builder(Items.COAL))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 2.0f)).build())
-                                .apply(EnchantedCountIncreaseLootFunction.builder(registry, UniformLootNumberProvider.create(1.0f, 1.0f)).build()))
-
-                        // Wither Skeleton Skull
-                        .pool(LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1))
-                                .conditionally(KilledByPlayerLootCondition.builder())
-                                .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registry, 0.025f,0.01f))
-                                .with(ItemEntry.builder(Items.WITHER_SKELETON_SKULL))
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0f, 1.0f)).build()));
-
                 return table.build();
             }
             return null;

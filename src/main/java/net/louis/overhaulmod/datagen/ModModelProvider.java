@@ -50,8 +50,6 @@ public class ModModelProvider extends FabricModelProvider {
         //  blockStateModelGenerator.registerSimpleCubeAll(ModBlocks);
         blockStateModelGenerator.registerStraightRail(ModBlocks.COPPER_RAIL);
 
-        blockStateModelGenerator.registerLantern(ModBlocks.GLOW_LANTERN);
-
         blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.MYSTIC_ROSE, ModBlocks.POTTED_MYSTIC_ROSE, BlockStateModelGenerator.CrossType.NOT_TINTED);
         blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.COBALT_FLOWER, ModBlocks.POTTED_COBALT_FLOWER, BlockStateModelGenerator.CrossType.NOT_TINTED);
         blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.WILTED_POPPY, ModBlocks.POTTED_WILTED_POPPY, BlockStateModelGenerator.CrossType.NOT_TINTED);
@@ -59,9 +57,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.LAVENDER_DANDELION, ModBlocks.POTTED_LAVENDER_DANDELION, BlockStateModelGenerator.CrossType.NOT_TINTED);
         blockStateModelGenerator.registerFlowerPotPlantAndItem(ModBlocks.HEART_FLOWER, ModBlocks.POTTED_HEART_FLOWER, BlockStateModelGenerator.CrossType.NOT_TINTED);
 
-        blockStateModelGenerator.registerLog(ModBlocks.CHILLED_BONE_BLOCK);
-        blockStateModelGenerator.registerLog(ModBlocks.TOXIC_BONE_BLOCK);
-        blockStateModelGenerator.registerLog(ModBlocks.DECREPIT_BONE_BLOCK);
+        blockStateModelGenerator.registerLog(ModBlocks.INFUSED_BONE_BLOCK);
 
         BlockStateModelGenerator.BlockTexturePool endstonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(Blocks.END_STONE);
         endstonePool.stairs(ModBlocks.END_STONE_STAIRS);
@@ -175,22 +171,15 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.PURIFIED_WATER_BOTTLE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.CHILLED_BONE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.TOXIC_BONE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.DECREPIT_BONE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.SANDY_FLESH, Models.GENERATED);
         itemModelGenerator.register(ModItems.BAT_FANG, Models.GENERATED);
         itemModelGenerator.register(ModItems.ENDERMITE_HEART, Models.GENERATED);
-        itemModelGenerator.register(ModItems.DECAYING_FLESH, Models.GENERATED);
         itemModelGenerator.register(ModItems.SADDLED_GOAT_HORN, Models.GENERATED);
         itemModelGenerator.register(ModItems.RECALL_CLOCK, Models.GENERATED);
         itemModelGenerator.register(ModItems.LLAMAS_SPIT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.INFUSED_BONE_MEAL, Models.GENERATED);
         itemModelGenerator.register(ModItems.VEGETABLE_STEW, Models.GENERATED);
         itemModelGenerator.register(ModItems.FISH_STEW, Models.GENERATED);
         itemModelGenerator.register(ModItems.ROTTEN_STEW, Models.GENERATED);
-        itemModelGenerator.register(ModItems.CHILLED_BONE_MEAL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.TOXIC_BONE_MEAL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.DECREPIT_BONE_MEAL, Models.GENERATED);
         itemModelGenerator.register(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);

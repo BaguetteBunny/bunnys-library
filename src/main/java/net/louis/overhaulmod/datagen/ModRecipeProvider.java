@@ -224,10 +224,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_BRICKS, Blocks.BRICKS, 1);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_QUARTZ_BRICKS, Blocks.QUARTZ_BRICKS, 1);
 
-                // SMELTING
-                offerSmelting(List.of(ModItems.SANDY_FLESH), RecipeCategory.BUILDING_BLOCKS, Items.SAND, 0.1f, 300, "flesh_to_sand");
-                offerSmelting(List.of(ModItems.DECAYING_FLESH), RecipeCategory.BUILDING_BLOCKS, Items.SEAGRASS, 0.1f, 300, "flesh_to_seagrass");
-
                 // FOOD & DRINKS
                 createShapeless(RecipeCategory.FOOD, ModItems.FISH_STEW, 1)
                         .input(Items.BOWL)
@@ -388,18 +384,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input(Items.COPPER_INGOT)
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                         .offerTo(exporter);
-                createShapeless(RecipeCategory.MISC, ModItems.CHILLED_BONE_MEAL, 3)
-                        .input(ModItems.CHILLED_BONE)
-                        .criterion(hasItem(ModItems.CHILLED_BONE), conditionsFromItem(ModItems.CHILLED_BONE))
-                        .offerTo(exporter);
-                createShapeless(RecipeCategory.MISC, ModItems.TOXIC_BONE, 3)
-                        .input(ModItems.TOXIC_BONE)
-                        .criterion(hasItem(ModItems.TOXIC_BONE), conditionsFromItem(ModItems.TOXIC_BONE))
-                        .offerTo(exporter);
-                createShapeless(RecipeCategory.MISC, ModItems.DECREPIT_BONE_MEAL, 3)
-                        .input(ModItems.DECREPIT_BONE)
-                        .criterion(hasItem(ModItems.DECREPIT_BONE), conditionsFromItem(ModItems.DECREPIT_BONE))
-                        .offerTo(exporter);
 
                 // MISC
                 createShapeless(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE, 2)
@@ -498,10 +482,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
                         .offerTo(exporter);
 
-                createShapeless(RecipeCategory.MISC, Items.BUNDLE, 1)
-                        .input(Items.LEATHER)
-                        .input(Items.STRING)
-                        .criterion(hasItem(Items.LEATHER), conditionsFromItem(Items.LEATHER))
+                createShaped(RecipeCategory.MISC, ModItems.INFUSED_BONE_MEAL, 8)
+                        .pattern("BBB")
+                        .pattern("BNB")
+                        .pattern("BBB")
+                        .input('B', Items.BONE_MEAL)
+                        .input('N', Items.NETHER_WART)
+                        .criterion(hasItem(Items.NETHER_WART), conditionsFromItem(Items.NETHER_WART))
                         .offerTo(exporter);
 
                 createShapeless(RecipeCategory.MISC, ModItems.PET_RECOVERY_COMPASS, 1)
@@ -524,28 +511,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('S', Items.STRING)
                         .input('B', ModItems.BAT_FANG)
                         .criterion(hasItem(Items.RABBIT_HIDE), conditionsFromItem(Items.RABBIT_HIDE))
-                        .offerTo(exporter);
-
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHILLED_BONE_BLOCK, 1)
-                        .pattern("AAA")
-                        .pattern("AAA")
-                        .pattern("AAA")
-                        .input('A', ModItems.CHILLED_BONE_MEAL)
-                        .criterion(hasItem(ModItems.CHILLED_BONE_MEAL), conditionsFromItem(ModItems.CHILLED_BONE_MEAL))
-                        .offerTo(exporter);
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.TOXIC_BONE_BLOCK, 1)
-                        .pattern("AAA")
-                        .pattern("AAA")
-                        .pattern("AAA")
-                        .input('A', ModItems.TOXIC_BONE_MEAL)
-                        .criterion(hasItem(ModItems.TOXIC_BONE_MEAL), conditionsFromItem(ModItems.TOXIC_BONE_MEAL))
-                        .offerTo(exporter);
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DECREPIT_BONE_BLOCK, 1)
-                        .pattern("AAA")
-                        .pattern("AAA")
-                        .pattern("AAA")
-                        .input('A', ModItems.DECREPIT_BONE_MEAL)
-                        .criterion(hasItem(ModItems.DECREPIT_BONE_MEAL), conditionsFromItem(ModItems.DECREPIT_BONE_MEAL))
                         .offerTo(exporter);
 
                 createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.CRYING_OBSIDIAN, 8)
@@ -571,22 +536,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('A', Blocks.STONE)
                         .input('B', Blocks.CLAY)
                         .criterion(hasItem(Items.STONE), conditionsFromItem(Items.STONE))
-                        .offerTo(exporter);
-
-                createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.SUSPICIOUS_SAND, 1)
-                        .pattern("FS")
-                        .pattern("SF")
-                        .input('S', Items.SAND)
-                        .input('F', ModItems.SANDY_FLESH)
-                        .criterion(hasItem(ModItems.SANDY_FLESH), conditionsFromItem(ModItems.SANDY_FLESH))
-                        .offerTo(exporter);
-
-                createShaped(RecipeCategory.BUILDING_BLOCKS, Blocks.SUSPICIOUS_GRAVEL, 1)
-                        .pattern("DG")
-                        .pattern("GD")
-                        .input('G', Items.GRAVEL)
-                        .input('D', ModItems.DECAYING_FLESH)
-                        .criterion(hasItem(ModItems.DECAYING_FLESH), conditionsFromItem(ModItems.DECAYING_FLESH))
                         .offerTo(exporter);
 
                 createShaped(RecipeCategory.BUILDING_BLOCKS, Items.PLAYER_HEAD, 1)
