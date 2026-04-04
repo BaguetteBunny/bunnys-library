@@ -103,9 +103,6 @@ public class ModItems {
     public static final Item PURIFIED_WATER_BOTTLE = registerItem("purified_water_bottle",
             settings -> new Item(settings.maxCount(1).rarity(Rarity.RARE)));
 
-    public static final Item EMPYREAN_POWDER = registerItem("empyrean_powder",
-            settings -> new Item(settings.maxCount(16)));
-
     public static final Item ADVANCED_ARROW = registerItem("advanced_arrow",
             ArrowItem::new);
 
@@ -242,7 +239,6 @@ public class ModItems {
             entries.add(TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
             entries.add(GLOW_UPGRADE_SMITHING_TEMPLATE);
             entries.add(PULSING_UPGRADE_SMITHING_TEMPLATE);
-            entries.add(EMPYREAN_POWDER);
             entries.add(LLAMAS_SPIT);
             entries.add(BAT_FANG);
             entries.add(ENDERMITE_HEART);

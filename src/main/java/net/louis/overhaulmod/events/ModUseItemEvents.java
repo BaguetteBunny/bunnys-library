@@ -40,7 +40,6 @@ public class ModUseItemEvents {
         UseItemCallback.EVENT.register(ModUseItemEvents::getLlamaSpitBottle);
         UseItemCallback.EVENT.register(ModUseItemEvents::useGlowInk);
         UseItemCallback.EVENT.register(ModUseItemEvents::useFireBlastEnchant);
-        UseItemCallback.EVENT.register(ModUseItemEvents::useSeasoning);
         UseItemCallback.EVENT.register(ModUseItemEvents::cancelItemEquipIfHelmed);
 
         // Projectiles
@@ -256,27 +255,5 @@ public class ModUseItemEvents {
             return ActionResult.SUCCESS_SERVER;
         }
         return ActionResult.PASS;
-    }
-
-    private static ActionResult useSeasoning(PlayerEntity player, World world, Hand hand) {
-        ItemStack powderStack = player.getStackInHand(Hand.OFF_HAND);
-        ItemStack foodStack = player.getStackInHand(Hand.MAIN_HAND);
-
-        if (hand != Hand.MAIN_HAND || !powderStack.isOf(ModItems.EMPYREAN_POWDER) || world.isClient() || foodStack.get(DataComponentTypes.FOOD) == null || foodStack.get(ModComponents.SEASONING) != null) return ActionResult.PASS;
-
-        if (foodStack.getCount() <= 8) foodStack.set(ModComponents.SEASONING, ModItems.EMPYREAN_POWDER);
-        else {
-            foodStack.setCount(foodStack.getCount() - 8);
-
-            ItemStack newStack = foodStack.copy();
-            newStack.setCount(8);
-            newStack.set(ModComponents.SEASONING, ModItems.EMPYREAN_POWDER);
-            player.giveItemStack(newStack);
-        }
-
-        powderStack.decrementUnlessCreative(1, player);
-        world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_HOE_TILL, SoundCategory.PLAYERS, 1f, 2f);
-        player.swingHand(hand, true);
-        return ActionResult.SUCCESS_SERVER;
     }
 }

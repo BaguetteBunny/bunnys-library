@@ -2,7 +2,7 @@
   "criteria": {
     "has_painting": {
       "conditions": {
-        "recipe": "louis-overhaul-mod:painting_to_tides_sawmilling"
+        "recipe": "louis-overhaul-mod:painting_to_sunset_sawmilling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

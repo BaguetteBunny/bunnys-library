@@ -191,7 +191,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.CHILLED_BONE_MEAL, Models.GENERATED);
         itemModelGenerator.register(ModItems.TOXIC_BONE_MEAL, Models.GENERATED);
         itemModelGenerator.register(ModItems.DECREPIT_BONE_MEAL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.EMPYREAN_POWDER, Models.GENERATED);
         itemModelGenerator.register(ModItems.GLOW_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.PULSING_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         itemModelGenerator.register(ModItems.BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);

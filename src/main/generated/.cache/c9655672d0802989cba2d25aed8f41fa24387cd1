@@ -216,7 +216,6 @@ fbf2998b7fb9d620bf11441744cf45d78776e1d2 assets/louis-overhaul-mod/items/decrepi
 04e4179a1eaebadf729fb56645bbe532022befc1 assets/louis-overhaul-mod/items/dripstone_slab.json
 08c23a04f361a93277f8195cf6c3eb43101f7d54 assets/louis-overhaul-mod/items/dripstone_stairs.json
 85482949684c84b282ff389ca13466ffd1ee96c8 assets/louis-overhaul-mod/items/dripstone_wall.json
-52efd90c230bbbc2a3ec433ec88e82c470301416 assets/louis-overhaul-mod/items/empyrean_powder.json
 408bbb7e080c86e9b5098d209491d4cc694d090b assets/louis-overhaul-mod/items/end_stone_button.json
 835246391cc921f121cac02bb95da9254f58e08b assets/louis-overhaul-mod/items/end_stone_pressure_plate.json
 b0f7ec8e5d6ae0565c8820a71d4c6bdc7aa57c6e assets/louis-overhaul-mod/items/end_stone_slab.json
@@ -698,7 +697,6 @@ aeecf34ba4545d3159ad1ac88c0baf495a706251 assets/louis-overhaul-mod/models/item/c
 f55d706a81c188156a8a6ca95a8b86a0725b84c5 assets/louis-overhaul-mod/models/item/decaying_flesh.json
 cf7e16e6cac007842581fcbaffa94fb9330ba9da assets/louis-overhaul-mod/models/item/decrepit_bone.json
 3dd729f7acf1e36444e40d577bd7e95dad1c36ce assets/louis-overhaul-mod/models/item/decrepit_bone_meal.json
-e519d66553f96bafb9ae130a59f1c2773b617fed assets/louis-overhaul-mod/models/item/empyrean_powder.json
 697444fe1a2e53f16a640394f21642aa4d503bdb assets/louis-overhaul-mod/models/item/endermite_heart.json
 eb2292513f20bb811c16969d68e076d31bbdae4a assets/louis-overhaul-mod/models/item/fish_stew.json
 e3fb7e157dc90074a3da5bd43df33f74259f781d assets/louis-overhaul-mod/models/item/fragrant_name_tag.json

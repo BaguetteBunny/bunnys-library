@@ -85,22 +85,6 @@ public class LivingEntityMixin {
         }
     }
 
-    @Inject(method = "consumeItem", at = @At("RETURN"))
-    private void LOM$removeNegEffects(CallbackInfo ci) {
-        Hand hand = self.getActiveHand();
-        ItemStack stack = self.getStackInHand(hand);
-
-        if (stack.getComponents().get(ModComponents.SEASONING) == ModItems.EMPYREAN_POWDER && self instanceof ServerPlayerEntity player && !self.getEntityWorld().isClient()) {
-            Collection<StatusEffectInstance> effects = List.copyOf(player.getStatusEffects());
-            for (StatusEffectInstance effectInstance : effects) {
-                StatusEffect se = effectInstance.getEffectType().value();
-                if (se.getCategory() == StatusEffectCategory.HARMFUL) {
-                    player.removeStatusEffect(effectInstance.getEffectType());
-                }
-            }
-        }
-    }
-
     @Inject(method = "tick", at = @At("TAIL"))
     private void LOM$applyFrostWalkerWhileMounted(CallbackInfo ci) {
 
