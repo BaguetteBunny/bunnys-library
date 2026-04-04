@@ -384,6 +384,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input(Items.COPPER_INGOT)
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                         .offerTo(exporter);
+                createShaped(RecipeCategory.TOOLS, ModItems.EMPTY_PARTICLE_ORB, 1)
+                        .pattern("LA")
+                        .pattern("AL")
+                        .input('L', Items.LAPIS_LAZULI)
+                        .input('A', Items.AMETHYST_SHARD)
+                        .criterion(hasItem(Items.AMETHYST_SHARD), conditionsFromItem(Items.AMETHYST_SHARD))
+                        .offerTo(exporter);
 
                 // MISC
                 createShapeless(RecipeCategory.MISC, Items.LIGHT_BLUE_DYE, 2)

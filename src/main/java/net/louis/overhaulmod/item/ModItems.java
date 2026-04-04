@@ -70,6 +70,9 @@ public class ModItems {
 
     public static final Item AZURITE = registerItem("azurite", Item::new);
 
+    public static final Item EMPTY_PARTICLE_ORB = registerItem("empty_particle_orb", settings -> new Item(settings.maxCount(1)));
+    public static final Item FILLED_PARTICLE_ORB = registerItem("filled_particle_orb", settings -> new FilledParticleOrb(settings.maxCount(1).rarity(Rarity.RARE)));
+
     public static final Item BEAR_CLAW = registerItem("bear_claw",
             settings -> new Item(settings.maxDamage(1024).maxCount(1)
                     .attributeModifiers(AttributeModifiersComponent.builder()
@@ -202,6 +205,8 @@ public class ModItems {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(AZURITE);
+            entries.add(EMPTY_PARTICLE_ORB);
+            entries.add(FILLED_PARTICLE_ORB);
             entries.add(BIG_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
             entries.add(TITANIC_BUNDLE_UPGRADE_SMITHING_TEMPLATE);
             entries.add(GLOW_UPGRADE_SMITHING_TEMPLATE);

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "L": "minecraft:lapis_lazuli"
+  },
+  "pattern": [
+    "LA",
+    "AL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "louis-overhaul-mod:empty_particle_orb"
+  }
+}

@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.SimpleParticleType;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -192,6 +194,60 @@ public final class ItemManager {
 
         // 1
         MAX_STACK_OVERRIDES.put(Items.DRAGON_EGG, 1);
+    }
+
+    public static final Map<Item, SimpleParticleType> SHERD_PARTICLE = new HashMap<>();
+    static {
+        SHERD_PARTICLE.put(Items.ANGLER_POTTERY_SHERD, ParticleTypes.BUBBLE);
+        SHERD_PARTICLE.put(Items.ARCHER_POTTERY_SHERD, ParticleTypes.CRIT);
+        SHERD_PARTICLE.put(Items.ARMS_UP_POTTERY_SHERD, ParticleTypes.TOTEM_OF_UNDYING);
+        SHERD_PARTICLE.put(Items.BLADE_POTTERY_SHERD, ParticleTypes.SWEEP_ATTACK);
+        SHERD_PARTICLE.put(Items.BREWER_POTTERY_SHERD, ParticleTypes.EFFECT);
+        SHERD_PARTICLE.put(Items.BURN_POTTERY_SHERD, ParticleTypes.FLAME);
+        SHERD_PARTICLE.put(Items.DANGER_POTTERY_SHERD, ParticleTypes.LARGE_SMOKE);
+        SHERD_PARTICLE.put(Items.EXPLORER_POTTERY_SHERD, ParticleTypes.ENCHANT);
+        SHERD_PARTICLE.put(Items.FLOW_POTTERY_SHERD, ParticleTypes.SPLASH);
+        SHERD_PARTICLE.put(Items.FRIEND_POTTERY_SHERD, ParticleTypes.HEART);
+        SHERD_PARTICLE.put(Items.GUSTER_POTTERY_SHERD, ParticleTypes.CLOUD);
+        SHERD_PARTICLE.put(Items.HEART_POTTERY_SHERD, ParticleTypes.HEART);
+        SHERD_PARTICLE.put(Items.HEARTBREAK_POTTERY_SHERD, ParticleTypes.DAMAGE_INDICATOR);
+        SHERD_PARTICLE.put(Items.HOWL_POTTERY_SHERD, ParticleTypes.SOUL);
+        SHERD_PARTICLE.put(Items.MINER_POTTERY_SHERD, ParticleTypes.CRIT);
+        SHERD_PARTICLE.put(Items.MOURNER_POTTERY_SHERD, ParticleTypes.SOUL_FIRE_FLAME);
+        SHERD_PARTICLE.put(Items.PLENTY_POTTERY_SHERD, ParticleTypes.HAPPY_VILLAGER);
+        SHERD_PARTICLE.put(Items.PRIZE_POTTERY_SHERD, ParticleTypes.FIREWORK);
+        SHERD_PARTICLE.put(Items.SCRAPE_POTTERY_SHERD, ParticleTypes.ASH);
+        SHERD_PARTICLE.put(Items.SHEAF_POTTERY_SHERD, ParticleTypes.COMPOSTER);
+        SHERD_PARTICLE.put(Items.SHELTER_POTTERY_SHERD, ParticleTypes.ENCHANT);
+        SHERD_PARTICLE.put(Items.SKULL_POTTERY_SHERD, ParticleTypes.SMOKE);
+        SHERD_PARTICLE.put(Items.SNORT_POTTERY_SHERD, ParticleTypes.POOF);
+    }
+
+    public static final Set<Item> SHERDS = new HashSet<>();
+    static {
+        SHERDS.add(Items.ANGLER_POTTERY_SHERD);
+        SHERDS.add(Items.ARCHER_POTTERY_SHERD);
+        SHERDS.add(Items.ARMS_UP_POTTERY_SHERD);
+        SHERDS.add(Items.BLADE_POTTERY_SHERD);
+        SHERDS.add(Items.BREWER_POTTERY_SHERD);
+        SHERDS.add(Items.BURN_POTTERY_SHERD);
+        SHERDS.add(Items.DANGER_POTTERY_SHERD);
+        SHERDS.add(Items.EXPLORER_POTTERY_SHERD);
+        SHERDS.add(Items.FLOW_POTTERY_SHERD);
+        SHERDS.add(Items.FRIEND_POTTERY_SHERD);
+        SHERDS.add(Items.GUSTER_POTTERY_SHERD);
+        SHERDS.add(Items.HEART_POTTERY_SHERD);
+        SHERDS.add(Items.HEARTBREAK_POTTERY_SHERD);
+        SHERDS.add(Items.HOWL_POTTERY_SHERD);
+        SHERDS.add(Items.MINER_POTTERY_SHERD);
+        SHERDS.add(Items.MOURNER_POTTERY_SHERD);
+        SHERDS.add(Items.PLENTY_POTTERY_SHERD);
+        SHERDS.add(Items.PRIZE_POTTERY_SHERD);
+        SHERDS.add(Items.SCRAPE_POTTERY_SHERD);
+        SHERDS.add(Items.SHEAF_POTTERY_SHERD);
+        SHERDS.add(Items.SHELTER_POTTERY_SHERD);
+        SHERDS.add(Items.SKULL_POTTERY_SHERD);
+        SHERDS.add(Items.SNORT_POTTERY_SHERD);
     }
 
     public static final Set<Block> BRICK_BREAKABLE_GLASS_BLOCKS = new HashSet<>(Set.of(

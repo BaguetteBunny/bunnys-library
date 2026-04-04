@@ -208,12 +208,14 @@ fc25b997e076e81f763d5792811578f25dda197c assets/louis-overhaul-mod/items/dark_pr
 04e4179a1eaebadf729fb56645bbe532022befc1 assets/louis-overhaul-mod/items/dripstone_slab.json
 08c23a04f361a93277f8195cf6c3eb43101f7d54 assets/louis-overhaul-mod/items/dripstone_stairs.json
 85482949684c84b282ff389ca13466ffd1ee96c8 assets/louis-overhaul-mod/items/dripstone_wall.json
+a5b2b6d3f7065b0a312539892fe6becc33e5fcfe assets/louis-overhaul-mod/items/empty_particle_orb.json
 408bbb7e080c86e9b5098d209491d4cc694d090b assets/louis-overhaul-mod/items/end_stone_button.json
 835246391cc921f121cac02bb95da9254f58e08b assets/louis-overhaul-mod/items/end_stone_pressure_plate.json
 b0f7ec8e5d6ae0565c8820a71d4c6bdc7aa57c6e assets/louis-overhaul-mod/items/end_stone_slab.json
 82be11919fbdee8dea7433c3157c943d2ef96ce1 assets/louis-overhaul-mod/items/end_stone_stairs.json
 5230e898ca54b21c562cb5ca2e370c6b20ff6b0b assets/louis-overhaul-mod/items/end_stone_wall.json
 d45855c3b354f2cd63c41fe00a247a39e1fb39ec assets/louis-overhaul-mod/items/endermite_heart.json
+d21bebc124b5d1f83cf4477d4a0415add1650913 assets/louis-overhaul-mod/items/filled_particle_orb.json
 d110865a56d581259624380304c90b2273106824 assets/louis-overhaul-mod/items/fish_stew.json
 42137f4167894f110e7b264ff769628e73f860eb assets/louis-overhaul-mod/items/fragrant_name_tag.json
 b1576f100f173ad5056c61ba59763360b3a10e54 assets/louis-overhaul-mod/items/glow_upgrade_smithing_template.json
@@ -679,7 +681,9 @@ a5541dda913397483e6a9091d82ca1f3b46681ac assets/louis-overhaul-mod/models/item/c
 aeecf34ba4545d3159ad1ac88c0baf495a706251 assets/louis-overhaul-mod/models/item/copper_rail.json
 81bbe4ddf2b0b13330232d372294e57bc5c6c8f2 assets/louis-overhaul-mod/models/item/cyan_name_tag.json
 9360ac88452a25413dc3084e057a210428966145 assets/louis-overhaul-mod/models/item/cyan_water_bucket.json
+873098ef490c95b3aa79a28014000faf274e385b assets/louis-overhaul-mod/models/item/empty_particle_orb.json
 697444fe1a2e53f16a640394f21642aa4d503bdb assets/louis-overhaul-mod/models/item/endermite_heart.json
+a9cf2f8f69f7796a16e87961e601f718f61d6e8e assets/louis-overhaul-mod/models/item/filled_particle_orb.json
 eb2292513f20bb811c16969d68e076d31bbdae4a assets/louis-overhaul-mod/models/item/fish_stew.json
 e3fb7e157dc90074a3da5bd43df33f74259f781d assets/louis-overhaul-mod/models/item/fragrant_name_tag.json
 c6a11a1af71fe9354450cd0e7b86f295baf77742 assets/louis-overhaul-mod/models/item/glow_upgrade_smithing_template.json

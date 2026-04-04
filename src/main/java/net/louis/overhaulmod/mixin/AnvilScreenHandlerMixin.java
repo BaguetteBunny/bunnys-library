@@ -3,7 +3,9 @@ package net.louis.overhaulmod.mixin;
 import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
+import net.louis.overhaulmod.item.custom.FilledParticleOrb;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
+import net.louis.overhaulmod.utils.ItemManager;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
@@ -12,6 +14,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.*;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.EnchantmentTags;
@@ -213,6 +216,64 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
                 ci.cancel();
                 return;
             }
+        }
+    }
+
+    @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
+    private void LOM$handleOrb(CallbackInfo ci) {
+        ItemStack leftStack = this.input.getStack(0);
+        ItemStack rightStack = this.input.getStack(1);
+        if (!leftStack.isOf(ModItems.EMPTY_PARTICLE_ORB)) return;
+
+        Item rightItem = rightStack.getItem();
+
+        if (ItemManager.SHERDS.contains(rightItem)) {
+            ItemStack filledOrb = new ItemStack(ModItems.FILLED_PARTICLE_ORB, 1);
+
+            filledOrb.set(ModComponents.ORB_SHERD_NAME, rightItem.getName().getString());
+            filledOrb.set(ModComponents.ORB_PARTICLE_EFFECT, ItemManager.SHERD_PARTICLE.get(rightItem));
+
+            this.output.setStack(0, filledOrb);
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
+    protected void LOM$takeOrbOut(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
+        if (player.getEntityWorld().isClient()) return;
+
+        ItemStack leftStack = this.input.getStack(0);
+        ItemStack rightStack = this.input.getStack(1);
+        if (leftStack.getItem() == ModItems.EMPTY_PARTICLE_ORB && ItemManager.SHERDS.contains(rightStack.getItem()))
+            cir.setReturnValue(true);
+    }
+
+    @Inject(method = "onTakeOutput", at = @At("HEAD"), cancellable = true)
+    protected void LOM$onTakeOrbOut(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
+        if (player.getEntityWorld().isClient()) return;
+
+        ItemStack leftStack = this.input.getStack(0);
+        ItemStack rightStack = this.input.getStack(1);
+        if (leftStack.getItem() == ModItems.EMPTY_PARTICLE_ORB && ItemManager.SHERDS.contains(rightStack.getItem())) {
+            this.input.setStack(0, ItemStack.EMPTY);
+            this.input.getStack(1).setCount(this.input.getStack(1).getCount() - 1);
+            this.context.run((world, pos) -> {
+                BlockState blockState = world.getBlockState(pos);
+                if (!player.isInCreativeMode() && blockState.isIn(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.12F) {
+                    BlockState blockState2 = AnvilBlock.getLandingState(blockState);
+                    if (blockState2 == null) {
+                        world.removeBlock(pos, false);
+                        world.syncWorldEvent(1029, pos, 0);
+                    } else {
+                        world.setBlockState(pos, blockState2, 2);
+                        world.syncWorldEvent(1030, pos, 0);
+                    }
+                } else {
+                    world.syncWorldEvent(1030, pos, 0);
+                }
+
+            });
+            ci.cancel();
         }
     }
 

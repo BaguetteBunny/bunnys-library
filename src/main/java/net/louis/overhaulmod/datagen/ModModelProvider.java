@@ -174,6 +174,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BAT_FANG, Models.GENERATED);
         itemModelGenerator.register(ModItems.ENDERMITE_HEART, Models.GENERATED);
         itemModelGenerator.register(ModItems.SADDLED_GOAT_HORN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FILLED_PARTICLE_ORB, Models.GENERATED);
+        itemModelGenerator.register(ModItems.EMPTY_PARTICLE_ORB, Models.GENERATED);
         itemModelGenerator.register(ModItems.RECALL_CLOCK, Models.GENERATED);
         itemModelGenerator.register(ModItems.LLAMAS_SPIT, Models.GENERATED);
         itemModelGenerator.register(ModItems.INFUSED_BONE_MEAL, Models.GENERATED);

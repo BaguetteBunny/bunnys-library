@@ -8,6 +8,8 @@ import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.passive.WolfVariant;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -31,6 +33,16 @@ public class ModComponents {
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(LouisOverhaulMod.MOD_ID, "azurite_refine"),
             ComponentType.<String>builder().codec(Codec.STRING).build()
+    );
+    public static final ComponentType<String> ORB_SHERD_NAME = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(LouisOverhaulMod.MOD_ID, "orb_sherd_name"),
+            ComponentType.<String>builder().codec(Codec.STRING).build()
+    );
+    public static final ComponentType<ParticleType<?>> ORB_PARTICLE_EFFECT = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(LouisOverhaulMod.MOD_ID, "orb_particle_effect"),
+            ComponentType.<ParticleType<?>>builder().codec(Registries.PARTICLE_TYPE.getCodec()).build()
     );
     public static final ComponentType<Item> SEASONING = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
