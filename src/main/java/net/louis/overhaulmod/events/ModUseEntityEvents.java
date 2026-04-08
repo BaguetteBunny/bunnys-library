@@ -51,6 +51,7 @@ public class ModUseEntityEvents {
         UseEntityCallback.EVENT.register(ModUseEntityEvents::dyeShulkers);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useBrushOnDyedShulkers);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useTailoringShears);
+        UseEntityCallback.EVENT.register(ModUseEntityEvents::useBlazePowderOnStriders);
 
         // Stews
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useMushroomStew);
@@ -58,6 +59,30 @@ public class ModUseEntityEvents {
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useFishStew);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useRottenStew);
         UseEntityCallback.EVENT.register(ModUseEntityEvents::useSuspiciousStew);
+    }
+
+    private static ActionResult useBlazePowderOnStriders(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
+        if (!world.isClient() && player.getStackInHand(hand).getItem() == Items.BLAZE_POWDER && entity instanceof StriderEntity striderEntity && !striderEntity.isCold()) {
+            striderEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 9, true, true));
+
+            world.playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_LAVA_POP,
+                    SoundCategory.NEUTRAL, 2.0F, 0.2F);
+            world.playSound(null, entity.getBlockPos(), SoundEvents.ENTITY_STRIDER_HAPPY,
+                    SoundCategory.NEUTRAL, 2.0F, 0.5F);
+            ((ServerWorld) world).spawnParticles(
+                    ParticleTypes.SOUL_FIRE_FLAME,
+                    entity.getX() + 0,
+                    entity.getY() + 1,
+                    entity.getZ() + 0,
+                    10,
+                    0.5, 0.5, 0.5,
+                    0.05
+            );
+
+            return ActionResult.SUCCESS_SERVER;
+        }
+
+        return ActionResult.PASS;
     }
 
     private static ActionResult useTailoringShears(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
