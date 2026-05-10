@@ -69,12 +69,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HEART_FLOWER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_HEART_FLOWER, RenderLayer.getCutout());
 
-        // Add Predicate Texture Transform
-        //PetRecoveryCompass.registerModelPredicates();
-
-//        addArrowPredicate();
-//        addAzuritePredicate();
-
         addColoredWater();
 
         ClientTickEvents.END_CLIENT_TICK.register(this::clientLoop);
@@ -84,47 +78,6 @@ public class LouisOverhaulModClient implements ClientModInitializer {
         if (client.world == null) return;
         PULSE_DEGREES = (PULSE_DEGREES + 5) % 360;
     }
-//
-//    public static void addAzuritePredicate() {
-//        ModelPredicateProviderRegistry.register(
-//                ModItems.AZURITE,
-//                Identifier.of(LouisOverhaulMod.MOD_ID,"azurite_refine_id"),
-//                (stack, world, entity, seed) -> {
-//                    String materialString = stack.get(ModComponents.AZURITE_REFINE);
-//                    if (Objects.equals(materialString, "iron")) return 0.1f;
-//                    if (Objects.equals(materialString, "gold")) return 0.2f;
-//                    if (Objects.equals(materialString, "diamond")) return 0.3f;
-//                    if (Objects.equals(materialString, "netherite")) return 0.4f;
-//                    return 0.f;
-//                }
-//        );
-//    }
-
-//    public void addArrowPredicate() {
-//        ItemModelComponentTransformer.register(
-//                ModItems.ADVANCED_ARROW,
-//                Identifier.of(LouisOverhaulMod.MOD_ID, "atid"),
-//                (stack, world, entity, seed) -> {
-//                    int total = 0;
-//                    Item foot = stack.get(ModComponents.ARROW_FOOT);
-//                    Item shaft = stack.get(ModComponents.ARROW_SHAFT);
-//                    Item head = stack.get(ModComponents.ARROW_HEAD);
-//
-//                    if (head == Items.AMETHYST_SHARD) total += 1;
-//                    if (head == Items.ECHO_SHARD) total += 2;
-//                    if (head == Items.PRISMARINE_SHARD) total += 3;
-//
-//                    if (shaft == Items.BLAZE_ROD) total += 10;
-//                    if (shaft == Items.BREEZE_ROD) total += 20;
-//
-//                    if (foot == Items.PHANTOM_MEMBRANE) total += 100;
-//                    if (foot == Items.DRIED_KELP) total += 200;
-//                    if (foot == Items.ARMADILLO_SCUTE) total += 300;
-//
-//                    return Math.round((total / 1000f) * 1000f) / 1000f;
-//                }
-//        );
-//    }
 
     public void addColoredWater() {
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_WHITE_WATER, ModFluids.FLOWING_WHITE_WATER, coloredWater(0xF9FFFE));

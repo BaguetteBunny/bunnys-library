@@ -3,7 +3,6 @@ package net.louis.overhaulmod.mixin;
 import net.louis.overhaulmod.component.ModComponents;
 import net.louis.overhaulmod.config.ModConfig;
 import net.louis.overhaulmod.item.ModItems;
-import net.louis.overhaulmod.item.custom.FilledParticleOrb;
 import net.louis.overhaulmod.utils.EnchantmentCapRegistry;
 import net.louis.overhaulmod.utils.ItemManager;
 import net.minecraft.block.AnvilBlock;
@@ -14,7 +13,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.*;
-import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.EnchantmentTags;
@@ -28,6 +26,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Objects;
 
 import static net.louis.overhaulmod.utils.ToolArmorUtil.*;
 
@@ -216,6 +216,63 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
                 ci.cancel();
                 return;
             }
+        }
+    }
+
+    @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
+    private void LOM$handleOrbOnArmor(CallbackInfo ci) {
+        ItemStack leftStack = this.input.getStack(0);
+        ItemStack rightStack = this.input.getStack(1);
+        if (!rightStack.isOf(ModItems.FILLED_PARTICLE_ORB) || leftStack.get(DataComponentTypes.EQUIPPABLE) == null) return;
+
+        Item leftItem = leftStack.getItem();
+        Item rightItem = rightStack.getItem();
+
+        if (!Objects.equals(rightStack.getOrDefault(ModComponents.ORB_SHERD_NAME, ""), "")) {
+            ItemStack newStack = rightStack.copy();
+            newStack.set(ModComponents.ORB_PARTICLE_EFFECT, rightItem.getComponents().get(ModComponents.ORB_PARTICLE_EFFECT));
+
+            this.output.setStack(0, newStack);
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "canTakeOutput", at = @At("HEAD"), cancellable = true)
+    protected void LOM$takeOrbedEquipmentOut(PlayerEntity player, boolean present, CallbackInfoReturnable<Boolean> cir) {
+        if (player.getEntityWorld().isClient()) return;
+
+        ItemStack leftStack = this.input.getStack(0);
+        ItemStack rightStack = this.input.getStack(1);
+        if (rightStack.isOf(ModItems.FILLED_PARTICLE_ORB) && leftStack.get(DataComponentTypes.EQUIPPABLE) != null)
+            cir.setReturnValue(true);
+    }
+
+    @Inject(method = "onTakeOutput", at = @At("HEAD"), cancellable = true)
+    protected void LOM$onTakeOrbedEquipmentOut(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
+        if (player.getEntityWorld().isClient()) return;
+
+        ItemStack leftStack = this.input.getStack(0);
+        ItemStack rightStack = this.input.getStack(1);
+        if (rightStack.isOf(ModItems.FILLED_PARTICLE_ORB) && leftStack.get(DataComponentTypes.EQUIPPABLE) != null) {
+            this.input.setStack(0, ItemStack.EMPTY);
+            this.input.setStack(1, ItemStack.EMPTY);
+            this.context.run((world, pos) -> {
+                BlockState blockState = world.getBlockState(pos);
+                if (!player.isInCreativeMode() && blockState.isIn(BlockTags.ANVIL) && player.getRandom().nextFloat() < 0.12F) {
+                    BlockState blockState2 = AnvilBlock.getLandingState(blockState);
+                    if (blockState2 == null) {
+                        world.removeBlock(pos, false);
+                        world.syncWorldEvent(1029, pos, 0);
+                    } else {
+                        world.setBlockState(pos, blockState2, 2);
+                        world.syncWorldEvent(1030, pos, 0);
+                    }
+                } else {
+                    world.syncWorldEvent(1030, pos, 0);
+                }
+
+            });
+            ci.cancel();
         }
     }
 
