@@ -1,10 +1,10 @@
 {
   "values": [
-    "louis-overhaul-mod:mystic_rose",
-    "louis-overhaul-mod:lavender_dandelion",
-    "louis-overhaul-mod:wilted_poppy",
-    "louis-overhaul-mod:heart_flower",
-    "louis-overhaul-mod:shiny_cornflower",
-    "louis-overhaul-mod:cobalt_flower"
+    "bunny-lib:mystic_rose",
+    "bunny-lib:lavender_dandelion",
+    "bunny-lib:wilted_poppy",
+    "bunny-lib:heart_flower",
+    "bunny-lib:shiny_cornflower",
+    "bunny-lib:cobalt_flower"
   ]
 }

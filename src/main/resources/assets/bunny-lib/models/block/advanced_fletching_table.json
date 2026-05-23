@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "bunny-lib:block/advanced_fletching_table_top",
+    "down": "minecraft:block/birch_planks",
+    "up": "bunny-lib:block/advanced_fletching_table_top",
+    "north": "bunny-lib:block/advanced_fletching_table_front",
+    "south": "bunny-lib:block/advanced_fletching_table_front",
+    "east": "bunny-lib:block/advanced_fletching_table_side",
+    "west": "bunny-lib:block/advanced_fletching_table_side"
+  }
+}

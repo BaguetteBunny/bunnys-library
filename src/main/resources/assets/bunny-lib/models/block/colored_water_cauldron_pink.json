@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/template_cauldron_full",
+  "textures": {
+    "content": "bunny-lib:block/pink_water_block",
+    "particle": "bunny-lib:block/pink_water_block",
+    "inside": "minecraft:block/cauldron_inner",
+    "bottom": "minecraft:block/cauldron_bottom",
+    "top": "minecraft:block/cauldron_top",
+    "side": "minecraft:block/cauldron_side"
+  }
+}

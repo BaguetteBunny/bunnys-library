@@ -1,0 +1,74 @@
+package bunny.lib.events;
+
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import bunny.lib.item.ModItems;
+import bunny.lib.utils.RareItemUtil;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.passive.StriderEntity;
+import net.minecraft.entity.player.PlayerEntity;
+
+import static bunny.lib.utils.RareItemUtil.oneIn;
+
+public class ModServerLivingEntityEvents {
+    public static void register() {
+        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerLivingEntityEvents::dropWispNameTag);
+        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerLivingEntityEvents::dropPeachNameTag);
+        ServerLivingEntityEvents.AFTER_DEATH.register(ModServerLivingEntityEvents::dropImmolationNameTag);
+        ServerLivingEntityEvents.AFTER_DAMAGE.register(ModServerLivingEntityEvents::dropCataclysmNameTag);
+    }
+
+    private static void dropCataclysmNameTag(LivingEntity living, DamageSource damageSource, float v, float v1, boolean b) {
+        Entity attacker = damageSource.getAttacker();
+        if (attacker instanceof PlayerEntity player && !b && v1 > 1 && oneIn(living.getEntityWorld(), 1_000_000)) {
+            RareItemUtil.spawnRareNametag(ModItems.CATACLYSM_NAME_TAG, player, living.getBlockPos());
+        }
+    }
+
+    private static void dropWispNameTag(LivingEntity living, DamageSource damageSource) {
+        Entity attacker = damageSource.getAttacker();
+        if (attacker instanceof PlayerEntity player && living instanceof BreezeEntity && oneIn(living.getEntityWorld(), 10_000)) {
+            RareItemUtil.spawnRareNametag(ModItems.WISP_NAME_TAG, player, living.getBlockPos());
+        }
+    }
+
+    private static void dropPeachNameTag(LivingEntity living, DamageSource damageSource) {
+        Entity attacker = damageSource.getAttacker();
+        if (attacker instanceof PlayerEntity player && living instanceof EnderDragonEntity && oneIn(living.getEntityWorld(), 50)) {
+            RareItemUtil.spawnRareNametag(ModItems.PEACH_NAME_TAG, player, living.getBlockPos());
+        }
+    }
+
+    private static void dropImmolationNameTag(LivingEntity living, DamageSource damageSource) {
+        Entity attacker = damageSource.getAttacker();
+        if (attacker instanceof PlayerEntity player && playerAndOtherInNether(player, living) && isNetherMob(living) && oneIn(living.getEntityWorld(), 150_000)) {
+            RareItemUtil.spawnRareNametag(ModItems.IMMOLATION_NAME_TAG, player, living.getBlockPos());
+        }
+    }
+
+
+    private static boolean isNetherMob(LivingEntity entity) {
+        return (entity instanceof BlazeEntity
+                || entity instanceof WitherSkeletonEntity
+                || entity instanceof MagmaCubeEntity
+                || entity instanceof GhastEntity
+                || entity instanceof SkeletonEntity
+                || entity instanceof AbstractPiglinEntity
+                || entity instanceof ZombifiedPiglinEntity
+                || entity instanceof HoglinEntity
+                || entity instanceof ZoglinEntity
+                || entity instanceof StriderEntity
+                || entity instanceof EndermanEntity);
+    }
+
+    private static boolean playerAndOtherInNether(PlayerEntity player, LivingEntity entity) {
+        return (player.getEntityWorld().getDimension().ultrawarm() && entity.getEntityWorld().getDimension().ultrawarm());
+    }
+
+    public static boolean playerInNether(PlayerEntity player) {
+        return (player.getEntityWorld().getDimension().ultrawarm());
+    }
+}

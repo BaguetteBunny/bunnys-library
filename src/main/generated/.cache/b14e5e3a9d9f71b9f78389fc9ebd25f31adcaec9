@@ -1,9 +1,0 @@
-// 1.21.4	-999999999-01-01T00:00:00	Louis' Overhaul Mod/Tags for minecraft:enchantment
-d0a52a9194a12b01024aa987ce4aca50cea7b6c1 data/minecraft/tags/enchantment/double_trade_price.json
-32062b22d8206b1087cf7d05d0149ef8ebed674e data/minecraft/tags/enchantment/in_enchanting_table.json
-d745d9300454b726e894b5f5d1cbce89eac82e10 data/minecraft/tags/enchantment/non_treasure.json
-01ed5562e3c05515050310b511cc066329671580 data/minecraft/tags/enchantment/on_mob_spawn_equipment.json
-7a5d61fe80acb04a865b40599d537de955830aff data/minecraft/tags/enchantment/on_random_loot.json
-d745d9300454b726e894b5f5d1cbce89eac82e10 data/minecraft/tags/enchantment/on_traded_equipment.json
-18088fcb893bffba4ecc755913f0fe7a0aa38024 data/minecraft/tags/enchantment/tradeable.json
-28bca4081f1a1a7774aaa63f79ad0785bac7570a data/minecraft/tags/enchantment/treasure.json

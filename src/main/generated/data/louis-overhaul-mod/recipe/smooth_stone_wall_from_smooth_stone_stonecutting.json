@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "minecraft:smooth_stone",
-  "result": {
-    "count": 1,
-    "id": "louis-overhaul-mod:smooth_stone_wall"
-  }
-}

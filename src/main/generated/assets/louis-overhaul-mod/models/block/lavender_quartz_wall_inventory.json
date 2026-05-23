@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/wall_inventory",
-  "textures": {
-    "wall": "louis-overhaul-mod:block/lavender_quartz_bricks"
-  }
-}

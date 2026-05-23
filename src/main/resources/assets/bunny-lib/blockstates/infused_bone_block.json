@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=x":  { "model": "bunny-lib:block/infused_bone_block_horizontal" },
+    "axis=y":  { "model": "bunny-lib:block/infused_bone_block" },
+    "axis=z":  { "model": "bunny-lib:block/infused_bone_block_horizontal", "x": 90 }
+  }
+}

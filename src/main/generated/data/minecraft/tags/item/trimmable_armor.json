@@ -1,7 +1,7 @@
 {
   "values": [
-    "louis-overhaul-mod:potion_pouch",
-    "louis-overhaul-mod:pioneer_pouch",
+    "bunny-lib:potion_pouch",
+    "bunny-lib:pioneer_pouch",
     "minecraft:bundle",
     "minecraft:bundle",
     "minecraft:white_bundle",

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "louis-overhaul-mod:item/pet_recovery_compass"
-  }
-}

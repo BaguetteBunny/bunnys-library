@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "bunny-lib:block/infused_bone_block",
+    "end":  "bunny-lib:block/infused_bone_block_top"
+  }
+}

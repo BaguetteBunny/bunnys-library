@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/template_cauldron_full",
+  "textures": {
+    "content": "bunny-lib:block/dragons_breath_fluid",
+    "inside": "minecraft:block/cauldron_inner",
+    "particle": "bunny-lib:block/dragons_breath_fluid",
+    "bottom": "minecraft:block/cauldron_bottom",
+    "top": "minecraft:block/cauldron_top",
+    "side": "minecraft:block/cauldron_side"
+  }
+}

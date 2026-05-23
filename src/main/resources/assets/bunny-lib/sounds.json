@@ -1,0 +1,8 @@
+{
+  "saddled_goat_horn_use": {
+    "subtitle": "sound.bunny-lib.saddled_goat_horn_use",
+    "sounds": [
+      "bunny-lib:saddled_goat_horn_use"
+    ]
+  }
+}

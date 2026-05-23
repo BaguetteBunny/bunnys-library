@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "fluid_type=black":       { "model": "bunny-lib:block/colored_water_cauldron_black" },
+    "fluid_type=white":       { "model": "bunny-lib:block/colored_water_cauldron_white" },
+    "fluid_type=orange":      { "model": "bunny-lib:block/colored_water_cauldron_orange" },
+    "fluid_type=red":         { "model": "bunny-lib:block/colored_water_cauldron_red" },
+    "fluid_type=magenta":     { "model": "bunny-lib:block/colored_water_cauldron_magenta" },
+    "fluid_type=pink":        { "model": "bunny-lib:block/colored_water_cauldron_pink" },
+    "fluid_type=purple":      { "model": "bunny-lib:block/colored_water_cauldron_purple" },
+    "fluid_type=green":       { "model": "bunny-lib:block/colored_water_cauldron_green" },
+    "fluid_type=lime":        { "model": "bunny-lib:block/colored_water_cauldron_lime" },
+    "fluid_type=light_blue":  { "model": "bunny-lib:block/colored_water_cauldron_light_blue" },
+    "fluid_type=gray":        { "model": "bunny-lib:block/colored_water_cauldron_gray" },
+    "fluid_type=light_gray":  { "model": "bunny-lib:block/colored_water_cauldron_light_gray" },
+    "fluid_type=brown":       { "model": "bunny-lib:block/colored_water_cauldron_brown" },
+    "fluid_type=yellow":      { "model": "bunny-lib:block/colored_water_cauldron_yellow" },
+    "fluid_type=cyan":        { "model": "bunny-lib:block/colored_water_cauldron_cyan" }
+  }
+}

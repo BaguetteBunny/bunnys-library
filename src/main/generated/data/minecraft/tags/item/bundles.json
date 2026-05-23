@@ -1,6 +1,6 @@
 {
   "values": [
-    "louis-overhaul-mod:pioneer_pouch",
-    "louis-overhaul-mod:potion_pouch"
+    "bunny-lib:pioneer_pouch",
+    "bunny-lib:potion_pouch"
   ]
 }

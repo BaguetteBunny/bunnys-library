@@ -1,0 +1,6 @@
+{
+  "parent": "bunny-lib:item/pioneer_pouch",
+  "textures": {
+    "layer0": "bunny-lib:item/pioneer_pouch_open_back"
+  }
+}

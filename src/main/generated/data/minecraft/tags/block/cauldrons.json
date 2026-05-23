@@ -1,7 +1,7 @@
 {
   "values": [
-    "louis-overhaul-mod:dragon_breath_cauldron",
-    "louis-overhaul-mod:honey_cauldron",
-    "louis-overhaul-mod:colored_water_cauldron"
+    "bunny-lib:dragon_breath_cauldron",
+    "bunny-lib:honey_cauldron",
+    "bunny-lib:colored_water_cauldron"
   ]
 }

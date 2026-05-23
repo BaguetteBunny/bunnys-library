@@ -1,13 +1,13 @@
 {
   "values": [
-    "louis-overhaul-mod:vampirism",
-    "louis-overhaul-mod:tilling",
-    "louis-overhaul-mod:illagers_bane",
-    "louis-overhaul-mod:reeling",
-    "louis-overhaul-mod:shield_bash",
-    "louis-overhaul-mod:recovery",
-    "louis-overhaul-mod:tailoring",
-    "louis-overhaul-mod:excavator",
-    "louis-overhaul-mod:giant_killer"
+    "bunny-lib:vampirism",
+    "bunny-lib:tilling",
+    "bunny-lib:illagers_bane",
+    "bunny-lib:reeling",
+    "bunny-lib:shield_bash",
+    "bunny-lib:recovery",
+    "bunny-lib:tailoring",
+    "bunny-lib:excavator",
+    "bunny-lib:giant_killer"
   ]
 }

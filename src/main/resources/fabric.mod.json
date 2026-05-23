@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "louis-overhaul-mod",
+	"id": "bunny-lib",
 	"version": "${version}",
-	"name": "Louis' Overhaul Mod",
-	"description": "Mod that enhances the forgotten features of the game, while aiming to improve the end game.",
+	"name": "Bunny's Lib",
+	"description": "A lightweight dependancy library used for all of Bunny's mods",
 	"authors": [
 		"BaguetteBunny"
 	],
@@ -12,24 +12,24 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC BY-NC-SA 4.0",
-	"icon": "assets/louis-overhaul-mod/icon.png",
+	"icon": "assets/bunny-lib/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.louis.overhaulmod.LouisOverhaulMod"
+			"bunny.lib.BunnyLib"
 		],
 		"modmenu": [
-			"net.louis.overhaulmod.LouisOverhaulModMenu"
+			"bunny.lib.BunnyLibMenu"
 		],
 		"fabric-datagen": [
-			"net.louis.overhaulmod.LouisOverhaulModDataGenerator"
+			"bunny.lib.BunnyLibDataGenerator"
 		],
 		"client": [
-			"net.louis.overhaulmod.LouisOverhaulModClient"
+			"bunny.lib.BunnyLibClient"
 		]
 	},
 	"mixins": [
-		"louis-overhaul-mod.mixins.json"
+		"bunny-lib.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "minecraft:polished_granite",
-  "result": {
-    "count": 1,
-    "id": "louis-overhaul-mod:polished_granite_wall"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=x":  { "model": "louis-overhaul-mod:block/infused_bone_block_horizontal" },
-    "axis=y":  { "model": "louis-overhaul-mod:block/infused_bone_block" },
-    "axis=z":  { "model": "louis-overhaul-mod:block/infused_bone_block_horizontal", "x": 90 }
-  }
-}

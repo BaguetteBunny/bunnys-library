@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "minecraft:end_stone",
-  "result": {
-    "count": 1,
-    "id": "louis-overhaul-mod:end_stone_stairs"
-  }
-}

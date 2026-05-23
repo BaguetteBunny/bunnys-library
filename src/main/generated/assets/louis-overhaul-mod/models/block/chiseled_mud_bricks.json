@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "louis-overhaul-mod:block/chiseled_mud_bricks"
-  }
-}

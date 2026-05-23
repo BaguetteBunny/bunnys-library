@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "minecraft:green_concrete",
-  "result": {
-    "count": 1,
-    "id": "louis-overhaul-mod:green_concrete_stairs"
-  }
-}

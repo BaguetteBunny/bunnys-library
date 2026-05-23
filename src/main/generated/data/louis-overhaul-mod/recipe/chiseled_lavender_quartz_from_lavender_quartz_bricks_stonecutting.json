@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "louis-overhaul-mod:lavender_quartz_bricks",
-  "result": {
-    "count": 1,
-    "id": "louis-overhaul-mod:chiseled_lavender_quartz"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "level=1": { "model": "louis-overhaul-mod:block/honey_cauldron_level1" },
-    "level=2": { "model": "louis-overhaul-mod:block/honey_cauldron_level2" },
-    "level=3": { "model": "louis-overhaul-mod:block/honey_cauldron_full" }
-  }
-}
