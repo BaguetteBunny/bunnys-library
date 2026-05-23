@@ -12,12 +12,6 @@ import net.minecraft.util.ActionResult;
 import java.util.Set;
 
 public class CauldronBehaviorHooks {
-    public static final Set<Item> DYEABLE_ARMOR = Set.of(
-            Items.LEATHER_HELMET,
-            Items.LEATHER_CHESTPLATE,
-            Items.LEATHER_LEGGINGS,
-            Items.LEATHER_BOOTS
-    );
     public static final Set<Item> DYEABLE_EQUIPMENT = Set.of(
             Items.LEATHER_HELMET,
             Items.LEATHER_CHESTPLATE,

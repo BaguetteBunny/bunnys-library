@@ -1,6 +1,5 @@
-package bunny.lib.mixin;
+package bunnys.qol.mixin;
 
-import bunny.lib.mixin.accessor.ArmorStandEntityAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -20,17 +19,17 @@ public class ArmorStandMixin {
     ArmorStandEntity stand = (ArmorStandEntity) (Object) this;
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    private void LOM$onArmorStandDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void bunny$onArmorStandDamage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!stand.isRemoved()
                 && !source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)
                 && stand.isInvisible()) {
-            ((ArmorStandEntityAccessor) stand).callonBreak(world, source);
+            ((ArmorStandEntityAccessor) stand).bunny$callonBreak(world, source);
             stand.remove(Entity.RemovalReason.KILLED);
         }
     }
 
     @Inject(method = "onBreak", at = @At("TAIL"))
-    private void LOM$onArmorStandBreak(ServerWorld world, DamageSource source, CallbackInfo ci) {
+    private void bunny$onArmorStandBreak(ServerWorld world, DamageSource source, CallbackInfo ci) {
         if (stand.shouldShowArms()) {
             ItemStack stack = new ItemStack(Items.STICK);
             ItemEntity itemEntity = new ItemEntity(world, stand.getX(), stand.getY() + 0.5, stand.getZ(), stack);

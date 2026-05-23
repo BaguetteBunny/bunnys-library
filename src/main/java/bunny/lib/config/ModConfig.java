@@ -14,6 +14,24 @@ public class ModConfig {
 
     public static ModConfig INSTANCE = new ModConfig();
 
+    // QOL Section
+    public boolean enableSitting = true;
+    public boolean enableRcHarvest = true;
+    public boolean enableThrowableBricks = true;
+    public boolean oxidizeCopperWithClock = true;
+    public boolean useOnSusSand = true;
+    public boolean useBonemealOnOtherCrops = true;
+    public boolean enableFeatherAttack = true;
+    public boolean disableCropTrampleWithFeatherFalling = true;
+    public boolean sculkCatalystBloomsEchoShards = true;
+    public boolean dyeShulkerAndBrush = true;
+    public boolean disableItemFrameInteractionIfChest = true;
+    public boolean changeArmorstand = true;
+    public boolean overchargedStriders = true;
+    public boolean increaseJungleSaplingDropRate = true;
+    public boolean shearsStopGrowth = true;
+    public long decreaseMobHeadDetectionRange = 0;
+
     // Enchantment Section
     public boolean allowEnchantmentCaps = true;
     public boolean grindstoneRemoveEnchantsOneByOne = true;
@@ -26,15 +44,11 @@ public class ModConfig {
     public boolean disableWitherBedrockCollision = true;
     public boolean enderpearlTeleportsHorses = true;
     public boolean endermiteTeleportPlayerOnHit = true;
-    public boolean dyeShulkerAndBrush = true;
-    public boolean disableItemFrameInteractionIfChest = true;
-    public boolean changeArmorstand = true;
     public boolean randomPigSpeed = true;
     public boolean moreAggressivePolarBears = true;
     public boolean strongerWither = true;
     public boolean enableWitherBossPhases = true;
     public boolean endermanImmuneToWaterWithEffect = true;
-    public long decreaseMobHeadDetectionRange = 0;
     public int saddledGoatHornCooldownInSeconds = 5;
 
     // Stew Section
@@ -48,17 +62,8 @@ public class ModConfig {
     public boolean doLingeringDropOnHit = true;
 
     // Misc Section
-    public boolean enableSitting = true;
-    public boolean enableRcHarvest = true;
-    public boolean enableThrowableBricks = true;
-    public boolean oxidizeCopperWithClock = true;
-    public boolean useOnSusSand = true;
     public boolean retexturePlayerHead = true;
-    public boolean useBonemealOnOtherCrops = true;
     //public boolean useGlowInk = true;
-    public boolean enableFeatherAttack = true;
-    public boolean disableCropTrampleWithFeatherFalling = true;
-    public boolean sculkCatalystBloomsEchoShards = true;
     public boolean enableDynamicLighting = true;
 
     // --- load ---

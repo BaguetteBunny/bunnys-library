@@ -11,6 +11,7 @@ base {
 }
 
 repositories {
+	mavenLocal()
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven { url "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
@@ -22,6 +23,8 @@ fabricApi {
 	}
 }
 
+def qolJar = file("../bunnys-qol/build/libs/bunnys-qol-${project.mod_version}.jar")
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -31,6 +34,10 @@ dependencies {
 	modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
 	modApi "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.2")
+
+	if (qolJar.exists()) {
+		modRuntimeOnly files(qolJar)
+	}
 }
 
 processResources {
@@ -65,4 +72,18 @@ publishing {
 			from components.java
 		}
 	}
+}
+tasks.register('buildAll') {
+	dependsOn ':build'
+	doLast {
+		exec { commandLine '../bunnys-qol/gradlew', '-p', '../bunnys-qol', 'build' }
+	}
+}
+
+tasks.named('runClient') {
+	dependsOn 'buildAll'
+}
+
+tasks.named('runDatagen') {
+	dependsOn 'buildAll'
 }

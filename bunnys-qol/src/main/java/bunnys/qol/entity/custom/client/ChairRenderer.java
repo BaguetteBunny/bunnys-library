@@ -1,6 +1,6 @@
-package bunny.lib.entity.custom.client;
+package bunnys.qol.entity.custom.client;
 
-import bunny.lib.entity.custom.misc.ChairEntity;
+import bunnys.qol.entity.custom.misc.ChairEntity;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;

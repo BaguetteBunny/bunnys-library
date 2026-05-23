@@ -1,4 +1,4 @@
-package bunny.lib.entity.custom.thrown.projectile;
+package bunnys.qol.entity.custom.thrown.projectile;
 
 import bunny.lib.utils.ItemManager;
 import net.minecraft.block.BlockState;
@@ -20,17 +20,18 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
-public class BrickEntity extends ThrownItemEntity {
-    public BrickEntity(World world, LivingEntity owner) {
-        super(EntityType.SNOWBALL, owner, world, new ItemStack(Items.BRICK));
+public class NetherBrickEntity extends ThrownItemEntity {
+    public NetherBrickEntity(World world, LivingEntity owner) {
+        super(EntityType.SNOWBALL, owner, world, new ItemStack(Items.NETHER_BRICK));
     }
 
     @Override
     protected Item getDefaultItem() {
-        return Items.BRICK;
+        return Items.NETHER_BRICK;
     }
 
     private ParticleEffect getParticleParameters() {
@@ -55,33 +56,35 @@ public class BrickEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = 2;
         if (entity.getEntityWorld().isClient()) return;
-        entity.damage((ServerWorld) entity.getEntityWorld(), this.getDamageSources().thrown(this, this.getOwner()), i);
+        entity.damage((ServerWorld) entity.getEntityWorld(), this.getDamageSources().thrown(this, this.getOwner()), 3);
+
+        Vec3d velocity = this.getVelocity().normalize().multiply(0.8);
+        entity.addVelocity(velocity.x, 0.1, velocity.z);
+        entity.velocityModified = true;
     }
 
     @Override
     protected void onCollision(HitResult hitResult) {
-        super.onCollision(hitResult);
-        World world = this.getEntityWorld();
-        if (world.isClient()) return;
+        World w = this.getEntityWorld();
+        if (w.isClient()) return;
 
-        ServerWorld serverWorld = (ServerWorld) world;
+        ServerWorld world = (ServerWorld) w;
 
-        if (hitResult.getType() == HitResult.Type.BLOCK && serverWorld.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
+        if (hitResult.getType() == HitResult.Type.BLOCK && world.getGameRules().getBoolean(GameRules.PROJECTILES_CAN_BREAK_BLOCKS)) {
             BlockHitResult blockHitResult = (BlockHitResult) hitResult;
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState state = world.getBlockState(pos);
 
-            if (ItemManager.BRICK_BREAKABLE_GLASS_BLOCKS.contains(state.getBlock())) {
-                world.breakBlock(pos, true, this);
+            if (ItemManager.BRICK_BREAKABLE_GLASS_AND_TINTED_BLOCKS.contains(state.getBlock())) {
+                world.breakBlock(pos, false, this);
                 world.playSound(null, pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 3.0F, 1.0F);
+                return;
             }
-
-            world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
-            this.discard();
         }
+
+        super.onCollision(hitResult);
+        this.getEntityWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
+        this.discard();
     }
 }
-
-

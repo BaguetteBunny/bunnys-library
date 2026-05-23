@@ -51,7 +51,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PIONEER_POUCH)
 
                 .add(Items.BUNDLE)
-                .add(Items.BUNDLE)
                 .add(Items.WHITE_BUNDLE)
                 .add(Items.ORANGE_BUNDLE)
                 .add(Items.MAGENTA_BUNDLE)
@@ -68,14 +67,5 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.RED_BUNDLE)
                 .add(Items.BLUE_BUNDLE)
                 .add(Items.PURPLE_BUNDLE);
-
-        getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
-                .add(Items.END_STONE)
-                .add(Items.STONE)
-                .add(Items.DRIPSTONE_BLOCK)
-                .add(Items.DIORITE)
-                .add(Items.ANDESITE)
-                .add(Items.GRANITE);
-
     }
 }

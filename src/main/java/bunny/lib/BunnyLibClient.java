@@ -12,7 +12,6 @@ import bunny.lib.block.ModBlocks;
 import bunny.lib.entity.ModEntities;
 import bunny.lib.entity.custom.client.BearEntityModel;
 import bunny.lib.entity.custom.client.BearEntityRenderer;
-import bunny.lib.entity.custom.client.ChairRenderer;
 import bunny.lib.fluid.ModFluids;
 import bunny.lib.screen.AdvancedFletchingTableScreen;
 import bunny.lib.screen.ModScreenHandlers;
@@ -49,8 +48,6 @@ public class BunnyLibClient implements ClientModInitializer {
         // Add Entities
         EntityModelLayerRegistry.registerModelLayer(BearEntityModel.BEAR, BearEntityModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.BROWN_BEAR, BearEntityRenderer::new);
-
-        EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
 
         // Add Block Transparency
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COPPER_RAIL, RenderLayer.getCutout());

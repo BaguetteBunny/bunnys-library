@@ -1,4 +1,4 @@
-package bunny.lib.mixin;
+package bunnys.qol.mixin;
 
 import bunny.lib.config.ModConfig;
 import net.minecraft.block.*;
@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemFrameMixin {
 
     @Inject(method = "onBreak", at = @At("TAIL"))
-    private void LOM$dropMembraneOnBreak(ServerWorld world, @Nullable Entity entity, CallbackInfo ci) {
+    private void bunny$dropMembraneOnBreak(ServerWorld world, @Nullable Entity entity, CallbackInfo ci) {
         ItemFrameEntity frame = (ItemFrameEntity) (Object) this;
 
         if (!world.isClient() && frame.isInvisible()) {
@@ -39,7 +39,7 @@ public class ItemFrameMixin {
     }
 
     @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
-    private void LOM$ignoreItemFrameIfChest(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    private void bunny$ignoreItemFrameIfChest(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack stack = player.getStackInHand(hand);
         ItemFrameEntity frame = ((ItemFrameEntity) (Object) this);
 

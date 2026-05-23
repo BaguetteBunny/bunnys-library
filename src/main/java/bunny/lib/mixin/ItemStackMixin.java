@@ -4,7 +4,6 @@ import bunny.lib.component.ModComponents;
 import bunny.lib.config.ModConfig;
 import bunny.lib.item.ModItems;
 import bunny.lib.utils.EnchantmentCapRegistry;
-import bunny.lib.utils.ItemManager;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
@@ -204,23 +203,5 @@ public class ItemStackMixin {
                 }
             }
         }
-    }
-
-    @Inject(method = "getTooltip", at = @At("RETURN"))
-    private void LOM$addEquippableTooltip(Item.TooltipContext context, PlayerEntity player, TooltipType type, CallbackInfoReturnable<List<Text>> cir) {
-        if (!ItemManager.HEAD_EQUIPPABLE_ITEMS.contains(stack.getItem())) return;
-
-        List<Text> tooltip = cir.getReturnValue();
-        tooltip.add(1, Text.literal("Equippable")
-                .formatted(Formatting.GRAY));
-    }
-
-    @Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
-    private void LOM$overrideMaxStacks(CallbackInfoReturnable<Integer> cir) {
-        ItemStack self = (ItemStack) (Object) this;
-        Item item = self.getItem();
-
-        Integer override = ItemManager.MAX_STACK_OVERRIDES.get(item);
-        if (override != null) cir.setReturnValue(override);
     }
 }

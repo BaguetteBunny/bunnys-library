@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "bunnys-qol",
+	"version": "${version}",
+	"name": "Bunny's Qualities of Life",
+	"description": "A lightweight QOL mod that aims to improve the vanilla Minecraft experience.",
+	"authors": [
+		"BaguetteBunny"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/bunnys-qol/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"bunnys.qol.BunnysQol"
+		],
+		"fabric-datagen": [
+			"bunnys.qol.BunnysQolDataGenerator"
+		],
+		"client": [
+			"bunnys.qol.BunnysQolClient"
+		]
+	},
+	"mixins": [
+		"bunnys-qol.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"cloth-config": "*",
+		"bunny-lib": "*"
+	}
+}

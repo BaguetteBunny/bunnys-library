@@ -1,4 +1,4 @@
-package bunny.lib.mixin;
+package bunnys.qol.mixin;
 
 import bunny.lib.config.ModConfig;
 import net.minecraft.block.Block;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SculkCatalystBlockEntityMixin {
 
     @Inject(method = "bloom", at = @At("TAIL"))
-    private void LOM$echoShardOnBloom(ServerWorld world, BlockPos pos, BlockState state, Random random, CallbackInfo ci) {
+    private void bunny$echoShardOnBloom(ServerWorld world, BlockPos pos, BlockState state, Random random, CallbackInfo ci) {
         if (random.nextInt(10) == 0 && ModConfig.INSTANCE.sculkCatalystBloomsEchoShards) {
             BlockPos above = pos.up();
             if (world.getBlockState(above).isAir()) {

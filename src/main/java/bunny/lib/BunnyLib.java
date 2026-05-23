@@ -18,7 +18,6 @@ import bunny.lib.effect.ModEffects;
 import bunny.lib.enchantments.ModEnchantmentEffects;
 import bunny.lib.entity.ModEntities;
 import bunny.lib.entity.custom.living.BearEntity;
-import bunny.lib.events.*;
 import bunny.lib.fluid.ModFluids;
 import bunny.lib.item.ModItems;
 import bunny.lib.mixin.accessor.PointOfInterestTypesAccessor;
@@ -33,8 +32,6 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EnchantableComponent;
-import net.minecraft.component.type.EquippableComponent;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.entity.SpawnRestriction;
@@ -53,7 +50,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static bunny.lib.utils.ItemManager.ENCHANTABLE;
-import static bunny.lib.utils.ItemManager.HEAD_EQUIPPABLE_ITEMS;
 
 public class BunnyLib implements ModInitializer {
 	public static final String MOD_ID = "bunny-lib";
@@ -144,13 +140,6 @@ public class BunnyLib implements ModInitializer {
 	}
 
 	private void addDataComponentsToExistingItems() {
-		DefaultItemComponentEvents.MODIFY.register(context -> {
-			context.modify(
-                    new HashSet<>(HEAD_EQUIPPABLE_ITEMS),
-					(builder, item) -> builder.add(DataComponentTypes.EQUIPPABLE, EquippableComponent.builder(EquipmentSlot.HEAD).build())
-			);
-		});
-
 		DefaultItemComponentEvents.MODIFY.register(context -> {
 			context.modify(
 					new HashSet<>(ENCHANTABLE),

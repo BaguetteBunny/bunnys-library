@@ -1,4 +1,4 @@
-package bunny.lib.mixin.accessor;
+package bunnys.qol.mixin;
 
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(ArmorStandEntity.class)
 public interface ArmorStandEntityAccessor {
     @Invoker("setSmall")
-    void callSetSmall(boolean small);
+    void bunny$callSetSmall(boolean small);
 
     @Invoker("onBreak")
-    void callonBreak(ServerWorld world, DamageSource damageSource);
+    void bunny$callonBreak(ServerWorld world, DamageSource damageSource);
 }

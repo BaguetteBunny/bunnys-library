@@ -2,6 +2,7 @@ package bunny.lib.config;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -10,9 +11,64 @@ public class ModConfigScreen {
 
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Text.of("Louis Overhaul Mod Config"));
+                .setTitle(Text.of("Bunny's Mod Config"));
 
         ConfigEntryBuilder entry = builder.entryBuilder();
+
+        if (FabricLoader.getInstance().isModLoaded("bunnys-qol")) {
+            var qolModule = builder.getOrCreateCategory(Text.of("QoL Module"));
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Sitting with Saddles"),
+                    ModConfig.INSTANCE.enableSitting).setSaveConsumer(v -> ModConfig.INSTANCE.enableSitting = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Right Click Harvesting"),
+                    ModConfig.INSTANCE.enableRcHarvest).setSaveConsumer(v -> ModConfig.INSTANCE.enableRcHarvest = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Throwable Bricks"),
+                    ModConfig.INSTANCE.enableThrowableBricks).setSaveConsumer(v -> ModConfig.INSTANCE.enableThrowableBricks = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Oxidize Copper with Clock"),
+                    ModConfig.INSTANCE.oxidizeCopperWithClock).setSaveConsumer(v -> ModConfig.INSTANCE.oxidizeCopperWithClock = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Put Items in Suspicious Blocks"),
+                    ModConfig.INSTANCE.useOnSusSand).setSaveConsumer(v -> ModConfig.INSTANCE.useOnSusSand = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Damageless Feathers"),
+                    ModConfig.INSTANCE.enableFeatherAttack).setSaveConsumer(v -> ModConfig.INSTANCE.enableFeatherAttack = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Bonemeal More Crops"),
+                    ModConfig.INSTANCE.useBonemealOnOtherCrops).setSaveConsumer(v -> ModConfig.INSTANCE.useBonemealOnOtherCrops = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Feather Falling disables Crop Trampling"),
+                    ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling).setSaveConsumer(v -> ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("No Item Frame Interaction if on a Chest"),
+                    ModConfig.INSTANCE.disableItemFrameInteractionIfChest).setSaveConsumer(v -> ModConfig.INSTANCE.disableItemFrameInteractionIfChest = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Dyeable and Brushable Shulkers"),
+                    ModConfig.INSTANCE.dyeShulkerAndBrush).setSaveConsumer(v -> ModConfig.INSTANCE.dyeShulkerAndBrush = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Allow Armor Stand Modifications"),
+                    ModConfig.INSTANCE.changeArmorstand).setSaveConsumer(v -> ModConfig.INSTANCE.changeArmorstand = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Sculk Catalyst generate Echo Shards"),
+                    ModConfig.INSTANCE.sculkCatalystBloomsEchoShards).setSaveConsumer(v -> ModConfig.INSTANCE.sculkCatalystBloomsEchoShards = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Speed up Striders using Blaze Powder"),
+                    ModConfig.INSTANCE.overchargedStriders).setSaveConsumer(v -> ModConfig.INSTANCE.overchargedStriders = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Increase Jungle Sapling Drop Rate"),
+                    ModConfig.INSTANCE.increaseJungleSaplingDropRate).setSaveConsumer(v -> ModConfig.INSTANCE.increaseJungleSaplingDropRate = v).build());
+            qolModule.addEntry(entry.startBooleanToggle(
+                    Text.of("Shears can stop Cactus, Sugar Cane and Bamboo from Growing"),
+                    ModConfig.INSTANCE.shearsStopGrowth).setSaveConsumer(v -> ModConfig.INSTANCE.shearsStopGrowth = v).build());
+            qolModule.addEntry(entry.startLongSlider(
+                    Text.of("Mob Detection Range when wearing their Head"),
+                    ModConfig.INSTANCE.decreaseMobHeadDetectionRange,
+                    0,
+                    35
+            ).setSaveConsumer(v -> ModConfig.INSTANCE.decreaseMobHeadDetectionRange = v).build());
+        }
 
         var enchantmentModule = builder.getOrCreateCategory(Text.of("Enchantment Module"));
         enchantmentModule.addEntry(entry.startBooleanToggle(
@@ -43,15 +99,6 @@ public class ModConfigScreen {
                 Text.of("Endermite Teleports Player on Hit"),
                 ModConfig.INSTANCE.endermiteTeleportPlayerOnHit).setSaveConsumer(v -> ModConfig.INSTANCE.endermiteTeleportPlayerOnHit = v).build());
         entityModule.addEntry(entry.startBooleanToggle(
-                Text.of("No Item Frame Interaction if on a Chest"),
-                ModConfig.INSTANCE.disableItemFrameInteractionIfChest).setSaveConsumer(v -> ModConfig.INSTANCE.disableItemFrameInteractionIfChest = v).build());
-        entityModule.addEntry(entry.startBooleanToggle(
-                Text.of("Dyeable and Brushable Shulkers"),
-                ModConfig.INSTANCE.dyeShulkerAndBrush).setSaveConsumer(v -> ModConfig.INSTANCE.dyeShulkerAndBrush = v).build());
-        entityModule.addEntry(entry.startBooleanToggle(
-                Text.of("Allow Armor Stand Modifications"),
-                ModConfig.INSTANCE.changeArmorstand).setSaveConsumer(v -> ModConfig.INSTANCE.changeArmorstand = v).build());
-        entityModule.addEntry(entry.startBooleanToggle(
                 Text.of("Enable Volatile and Random Ridden Pig Speed"),
                 ModConfig.INSTANCE.randomPigSpeed).setSaveConsumer(v -> ModConfig.INSTANCE.randomPigSpeed = v).build());
         entityModule.addEntry(entry.startBooleanToggle(
@@ -69,12 +116,6 @@ public class ModConfigScreen {
         entityModule.addEntry(entry.startBooleanToggle(
                 Text.of("Endermen become Immune to Water with Water Breathing"),
                 ModConfig.INSTANCE.endermanImmuneToWaterWithEffect).setSaveConsumer(v -> ModConfig.INSTANCE.endermanImmuneToWaterWithEffect = v).build());
-        entityModule.addEntry(entry.startLongSlider(
-                Text.of("Mob Detection Range when wearing their Head"),
-                ModConfig.INSTANCE.decreaseMobHeadDetectionRange,
-                0,
-                35
-        ).setSaveConsumer(v -> ModConfig.INSTANCE.decreaseMobHeadDetectionRange = v).build());
         entityModule.addEntry(entry.startIntSlider(
                 Text.of("Saddled Goat Horn Cooldown"),
                 ModConfig.INSTANCE.saddledGoatHornCooldownInSeconds,
@@ -109,35 +150,11 @@ public class ModConfigScreen {
 
         var miscModule = builder.getOrCreateCategory(Text.of("Misc Module"));
         miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Sitting with Saddles"),
-                ModConfig.INSTANCE.enableSitting).setSaveConsumer(v -> ModConfig.INSTANCE.enableSitting = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Right Click Harvesting"),
-                ModConfig.INSTANCE.enableRcHarvest).setSaveConsumer(v -> ModConfig.INSTANCE.enableRcHarvest = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Throwable Bricks"),
-                ModConfig.INSTANCE.enableThrowableBricks).setSaveConsumer(v -> ModConfig.INSTANCE.enableThrowableBricks = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Oxidize Copper with Clock"),
-                ModConfig.INSTANCE.oxidizeCopperWithClock).setSaveConsumer(v -> ModConfig.INSTANCE.oxidizeCopperWithClock = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Put Items in Suspicious Blocks"),
-                ModConfig.INSTANCE.useOnSusSand).setSaveConsumer(v -> ModConfig.INSTANCE.useOnSusSand = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Damageless Feathers"),
-                ModConfig.INSTANCE.enableFeatherAttack).setSaveConsumer(v -> ModConfig.INSTANCE.enableFeatherAttack = v).build());
+                Text.of("Enable Dynamic Lighting"),
+                ModConfig.INSTANCE.enableDynamicLighting).setSaveConsumer(v -> ModConfig.INSTANCE.enableDynamicLighting = v).build());
         miscModule.addEntry(entry.startBooleanToggle(
                 Text.of("Retexturable Player Heads with Nametags"),
                 ModConfig.INSTANCE.retexturePlayerHead).setSaveConsumer(v -> ModConfig.INSTANCE.retexturePlayerHead = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Bonemeal More Crops"),
-                ModConfig.INSTANCE.useBonemealOnOtherCrops).setSaveConsumer(v -> ModConfig.INSTANCE.useBonemealOnOtherCrops = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Feather Falling disables Crop Trampling"),
-                ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling).setSaveConsumer(v -> ModConfig.INSTANCE.disableCropTrampleWithFeatherFalling = v).build());
-        miscModule.addEntry(entry.startBooleanToggle(
-                Text.of("Enable Dynamic Lighting"),
-                ModConfig.INSTANCE.enableDynamicLighting).setSaveConsumer(v -> ModConfig.INSTANCE.enableDynamicLighting = v).build());
 
         builder.setSavingRunnable(ModConfig::save);
         return builder.build();
