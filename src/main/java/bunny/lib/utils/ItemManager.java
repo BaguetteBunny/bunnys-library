@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 public final class ItemManager {
-
     public static final Set<Item> ENCHANTABLE = new HashSet<>();
     static {
         ENCHANTABLE.add(Items.SHEARS);
@@ -191,6 +190,26 @@ public final class ItemManager {
         MAX_STACK_OVERRIDES.put(Items.TNT_MINECART, 16);
         MAX_STACK_OVERRIDES.put(Items.HOPPER_MINECART, 16);
         MAX_STACK_OVERRIDES.put(Items.COMMAND_BLOCK_MINECART, 16);
+
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_5, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_11, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_13, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_CAT, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_BLOCKS, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_CHIRP, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_CREATOR, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_CREATOR_MUSIC_BOX, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_FAR, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_MALL, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_MELLOHI, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_OTHERSIDE, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_PIGSTEP, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_PRECIPICE, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_RELIC, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_STAL, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_STRAD, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_WAIT, 16);
+        MAX_STACK_OVERRIDES.put(Items.MUSIC_DISC_WARD, 16);
 
         // 1
         MAX_STACK_OVERRIDES.put(Items.DRAGON_EGG, 1);

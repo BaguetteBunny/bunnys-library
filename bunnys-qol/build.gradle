@@ -62,3 +62,9 @@ publishing {
         }
     }
 }
+
+fabricApi {
+    configureDataGeneration {
+        client = true
+    }
+}
